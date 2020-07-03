@@ -33,13 +33,25 @@ for(i in c(2:nrow(euks))){
   }
 }
 
+# Remove all rows that do not start with Eucalypt species name
 euks = euks[-a,, drop = FALSE]
 
-backup = euks
+backup1 = euks
 
+# Split complete string to extract the Eucalypt species names
 euks2 = data.frame(species = 1:nrow(euks), bark = 1:nrow(euks))
 euks2[,1] = sapply(strsplit(euks$eucalypts, split=",b", fixed=TRUE), `[`, 1)
 euks2[,2] = sapply(strsplit(euks$eucalypts, split=",b", fixed=TRUE), `[`, 2)
 
-# euks2$barksplit = sapply(strsplit(euks2[,2], split="<a", fixed=TRUE), `[`)
+backup2 = euks2
+
+# Remove white space and apostrophes
+euks2 = data.frame(lapply(euks2, function(x) {gsub("'", "", x)}))
+blah = "\xc3\xa2\xc2\x80\xc2\x93"
+euks2 = data.frame(lapply(euks2, function(x) {gsub('\\xc3\\xa2\\xc2\\x80\\xc2\\x93', "-", x)}))
+## ^not working
+## This section needs work. There may be issues with previous steps as well. "E. goniantha" does not list the two varietals in EUCLID but a single species. 
+
+# Split the bark type string again to identify hyperlinks from the website
+euks2$barksplit = sapply(strsplit(euks2[,2], split="<a", fixed=TRUE), `[`)
 
