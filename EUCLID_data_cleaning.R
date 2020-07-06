@@ -40,8 +40,8 @@ backup1 = euks
 
 # Split complete string to extract the Eucalypt species names
 euks2 = data.frame(species = 1:nrow(euks), bark = 1:nrow(euks))
-euks2[,1] = sapply(strsplit(euks$eucalypts, split=",b", fixed=TRUE), `[`, 1)
-euks2[,2] = sapply(strsplit(euks$eucalypts, split=",b", fixed=TRUE), `[`, 2)
+euks2[,1] = sapply(strsplit(euks$eucalypts, split=",b' ", fixed=TRUE), `[`, 1)
+euks2[,2] = sapply(strsplit(euks$eucalypts, split=",b' ", fixed=TRUE), `[`, 2)
 
 backup2 = euks2
 
