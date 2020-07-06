@@ -40,13 +40,14 @@ backup1 = euks
 
 # Split complete string to extract the Eucalypt species names
 euks2 = data.frame(species = 1:nrow(euks), bark = 1:nrow(euks))
-euks2[,1] = sapply(strsplit(euks$eucalypts, split=",b' ", fixed=TRUE), `[`, 1)
-euks2[,2] = sapply(strsplit(euks$eucalypts, split=",b' ", fixed=TRUE), `[`, 2)
+euks2[,1] = sapply(strsplit(euks$eucalypts, split=",b", fixed=TRUE), `[`, 1)
+euks2[,2] = sapply(strsplit(euks$eucalypts, split=",b", fixed=TRUE), `[`, 2)
 
 backup2 = euks2
 
 # Remove white space and apostrophes
 euks2 = data.frame(lapply(euks2, function(x) {gsub("'", "", x)}))
+euks2$bark = str_trim(euks2$bark, side = "both")
 
 # Best thing to do next is fix the remaining errors manually. Write to CSV
 write.csv(euks2, file= "EUCLID_FriPy_webscrape2.0_partlycleaned.csv")
