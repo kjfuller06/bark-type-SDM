@@ -47,11 +47,7 @@ backup2 = euks2
 
 # Remove white space and apostrophes
 euks2 = data.frame(lapply(euks2, function(x) {gsub("'", "", x)}))
-blah = "\xc3\xa2\xc2\x80\xc2\x93"
-euks2 = data.frame(lapply(euks2, function(x) {gsub('\\xc3\\xa2\\xc2\\x80\\xc2\\x93', "-", x)}))
-## ^not working
-## This section needs work. There may be issues with previous steps as well. "E. goniantha" does not list the two varietals in EUCLID but a single species. 
 
-# Split the bark type string again to identify hyperlinks from the website
-euks2$barksplit = sapply(strsplit(euks2[,2], split="<a", fixed=TRUE), `[`)
+# Best thing to do next is fix the remaining errors manually. Write to CSV
+write.csv(euks2, file= "EUCLID_FriPy_webscrape2.0_partlycleaned.csv")
 
