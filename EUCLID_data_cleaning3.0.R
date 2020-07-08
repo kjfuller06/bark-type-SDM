@@ -18,12 +18,13 @@ backup1 = euks2
 linked_sp = grep("EUCLID Glossary_", euks2$bark, fixed = TRUE)
 ## forget the links- they aren't useful enough to rely on
 
-# string1 = " title=&lt;p&gt;"
-# links = euks2 %>%
-#   strsplit(euks2$bark, split= string1, fixed=TRUE) %>%
-#   strsplit(bark, split=" title=&lt;p&gt;", fixed=TRUE)
-# 
-# links[1,] = gsub(c("<a class=fsf_tooltip href=glossary.htm#EUCLID Glossary_", " title=&lt;p&gt;", "</a>", "&lt;/p&gt;>"), "", euks2$bark[1], fixed = TRUE)
-# gsub(" title=&lt;p&gt;", "", euks2$bark[1], fixed = TRUE) %>%
-# gsub("</a>", "", fixed = TRUE)
-# gsub("&lt;/p&gt;>", fixed = TRUE)
+euks2$bark = gsub("<a class=fsf_tooltip href=glossary.htm#EUCLID Glossary_", "", euks2$bark, fixed = TRUE)
+backup = euks2
+
+euks2$bark = gsub(" title[[:punct:]].*?[[:punct:]]{2}a[[:punct:]][^g]", "", euks2$bark, perl = TRUE)
+# euks2$bark = gsub("gt[[:punct:]]\\s.*?[[:punct:]]{2}a[[:punct:]]", "", euks2$bark, perl = TRUE)
+
+# euks2$bark = euks2$bark %>% 
+#   strsplit(split= c("title=&lt;p&gt;"), fixed=TRUE)
+
+## this needs work still to get it to catch all the cases.
