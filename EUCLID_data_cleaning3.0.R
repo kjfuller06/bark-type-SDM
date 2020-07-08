@@ -12,19 +12,18 @@ euks2 = data.frame(lapply(euks, function(x) {gsub("b' ", "", x)}))
 euks2 = data.frame(lapply(euks2, function(x) {gsub(".'", "", x)}))
 
 # pull out all text relating to bark that is in hypertext
-# euks2$bark = as.character(euks2$bark)
-# backup1 = euks2
-# links = data.frame()
-# for(i in c(1:length(euks2))){
-#   
-# }
+euks2$bark = as.character(euks2$bark)
+backup1 = euks2
+
+linked_sp = grep("EUCLID Glossary_", euks2$bark, fixed = TRUE)
+## forget the links- they aren't useful enough to rely on
+
+# string1 = " title=&lt;p&gt;"
+# links = euks2 %>%
+#   strsplit(euks2$bark, split= string1, fixed=TRUE) %>%
+#   strsplit(bark, split=" title=&lt;p&gt;", fixed=TRUE)
 # 
-# links = euks2$bark %>% 
-#   strsplit(split=" title=&lt;p&gt;", fixed=TRUE) %>% 
-#   strsplit(split=" title=&lt;p&gt;", fixed=TRUE)
-# 
-# 
-# links[1,] = gsub(c("<a class=fsf_tooltip href=glossary.htm#EUCLID Glossary_", " title=&lt;p&gt;", "</a>", "&lt;/p&gt;>"), "", euks2$bark[1])
-# gsub(" title=&lt;p&gt;", "", euks2$bark[1]) %>% 
-# gsub("</a>", "", )
-# gsub("&lt;/p&gt;>")
+# links[1,] = gsub(c("<a class=fsf_tooltip href=glossary.htm#EUCLID Glossary_", " title=&lt;p&gt;", "</a>", "&lt;/p&gt;>"), "", euks2$bark[1], fixed = TRUE)
+# gsub(" title=&lt;p&gt;", "", euks2$bark[1], fixed = TRUE) %>%
+# gsub("</a>", "", fixed = TRUE)
+# gsub("&lt;/p&gt;>", fixed = TRUE)
