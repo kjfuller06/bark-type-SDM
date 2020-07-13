@@ -28,4 +28,4 @@ euks2$bark = gsub("[[:punct:]]br[[:punct:]]{2}", "", euks2$bark, perl = TRUE)
 # Note: grep("", euks2$bark) used for searching
 ## Bark data are missing for a number of euks. At least one has no "Bark" category in its info sheet on EUCLID. For the others, it's not clear why they are missing. Possibly it would be best to get a list of candidate species from BioNet to use as a quality check. (BioNet data will only include euks in NSW)
 
-# write.csv(euks2, file = "textsplash.csv")
+write.csv(euks2, file = "eucalyptus_barktypes.csv")
