@@ -1,9 +1,9 @@
-species,bark
-Eucalyptus caesia subsp. caesia,minnirichi
-Eucalyptus caesia subsp. magna,minnirichi
-Eucalyptus crucis subsp. crucis,minnirichi
-Eucalyptus crucis subsp. lanceolata,minnirichi
-Eucalyptus educta,minnirichi
-Eucalyptus ewartiana,minnirichi
-Eucalyptus orbifolia,minnirichi
-Eucalyptus websteriana,minnirichi
+species,main minnirichi
+Eucalyptus caesia subsp. caesia,yes
+Eucalyptus caesia subsp. magna,yes
+Eucalyptus crucis subsp. crucis,yes
+Eucalyptus crucis subsp. lanceolata,yes
+Eucalyptus educta,yes
+Eucalyptus ewartiana,yes
+Eucalyptus orbifolia,yes
+Eucalyptus websteriana,yes
