@@ -8,6 +8,7 @@
 #   4) Assign fire-relevant bark categories to eucalypt species
 #       4.1. Start by creating unique variables for each category to ensure there are no conflicts
 #       4.2. Combine descriptions into one variable
+#       -> User will need to verify trait information using literature
 
 # Assign library path
 .libPaths("C:/Users/90946112/R/win-library/3.6.2")
@@ -58,8 +59,7 @@ all_traits = full_join(all_traits, mainsmooth)
 summary(all_traits)
 
 # 3. ####
-# All categories describing fibrous bark
-fibrous_traits = c("fibrous")
+# Fibrous traits are defined by the "fibrous" category
 
 # All categories describing non-fibrous bark
 any_smooth = c("wholly.smooth",
@@ -80,6 +80,10 @@ shedding_traits = c("ribbons.in.branches",
                     "wholly.smooth",
                     "partly.or.all.smooth")
 
+# All categories describing bark shed from branches
+branch_shedding = c("ribbons.in.branches",
+                    "branches.smooth")
+
 # All categories describing non-shedding bark
 any_rough = c("wholly.rough",
               "fibrous",
@@ -90,3 +94,56 @@ any_rough = c("wholly.rough",
               "partly.rough",
               "branches.rough",
               "no.ribbons.in.branches")
+
+# All categories describing non-shedding trunks
+trunk_rough = c("wholly.rough",
+                "fibrous",
+                "rough.bark.box.type",
+                "rough.bark.compacted",
+                "rough.bark.ironbark",
+                "rough.bark.tessellated",
+                "partly.rough")
+
+# All categories describing non-shedding bark in branches
+branch_nonshedding = c("branches.rough",
+              "no.ribbons.in.branches")
+
+# 4. ####
+# Identify completely fibrous-barked species
+fibre_df = all_traits %>% 
+  filter(fibrous == "yes") %>% 
+  filter_at(vars(all_of(any_smooth)), all_vars(is.na(.))) %>% 
+  mutate(bark_type_fibrous = "wholly fibrous")
+
+# Identify partly fibrous/partly not fibrous species
+fibre_df2 = all_traits %>% 
+  filter(fibrous == "yes") %>% 
+  filter_at(vars(all_of(any_smooth)), any_vars(!is.na(.))) %>% 
+  mutate(bark_type_partly_fibrous = "partly fibrous")
+
+# Identify bark-shedding species
+# -> Includes all partly-shedding bark species as well
+shed_df = all_traits %>% 
+  filter_at(vars(all_of(shedding_traits)), any_vars(. == "yes")) %>% 
+  mutate(bark_type_any_shedding = "shedding")
+
+# Identify species that shed bark from trunk only
+shed_df2 = all_traits %>% 
+  filter_at(vars(all_of(shedding_traits)), any_vars(. == "yes")) %>%
+  filter_at(vars(all_of(branch_nonshedding)), any_vars(. == "yes")) %>% 
+  mutate(bark_type_partly_shedding = "bark shed from trunk only")
+
+# Identify species with shedding in branches only
+shed_df3 = all_traits %>% 
+  filter_at(vars(all_of(branch_shedding)), any_vars(. == "yes")) %>%
+  filter_at(vars(all_of(trunk_rough)), any_vars(. == "yes")) %>% 
+  filter_at(vars(all_of(branch_nonshedding)), all_vars(!is.na(.))) %>% 
+  mutate(branches_only_shedding = "bark shed from branches only")
+
+# Identify species with ribbons confirmed- ribbons in branches (this could be augmented with webscraping text from EUCLID and common names from BioNet and EUCLID)
+# Identify species with both fibrous and shedding qualities
+# Join data and assess traits
+
+
+
+
