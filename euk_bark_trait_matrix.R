@@ -84,6 +84,12 @@ shedding_traits = c("ribbons.in.branches",
 branch_shedding = c("ribbons.in.branches",
                     "branches.smooth")
 
+# All categories describing bark shed from trunk
+trunk_shedding = c("rough.bark.imperfectly.shed",
+                    "rough.bark.loose.basal.slabs",
+                    "wholly.smooth",
+                    "partly.or.all.smooth")
+
 # All categories describing non-shedding bark
 any_rough = c("wholly.rough",
               "fibrous",
@@ -130,20 +136,54 @@ shed_df = all_traits %>%
 # Identify species that shed bark from trunk only
 shed_df2 = all_traits %>% 
   filter_at(vars(all_of(shedding_traits)), any_vars(. == "yes")) %>%
-  filter_at(vars(all_of(branch_nonshedding)), any_vars(. == "yes")) %>% 
-  mutate(bark_type_partly_shedding = "bark shed from trunk only")
+  filter_at(vars(all_of(branch_shedding)), all_vars(is.na(.))) %>% 
+  mutate(trunk_only_shedding = "bark shed from trunk only")
 
 # Identify species with shedding in branches only
 shed_df3 = all_traits %>% 
   filter_at(vars(all_of(branch_shedding)), any_vars(. == "yes")) %>%
-  filter_at(vars(all_of(trunk_rough)), any_vars(. == "yes")) %>% 
-  filter_at(vars(all_of(branch_nonshedding)), all_vars(!is.na(.))) %>% 
+  filter_at(vars(all_of(trunk_shedding)), all_vars(is.na(.))) %>% 
   mutate(branches_only_shedding = "bark shed from branches only")
 
 # Identify species with ribbons confirmed- ribbons in branches (this could be augmented with webscraping text from EUCLID and common names from BioNet and EUCLID)
-# Identify species with both fibrous and shedding qualities
-# Join data and assess traits
+ribbons = all_traits %>% 
+  filter(ribbons.in.branches == "yes") %>% 
+  mutate(ribbons_in_branches = "ribbons in branches")
 
+# Identify species with both fibrous and shedding qualities
+mixed_bark1 = all_traits %>% 
+  filter_at(vars(all_of(shedding_traits)), any_vars(. == "yes")) %>% 
+  filter(fibrous == "yes") %>% 
+  mutate(mixed_bark_shedding = "both fibrous and shedding")
+
+# Identify pecies with both fibrous and ribbon-forming bark
+mixed_bark2 = all_traits %>% 
+  filter(ribbons.in.branches == "yes") %>% 
+  filter(fibrous == "yes") %>% 
+  mutate(mixed_bark_ribbons = "both fibrous and ribbony")
+
+# Join data frames and assess traits
+all_categories = full_join(fibre_df, fibre_df2)
+all_categories = full_join(all_categories, shed_df)
+all_categories = full_join(all_categories, shed_df2)
+all_categories = full_join(all_categories, shed_df3)
+all_categories = full_join(all_categories, ribbons)
+all_categories = full_join(all_categories, mixed_bark1)
+all_categories = full_join(all_categories, mixed_bark2)
+all_categories = as.data.frame(unclass(all_categories))
+
+bark_categories = all_categories %>% 
+  dplyr::select("species",
+                "bark_type_fibrous",
+                "bark_type_partly_fibrous",
+                "bark_type_any_shedding",
+                "trunk_only_shedding",
+                "branches_only_shedding",
+                "ribbons_in_branches",
+                "mixed_bark_shedding",
+                "mixed_bark_ribbons")
+
+# write.csv(bark_categories, "EUCLID_bark_categories_assigned.csv")
 
 
 
