@@ -17,27 +17,27 @@ library(dplyr)
 
 # 1. ####
 # Branch bark traits
-branches1 = read.csv("EUCLID_branches_minnirichi.csv")
-branches2 = read.csv("EUCLID_branches_rough.csv")
-branches3 = read.csv("EUCLID_branches_smooth.csv")
-branches4 = read.csv("EUCLID_no_ribbons_in_branches.csv")
-branches5 = read.csv("EUCLID_ribbons_in_branches.csv")
+branches1 = read.csv("data/EUCLID_branches_minnirichi.csv")
+branches2 = read.csv("data/EUCLID_branches_rough.csv")
+branches3 = read.csv("data/EUCLID_branches_smooth.csv")
+branches4 = read.csv("data/EUCLID_no_ribbons_in_branches.csv")
+branches5 = read.csv("data/EUCLID_ribbons_in_branches.csv")
 
 # Main stem bark traits
-main1 = read.csv("EUCLID_fibrous.csv")
-main2 = read.csv("EUCLID_minnirichi.csv")
-main3 = read.csv("EUCLID_partly_rough.csv")
-main4 = read.csv("EUCLID_wholly_rough.csv")
-main5 = read.csv("EUCLID_wholly_smooth.csv")
+main1 = read.csv("data/EUCLID_fibrous.csv")
+main2 = read.csv("data/EUCLID_minnirichi.csv")
+main3 = read.csv("data/EUCLID_partly_rough.csv")
+main4 = read.csv("data/EUCLID_wholly_rough.csv")
+main5 = read.csv("data/EUCLID_wholly_smooth.csv")
 
 # Traits describing just the rough or smooth bark that is present in any of the main stem categories
-mainrough1 = read.csv("EUCLID_rough_bark_basal_slabs.csv")
-mainrough2 = read.csv("EUCLID_rough_bark_box.csv")
-mainrough3 = read.csv("EUCLID_rough_bark_compacted.csv")
-mainrough4 = read.csv("EUCLID_rough_bark_imperfectly_shed.csv")
-mainrough5 = read.csv("EUCLID_rough_bark_ironbark.csv")
-mainrough6 = read.csv("EUCLID_rough_bark_tessellated.csv")
-mainsmooth = read.csv("EUCLID_smooth_categories.csv")
+mainrough1 = read.csv("data/EUCLID_rough_bark_basal_slabs.csv")
+mainrough2 = read.csv("data/EUCLID_rough_bark_box.csv")
+mainrough3 = read.csv("data/EUCLID_rough_bark_compacted.csv")
+mainrough4 = read.csv("data/EUCLID_rough_bark_imperfectly_shed.csv")
+mainrough5 = read.csv("data/EUCLID_rough_bark_ironbark.csv")
+mainrough6 = read.csv("data/EUCLID_rough_bark_tessellated.csv")
+mainsmooth = read.csv("data/EUCLID_smooth_categories.csv")
 
 # 2. ####
 all_traits = full_join(branches1, branches2)
