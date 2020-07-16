@@ -58,6 +58,8 @@ all_traits = full_join(all_traits, mainrough6)
 all_traits = full_join(all_traits, mainsmooth)
 summary(all_traits)
 
+# write.csv(all_traits, file = "Eucalypt_all_bark_traits.csv")
+
 # 3. ####
 # Fibrous traits are defined by the "fibrous" category
 
