@@ -1,0 +1,418 @@
+"","Scientific.name","Assign.Scientific.name","species","whole.bark.description","bark_type_fibrous","bark_type_partly_fibrous","bark_type_any_shedding","trunk_only_shedding","branches_only_shedding","ribbons_in_branches","mixed_bark_shedding","mixed_bark_ribbons"
+"1","Angophora bakeri","Angophora bakeri",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2","Angophora bakeri subsp. bakeri","Angophora bakeri","Angophora bakeri subsp. bakeri","branches rough, no ribbons in branches, wholly rough, rough bark box type",NA,NA,NA,NA,NA,NA,NA,NA
+"3","Angophora bakeri subsp. crassifolia","Angophora crassifolia","Angophora bakeri subsp. crassifolia","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"4","Angophora bakeri subsp. paludosa","Angophora paludosa",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"5","Angophora costata","Angophora costata",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"6","Angophora costata subsp. costata","Angophora costata","Angophora costata subsp. costata","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"7","Angophora costata subsp. euryphylla","Angophora euryphylla","Angophora costata subsp. euryphylla","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"8","Angophora costata subsp. leiocarpa","Angophora leiocarpa","Angophora costata subsp. leiocarpa","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"9","Angophora crassifolia","Angophora crassifolia",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"10","Angophora euryphylla","Angophora euryphylla",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"11","Angophora exul","Angophora exul",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"12","Angophora floribunda","Angophora floribunda","Angophora floribunda","branches rough, no ribbons in branches, fibrous, wholly rough, rough bark box type","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"13","Angophora floribunda x paludosa","Angophora floribunda x paludosa","Angophora floribunda","branches rough, no ribbons in branches, fibrous, wholly rough, rough bark box type","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"14","Angophora hispida","Angophora hispida","Angophora hispida","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"15","Angophora inopina","Angophora inopina","Angophora inopina","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"16","Angophora leiocarpa","Angophora leiocarpa",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"17","Angophora melanoxylon","Angophora melanoxylon","Angophora melanoxylon","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"18","Angophora paludosa","Angophora paludosa",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"19","Angophora robur","Angophora robur","Angophora robur","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"20","Angophora robur x subvelutina","Angophora robur x subvelutina","Angophora robur","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"21","Angophora spp.","Angophora spp.",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"22","Angophora subvelutina","Angophora subvelutina","Angophora subvelutina","branches rough, no ribbons in branches, fibrous, wholly rough, rough bark box type","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"23","Angophora woodsiana","Angophora woodsiana","Angophora woodsiana","branches rough, no ribbons in branches, fibrous, wholly rough, rough bark box type","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"24","Corymbia citriodora","Corymbia citriodora","Corymbia citriodora","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"25","Corymbia citriodora subsp. variegata","Corymbia citriodora","Corymbia citriodora","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"26","Corymbia dolichocarpa","Corymbia dolichocarpa",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"27","Corymbia eximia","Corymbia eximia","Corymbia eximia","branches rough, no ribbons in branches, wholly rough, rough bark tessellated",NA,NA,NA,NA,NA,NA,NA,NA
+"28","Corymbia gummifera","Corymbia gummifera","Corymbia gummifera","branches rough, no ribbons in branches, wholly rough, rough bark tessellated",NA,NA,NA,NA,NA,NA,NA,NA
+"29","Corymbia henryi","Corymbia henryi","Corymbia henryi","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"30","Corymbia intermedia","Corymbia intermedia","Corymbia intermedia","branches rough, no ribbons in branches, wholly rough, rough bark tessellated",NA,NA,NA,NA,NA,NA,NA,NA
+"31","Corymbia maculata","Corymbia maculata","Corymbia maculata","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"32","Corymbia maculata <--> variegata intergrade","Corymbia maculata <--> variegata intergrade","Corymbia maculata","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"33","Corymbia spp.","Corymbia spp.",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"34","Corymbia tessellaris","Corymbia tessellaris","Corymbia tessellaris","branches smooth, no ribbons in branches, partly rough, wholly rough, rough bark tessellated, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"35","Corymbia torelliana","Corymbia torelliana","Corymbia torelliana","branches smooth, no ribbons in branches, partly rough, wholly smooth, rough bark imperfectly shed, rough bark tessellated, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"36","Corymbia trachyphloia","Corymbia trachyphloia","Corymbia trachyphloia","branches rough, branches smooth, no ribbons in branches, wholly rough, rough bark tessellated",NA,NA,"shedding",NA,"bark shed from branches only",NA,NA,NA
+"37","Corymbia trachyphloia subsp. amphistomatica","Corymbia trachyphloia subsp. amphistomatica","Corymbia trachyphloia","branches rough, branches smooth, no ribbons in branches, wholly rough, rough bark tessellated",NA,NA,"shedding",NA,"bark shed from branches only",NA,NA,NA
+"38","Corymbia trachyphloia subsp. trachyphloia","Corymbia trachyphloia subsp. trachyphloia","Corymbia trachyphloia","branches rough, branches smooth, no ribbons in branches, wholly rough, rough bark tessellated",NA,NA,"shedding",NA,"bark shed from branches only",NA,NA,NA
+"39","Corymbia tumescens","Corymbia tumescens",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"40","Corymbia variegata","Corymbia variegata",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"41","Eucalyptus acaciiformis","Eucalyptus acaciiformis","Eucalyptus acaciiformis","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"42","Eucalyptus acmenioides","Eucalyptus acmenoides","Eucalyptus acmenoides","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"43","Eucalyptus acmenoides","Eucalyptus acmenoides","Eucalyptus acmenoides","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"44","Eucalyptus aenea","Eucalyptus aenea",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"45","Eucalyptus agglomerata","Eucalyptus agglomerata","Eucalyptus agglomerata","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"46","Eucalyptus aggregata","Eucalyptus aggregata","Eucalyptus aggregata","branches rough, branches smooth, no ribbons in branches, fibrous, wholly rough, rough bark box type",NA,"partly fibrous","shedding",NA,"bark shed from branches only",NA,"both fibrous and shedding",NA
+"47","Eucalyptus albens","Eucalyptus albens","Eucalyptus albens","branches rough, branches smooth, no ribbons in branches, partly rough, wholly rough, rough bark box type, rough bark tessellated, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"48","Eucalyptus albens <--> moluccana","Eucalyptus albens <--> moluccana","Eucalyptus albens","branches rough, branches smooth, no ribbons in branches, partly rough, wholly rough, rough bark box type, rough bark tessellated, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"49","Eucalyptus albens x crebra","Eucalyptus albens x crebra","Eucalyptus albens","branches rough, branches smooth, no ribbons in branches, partly rough, wholly rough, rough bark box type, rough bark tessellated, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"50","Eucalyptus albens x moluccana","Eucalyptus albens <--> moluccana","Eucalyptus albens","branches rough, branches smooth, no ribbons in branches, partly rough, wholly rough, rough bark box type, rough bark tessellated, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"51","Eucalyptus amplifolia","Eucalyptus amplifolia",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"52","Eucalyptus amplifolia subsp. amplifolia","Eucalyptus amplifolia subsp. amplifolia","Eucalyptus amplifolia subsp. amplifolia","branches smooth, no ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"53","Eucalyptus amplifolia subsp. sessiliflora","Eucalyptus amplifolia subsp. sessiliflora","Eucalyptus amplifolia subsp. sessiliflora","branches smooth, no ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"54","Eucalyptus ancophila","Eucalyptus ancophila","Eucalyptus ancophila","branches rough, branches smooth, no ribbons in branches, wholly rough, rough bark ironbark",NA,NA,"shedding",NA,"bark shed from branches only",NA,NA,NA
+"55","Eucalyptus andrewsii","Eucalyptus andrewsii",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"56","Eucalyptus andrewsii subsp. andrewsii","Eucalyptus andrewsii","Eucalyptus andrewsii subsp. andrewsii","branches rough, branches smooth, no ribbons in branches, fibrous, wholly rough",NA,"partly fibrous","shedding",NA,"bark shed from branches only",NA,"both fibrous and shedding",NA
+"57","Eucalyptus andrewsii subsp. campanulata","Eucalyptus campanulata","Eucalyptus andrewsii subsp. campanulata","branches rough, branches smooth, no ribbons in branches, fibrous, wholly rough",NA,"partly fibrous","shedding",NA,"bark shed from branches only",NA,"both fibrous and shedding",NA
+"58","Eucalyptus angophoroides","Eucalyptus angophoroides","Eucalyptus angophoroides","branches rough, no ribbons in branches, fibrous, wholly rough, rough bark box type, rough bark tessellated","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"59","Eucalyptus apiculata","Eucalyptus apiculata","Eucalyptus apiculata","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"60","Eucalyptus apothalassica","Eucalyptus apothalassica","Eucalyptus apothalassica","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"61","Eucalyptus apothalassica x chloroclada","Eucalyptus apothalassica x chloroclada","Eucalyptus apothalassica","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"62","Eucalyptus approximans","Eucalyptus approximans",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"63","Eucalyptus aquatica","Eucalyptus aquatica",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"64","Eucalyptus aromaphloia","Eucalyptus corticosa","Eucalyptus corticosa","branches rough, branches smooth, no ribbons in branches, fibrous, wholly rough, rough bark tessellated",NA,"partly fibrous","shedding",NA,"bark shed from branches only",NA,"both fibrous and shedding",NA
+"65","Eucalyptus badjensis","Eucalyptus badjensis","Eucalyptus badjensis","branches smooth, ribbons in branches, partly rough, rough bark compacted, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"66","Eucalyptus baeuerlenii","Eucalyptus baeuerlenii","Eucalyptus baeuerlenii","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"67","Eucalyptus baileyana","Eucalyptus baileyana","Eucalyptus baileyana","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"68","Eucalyptus bakeri","Eucalyptus bakeri","Eucalyptus bakeri","branches smooth, no ribbons in branches, ribbons in branches, partly rough, wholly rough, rough bark box type, rough bark compacted, rough bark tessellated, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"69","Eucalyptus bancroftii","Eucalyptus bancroftii","Eucalyptus bancroftii","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"70","Eucalyptus banksii","Eucalyptus banksii","Eucalyptus banksii","branches rough, branches smooth, no ribbons in branches, fibrous, wholly rough, rough bark box type",NA,"partly fibrous","shedding",NA,"bark shed from branches only",NA,"both fibrous and shedding",NA
+"71","Eucalyptus bauerana","Eucalyptus baueriana","Eucalyptus baueriana","branches rough, no ribbons in branches, wholly rough, rough bark box type",NA,NA,NA,NA,NA,NA,NA,NA
+"72","Eucalyptus baueriana","Eucalyptus baueriana","Eucalyptus baueriana","branches rough, no ribbons in branches, wholly rough, rough bark box type",NA,NA,NA,NA,NA,NA,NA,NA
+"73","Eucalyptus baxteri","Eucalyptus baxteri","Eucalyptus baxteri","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"74","Eucalyptus behriana","Eucalyptus behriana","Eucalyptus behriana","branches smooth, no ribbons in branches, ribbons in branches, partly rough, wholly rough, rough bark loose basal slabs, rough bark box type, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"75","Eucalyptus bensonii","Eucalyptus bensonii","Eucalyptus bensonii","branches smooth, no ribbons in branches, fibrous, partly rough, wholly rough, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,NA,"both fibrous and shedding",NA
+"76","Eucalyptus benthamii","Eucalyptus benthamii","Eucalyptus benthamii","branches smooth, no ribbons in branches, ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"77","Eucalyptus beyeri","Eucalyptus beyeriana","Eucalyptus beyeri","branches rough, no ribbons in branches, wholly rough, rough bark ironbark",NA,NA,NA,NA,NA,NA,NA,NA
+"78","Eucalyptus beyeriana","Eucalyptus beyeriana","Eucalyptus beyeri","branches rough, no ribbons in branches, wholly rough, rough bark ironbark",NA,NA,NA,NA,NA,NA,NA,NA
+"79","Eucalyptus beyeriana <--> crebra","Eucalyptus beyeriana <--> crebra","Eucalyptus beyeri","branches rough, no ribbons in branches, wholly rough, rough bark ironbark",NA,NA,NA,NA,NA,NA,NA,NA
+"80","Eucalyptus bicostata","Eucalyptus bicostata",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"81","Eucalyptus biturbinata","Eucalyptus biturbinata",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"82","Eucalyptus blakelyi","Eucalyptus blakelyi","Eucalyptus blakelyi","branches smooth, no ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"83","Eucalyptus blakelyi <--> dealbata","Eucalyptus blakelyi <--> dealbata","Eucalyptus blakelyi","branches smooth, no ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"84","Eucalyptus blakelyi <--> tereticornis","Eucalyptus blakelyi <--> tereticornis","Eucalyptus blakelyi","branches smooth, no ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"85","Eucalyptus blakelyi x chloroclada","Eucalyptus blakelyi x chloroclada","Eucalyptus blakelyi","branches smooth, no ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"86","Eucalyptus blakelyi x dwyeri","Eucalyptus blakelyi x dwyeri","Eucalyptus blakelyi","branches smooth, no ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"87","Eucalyptus blakelyi x melliodora","Eucalyptus blakelyi x melliodora","Eucalyptus blakelyi","branches smooth, no ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"88","Eucalyptus blaxlandii","Eucalyptus blaxlandii","Eucalyptus blaxlandii","branches rough, branches smooth, no ribbons in branches, fibrous, wholly rough, rough bark box type",NA,"partly fibrous","shedding",NA,"bark shed from branches only",NA,"both fibrous and shedding",NA
+"89","Eucalyptus boliviana","Eucalyptus boliviana","Eucalyptus boliviana","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"90","Eucalyptus bosistoana","Eucalyptus bosistoana","Eucalyptus bosistoana","branches smooth, no ribbons in branches, ribbons in branches, partly rough, wholly rough, rough bark box type, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"91","Eucalyptus botryoides","Eucalyptus botryoides","Eucalyptus botryoides","branches rough, branches smooth, no ribbons in branches, fibrous, partly rough, wholly rough, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,NA,"both fibrous and shedding",NA
+"92","Eucalyptus botryoides <--> saligna","Eucalyptus botryoides <--> saligna","Eucalyptus botryoides","branches rough, branches smooth, no ribbons in branches, fibrous, partly rough, wholly rough, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,NA,"both fibrous and shedding",NA
+"93","Eucalyptus bridgesiana","Eucalyptus bridgesiana","Eucalyptus bridgesiana","branches rough, no ribbons in branches, fibrous, wholly rough, rough bark box type, rough bark tessellated","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"94","Eucalyptus brunnea","Eucalyptus brunnea",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"95","Eucalyptus burgessiana","Eucalyptus burgessiana","Eucalyptus burgessiana","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"96","Eucalyptus caleyi","Eucalyptus caleyi",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"97","Eucalyptus caleyi subsp. caleyi","Eucalyptus caleyi subsp. caleyi","Eucalyptus caleyi subsp. caleyi","branches rough, no ribbons in branches, wholly rough, rough bark ironbark",NA,NA,NA,NA,NA,NA,NA,NA
+"98","Eucalyptus caleyi subsp. ovendenii","Eucalyptus caleyi subsp. ovendenii","Eucalyptus caleyi subsp. ovendenii","branches rough, no ribbons in branches, wholly rough, rough bark ironbark",NA,NA,NA,NA,NA,NA,NA,NA
+"99","Eucalyptus caliginosa","Eucalyptus caliginosa","Eucalyptus caliginosa","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"100","Eucalyptus caliginosa <--> laevopinea","Eucalyptus caliginosa <--> laevopinea","Eucalyptus caliginosa","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"101","Eucalyptus calycogona","Eucalyptus calycogona",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"102","Eucalyptus camaldulensis","Eucalyptus camaldulensis",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"103","Eucalyptus camaldulensis <--> chloroclada","Eucalyptus camaldulensis <--> chloroclada",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"104","Eucalyptus camaldulensis subsp. camaldulensis","Eucalyptus camaldulensis","Eucalyptus camaldulensis subsp. camaldulensis","branches smooth, no ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"105","Eucalyptus cameronii","Eucalyptus cameronii","Eucalyptus cameronii","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"106","Eucalyptus cameronii x mckiei","Eucalyptus cameronii x mckiei","Eucalyptus cameronii","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"107","Eucalyptus camfieldii","Eucalyptus camfieldii","Eucalyptus camfieldii","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"108","Eucalyptus campanulata","Eucalyptus campanulata",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"109","Eucalyptus camphora","Eucalyptus camphora",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"110","Eucalyptus camphora subsp. camphora","Eucalyptus camphora subsp. camphora","Eucalyptus camphora subsp. camphora","branches smooth, no ribbons in branches, ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"111","Eucalyptus camphora subsp. humeana","Eucalyptus camphora subsp. humeana","Eucalyptus camphora subsp. humeana","branches smooth, no ribbons in branches, ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, rough bark compacted, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"112","Eucalyptus camphora subsp. relicta","Eucalyptus camphora subsp. relicta",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"113","Eucalyptus canaliculata","Eucalyptus canaliculata","Eucalyptus canaliculata","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"114","Eucalyptus canaliculata <--> punctata","Eucalyptus canaliculata <--> punctata","Eucalyptus canaliculata","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"115","Eucalyptus cannonii","Eucalyptus cannonii",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"116","Eucalyptus cannonii <--> macrorhyncha","Eucalyptus cannonii <--> macrorhyncha",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"117","Eucalyptus canobolensis","Eucalyptus canobolensis","Eucalyptus canobolensis","branches smooth, no ribbons in branches, ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"118","Eucalyptus capitellata","Eucalyptus capitellata","Eucalyptus capitellata","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"119","Eucalyptus carnea","Eucalyptus carnea","Eucalyptus carnea","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"120","Eucalyptus castrensis","Eucalyptus castrensis",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"121","Eucalyptus chapmaniana","Eucalyptus chapmaniana","Eucalyptus chapmaniana","branches smooth, no ribbons in branches, ribbons in branches, fibrous, partly rough, wholly rough, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,"ribbons in branches","both fibrous and shedding","both fibrous and ribbony"
+"122","Eucalyptus chloroclada","Eucalyptus chloroclada","Eucalyptus chloroclada","branches smooth, no ribbons in branches, fibrous, partly rough, wholly rough, wholly smooth, rough bark box type, rough bark imperfectly shed, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,NA,"both fibrous and shedding",NA
+"123","Eucalyptus cinerea","Eucalyptus cinerea",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"124","Eucalyptus cladocalyx","Eucalyptus cladocalyx","Eucalyptus cladocalyx","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"125","Eucalyptus codonocarpa","Eucalyptus codonocarpa",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"126","Eucalyptus conica","Eucalyptus conica","Eucalyptus conica","branches rough, branches smooth, no ribbons in branches, wholly rough, rough bark box type, rough bark tessellated",NA,NA,"shedding",NA,"bark shed from branches only",NA,NA,NA
+"127","Eucalyptus conjuncta","Eucalyptus conjuncta",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"128","Eucalyptus consideniana","Eucalyptus consideniana","Eucalyptus consideniana","branches rough, branches smooth, no ribbons in branches, fibrous, partly rough, wholly rough, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,NA,"both fibrous and shedding",NA
+"129","Eucalyptus conspicua","Eucalyptus conspicua",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"130","Eucalyptus coolabah","Eucalyptus coolabah","Eucalyptus coolabah","branches rough, branches smooth, no ribbons in branches, partly rough, wholly rough, rough bark box type, rough bark tessellated, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"131","Eucalyptus coolabah subsp. arida","Eucalyptus coolabah subsp. arida","Eucalyptus coolabah","branches rough, branches smooth, no ribbons in branches, partly rough, wholly rough, rough bark box type, rough bark tessellated, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"132","Eucalyptus coolabah subsp. coolabah","Eucalyptus coolabah subsp. coolabah","Eucalyptus coolabah","branches rough, branches smooth, no ribbons in branches, partly rough, wholly rough, rough bark box type, rough bark tessellated, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"133","Eucalyptus corticosa","Eucalyptus corticosa","Eucalyptus corticosa","branches rough, branches smooth, no ribbons in branches, fibrous, wholly rough, rough bark tessellated",NA,"partly fibrous","shedding",NA,"bark shed from branches only",NA,"both fibrous and shedding",NA
+"134","Eucalyptus costata","Eucalyptus costata subsp. murrayana",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"135","Eucalyptus costata subsp. murrayana","Eucalyptus costata subsp. murrayana",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"136","Eucalyptus crebra","Eucalyptus crebra","Eucalyptus crebra","branches rough, no ribbons in branches, wholly rough, rough bark ironbark",NA,NA,NA,NA,NA,NA,NA,NA
+"137","Eucalyptus crebra x fibrosa","Eucalyptus crebra x fibrosa","Eucalyptus crebra","branches rough, no ribbons in branches, wholly rough, rough bark ironbark",NA,NA,NA,NA,NA,NA,NA,NA
+"138","Eucalyptus crebra x microcarpa","Eucalyptus crebra x microcarpa","Eucalyptus crebra","branches rough, no ribbons in branches, wholly rough, rough bark ironbark",NA,NA,NA,NA,NA,NA,NA,NA
+"139","Eucalyptus crebra x nubila","Eucalyptus crebra x nubila","Eucalyptus crebra","branches rough, no ribbons in branches, wholly rough, rough bark ironbark",NA,NA,NA,NA,NA,NA,NA,NA
+"140","Eucalyptus crebra x siderophloia","Eucalyptus crebra x siderophloia","Eucalyptus crebra","branches rough, no ribbons in branches, wholly rough, rough bark ironbark",NA,NA,NA,NA,NA,NA,NA,NA
+"141","Eucalyptus crenulata","Eucalyptus crenulata","Eucalyptus crenulata","branches rough, branches smooth, no ribbons in branches, partly rough, wholly rough, rough bark compacted, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"142","Eucalyptus croajingolensis","Eucalyptus croajingolensis","Eucalyptus croajingolensis","branches rough, branches smooth, no ribbons in branches, fibrous, partly rough, wholly rough, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,NA,"both fibrous and shedding",NA
+"143","Eucalyptus cunninghamii","Eucalyptus cunninghamii","Eucalyptus cunninghamii","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"144","Eucalyptus cyanophylla","Eucalyptus cyanophylla","Eucalyptus cyanophylla","branches smooth, no ribbons in branches, ribbons in branches, fibrous, partly rough, wholly smooth, rough bark loose basal slabs, rough bark box type, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,"ribbons in branches","both fibrous and shedding","both fibrous and ribbony"
+"145","Eucalyptus cypellocarpa","Eucalyptus cypellocarpa","Eucalyptus cypellocarpa","branches smooth, no ribbons in branches, ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, rough bark box type, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"146","Eucalyptus dalrympleana","Eucalyptus dalrympleana",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"147","Eucalyptus dalrympleana subsp. dalrympleana","Eucalyptus dalrympleana subsp. dalrympleana","Eucalyptus dalrympleana subsp. dalrympleana","branches smooth, no ribbons in branches, ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"148","Eucalyptus dalrympleana subsp. heptantha","Eucalyptus dalrympleana subsp. heptantha","Eucalyptus dalrympleana subsp. heptantha","branches smooth, no ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"149","Eucalyptus dalrympleana x viminalis","Eucalyptus dalrympleana x viminalis",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"150","Eucalyptus dawsonii","Eucalyptus dawsonii","Eucalyptus dawsonii","branches smooth, no ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"151","Eucalyptus dealbata","Eucalyptus dealbata","Eucalyptus dealbata","branches smooth, no ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"152","Eucalyptus dealbata x dwyeri","Eucalyptus dealbata x dwyeri","Eucalyptus dealbata","branches smooth, no ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"153","Eucalyptus deanei","Eucalyptus deanei","Eucalyptus deanei","branches smooth, no ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"154","Eucalyptus debeuzevillei","Eucalyptus debeuzevillei",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"155","Eucalyptus delegatensis","Eucalyptus delegatensis subsp. delegatensis","Eucalyptus delegatensis subsp. delegatensis","branches smooth, no ribbons in branches, ribbons in branches, fibrous, partly rough, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,"ribbons in branches","both fibrous and shedding","both fibrous and ribbony"
+"156","Eucalyptus delegatensis subsp. delegatensis","Eucalyptus delegatensis subsp. delegatensis","Eucalyptus delegatensis subsp. delegatensis","branches smooth, no ribbons in branches, ribbons in branches, fibrous, partly rough, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,"ribbons in branches","both fibrous and shedding","both fibrous and ribbony"
+"157","Eucalyptus dendromorpha","Eucalyptus dendromorpha","Eucalyptus dendromorpha","branches smooth, no ribbons in branches, ribbons in branches, fibrous, partly rough, wholly smooth, rough bark box type, rough bark compacted, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,"ribbons in branches","both fibrous and shedding","both fibrous and ribbony"
+"158","Eucalyptus dissita","Eucalyptus dissita",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"159","Eucalyptus dives","Eucalyptus dives","Eucalyptus dives","branches rough, branches smooth, no ribbons in branches, ribbons in branches, fibrous, wholly rough, rough bark box type",NA,"partly fibrous","shedding",NA,"bark shed from branches only","ribbons in branches","both fibrous and shedding","both fibrous and ribbony"
+"160","Eucalyptus dives x pauciflora","Eucalyptus dives x pauciflora","Eucalyptus dives","branches rough, branches smooth, no ribbons in branches, ribbons in branches, fibrous, wholly rough, rough bark box type",NA,"partly fibrous","shedding",NA,"bark shed from branches only","ribbons in branches","both fibrous and shedding","both fibrous and ribbony"
+"161","Eucalyptus dives x rossii","Eucalyptus dives x rossii","Eucalyptus dives","branches rough, branches smooth, no ribbons in branches, ribbons in branches, fibrous, wholly rough, rough bark box type",NA,"partly fibrous","shedding",NA,"bark shed from branches only","ribbons in branches","both fibrous and shedding","both fibrous and ribbony"
+"162","Eucalyptus dolichocarpa","Corymbia dolichocarpa",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"163","Eucalyptus dorrigoensis","Eucalyptus dorrigoensis","Eucalyptus dorrigoensis","branches smooth, no ribbons in branches, ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"164","Eucalyptus dumosa","Eucalyptus dumosa","Eucalyptus dumosa","branches smooth, no ribbons in branches, ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, rough bark box type, rough bark imperfectly shed, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"165","Eucalyptus dunnii","Eucalyptus dunnii","Eucalyptus dunnii","branches smooth, no ribbons in branches, ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"166","Eucalyptus dwyeri","Eucalyptus dwyeri","Eucalyptus dwyeri","branches smooth, no ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"167","Eucalyptus elata","Eucalyptus elata","Eucalyptus elata","branches smooth, ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, rough bark compacted, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"168","Eucalyptus elegans","Eucalyptus elegans",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"169","Eucalyptus elliptica","Eucalyptus elliptica","Eucalyptus elliptica","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"170","Eucalyptus eugenioides","Eucalyptus eugenioides","Eucalyptus eugenioides","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"171","Eucalyptus eugenioides x globoidea","Eucalyptus eugenioides x globoidea","Eucalyptus eugenioides","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"172","Eucalyptus eximia","Corymbia eximia","Corymbia eximia","branches rough, no ribbons in branches, wholly rough, rough bark tessellated",NA,NA,NA,NA,NA,NA,NA,NA
+"173","Eucalyptus expressa","Eucalyptus expressa","Eucalyptus expressa","branches rough, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"174","Eucalyptus exserta","Eucalyptus exserta","Eucalyptus exserta","branches rough, branches smooth, no ribbons in branches, fibrous, wholly rough, rough bark box type",NA,"partly fibrous","shedding",NA,"bark shed from branches only",NA,"both fibrous and shedding",NA
+"175","Eucalyptus fastigata","Eucalyptus fastigata","Eucalyptus fastigata","branches smooth, no ribbons in branches, ribbons in branches, fibrous, partly rough, wholly rough, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,"ribbons in branches","both fibrous and shedding","both fibrous and ribbony"
+"176","Eucalyptus fergusonii","Eucalyptus fergusonii",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"177","Eucalyptus fergusonii subsp. dorsiventralis","Eucalyptus fergusonii subsp. dorsiventralis",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"178","Eucalyptus fergusonii subsp. fergusonii","Eucalyptus fergusonii subsp. fergusonii",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"179","Eucalyptus fibrosa","Eucalyptus fibrosa",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"180","Eucalyptus fibrosa subsp. fibrosa","Eucalyptus fibrosa","Eucalyptus fibrosa subsp. fibrosa","branches rough, no ribbons in branches, wholly rough, rough bark ironbark",NA,NA,NA,NA,NA,NA,NA,NA
+"181","Eucalyptus fibrosa subsp. nubila","Eucalyptus nubila","Eucalyptus fibrosa subsp. nubila","branches rough, no ribbons in branches, wholly rough, rough bark ironbark",NA,NA,NA,NA,NA,NA,NA,NA
+"182","Eucalyptus fibrosa x punctata","Eucalyptus fibrosa x punctata",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"183","Eucalyptus foecunda","Eucalyptus leptophylla","Eucalyptus leptophylla","branches smooth, no ribbons in branches, partly rough, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"184","Eucalyptus fracta","Eucalyptus fracta",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"185","Eucalyptus fraxinoides","Eucalyptus fraxinoides","Eucalyptus fraxinoides","branches smooth, no ribbons in branches, ribbons in branches, partly rough, rough bark loose basal slabs, rough bark compacted, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"186","Eucalyptus fusiformis","Eucalyptus fusiformis","Eucalyptus fusiformis","branches rough, no ribbons in branches, wholly rough, rough bark ironbark",NA,NA,NA,NA,NA,NA,NA,NA
+"187","Eucalyptus gillii","Eucalyptus gillii","Eucalyptus gillii","branches smooth, no ribbons in branches, fibrous, partly rough, wholly smooth, rough bark loose basal slabs, rough bark box type, rough bark imperfectly shed, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,NA,"both fibrous and shedding",NA
+"188","Eucalyptus glaucescens","Eucalyptus glaucescens","Eucalyptus glaucescens","branches smooth, no ribbons in branches, ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"189","Eucalyptus glaucina","Eucalyptus glaucina","Eucalyptus glaucina","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"190","Eucalyptus globoidea","Eucalyptus globoidea","Eucalyptus globoidea","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"191","Eucalyptus globulus","Eucalyptus globulus",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"192","Eucalyptus globulus subsp. bicostata","Eucalyptus bicostata","Eucalyptus globulus subsp. bicostata","branches smooth, ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"193","Eucalyptus globulus subsp. maidenii","Eucalyptus maidenii","Eucalyptus globulus subsp. maidenii","branches smooth, no ribbons in branches, ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"194","Eucalyptus goniocalyx","Eucalyptus goniocalyx",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"195","Eucalyptus goniocalyx subsp. goniocalyx","Eucalyptus goniocalyx subsp. goniocalyx","Eucalyptus goniocalyx subsp. goniocalyx","branches rough, branches smooth, no ribbons in branches, fibrous, partly rough, wholly rough, rough bark box type, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,NA,"both fibrous and shedding",NA
+"196","Eucalyptus gracilis","Eucalyptus gracilis","Eucalyptus gracilis","branches smooth, no ribbons in branches, fibrous, partly rough, wholly smooth, rough bark loose basal slabs, rough bark box type, rough bark compacted, rough bark tessellated, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,NA,"both fibrous and shedding",NA
+"197","Eucalyptus grandis","Eucalyptus grandis","Eucalyptus grandis","branches smooth, no ribbons in branches, fibrous, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,NA,"both fibrous and shedding",NA
+"198","Eucalyptus grandis x saligna","Eucalyptus grandis x saligna","Eucalyptus grandis","branches smooth, no ribbons in branches, fibrous, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,NA,"both fibrous and shedding",NA
+"199","Eucalyptus gregsoniana","Eucalyptus gregsoniana","Eucalyptus gregsoniana","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"200","Eucalyptus gummifera","Corymbia gummifera","Corymbia gummifera","branches rough, no ribbons in branches, wholly rough, rough bark tessellated",NA,NA,NA,NA,NA,NA,NA,NA
+"201","Eucalyptus gunnii","Eucalyptus gunnii","Eucalyptus gunnii","branches smooth, no ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"202","Eucalyptus haemastoma","Eucalyptus haemastoma","Eucalyptus haemastoma","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"203","Eucalyptus haemastoma x racemosa","Eucalyptus haemastoma x racemosa","Eucalyptus haemastoma","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"204","Eucalyptus henryi","Corymbia henryi","Corymbia henryi","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"205","Eucalyptus hypostomatica","Eucalyptus hypostomatica","Eucalyptus hypostomatica","branches rough, branches smooth, no ribbons in branches, fibrous, wholly rough, rough bark box type",NA,"partly fibrous","shedding",NA,"bark shed from branches only",NA,"both fibrous and shedding",NA
+"206","Eucalyptus ignorabilis","Eucalyptus ignorabilis","Eucalyptus ignorabilis","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"207","Eucalyptus imitans","Eucalyptus imitans","Eucalyptus imitans","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"208","Eucalyptus incrassata","Eucalyptus costata subsp. murrayana","Eucalyptus incrassata","branches smooth, no ribbons in branches, ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, rough bark imperfectly shed, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"209","Eucalyptus intermedia","Corymbia intermedia","Corymbia intermedia","branches rough, no ribbons in branches, wholly rough, rough bark tessellated",NA,NA,NA,NA,NA,NA,NA,NA
+"210","Eucalyptus interstans","Eucalyptus interstans","Eucalyptus interstans","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"211","Eucalyptus intertexta","Eucalyptus intertexta","Eucalyptus intertexta","branches smooth, no ribbons in branches, fibrous, partly rough, wholly rough, rough bark box type, rough bark imperfectly shed, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,NA,"both fibrous and shedding",NA
+"212","Eucalyptus kartzoffiana","Eucalyptus kartzoffiana","Eucalyptus kartzoffiana","branches smooth, no ribbons in branches, ribbons in branches, fibrous, partly rough, wholly rough, rough bark loose basal slabs, rough bark box type, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,"ribbons in branches","both fibrous and shedding","both fibrous and ribbony"
+"213","Eucalyptus kybeanensis","Eucalyptus kybeanensis","Eucalyptus kybeanensis","branches smooth, no ribbons in branches, ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"214","Eucalyptus lacrimans","Eucalyptus lacrimans","Eucalyptus lacrimans","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"215","Eucalyptus laevopinea","Eucalyptus laevopinea","Eucalyptus laevopinea","branches rough, branches smooth, no ribbons in branches, fibrous, wholly rough",NA,"partly fibrous","shedding",NA,"bark shed from branches only",NA,"both fibrous and shedding",NA
+"216","Eucalyptus langleyi","Eucalyptus langleyi","Eucalyptus langleyi","branches smooth, no ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"217","Eucalyptus laophila","Eucalyptus laophila",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"218","Eucalyptus largeana","Eucalyptus largeana","Eucalyptus largeana","branches smooth, no ribbons in branches, partly rough, wholly rough, rough bark box type, rough bark tessellated, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"219","Eucalyptus largiflorens","Eucalyptus largiflorens","Eucalyptus largiflorens","branches rough, no ribbons in branches, wholly rough, rough bark box type, rough bark tessellated",NA,NA,NA,NA,NA,NA,NA,NA
+"220","Eucalyptus latiuscula","Eucalyptus latiuscula",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"221","Eucalyptus leptophylla","Eucalyptus leptophylla","Eucalyptus leptophylla","branches smooth, no ribbons in branches, partly rough, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"222","Eucalyptus leucoxylon","Eucalyptus leucoxylon subsp. pruinosa","Eucalyptus leucoxylon subsp. pruinosa","branches smooth, no ribbons in branches, fibrous, partly rough, wholly smooth, rough bark loose basal slabs, rough bark box type, rough bark imperfectly shed, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,NA,"both fibrous and shedding",NA
+"223","Eucalyptus leucoxylon subsp. pruinosa","Eucalyptus leucoxylon subsp. pruinosa","Eucalyptus leucoxylon subsp. pruinosa","branches smooth, no ribbons in branches, fibrous, partly rough, wholly smooth, rough bark loose basal slabs, rough bark box type, rough bark imperfectly shed, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,NA,"both fibrous and shedding",NA
+"224","Eucalyptus ligustrina","Eucalyptus ligustrina","Eucalyptus ligustrina","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"225","Eucalyptus longifolia","Eucalyptus longifolia","Eucalyptus longifolia","branches rough, branches smooth, no ribbons in branches, fibrous, wholly rough, rough bark box type",NA,"partly fibrous","shedding",NA,"bark shed from branches only",NA,"both fibrous and shedding",NA
+"226","Eucalyptus luehmanniana","Eucalyptus luehmanniana","Eucalyptus luehmanniana","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"227","Eucalyptus macarthurii","Eucalyptus macarthurii","Eucalyptus macarthurii","branches rough, branches smooth, no ribbons in branches, ribbons in branches, fibrous, wholly rough",NA,"partly fibrous","shedding",NA,"bark shed from branches only","ribbons in branches","both fibrous and shedding","both fibrous and ribbony"
+"228","Eucalyptus mackintii","Eucalyptus mackintii","Eucalyptus mackintii","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"229","Eucalyptus macrorhyncha","Eucalyptus macrorhyncha",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"230","Eucalyptus macrorhyncha subsp. cannonii","Eucalyptus cannonii","Eucalyptus macrorhyncha subsp. cannonii","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"231","Eucalyptus macrorhyncha subsp. macrorhyncha","Eucalyptus macrorhyncha","Eucalyptus macrorhyncha subsp. macrorhyncha","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"232","Eucalyptus maculata","Corymbia maculata","Corymbia maculata","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"233","Eucalyptus magnificata","Eucalyptus magnificata","Eucalyptus magnificata","branches rough, branches smooth, no ribbons in branches, partly rough, wholly rough, rough bark box type, rough bark imperfectly shed, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"234","Eucalyptus maidenii","Eucalyptus maidenii",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"235","Eucalyptus major","Eucalyptus major","Eucalyptus major","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"236","Eucalyptus malacoxylon","Eucalyptus malacoxylon","Eucalyptus malacoxylon","branches rough, branches smooth, no ribbons in branches, wholly rough, rough bark box type, rough bark tessellated",NA,NA,"shedding",NA,"bark shed from branches only",NA,NA,NA
+"237","Eucalyptus mannifera","Eucalyptus mannifera",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"238","Eucalyptus mannifera subsp. gullickii","Eucalyptus mannifera subsp. gullickii","Eucalyptus mannifera subsp. gullickii","branches smooth, no ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"239","Eucalyptus mannifera subsp. maculosa","Eucalyptus mannifera subsp. mannifera","Eucalyptus mannifera subsp. mannifera","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"240","Eucalyptus mannifera subsp. mannifera","Eucalyptus mannifera subsp. mannifera","Eucalyptus mannifera subsp. mannifera","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"241","Eucalyptus mannifera subsp. praecox","Eucalyptus praecox","Eucalyptus mannifera subsp. praecox","branches smooth, no ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"242","Eucalyptus mckieana","Eucalyptus mckieana","Eucalyptus mckieana","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"243","Eucalyptus melanophloia","Eucalyptus melanophloia",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"244","Eucalyptus melliodora","Eucalyptus melliodora","Eucalyptus melliodora","branches smooth, no ribbons in branches, fibrous, partly rough, wholly rough, rough bark loose basal slabs, rough bark box type, rough bark imperfectly shed, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,NA,"both fibrous and shedding",NA
+"245","Eucalyptus michaeliana","Eucalyptus michaeliana","Eucalyptus michaeliana","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"246","Eucalyptus microcarpa","Eucalyptus microcarpa","Eucalyptus microcarpa","branches smooth, no ribbons in branches, ribbons in branches, partly rough, wholly rough, rough bark box type, rough bark tessellated, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"247","Eucalyptus microcarpa <--> viridis","Eucalyptus microcarpa <--> viridis","Eucalyptus microcarpa","branches smooth, no ribbons in branches, ribbons in branches, partly rough, wholly rough, rough bark box type, rough bark tessellated, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"248","Eucalyptus microcarpa x pilligaensis","Eucalyptus microcarpa x pilligaensis","Eucalyptus microcarpa","branches smooth, no ribbons in branches, ribbons in branches, partly rough, wholly rough, rough bark box type, rough bark tessellated, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"249","Eucalyptus microcorys","Eucalyptus microcorys","Eucalyptus microcorys","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"250","Eucalyptus microtheca","Eucalyptus coolabah","Eucalyptus microtheca","branches rough, branches smooth, no ribbons in branches, fibrous, partly rough, wholly rough, rough bark box type, rough bark tessellated",NA,"partly fibrous","shedding",NA,"bark shed from branches only",NA,"both fibrous and shedding",NA
+"251","Eucalyptus moluccana","Eucalyptus moluccana","Eucalyptus moluccana","branches smooth, no ribbons in branches, partly rough, wholly rough, rough bark box type, rough bark tessellated, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"252","Eucalyptus moorei","Eucalyptus moorei",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"253","Eucalyptus morrisii","Eucalyptus morrisii","Eucalyptus morrisii","branches smooth, no ribbons in branches, ribbons in branches, fibrous, partly rough, wholly rough, rough bark box type, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,"ribbons in branches","both fibrous and shedding","both fibrous and ribbony"
+"254","Eucalyptus muelleriana","Eucalyptus muelleriana","Eucalyptus muelleriana","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"255","Eucalyptus multicaulis","Eucalyptus multicaulis","Eucalyptus multicaulis","branches smooth, no ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"256","Eucalyptus nandewarica","Eucalyptus nandewarica","Eucalyptus nandewarica","branches smooth, no ribbons in branches, fibrous, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,NA,"both fibrous and shedding",NA
+"257","Eucalyptus nicholii","Eucalyptus nicholii","Eucalyptus nicholii","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"258","Eucalyptus nigra","Eucalyptus eugenioides","Eucalyptus eugenioides","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"259","Eucalyptus niphophila","Eucalyptus niphophila",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"260","Eucalyptus nitens","Eucalyptus nitens","Eucalyptus nitens","branches smooth, no ribbons in branches, ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"261","Eucalyptus nobilis","Eucalyptus nobilis","Eucalyptus nobilis","branches smooth, no ribbons in branches, ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"262","Eucalyptus nobilis <--> viminalis","Eucalyptus nobilis <--> viminalis","Eucalyptus nobilis","branches smooth, no ribbons in branches, ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"263","Eucalyptus nortonii","Eucalyptus nortonii","Eucalyptus nortonii","branches rough, branches smooth, no ribbons in branches, fibrous, wholly rough, rough bark box type",NA,"partly fibrous","shedding",NA,"bark shed from branches only",NA,"both fibrous and shedding",NA
+"264","Eucalyptus notabilis","Eucalyptus notabilis","Eucalyptus notabilis","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"265","Eucalyptus nova-anglica","Eucalyptus nova-anglica","Eucalyptus nova-anglica","branches rough, branches smooth, no ribbons in branches, fibrous, wholly rough",NA,"partly fibrous","shedding",NA,"bark shed from branches only",NA,"both fibrous and shedding",NA
+"266","Eucalyptus nubila","Eucalyptus nubila",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"267","Eucalyptus obliqua","Eucalyptus obliqua","Eucalyptus obliqua","branches rough, branches smooth, no ribbons in branches, fibrous, partly rough, wholly rough, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,NA,"both fibrous and shedding",NA
+"268","Eucalyptus oblonga","Eucalyptus oblonga",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"269","Eucalyptus obstans","Eucalyptus obstans",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"270","Eucalyptus obtusiflora","Eucalyptus obstans","Eucalyptus obtusiflora","branches smooth, no ribbons in branches, ribbons in branches, partly rough, wholly smooth, rough bark box type, rough bark imperfectly shed, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"271","Eucalyptus ochrophloia","Eucalyptus ochrophloia","Eucalyptus ochrophloia","branches smooth, no ribbons in branches, partly rough, rough bark box type, rough bark tessellated, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"272","Eucalyptus oleosa","Eucalyptus oleosa subsp. oleosa","Eucalyptus oleosa subsp. oleosa","branches smooth, no ribbons in branches, ribbons in branches, fibrous, partly rough, wholly rough, wholly smooth, rough bark loose basal slabs, rough bark box type, rough bark imperfectly shed, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,"ribbons in branches","both fibrous and shedding","both fibrous and ribbony"
+"273","Eucalyptus oleosa subsp. oleosa","Eucalyptus oleosa subsp. oleosa","Eucalyptus oleosa subsp. oleosa","branches smooth, no ribbons in branches, ribbons in branches, fibrous, partly rough, wholly rough, wholly smooth, rough bark loose basal slabs, rough bark box type, rough bark imperfectly shed, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,"ribbons in branches","both fibrous and shedding","both fibrous and ribbony"
+"274","Eucalyptus olida","Eucalyptus olida","Eucalyptus olida","branches rough, branches smooth, no ribbons in branches, fibrous, wholly rough",NA,"partly fibrous","shedding",NA,"bark shed from branches only",NA,"both fibrous and shedding",NA
+"275","Eucalyptus olsenii","Eucalyptus olsenii","Eucalyptus olsenii","branches smooth, no ribbons in branches, ribbons in branches, fibrous, partly rough, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,"ribbons in branches","both fibrous and shedding","both fibrous and ribbony"
+"276","Eucalyptus opaca","Corymbia tumescens",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"277","Eucalyptus ophitica","Eucalyptus ophitica","Eucalyptus ophitica","branches rough, no ribbons in branches, wholly rough, rough bark ironbark",NA,NA,NA,NA,NA,NA,NA,NA
+"278","Eucalyptus oreades","Eucalyptus oreades","Eucalyptus oreades","branches smooth, no ribbons in branches, ribbons in branches, partly rough, rough bark loose basal slabs, rough bark imperfectly shed, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"279","Eucalyptus oresbia","Eucalyptus oresbia",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"280","Eucalyptus ovata","Eucalyptus ovata",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"281","Eucalyptus pachycalyx","Eucalyptus pachycalyx subsp. banyabba",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"282","Eucalyptus pachycalyx subsp. banyabba","Eucalyptus pachycalyx subsp. banyabba",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"283","Eucalyptus paliformis","Eucalyptus paliformis","Eucalyptus paliformis","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"284","Eucalyptus panda","Eucalyptus panda","Eucalyptus panda","branches rough, no ribbons in branches, wholly rough, rough bark ironbark",NA,NA,NA,NA,NA,NA,NA,NA
+"285","Eucalyptus paniculata","Eucalyptus paniculata","Eucalyptus paniculata","branches rough, no ribbons in branches, wholly rough, rough bark ironbark",NA,NA,NA,NA,NA,NA,NA,NA
+"286","Eucalyptus paniculata subsp. matutina","Eucalyptus paniculata subsp. matutina","Eucalyptus paniculata","branches rough, no ribbons in branches, wholly rough, rough bark ironbark",NA,NA,NA,NA,NA,NA,NA,NA
+"287","Eucalyptus paniculata subsp. paniculata","Eucalyptus paniculata subsp. paniculata","Eucalyptus paniculata","branches rough, no ribbons in branches, wholly rough, rough bark ironbark",NA,NA,NA,NA,NA,NA,NA,NA
+"288","Eucalyptus parramattensis","Eucalyptus parramattensis",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"289","Eucalyptus parramattensis subsp. decadens","Eucalyptus parramattensis subsp. decadens","Eucalyptus parramattensis subsp. decadens","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"290","Eucalyptus parramattensis subsp. parramattensis","Eucalyptus parramattensis subsp. parramattensis","Eucalyptus parramattensis subsp. parramattensis","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"291","Eucalyptus parvifolia","Eucalyptus parvula","Eucalyptus parvula","branches smooth, no ribbons in branches, ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"292","Eucalyptus parvula","Eucalyptus parvula","Eucalyptus parvula","branches smooth, no ribbons in branches, ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"293","Eucalyptus patentinervis","Eucalyptus x kirtoniana",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"294","Eucalyptus pauciflora","Eucalyptus pauciflora",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"295","Eucalyptus pauciflora subsp. debeuzevillei","Eucalyptus debeuzevillei","Eucalyptus pauciflora subsp. debeuzevillei","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"296","Eucalyptus pauciflora subsp. niphophila","Eucalyptus niphophila","Eucalyptus pauciflora subsp. niphophila","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"297","Eucalyptus pauciflora subsp. pauciflora","Eucalyptus pauciflora","Eucalyptus pauciflora subsp. pauciflora","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"298","Eucalyptus pauciflora x radiata","Eucalyptus x vitrea",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"299","Eucalyptus pellita","Eucalyptus scias","Eucalyptus pellita","branches rough, no ribbons in branches, fibrous, wholly rough, rough bark tessellated","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"300","Eucalyptus perriniana","Eucalyptus perriniana","Eucalyptus perriniana","branches smooth, no ribbons in branches, ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"301","Eucalyptus pilligaensis","Eucalyptus pilligaensis",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"302","Eucalyptus pilularis","Eucalyptus pilularis","Eucalyptus pilularis","branches smooth, no ribbons in branches, fibrous, partly rough, wholly rough, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,NA,"both fibrous and shedding",NA
+"303","Eucalyptus piperita","Eucalyptus piperita",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"304","Eucalyptus piperita subsp. piperita","Eucalyptus piperita","Eucalyptus piperita subsp. piperita","branches rough, branches smooth, no ribbons in branches, ribbons in branches, fibrous, partly rough, wholly rough, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,"ribbons in branches","both fibrous and shedding","both fibrous and ribbony"
+"305","Eucalyptus piperita subsp. urceolaris","Eucalyptus piperita","Eucalyptus piperita subsp. urceolaris","branches rough, branches smooth, no ribbons in branches, fibrous, wholly rough",NA,"partly fibrous","shedding",NA,"bark shed from branches only",NA,"both fibrous and shedding",NA
+"306","Eucalyptus placita","Eucalyptus placita","Eucalyptus placita","branches rough, branches smooth, no ribbons in branches, wholly rough, rough bark ironbark",NA,NA,"shedding",NA,"bark shed from branches only",NA,NA,NA
+"307","Eucalyptus planchoniana","Eucalyptus planchoniana","Eucalyptus planchoniana","branches rough, branches smooth, no ribbons in branches, fibrous, wholly rough",NA,"partly fibrous","shedding",NA,"bark shed from branches only",NA,"both fibrous and shedding",NA
+"308","Eucalyptus polyanthemos","Eucalyptus polyanthemos",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"309","Eucalyptus polyanthemos subsp. polyanthemos","Eucalyptus polyanthemos subsp. polyanthemos","Eucalyptus polyanthemos subsp. polyanthemos","branches smooth, no ribbons in branches, fibrous, partly rough, wholly smooth, rough bark box type, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,NA,"both fibrous and shedding",NA
+"310","Eucalyptus polyanthemos subsp. tarda","Eucalyptus polyanthemos",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"311","Eucalyptus polyanthemos subsp. vestita","Eucalyptus polyanthemos subsp. vestita","Eucalyptus polyanthemos subsp. vestita","branches rough, no ribbons in branches, wholly rough, rough bark loose basal slabs, rough bark box type",NA,NA,"shedding","bark shed from trunk only",NA,NA,NA,NA
+"312","Eucalyptus polybractea","Eucalyptus polybractea","Eucalyptus polybractea","branches smooth, no ribbons in branches, ribbons in branches, fibrous, partly rough, wholly smooth, rough bark box type, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,"ribbons in branches","both fibrous and shedding","both fibrous and ribbony"
+"313","Eucalyptus polycarpa","Corymbia dolichocarpa",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"314","Eucalyptus populnea","Eucalyptus populnea subsp. bimbil","Eucalyptus populnea","branches rough, no ribbons in branches, wholly rough, rough bark box type, rough bark tessellated",NA,NA,NA,NA,NA,NA,NA,NA
+"315","Eucalyptus populnea subsp. bimbil","Eucalyptus populnea subsp. bimbil","Eucalyptus populnea","branches rough, no ribbons in branches, wholly rough, rough bark box type, rough bark tessellated",NA,NA,NA,NA,NA,NA,NA,NA
+"316","Eucalyptus porosa","Eucalyptus porosa","Eucalyptus porosa","branches rough, branches smooth, no ribbons in branches, fibrous, partly rough, wholly rough, rough bark box type, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,NA,"both fibrous and shedding",NA
+"317","Eucalyptus praecox","Eucalyptus praecox",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"318","Eucalyptus prava","Eucalyptus prava","Eucalyptus prava","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"319","Eucalyptus prominula","Eucalyptus prominula","Eucalyptus prominula","branches rough, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"320","Eucalyptus propinqua","Eucalyptus propinqua","Eucalyptus propinqua","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"321","Eucalyptus psammitica","Eucalyptus psammitica","Eucalyptus psammitica","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"322","Eucalyptus pseudoglobulus","Eucalyptus pseudoglobulus",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"323","Eucalyptus pulverulenta","Eucalyptus pulverulenta","Eucalyptus pulverulenta","branches smooth, no ribbons in branches, ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"324","Eucalyptus pumila","Eucalyptus pumila","Eucalyptus pumila","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"325","Eucalyptus punctata","Eucalyptus punctata","Eucalyptus punctata","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"326","Eucalyptus punctata subsp. punctata","Eucalyptus punctata subsp. punctata","Eucalyptus punctata","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"327","Eucalyptus punctata var. didyma","Eucalyptus biturbinata",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"328","Eucalyptus pyrocarpa","Eucalyptus pyrocarpa","Eucalyptus pyrocarpa","branches rough, branches smooth, no ribbons in branches, ribbons in branches, fibrous, wholly rough",NA,"partly fibrous","shedding",NA,"bark shed from branches only","ribbons in branches","both fibrous and shedding","both fibrous and ribbony"
+"329","Eucalyptus quadrangulata","Eucalyptus quadrangulata","Eucalyptus quadrangulata","branches rough, no ribbons in branches, wholly rough, rough bark box type",NA,NA,NA,NA,NA,NA,NA,NA
+"330","Eucalyptus quinniorum","Eucalyptus quinniorum",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"331","Eucalyptus racemosa","Eucalyptus racemosa",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"332","Eucalyptus racemosa subsp. racemosa","Eucalyptus racemosa","Eucalyptus racemosa subsp. racemosa","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"333","Eucalyptus racemosa subsp. rossii","Eucalyptus rossii","Eucalyptus racemosa subsp. rossii","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"334","Eucalyptus radiata","Eucalyptus radiata",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"335","Eucalyptus radiata subsp. radiata","Eucalyptus radiata subsp. radiata","Eucalyptus radiata subsp. radiata","branches rough, branches smooth, no ribbons in branches, fibrous, wholly rough, rough bark box type",NA,"partly fibrous","shedding",NA,"bark shed from branches only",NA,"both fibrous and shedding",NA
+"336","Eucalyptus radiata subsp. robertsonii","Eucalyptus robertsonii","Eucalyptus radiata subsp. robertsonii","branches rough, branches smooth, no ribbons in branches, ribbons in branches, fibrous, wholly rough, rough bark box type",NA,"partly fibrous","shedding",NA,"bark shed from branches only","ribbons in branches","both fibrous and shedding","both fibrous and ribbony"
+"337","Eucalyptus radiata subsp. sejuncta","Eucalyptus radiata subsp. sejuncta","Eucalyptus radiata subsp. sejuncta","branches rough, branches smooth, no ribbons in branches, fibrous, wholly rough",NA,"partly fibrous","shedding",NA,"bark shed from branches only",NA,"both fibrous and shedding",NA
+"338","Eucalyptus ralla","Eucalyptus ralla",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"339","Eucalyptus recurva","Eucalyptus recurva","Eucalyptus recurva","branches smooth, no ribbons in branches, ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"340","Eucalyptus resinifera","Eucalyptus resinifera",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"341","Eucalyptus resinifera subsp. hemilampra","Eucalyptus resinifera subsp. hemilampra","Eucalyptus resinifera subsp. hemilampra","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"342","Eucalyptus resinifera subsp. resinifera","Eucalyptus resinifera subsp. resinifera","Eucalyptus resinifera subsp. resinifera","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"344","Eucalyptus retinens","Eucalyptus retinens","Eucalyptus retinens","branches rough, branches smooth, no ribbons in branches, partly rough, wholly rough, rough bark box type, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"345","Eucalyptus robertsonii","Eucalyptus robertsonii",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"346","Eucalyptus robertsonii subsp. hemisphaerica","Eucalyptus robertsonii subsp. hemisphaerica",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"347","Eucalyptus robertsonii subsp. robertsonii","Eucalyptus robertsonii subsp. robertsonii",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"348","Eucalyptus robusta","Eucalyptus robusta","Eucalyptus robusta","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"349","Eucalyptus robusta x saligna","Eucalyptus robusta x saligna","Eucalyptus robusta","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"350","Eucalyptus robusta x tereticornis","Eucalyptus x kirtoniana",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"352","Eucalyptus rossii","Eucalyptus rossii",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"353","Eucalyptus rubida","Eucalyptus rubida",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"354","Eucalyptus rubida subsp. barbigerorum","Eucalyptus rubida subsp. barbigerorum","Eucalyptus rubida subsp. barbigerorum","branches smooth, no ribbons in branches, ribbons in branches, partly rough, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"355","Eucalyptus rubida subsp. rubida","Eucalyptus rubida subsp. rubida","Eucalyptus rubida subsp. rubida","branches smooth, no ribbons in branches, ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"356","Eucalyptus rubida x viminalis","Eucalyptus rubida x viminalis",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"357","Eucalyptus rudderi","Eucalyptus rudderi","Eucalyptus rudderi","branches rough, no ribbons in branches, fibrous, wholly rough, rough bark box type, rough bark tessellated","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"358","Eucalyptus rummeryi","Eucalyptus rummeryi","Eucalyptus rummeryi","branches rough, no ribbons in branches, wholly rough, rough bark box type, rough bark tessellated",NA,NA,NA,NA,NA,NA,NA,NA
+"359","Eucalyptus rupicola","Eucalyptus cunninghamii","Eucalyptus cunninghamii","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"360","Eucalyptus saligna","Eucalyptus saligna","Eucalyptus saligna","branches smooth, no ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"361","Eucalyptus saxatilis","Eucalyptus saxatilis","Eucalyptus saxatilis","branches smooth, no ribbons in branches, ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"362","Eucalyptus saxicola","Eucalyptus saxicola",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"363","Eucalyptus scias","Eucalyptus scias",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"364","Eucalyptus scias subsp. apoda","Eucalyptus scias subsp. apoda","Eucalyptus scias subsp. apoda","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"365","Eucalyptus scias subsp. callimastha","Eucalyptus scias subsp. callimastha",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"366","Eucalyptus scias subsp. scias","Eucalyptus scias subsp. scias","Eucalyptus scias subsp. scias","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"367","Eucalyptus sclerophylla","Eucalyptus sclerophylla",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"368","Eucalyptus scoparia","Eucalyptus scoparia","Eucalyptus scoparia","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"369","Eucalyptus seeana","Eucalyptus seeana","Eucalyptus seeana","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"370","Eucalyptus serpentinicola","Eucalyptus serpentinicola",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"371","Eucalyptus siderophloia","Eucalyptus siderophloia","Eucalyptus siderophloia","branches rough, no ribbons in branches, wholly rough, rough bark ironbark",NA,NA,NA,NA,NA,NA,NA,NA
+"372","Eucalyptus sideroxylon","Eucalyptus sideroxylon","Eucalyptus sideroxylon","branches rough, no ribbons in branches, wholly rough, rough bark ironbark",NA,NA,NA,NA,NA,NA,NA,NA
+"373","Eucalyptus sideroxylon <--> viridis","Eucalyptus sideroxylon <--> viridis","Eucalyptus sideroxylon","branches rough, no ribbons in branches, wholly rough, rough bark ironbark",NA,NA,NA,NA,NA,NA,NA,NA
+"374","Eucalyptus sideroxylon subsp. sideroxylon","Eucalyptus sideroxylon","Eucalyptus sideroxylon","branches rough, no ribbons in branches, wholly rough, rough bark ironbark",NA,NA,NA,NA,NA,NA,NA,NA
+"375","Eucalyptus sieberi","Eucalyptus sieberi","Eucalyptus sieberi","branches smooth, no ribbons in branches, fibrous, partly rough, wholly rough, rough bark compacted, rough bark ironbark, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,NA,"both fibrous and shedding",NA
+"376","Eucalyptus signata","Eucalyptus signata",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"377","Eucalyptus smithii","Eucalyptus smithii","Eucalyptus smithii","branches smooth, ribbons in branches, partly rough, wholly rough, wholly smooth, rough bark compacted, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"378","Eucalyptus socialis","Eucalyptus socialis",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"379","Eucalyptus sp. aff. agglomerata","Eucalyptus sp. aff. agglomerata",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"380","Eucalyptus sp. aff. cameronii (Macleay-Apsley)","Eucalyptus sp. aff. cameronii (Macleay-Apsley)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"381","Eucalyptus sp. aff. dwyeri","Eucalyptus sp. aff. dwyeri",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"382","Eucalyptus sp. aff. fibrosa (Pokolbin)","Eucalyptus sp. aff. fibrosa (Pokolbin)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"383","Eucalyptus sp. aff. fibrosa (Yarrawa)","Eucalyptus sp. aff. fibrosa (Yarrawa)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"384","Eucalyptus sp. aff. macrorhyncha","Eucalyptus sp. aff. macrorhyncha",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"385","Eucalyptus sp. 'Cattai'","Eucalyptus sp. Cattai",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"386","Eucalyptus sparsifolia","Eucalyptus sparsifolia","Eucalyptus sparsifolia","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"387","Eucalyptus spectatrix","Eucalyptus spectatrix",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"388","Eucalyptus spp.","Eucalyptus spp.",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"389","Eucalyptus squamosa","Eucalyptus squamosa","Eucalyptus squamosa","branches rough, branches smooth, no ribbons in branches, fibrous, wholly rough, rough bark tessellated",NA,"partly fibrous","shedding",NA,"bark shed from branches only",NA,"both fibrous and shedding",NA
+"390","Eucalyptus stannicola","Eucalyptus subtilior",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"391","Eucalyptus stellulata","Eucalyptus stellulata","Eucalyptus stellulata","branches smooth, no ribbons in branches, ribbons in branches, partly rough, rough bark loose basal slabs, rough bark compacted, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"392","Eucalyptus stenostoma","Eucalyptus stenostoma","Eucalyptus stenostoma","branches smooth, no ribbons in branches, fibrous, partly rough, rough bark compacted, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,NA,"both fibrous and shedding",NA
+"393","Eucalyptus stricta","Eucalyptus stricta","Eucalyptus stricta","branches smooth, no ribbons in branches, ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"394","Eucalyptus sturgissiana","Eucalyptus sturgissiana","Eucalyptus sturgissiana","branches smooth, no ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"395","Eucalyptus subcaerula","Eucalyptus subcaerulea",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"396","Eucalyptus subcaerulea","Eucalyptus subcaerulea",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"397","Eucalyptus subtilior","Eucalyptus subtilior",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"398","Eucalyptus tenella","Eucalyptus tenella","Eucalyptus tenella","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"399","Eucalyptus tereticornis","Eucalyptus tereticornis",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"400","Eucalyptus tereticornis subsp. tereticornis","Eucalyptus tereticornis subsp. tereticornis","Eucalyptus tereticornis subsp. tereticornis","branches smooth, no ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"401","Eucalyptus terminalis","Corymbia tumescens",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"402","Eucalyptus tessellaris","Corymbia tessellaris","Corymbia tessellaris","branches smooth, no ribbons in branches, partly rough, wholly rough, rough bark tessellated, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"403","Eucalyptus tetrapleura","Eucalyptus tetrapleura","Eucalyptus tetrapleura","branches rough, no ribbons in branches, wholly rough, rough bark ironbark",NA,NA,NA,NA,NA,NA,NA,NA
+"404","Eucalyptus tindaliae","Eucalyptus tindaliae","Eucalyptus tindaliae","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"405","Eucalyptus torelliana","Corymbia torelliana","Corymbia torelliana","branches smooth, no ribbons in branches, partly rough, wholly smooth, rough bark imperfectly shed, rough bark tessellated, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"406","Eucalyptus tricarpa","Eucalyptus tricarpa","Eucalyptus tricarpa","branches rough, no ribbons in branches, wholly rough, rough bark ironbark",NA,NA,NA,NA,NA,NA,NA,NA
+"407","Eucalyptus triflora","Eucalyptus triflora","Eucalyptus triflora","branches smooth, no ribbons in branches, ribbons in branches, fibrous, partly rough, wholly smooth, rough bark loose basal slabs, rough bark compacted, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,"ribbons in branches","both fibrous and shedding","both fibrous and ribbony"
+"408","Eucalyptus triplex","Eucalyptus triplex",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"409","Eucalyptus umbra","Eucalyptus umbra","Eucalyptus umbra","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"410","Eucalyptus umbra subsp. umbra","Eucalyptus umbra","Eucalyptus umbra","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"411","Eucalyptus vicina","Eucalyptus vicina","Eucalyptus vicina","branches smooth, no ribbons in branches, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"412","Eucalyptus viminalis","Eucalyptus viminalis",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"413","Eucalyptus viminalis subsp. luxurians","Eucalyptus viminalis subsp. luxurians",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"414","Eucalyptus viminalis subsp. viminalis","Eucalyptus viminalis","Eucalyptus viminalis subsp. viminalis","branches smooth, no ribbons in branches, ribbons in branches, fibrous, partly rough, wholly smooth, rough bark loose basal slabs, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,"ribbons in branches","both fibrous and shedding","both fibrous and ribbony"
+"415","Eucalyptus viridis","Eucalyptus viridis","Eucalyptus viridis","branches smooth, no ribbons in branches, ribbons in branches, fibrous, partly rough, wholly smooth, rough bark loose basal slabs, rough bark box type, partly or all smooth",NA,"partly fibrous","shedding",NA,NA,"ribbons in branches","both fibrous and shedding","both fibrous and ribbony"
+"416","Eucalyptus volcanica","Eucalyptus volcanica","Eucalyptus volcanica","branches rough, branches smooth, no ribbons in branches, partly rough, wholly rough, rough bark box type, partly or all smooth",NA,NA,"shedding",NA,NA,NA,NA,NA
+"417","Eucalyptus wilcoxii","Eucalyptus wilcoxii","Eucalyptus wilcoxii","branches smooth, no ribbons in branches, ribbons in branches, wholly smooth, partly or all smooth",NA,NA,"shedding",NA,NA,"ribbons in branches",NA,NA
+"418","Eucalyptus williamsiana","Eucalyptus williamsiana","Eucalyptus williamsiana","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
+"419","Eucalyptus youmanii","Eucalyptus youmanii","Eucalyptus youmanii","branches rough, branches smooth, no ribbons in branches, fibrous, wholly rough",NA,"partly fibrous","shedding",NA,"bark shed from branches only",NA,"both fibrous and shedding",NA
