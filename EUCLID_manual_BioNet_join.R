@@ -8,6 +8,7 @@ EUCLID1 = read.csv("EUCLID_all_bark_traits_concatenated.csv")
 EUCLID2 = read.csv("EUCLID_bark_categories_assigned.csv")
 # Join EUCLID data before joining with BioNet
 EUCLID = full_join(EUCLID1, EUCLID2)
+# write.csv(EUCLID, "EUCLID_EUCLID_join.csv")
 
 # Load BioNet dataset
 BioNetNames = read.csv("BioNet_FloraSurveys_SpeciesList_eucalypts.csv")
@@ -40,6 +41,7 @@ for(i in c(1:nrow(EUCLID))){
     }
   }
 
+names(joined) = c("BioNet_unassigned", "BioNet_assigned", "EUCLID", "bark_matches_concat", "main_trunk_fibrous", "main_trunk_partly_fibrous", "shedding_any", "shedding_trunk_only", "shedding_branches_only", "ribbons_present_in_branches", "fibrous_and_shedding", "fibrous_and_ribbony")
 # write.csv(joined, "EUCLID_manual_BioNet_join.csv")
 
 # Create a data frame listing all EUCLID names and bark attributes and which BioNet names they matched, if any

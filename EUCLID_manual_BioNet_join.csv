@@ -1,4 +1,4 @@
-"","Scientific.name","Assign.Scientific.name","species","whole.bark.description","bark_type_fibrous","bark_type_partly_fibrous","bark_type_any_shedding","trunk_only_shedding","branches_only_shedding","ribbons_in_branches","mixed_bark_shedding","mixed_bark_ribbons"
+"","BioNet_unassigned","BioNet_assigned","EUCLID","bark_matches_concat","main_trunk_fibrous","main_trunk_partly_fibrous","shedding_any","shedding_trunk_only","shedding_branches_only","ribbons_present_in_branches","fibrous_and_shedding","fibrous_and_ribbony"
 "1","Angophora bakeri","Angophora bakeri",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "2","Angophora bakeri subsp. bakeri","Angophora bakeri","Angophora bakeri subsp. bakeri","branches rough, no ribbons in branches, wholly rough, rough bark box type",NA,NA,NA,NA,NA,NA,NA,NA
 "3","Angophora bakeri subsp. crassifolia","Angophora crassifolia","Angophora bakeri subsp. crassifolia","branches rough, no ribbons in branches, fibrous, wholly rough","wholly fibrous",NA,NA,NA,NA,NA,NA,NA
