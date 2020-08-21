@@ -5,6 +5,8 @@ library(dplyr)
 EUCLID = read.csv("APC_name_check_EUCLID.csv", colClasses = c("NULL", rep("character", 5), "NULL", "character", rep("NULL", 16)))
 BioNet = read.csv("APC_name_check_BioNet.csv", colClasses = c("NULL", rep("character", 5), "NULL", "character", rep("NULL", 16)))
 All = read.csv("EUCLID_manual_BioNet_joinV.3_checking-1.csv", colClasses = c("NULL", rep("character", 6)))
+All = All %>% 
+  filter(EUCLID_checked != "Absent in NSW")
 
 # Join APC search with BioNet and EUCLID accepted names
 All = left_join(All, BioNet, by = c("BioNet_assigned" = "Search.term"))
