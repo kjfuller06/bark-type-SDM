@@ -9,18 +9,14 @@ All = All %>%
   filter(EUCLID_checked != "Absent in NSW")
 
 # Join APC search with BioNet and EUCLID accepted names
-All = left_join(All, BioNet, by = c("BioNet_assigned" = "Search.term"))
-All = left_join(All, EUCLID, by = c("EUCLID_checked" = "Search.term"))
-names(All)[7:16] = c("Census.BioNet",
-                     "Matched.name.BioNet",
-                     "Name.status.BioNet",
-                     "Name.type.BioNet",
-                     "canonicalName.EUCLID",
-                     "Census.EUCLID",
-                     "Matched.name.EUCLID",
-                     "Name.status.EUCLID",
-                     "Name.type.EUCLID",
-                     "canonicalName.EUCLID")
+All = full_join(BioNet, All, by = c("Search.term" = "BioNet_assigned"))
+All = full_join(All, EUCLID, by = c("EUCLID_checked" = "Search.term"))
+All = All %>% 
+  dplyr::select(-"Census.x", -"Census.y", -"secondHybridParentNameID", -"Modification.type", -"Notes", -"Name.status")
+names(All)[c(4, 5, 9, 10)] = c("Matched.name.BioNet",
+                              "Name.type.BioNet",
+                              "Matched.name.EUCLID",
+                              "Name.type.EUCLID")
 
 # write csv
 write.csv(All, "EUCLID_manual_BioNet_joinV.4_checking-1.csv")
