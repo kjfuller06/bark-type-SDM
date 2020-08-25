@@ -17,6 +17,7 @@ names(All)[c(4, 5, 9, 10)] = c("Matched.name.BioNet",
                               "Name.type.BioNet",
                               "Matched.name.EUCLID",
                               "Name.type.EUCLID")
+All = unique(All)
 
 # write csv
 write.csv(All, "EUCLID_manual_BioNet_joinV.4_checking-1.csv")
