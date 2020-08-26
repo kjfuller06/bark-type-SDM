@@ -1,429 +1,426 @@
-"","Confirmed_name","Found.","Search.term","Matched.name.BioNet","Name.type.BioNet","BioNet_unassigned","EUCLID_checked","EUCLID_no_match","Matched.name.EUCLID","Name.type.EUCLID","canonicalName"
-"1","Angophora bakeri","TRUE","Angophora bakeri","Angophora bakeri E.C.Hall","scientific","Angophora bakeri","Angophora bakeri subsp. bakeri",NA,"Angophora bakeri E.C.Hall subsp. bakeri","autonym","Angophora bakeri subsp. bakeri"
-"2","Angophora bakeri","TRUE","Angophora bakeri","Angophora bakeri E.C.Hall","scientific","Angophora bakeri subsp. bakeri","Angophora bakeri subsp. bakeri",NA,"Angophora bakeri E.C.Hall subsp. bakeri","autonym","Angophora bakeri subsp. bakeri"
-"3","Angophora costata","TRUE","Angophora costata","Angophora costata (Gaertn.) Britten","scientific","Angophora costata","Angophora costata subsp. costata",NA,"Angophora costata (Gaertn.) Britten subsp. costata","autonym","Angophora costata subsp. costata"
-"4","Angophora costata","TRUE","Angophora costata","Angophora costata (Gaertn.) Britten","scientific","Angophora costata subsp. costata","Angophora costata subsp. costata",NA,"Angophora costata (Gaertn.) Britten subsp. costata","autonym","Angophora costata subsp. costata"
-"5","Angophora bakeri subsp. crassifolia","TRUE","Angophora crassifolia","Angophora crassifolia (G.J.Leach) L.A.S.Johnson & K.D.Hill","scientific","Angophora bakeri subsp. crassifolia","Angophora bakeri subsp. crassifolia",NA,"Angophora bakeri subsp. crassifolia G.J.Leach","scientific","Angophora bakeri subsp. crassifolia"
-"6","Angophora bakeri subsp. crassifolia","TRUE","Angophora crassifolia","Angophora crassifolia (G.J.Leach) L.A.S.Johnson & K.D.Hill","scientific","Angophora crassifolia","Angophora bakeri subsp. crassifolia",NA,"Angophora bakeri subsp. crassifolia G.J.Leach","scientific","Angophora bakeri subsp. crassifolia"
-"7","Angophora costata subsp. euryphylla","TRUE","Angophora euryphylla","Angophora euryphylla (G.J.Leach) L.A.S.Johnson & K.D.Hill","scientific","Angophora costata subsp. euryphylla","Angophora costata subsp. euryphylla",NA,"Angophora costata subsp. euryphylla L.A.S.Johnson ex G.J.Leach","scientific","Angophora costata subsp. euryphylla"
-"8","Angophora costata subsp. euryphylla","TRUE","Angophora euryphylla","Angophora euryphylla (G.J.Leach) L.A.S.Johnson & K.D.Hill","scientific","Angophora euryphylla","Angophora costata subsp. euryphylla",NA,"Angophora costata subsp. euryphylla L.A.S.Johnson ex G.J.Leach","scientific","Angophora costata subsp. euryphylla"
-"9","Angophora bakeri subsp. bakeri","TRUE","Angophora exul","Angophora exul K.D.Hill","scientific","Angophora exul","Angophora bakeri subsp. bakeri",NA,"Angophora bakeri E.C.Hall subsp. bakeri","autonym","Angophora bakeri subsp. bakeri"
-"10","Angophora floribunda","TRUE","Angophora floribunda","Angophora floribunda (Sm.) Sweet","scientific","Angophora floribunda","Angophora floribunda",NA,"Angophora floribunda (Sm.) Sweet","scientific","Angophora floribunda"
-"11","","FALSE","Angophora floribunda x paludosa","not found","","Angophora floribunda x paludosa","No match",NA,NA,NA,NA
-"12","Angophora hispida","TRUE","Angophora hispida","Angophora hispida (Sm.) Blaxell","scientific","Angophora hispida","Angophora hispida",NA,"Angophora hispida (Sm.) Blaxell","scientific","Angophora hispida"
-"13","Angophora inopina","TRUE","Angophora inopina","Angophora inopina K.D.Hill","scientific","Angophora inopina","Angophora inopina",NA,"Angophora inopina K.D.Hill","scientific","Angophora inopina"
-"14","Angophora leiocarpa","TRUE","Angophora leiocarpa","Angophora leiocarpa (L.A.S.Johnson ex G.J.Leach) K.R.Thiele & Ladiges","scientific","Angophora costata subsp. leiocarpa","Angophora costata subsp. leiocarpa",NA,"Angophora costata subsp. leiocarpa L.A.S.Johnson ex G.J.Leach","scientific","Angophora costata subsp. leiocarpa"
-"15","Angophora leiocarpa","TRUE","Angophora leiocarpa","Angophora leiocarpa (L.A.S.Johnson ex G.J.Leach) K.R.Thiele & Ladiges","scientific","Angophora leiocarpa","Angophora costata subsp. leiocarpa",NA,"Angophora costata subsp. leiocarpa L.A.S.Johnson ex G.J.Leach","scientific","Angophora costata subsp. leiocarpa"
-"16","Angophora melanoxylon","TRUE","Angophora melanoxylon","Angophora melanoxylon R.T.Baker","scientific","Angophora melanoxylon","Angophora melanoxylon",NA,"Angophora melanoxylon R.T.Baker","scientific","Angophora melanoxylon"
-"17","Angophora bakeri subsp. bakeri ","TRUE","Angophora paludosa","Angophora paludosa (G.J.Leach) K.R.Thiele & Ladiges","scientific","Angophora bakeri subsp. paludosa","Eucalyptus ovata subsp. ovata",NA,"Eucalyptus ovata Labill. subsp. ovata","autonym","Eucalyptus ovata subsp. ovata"
-"18","Angophora bakeri subsp. bakeri ","TRUE","Angophora paludosa","Angophora paludosa (G.J.Leach) K.R.Thiele & Ladiges","scientific","Angophora paludosa","Eucalyptus ovata subsp. ovata",NA,"Eucalyptus ovata Labill. subsp. ovata","autonym","Eucalyptus ovata subsp. ovata"
-"19","Angophora robur","TRUE","Angophora robur","Angophora robur L.A.S.Johnson & K.D.Hill","scientific","Angophora robur","Angophora robur",NA,"Angophora robur L.A.S.Johnson & K.D.Hill","scientific","Angophora robur"
-"20","","FALSE","Angophora robur x subvelutina","not found","","Angophora robur x subvelutina","No match",NA,NA,NA,NA
-"21","","FALSE","Angophora spp.","not found","","Angophora spp.","No match",NA,NA,NA,NA
-"22","Angophora subvelutina","TRUE","Angophora subvelutina","Angophora subvelutina F.Muell.","scientific","Angophora subvelutina","Angophora subvelutina",NA,"Angophora subvelutina F.Muell.","scientific","Angophora subvelutina"
-"23","Angophora woodsiana","TRUE","Angophora woodsiana","Angophora woodsiana F.M.Bailey","scientific","Angophora woodsiana","Angophora woodsiana",NA,"Angophora woodsiana F.M.Bailey","scientific","Angophora woodsiana"
-"24","Corymbia citriodora","TRUE","Corymbia citriodora","Corymbia citriodora (Hook.) K.D.Hill & L.A.S.Johnson","scientific","Corymbia citriodora","Corymbia citriodora",NA,"Corymbia citriodora (Hook.) K.D.Hill & L.A.S.Johnson","scientific","Corymbia citriodora"
-"25","Corymbia citriodora","TRUE","Corymbia citriodora","Corymbia citriodora (Hook.) K.D.Hill & L.A.S.Johnson","scientific","Corymbia citriodora subsp. variegata","Corymbia citriodora",NA,"Corymbia citriodora (Hook.) K.D.Hill & L.A.S.Johnson","scientific","Corymbia citriodora"
-"26","Corymbia clarksoniana","TRUE","Corymbia dolichocarpa","Corymbia dolichocarpa (D.J.Carr & S.G.M.Carr) K.D.Hill & L.A.S.Johnson","scientific","Corymbia dolichocarpa","Corymbia clarksoniana",NA,"Corymbia clarksoniana (D.J.Carr & S.G.M.Carr) K.D.Hill & L.A.S.Johnson","scientific","Corymbia clarksoniana"
-"27","Corymbia clarksoniana","TRUE","Corymbia dolichocarpa","Corymbia dolichocarpa (D.J.Carr & S.G.M.Carr) K.D.Hill & L.A.S.Johnson","scientific","Eucalyptus dolichocarpa","Corymbia clarksoniana",NA,"Corymbia clarksoniana (D.J.Carr & S.G.M.Carr) K.D.Hill & L.A.S.Johnson","scientific","Corymbia clarksoniana"
-"28","Corymbia clarksoniana","TRUE","Corymbia dolichocarpa","Corymbia dolichocarpa (D.J.Carr & S.G.M.Carr) K.D.Hill & L.A.S.Johnson","scientific","Eucalyptus polycarpa","Corymbia clarksoniana",NA,"Corymbia clarksoniana (D.J.Carr & S.G.M.Carr) K.D.Hill & L.A.S.Johnson","scientific","Corymbia clarksoniana"
-"29","Corymbia eximia","TRUE","Corymbia eximia","Corymbia eximia (Schauer) K.D.Hill & L.A.S.Johnson","scientific","Corymbia eximia","Corymbia eximia",NA,"Corymbia eximia (Schauer) K.D.Hill & L.A.S.Johnson","scientific","Corymbia eximia"
-"30","Corymbia eximia","TRUE","Corymbia eximia","Corymbia eximia (Schauer) K.D.Hill & L.A.S.Johnson","scientific","Eucalyptus eximia","Corymbia eximia",NA,"Corymbia eximia (Schauer) K.D.Hill & L.A.S.Johnson","scientific","Corymbia eximia"
-"31","Corymbia gummifera","TRUE","Corymbia gummifera","Corymbia gummifera (Gaertn.) K.D.Hill & L.A.S.Johnson","scientific","Corymbia gummifera","Corymbia gummifera",NA,"Corymbia gummifera (Gaertn.) K.D.Hill & L.A.S.Johnson","scientific","Corymbia gummifera"
-"32","Corymbia gummifera","TRUE","Corymbia gummifera","Corymbia gummifera (Gaertn.) K.D.Hill & L.A.S.Johnson","scientific","Eucalyptus gummifera","Corymbia gummifera",NA,"Corymbia gummifera (Gaertn.) K.D.Hill & L.A.S.Johnson","scientific","Corymbia gummifera"
-"33","Corymbia henryi","TRUE","Corymbia henryi","Corymbia henryi (S.T.Blake) K.D.Hill & L.A.S.Johnson","scientific","Corymbia henryi","Corymbia henryi",NA,"Corymbia henryi (S.T.Blake) K.D.Hill & L.A.S.Johnson","scientific","Corymbia henryi"
-"34","Corymbia henryi","TRUE","Corymbia henryi","Corymbia henryi (S.T.Blake) K.D.Hill & L.A.S.Johnson","scientific","Eucalyptus henryi","Corymbia henryi",NA,"Corymbia henryi (S.T.Blake) K.D.Hill & L.A.S.Johnson","scientific","Corymbia henryi"
-"35","Corymbia intermedia","TRUE","Corymbia intermedia","Corymbia intermedia (R.T.Baker) K.D.Hill & L.A.S.Johnson","scientific","Corymbia intermedia","Corymbia intermedia",NA,"Corymbia intermedia (R.T.Baker) K.D.Hill & L.A.S.Johnson","scientific","Corymbia intermedia"
-"36","Corymbia intermedia","TRUE","Corymbia intermedia","Corymbia intermedia (R.T.Baker) K.D.Hill & L.A.S.Johnson","scientific","Eucalyptus intermedia","Corymbia intermedia",NA,"Corymbia intermedia (R.T.Baker) K.D.Hill & L.A.S.Johnson","scientific","Corymbia intermedia"
-"37","Corymbia maculata","TRUE","Corymbia maculata","Corymbia maculata (Hook.) K.D.Hill & L.A.S.Johnson","scientific","Corymbia maculata","Corymbia maculata",NA,"Corymbia maculata (Hook.) K.D.Hill & L.A.S.Johnson","scientific","Corymbia maculata"
-"38","Corymbia maculata","TRUE","Corymbia maculata","Corymbia maculata (Hook.) K.D.Hill & L.A.S.Johnson","scientific","Eucalyptus maculata","Corymbia maculata",NA,"Corymbia maculata (Hook.) K.D.Hill & L.A.S.Johnson","scientific","Corymbia maculata"
-"39","","FALSE","Corymbia maculata <--> variegata intergrade","not found","","Corymbia maculata <--> variegata intergrade","No match",NA,NA,NA,NA
-"40","","FALSE","Corymbia spp.","not found","","Corymbia spp.","No match",NA,NA,NA,NA
-"41","Corymbia tessellaris","TRUE","Corymbia tessellaris","Corymbia tessellaris (F.Muell.) K.D.Hill & L.A.S.Johnson","scientific","Corymbia tessellaris","Corymbia tessellaris",NA,"Corymbia tessellaris (F.Muell.) K.D.Hill & L.A.S.Johnson","scientific","Corymbia tessellaris"
-"42","Corymbia tessellaris","TRUE","Corymbia tessellaris","Corymbia tessellaris (F.Muell.) K.D.Hill & L.A.S.Johnson","scientific","Eucalyptus tessellaris","Corymbia tessellaris",NA,"Corymbia tessellaris (F.Muell.) K.D.Hill & L.A.S.Johnson","scientific","Corymbia tessellaris"
-"43","Corymbia torelliana","TRUE","Corymbia torelliana","Corymbia torelliana (F.Muell.) K.D.Hill & L.A.S.Johnson","scientific","Corymbia torelliana","Corymbia torelliana",NA,"Corymbia torelliana (F.Muell.) K.D.Hill & L.A.S.Johnson","scientific","Corymbia torelliana"
-"44","Corymbia torelliana","TRUE","Corymbia torelliana","Corymbia torelliana (F.Muell.) K.D.Hill & L.A.S.Johnson","scientific","Eucalyptus torelliana","Corymbia torelliana",NA,"Corymbia torelliana (F.Muell.) K.D.Hill & L.A.S.Johnson","scientific","Corymbia torelliana"
-"45","Corymbia trachyphloia","TRUE","Corymbia trachyphloia","Corymbia trachyphloia (F.Muell.) K.D.Hill & L.A.S.Johnson","scientific","Corymbia trachyphloia","Corymbia trachyphloia",NA,"Corymbia trachyphloia (F.Muell.) K.D.Hill & L.A.S.Johnson","scientific","Corymbia trachyphloia"
-"46","Corymbia trachyphloia","TRUE","Corymbia trachyphloia subsp. amphistomatica","Corymbia trachyphloia subsp. amphistomatica K.D.Hill & L.A.S.Johnson","scientific","Corymbia trachyphloia subsp. amphistomatica","Corymbia trachyphloia",NA,"Corymbia trachyphloia (F.Muell.) K.D.Hill & L.A.S.Johnson","scientific","Corymbia trachyphloia"
-"47","Corymbia trachyphloia","TRUE","Corymbia trachyphloia subsp. trachyphloia","Corymbia trachyphloia (F.Muell.) K.D.Hill & L.A.S.Johnson subsp. trachyphloia","autonym","Corymbia trachyphloia subsp. trachyphloia","Corymbia trachyphloia",NA,"Corymbia trachyphloia (F.Muell.) K.D.Hill & L.A.S.Johnson","scientific","Corymbia trachyphloia"
-"48","Corymbia terminalis","TRUE","Corymbia tumescens","Corymbia tumescens K.D.Hill & L.A.S.Johnson","scientific","Corymbia tumescens","Corymbia terminalis",NA,"Corymbia terminalis (F.Muell.) K.D.Hill & L.A.S.Johnson","scientific","Corymbia terminalis"
-"49","Corymbia terminalis","TRUE","Corymbia tumescens","Corymbia tumescens K.D.Hill & L.A.S.Johnson","scientific","Eucalyptus opaca","Corymbia terminalis",NA,"Corymbia terminalis (F.Muell.) K.D.Hill & L.A.S.Johnson","scientific","Corymbia terminalis"
-"50","Corymbia terminalis","TRUE","Corymbia tumescens","Corymbia tumescens K.D.Hill & L.A.S.Johnson","scientific","Eucalyptus terminalis","Corymbia terminalis",NA,"Corymbia terminalis (F.Muell.) K.D.Hill & L.A.S.Johnson","scientific","Corymbia terminalis"
-"51","Corymbia citriodora","TRUE","Corymbia variegata","Corymbia variegata (F.Muell.) K.D.Hill & L.A.S.Johnson","scientific","Corymbia variegata","Corymbia citriodora",NA,"Corymbia citriodora (Hook.) K.D.Hill & L.A.S.Johnson","scientific","Corymbia citriodora"
-"52","Eucalyptus acaciiformis","TRUE","Eucalyptus acaciiformis","Eucalyptus acaciiformis H.Deane & Maiden","scientific","Eucalyptus acaciiformis","Eucalyptus acaciiformis",NA,"Eucalyptus acaciiformis H.Deane & Maiden","scientific","Eucalyptus acaciiformis"
-"53","Eucalyptus acmenoides","TRUE","Eucalyptus acmenoides","Eucalyptus acmenoides Schauer","scientific","Eucalyptus acmenioides","Eucalyptus acmenoides",NA,"Eucalyptus acmenoides Schauer","scientific","Eucalyptus acmenoides"
-"54","Eucalyptus acmenoides","TRUE","Eucalyptus acmenoides","Eucalyptus acmenoides Schauer","scientific","Eucalyptus acmenoides","Eucalyptus acmenoides",NA,"Eucalyptus acmenoides Schauer","scientific","Eucalyptus acmenoides"
-"55","Eucalyptus viridis","TRUE","Eucalyptus aenea","Eucalyptus aenea K.D.Hill","scientific","Eucalyptus aenea","Eucalyptus viridis",NA,"Eucalyptus viridis R.T.Baker","scientific","Eucalyptus viridis"
-"56","Eucalyptus agglomerata","TRUE","Eucalyptus agglomerata","Eucalyptus agglomerata Maiden","scientific","Eucalyptus agglomerata","Eucalyptus agglomerata",NA,"Eucalyptus agglomerata Maiden","scientific","Eucalyptus agglomerata"
-"57","Eucalyptus aggregata","TRUE","Eucalyptus aggregata","Eucalyptus aggregata H.Deane & Maiden","scientific","Eucalyptus aggregata","Eucalyptus aggregata",NA,"Eucalyptus aggregata H.Deane & Maiden","scientific","Eucalyptus aggregata"
-"58","Eucalyptus albens","TRUE","Eucalyptus albens","Eucalyptus albens Benth.","scientific","Eucalyptus albens","Eucalyptus albens",NA,"Eucalyptus albens Benth.","scientific","Eucalyptus albens"
-"59","","FALSE","Eucalyptus albens <--> moluccana","not found","","Eucalyptus albens <--> moluccana","No match",NA,NA,NA,NA
-"60","","FALSE","Eucalyptus albens <--> moluccana","not found","","Eucalyptus albens x moluccana","No match",NA,NA,NA,NA
-"61","","FALSE","Eucalyptus albens x crebra","not found","","Eucalyptus albens x crebra","No match",NA,NA,NA,NA
-"62","Eucalyptus amplifolia","TRUE","Eucalyptus amplifolia","Eucalyptus amplifolia Naudin","scientific","Eucalyptus amplifolia","Eucalyptus amplifolia subsp. sessiliflora",NA,"Eucalyptus amplifolia subsp. sessiliflora (Blakely) L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus amplifolia subsp. sessiliflora"
-"63","Eucalyptus amplifolia subsp. amplifolia","TRUE","Eucalyptus amplifolia subsp. amplifolia","Eucalyptus amplifolia Naudin subsp. amplifolia","autonym","Eucalyptus amplifolia subsp. amplifolia","Eucalyptus amplifolia subsp. amplifolia",NA,"Eucalyptus amplifolia Naudin subsp. amplifolia","autonym","Eucalyptus amplifolia subsp. amplifolia"
-"64","Eucalyptus amplifolia subsp. sessiliflora","TRUE","Eucalyptus amplifolia subsp. sessiliflora","Eucalyptus amplifolia subsp. sessiliflora (Blakely) L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus amplifolia subsp. sessiliflora","Eucalyptus amplifolia subsp. sessiliflora",NA,"Eucalyptus amplifolia subsp. sessiliflora (Blakely) L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus amplifolia subsp. sessiliflora"
-"65","Eucalyptus ancophila","TRUE","Eucalyptus ancophila","Eucalyptus ancophila L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus ancophila","Eucalyptus ancophila",NA,"Eucalyptus ancophila L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus ancophila"
-"66","Eucalyptus andrewsii","TRUE","Eucalyptus andrewsii","Eucalyptus andrewsii Maiden","scientific","Eucalyptus andrewsii","Eucalyptus andrewsii subsp. andrewsii",NA,"Eucalyptus andrewsii Maiden subsp. andrewsii","autonym","Eucalyptus andrewsii subsp. andrewsii"
-"67","Eucalyptus andrewsii","TRUE","Eucalyptus andrewsii","Eucalyptus andrewsii Maiden","scientific","Eucalyptus andrewsii subsp. andrewsii","Eucalyptus andrewsii subsp. andrewsii",NA,"Eucalyptus andrewsii Maiden subsp. andrewsii","autonym","Eucalyptus andrewsii subsp. andrewsii"
-"68","Eucalyptus angophoroides","TRUE","Eucalyptus angophoroides","Eucalyptus angophoroides R.T.Baker","scientific","Eucalyptus angophoroides","Eucalyptus angophoroides",NA,"Eucalyptus angophoroides R.T.Baker","scientific","Eucalyptus angophoroides"
-"69","Eucalyptus apiculata","TRUE","Eucalyptus apiculata","Eucalyptus apiculata R.T.Baker & H.G.Sm.","scientific","Eucalyptus apiculata","Eucalyptus apiculata",NA,"Eucalyptus apiculata R.T.Baker & H.G.Sm.","scientific","Eucalyptus apiculata"
-"70","Eucalyptus apothalassica","TRUE","Eucalyptus apothalassica","Eucalyptus apothalassica L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus apothalassica","Eucalyptus apothalassica",NA,"Eucalyptus apothalassica L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus apothalassica"
-"71","","FALSE","Eucalyptus apothalassica x chloroclada","not found","","Eucalyptus apothalassica x chloroclada","No match",NA,NA,NA,NA
-"72","Eucalyptus approximans","TRUE","Eucalyptus approximans","Eucalyptus approximans Maiden","scientific","Eucalyptus approximans","Eucalyptus approximans subsp. approximans",NA,"Eucalyptus approximans Maiden subsp. approximans","autonym","Eucalyptus approximans subsp. approximans"
-"73","Eucalyptus aquatica","TRUE","Eucalyptus aquatica","Eucalyptus aquatica (Blakely) L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus aquatica","Eucalyptus camphora subsp. camphora",NA,"Eucalyptus camphora R.T.Baker subsp. camphora","autonym","Eucalyptus camphora subsp. camphora"
-"74","Eucalyptus badjensis","TRUE","Eucalyptus badjensis","Eucalyptus badjensis Beuzev. & M.B.Welch","scientific","Eucalyptus badjensis","Eucalyptus badjensis",NA,"Eucalyptus badjensis Beuzev. & M.B.Welch","scientific","Eucalyptus badjensis"
-"75","Eucalyptus baeuerlenii","TRUE","Eucalyptus baeuerlenii","Eucalyptus baeuerlenii F.Muell.","scientific","Eucalyptus baeuerlenii","Eucalyptus baeuerlenii",NA,"Eucalyptus baeuerlenii F.Muell.","scientific","Eucalyptus baeuerlenii"
-"76","Eucalyptus baileyana","TRUE","Eucalyptus baileyana","Eucalyptus baileyana F.Muell.","scientific","Eucalyptus baileyana","Eucalyptus baileyana",NA,"Eucalyptus baileyana F.Muell.","scientific","Eucalyptus baileyana"
-"77","Eucalyptus bakeri","TRUE","Eucalyptus bakeri","Eucalyptus bakeri Maiden","scientific","Eucalyptus bakeri","Eucalyptus bakeri",NA,"Eucalyptus bakeri Maiden","scientific","Eucalyptus bakeri"
-"78","Eucalyptus bancroftii","TRUE","Eucalyptus bancroftii","Eucalyptus bancroftii (Maiden) Maiden","scientific","Eucalyptus bancroftii","Eucalyptus bancroftii",NA,"Eucalyptus bancroftii (Maiden) Maiden","scientific","Eucalyptus bancroftii"
-"79","Eucalyptus banksii","TRUE","Eucalyptus banksii","Eucalyptus banksii Maiden","scientific","Eucalyptus banksii","Eucalyptus banksii",NA,"Eucalyptus banksii Maiden","scientific","Eucalyptus banksii"
-"80","Eucalyptus baueriana","TRUE","Eucalyptus baueriana","Eucalyptus baueriana Schauer","scientific","Eucalyptus bauerana","Eucalyptus baueriana",NA,"Eucalyptus baueriana Schauer","scientific","Eucalyptus baueriana"
-"81","Eucalyptus baueriana","TRUE","Eucalyptus baueriana","Eucalyptus baueriana Schauer","scientific","Eucalyptus baueriana","Eucalyptus baueriana",NA,"Eucalyptus baueriana Schauer","scientific","Eucalyptus baueriana"
-"82","Eucalyptus baxteri","TRUE","Eucalyptus baxteri","Eucalyptus baxteri (Benth.) Maiden & Blakely ex J.M.Black","scientific","Eucalyptus baxteri","Eucalyptus baxteri",NA,"Eucalyptus baxteri (Benth.) Maiden & Blakely ex J.M.Black","scientific","Eucalyptus baxteri"
-"83","Eucalyptus behriana","TRUE","Eucalyptus behriana","Eucalyptus behriana F.Muell.","scientific","Eucalyptus behriana","Eucalyptus behriana",NA,"Eucalyptus behriana F.Muell.","scientific","Eucalyptus behriana"
-"84","Eucalyptus bensonii","TRUE","Eucalyptus bensonii","Eucalyptus bensonii L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus bensonii","Eucalyptus bensonii",NA,"Eucalyptus bensonii L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus bensonii"
-"85","Eucalyptus benthamii","TRUE","Eucalyptus benthamii","Eucalyptus benthamii Maiden & Cambage","scientific","Eucalyptus benthamii","Eucalyptus benthamii",NA,"Eucalyptus benthamii Maiden & Cambage","scientific","Eucalyptus benthamii"
-"86","Eucalyptus beyeriana","TRUE","Eucalyptus beyeriana","Eucalyptus beyeriana L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus beyeri","Eucalyptus beyeri",NA,"not found","",""
-"87","Eucalyptus beyeriana","TRUE","Eucalyptus beyeriana","Eucalyptus beyeriana L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus beyeriana","Eucalyptus beyeri",NA,"not found","",""
-"88","Eucalyptus x beyeri","FALSE","Eucalyptus beyeriana <--> crebra","not found","","Eucalyptus beyeriana <--> crebra","No match",NA,NA,NA,NA
-"89","Eucalyptus globulus subsp. bicostata","TRUE","Eucalyptus bicostata","Eucalyptus bicostata Maiden, Blakely & Simmonds","scientific","Eucalyptus bicostata","Eucalyptus globulus subsp. bicostata",NA,"Eucalyptus globulus subsp. bicostata (Maiden, Blakely & Simmonds) J.B.Kirkp.","scientific","Eucalyptus globulus subsp. bicostata"
-"90","Eucalyptus globulus subsp. bicostata","TRUE","Eucalyptus bicostata","Eucalyptus bicostata Maiden, Blakely & Simmonds","scientific","Eucalyptus globulus subsp. bicostata","Eucalyptus globulus subsp. bicostata",NA,"Eucalyptus globulus subsp. bicostata (Maiden, Blakely & Simmonds) J.B.Kirkp.","scientific","Eucalyptus globulus subsp. bicostata"
-"91","Eucalyptus punctata","TRUE","Eucalyptus biturbinata","Eucalyptus biturbinata L.A.S.Johnson & K.D.Hill","scientific",NA,NA,NA,NA,NA,NA
-"92","Eucalyptus blakelyi","TRUE","Eucalyptus blakelyi","Eucalyptus blakelyi Maiden","scientific","Eucalyptus blakelyi","Eucalyptus blakelyi",NA,"Eucalyptus blakelyi Maiden","scientific","Eucalyptus blakelyi"
-"93","","FALSE","Eucalyptus blakelyi <--> dealbata","not found","","Eucalyptus blakelyi <--> dealbata","No match",NA,NA,NA,NA
-"94","","FALSE","Eucalyptus blakelyi <--> tereticornis","not found","","Eucalyptus blakelyi <--> tereticornis","No match",NA,NA,NA,NA
-"95","","FALSE","Eucalyptus blakelyi x chloroclada","not found","","Eucalyptus blakelyi x chloroclada","No match",NA,NA,NA,NA
-"96","","FALSE","Eucalyptus blakelyi x dwyeri","not found","","Eucalyptus blakelyi x dwyeri","No match",NA,NA,NA,NA
-"97","","FALSE","Eucalyptus blakelyi x melliodora","not found","","Eucalyptus blakelyi x melliodora","No match",NA,NA,NA,NA
-"98","Eucalyptus blaxlandii","TRUE","Eucalyptus blaxlandii","Eucalyptus blaxlandii Maiden & Cambage","scientific","Eucalyptus blaxlandii","Eucalyptus blaxlandii",NA,"Eucalyptus blaxlandii Maiden & Cambage","scientific","Eucalyptus blaxlandii"
-"99","Eucalyptus boliviana","TRUE","Eucalyptus boliviana","Eucalyptus boliviana J.B.Williams & K.D.Hill","scientific","Eucalyptus boliviana","Eucalyptus boliviana",NA,"Eucalyptus boliviana J.B.Williams & K.D.Hill","scientific","Eucalyptus boliviana"
-"100","Eucalyptus bosistoana","TRUE","Eucalyptus bosistoana","Eucalyptus bosistoana F.Muell.","scientific","Eucalyptus bosistoana","Eucalyptus bosistoana",NA,"Eucalyptus bosistoana F.Muell.","scientific","Eucalyptus bosistoana"
-"101","Eucalyptus botryoides","TRUE","Eucalyptus botryoides","Eucalyptus botryoides Sm.","scientific","Eucalyptus botryoides","Eucalyptus botryoides",NA,"Eucalyptus botryoides Sm.","scientific","Eucalyptus botryoides"
-"102","","FALSE","Eucalyptus botryoides <--> saligna","not found","","Eucalyptus botryoides <--> saligna","No match",NA,NA,NA,NA
-"103","Eucalyptus bridgesiana","TRUE","Eucalyptus bridgesiana","Eucalyptus bridgesiana R.T.Baker","scientific","Eucalyptus bridgesiana","Eucalyptus bridgesiana",NA,"Eucalyptus bridgesiana R.T.Baker","scientific","Eucalyptus bridgesiana"
-"104","Eucalyptus deanei","TRUE","Eucalyptus brunnea","Eucalyptus brunnea L.A.S.Johnson & K.D.Hill","scientific",NA,NA,NA,NA,NA,NA
-"105","Eucalyptus burgessiana","TRUE","Eucalyptus burgessiana","Eucalyptus burgessiana L.A.S.Johnson & Blaxell","scientific","Eucalyptus burgessiana","Eucalyptus burgessiana",NA,"Eucalyptus burgessiana L.A.S.Johnson & Blaxell","scientific","Eucalyptus burgessiana"
-"106","Eucalyptus caleyi","TRUE","Eucalyptus caleyi","Eucalyptus caleyi Maiden","scientific",NA,NA,NA,NA,NA,NA
-"107","Eucalyptus caleyi subsp. caleyi","TRUE","Eucalyptus caleyi subsp. caleyi","Eucalyptus caleyi Maiden subsp. caleyi","autonym","Eucalyptus caleyi subsp. caleyi","Eucalyptus caleyi subsp. caleyi",NA,"Eucalyptus caleyi Maiden subsp. caleyi","autonym","Eucalyptus caleyi subsp. caleyi"
-"108","Eucalyptus caleyi subsp. ovendenii","TRUE","Eucalyptus caleyi subsp. ovendenii","Eucalyptus caleyi subsp. ovendenii L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus caleyi subsp. ovendenii","Eucalyptus caleyi subsp. ovendenii",NA,"Eucalyptus caleyi subsp. ovendenii L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus caleyi subsp. ovendenii"
-"109","Eucalyptus caliginosa","TRUE","Eucalyptus caliginosa","Eucalyptus caliginosa Blakely & McKie","scientific","Eucalyptus caliginosa","Eucalyptus caliginosa",NA,"Eucalyptus caliginosa Blakely & McKie","scientific","Eucalyptus caliginosa"
-"110","","FALSE","Eucalyptus caliginosa <--> laevopinea","not found","","Eucalyptus caliginosa <--> laevopinea","No match",NA,NA,NA,NA
-"111","Eucalyptus calycogona","TRUE","Eucalyptus calycogona","Eucalyptus calycogona Turcz.","scientific","Eucalyptus calycogona","Eucalyptus calycogona subsp. trachybasis",NA,"Eucalyptus calycogona subsp. trachybasis D.Nicolle","scientific","Eucalyptus calycogona subsp. trachybasis"
-"112","Eucalyptus camaldulensis","TRUE","Eucalyptus camaldulensis","Eucalyptus camaldulensis Dehnh.","scientific","Eucalyptus camaldulensis","Eucalyptus camaldulensis subsp. camaldulensis",NA,"Eucalyptus camaldulensis Dehnh. subsp. camaldulensis","autonym","Eucalyptus camaldulensis subsp. camaldulensis"
-"113","Eucalyptus camaldulensis","TRUE","Eucalyptus camaldulensis","Eucalyptus camaldulensis Dehnh.","scientific","Eucalyptus camaldulensis subsp. camaldulensis","Eucalyptus camaldulensis subsp. camaldulensis",NA,"Eucalyptus camaldulensis Dehnh. subsp. camaldulensis","autonym","Eucalyptus camaldulensis subsp. camaldulensis"
-"114","","FALSE","Eucalyptus camaldulensis <--> chloroclada","not found","","Eucalyptus camaldulensis <--> chloroclada","No match",NA,NA,NA,NA
-"115","Eucalyptus cameronii","TRUE","Eucalyptus cameronii","Eucalyptus cameronii Blakely & McKie","scientific","Eucalyptus cameronii","Eucalyptus cameronii",NA,"Eucalyptus cameronii Blakely & McKie","scientific","Eucalyptus cameronii"
-"116","","FALSE","Eucalyptus cameronii x mckiei","not found","","Eucalyptus cameronii x mckiei","No match",NA,NA,NA,NA
-"117","Eucalyptus camfieldii","TRUE","Eucalyptus camfieldii","Eucalyptus camfieldii Maiden","scientific","Eucalyptus camfieldii","Eucalyptus camfieldii",NA,"Eucalyptus camfieldii Maiden","scientific","Eucalyptus camfieldii"
-"118","Eucalyptus campanulata","TRUE","Eucalyptus campanulata","Eucalyptus campanulata R.T.Baker & H.G.Sm.","scientific","Eucalyptus andrewsii subsp. campanulata","Eucalyptus andrewsii subsp. campanulata",NA,"Eucalyptus andrewsii subsp. campanulata (R.T.Baker & H.G.Sm.) L.A.S.Johnson & Blaxell","scientific","Eucalyptus andrewsii subsp. campanulata"
-"119","Eucalyptus campanulata","TRUE","Eucalyptus campanulata","Eucalyptus campanulata R.T.Baker & H.G.Sm.","scientific","Eucalyptus campanulata","Eucalyptus andrewsii subsp. campanulata",NA,"Eucalyptus andrewsii subsp. campanulata (R.T.Baker & H.G.Sm.) L.A.S.Johnson & Blaxell","scientific","Eucalyptus andrewsii subsp. campanulata"
-"120","Eucalyptus camphora","TRUE","Eucalyptus camphora","Eucalyptus camphora R.T.Baker","scientific",NA,NA,NA,NA,NA,NA
-"121","Eucalyptus camphora subsp. camphora","TRUE","Eucalyptus camphora subsp. camphora","Eucalyptus camphora R.T.Baker subsp. camphora","autonym","Eucalyptus camphora subsp. camphora","Eucalyptus camphora subsp. camphora",NA,"Eucalyptus camphora R.T.Baker subsp. camphora","autonym","Eucalyptus camphora subsp. camphora"
-"122","Eucalyptus camphora subsp. humeana","TRUE","Eucalyptus camphora subsp. humeana","Eucalyptus camphora subsp. humeana L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus camphora subsp. humeana","Eucalyptus camphora subsp. humeana",NA,"Eucalyptus camphora subsp. humeana L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus camphora subsp. humeana"
-"123","Eucalyptus camphora subsp. camphora","TRUE","Eucalyptus camphora subsp. relicta","Eucalyptus camphora subsp. relicta L.A.S.Johnson & K.D.Hill","scientific",NA,NA,NA,NA,NA,NA
-"124","Eucalyptus canaliculata","TRUE","Eucalyptus canaliculata","Eucalyptus canaliculata Maiden","scientific","Eucalyptus canaliculata","Eucalyptus canaliculata",NA,"Eucalyptus canaliculata Maiden","scientific","Eucalyptus canaliculata"
-"125","","FALSE","Eucalyptus canaliculata <--> punctata","not found","","Eucalyptus canaliculata <--> punctata","No match",NA,NA,NA,NA
-"126","Eucalyptus macrorhyncha subsp. cannonii","TRUE","Eucalyptus cannonii","Eucalyptus cannonii R.T.Baker","scientific","Eucalyptus cannonii","Eucalyptus macrorhyncha subsp. cannonii",NA,"Eucalyptus macrorhyncha subsp. cannonii (R.T.Baker) L.A.S.Johnson & Blaxell","scientific","Eucalyptus macrorhyncha subsp. cannonii"
-"127","Eucalyptus macrorhyncha subsp. cannonii","TRUE","Eucalyptus cannonii","Eucalyptus cannonii R.T.Baker","scientific","Eucalyptus macrorhyncha subsp. cannonii","Eucalyptus macrorhyncha subsp. cannonii",NA,"Eucalyptus macrorhyncha subsp. cannonii (R.T.Baker) L.A.S.Johnson & Blaxell","scientific","Eucalyptus macrorhyncha subsp. cannonii"
-"128","Eucalyptus macrorhyncha subsp. cannonii","FALSE","Eucalyptus cannonii <--> macrorhyncha","not found","","Eucalyptus cannonii <--> macrorhyncha","No match",NA,NA,NA,NA
-"129","Eucalyptus canobolensis","TRUE","Eucalyptus canobolensis","Eucalyptus canobolensis (L.A.S.Johnson & K.D.Hill) J.T.Hunter","scientific","Eucalyptus canobolensis","Eucalyptus canobolensis",NA,"Eucalyptus canobolensis (L.A.S.Johnson & K.D.Hill) J.T.Hunter","scientific","Eucalyptus canobolensis"
-"130","Eucalyptus capitellata","TRUE","Eucalyptus capitellata","Eucalyptus capitellata Sm.","scientific","Eucalyptus capitellata","Eucalyptus capitellata",NA,"Eucalyptus capitellata Sm.","scientific","Eucalyptus capitellata"
-"131","Eucalyptus carnea","TRUE","Eucalyptus carnea","Eucalyptus carnea R.T.Baker","scientific","Eucalyptus carnea","Eucalyptus carnea",NA,"Eucalyptus carnea R.T.Baker","scientific","Eucalyptus carnea"
-"132","Eucalyptus castrensis","TRUE","Eucalyptus castrensis","Eucalyptus castrensis K.D.Hill","scientific",NA,NA,NA,NA,NA,NA
-"133","Eucalyptus chapmaniana","TRUE","Eucalyptus chapmaniana","Eucalyptus chapmaniana Cameron","scientific","Eucalyptus chapmaniana","Eucalyptus chapmaniana",NA,"Eucalyptus chapmaniana Cameron","scientific","Eucalyptus chapmaniana"
-"134","Eucalyptus chloroclada","TRUE","Eucalyptus chloroclada","Eucalyptus chloroclada (Blakely) L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus chloroclada","Eucalyptus chloroclada",NA,"Eucalyptus chloroclada (Blakely) L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus chloroclada"
-"135","Eucalyptus cinerea","TRUE","Eucalyptus cinerea","Eucalyptus cinerea F.Muell. ex Benth.","scientific",NA,NA,NA,NA,NA,NA
-"136","Eucalyptus cladocalyx","TRUE","Eucalyptus cladocalyx","Eucalyptus cladocalyx F.Muell.","scientific","Eucalyptus cladocalyx","Eucalyptus cladocalyx",NA,"Eucalyptus cladocalyx F.Muell.","scientific","Eucalyptus cladocalyx"
-"137","Eucalyptus codonocarpa","TRUE","Eucalyptus codonocarpa","Eucalyptus codonocarpa Blakely & McKie","scientific","Eucalyptus codonocarpa","Eucalyptus approximans subsp. codonocarpa",NA,"Eucalyptus approximans subsp. codonocarpa (Blakely & McKie) L.A.S.Johnson & Blaxell","scientific","Eucalyptus approximans subsp. codonocarpa"
-"138","Eucalyptus conica","TRUE","Eucalyptus conica","Eucalyptus conica H.Deane & Maiden","scientific","Eucalyptus conica","Eucalyptus conica",NA,"Eucalyptus conica H.Deane & Maiden","scientific","Eucalyptus conica"
-"139","","FALSE","Eucalyptus conjuncta","not found","",NA,NA,NA,NA,NA,NA
-"140","Eucalyptus consideniana","TRUE","Eucalyptus consideniana","Eucalyptus consideniana Maiden","scientific","Eucalyptus consideniana","Eucalyptus consideniana",NA,"Eucalyptus consideniana Maiden","scientific","Eucalyptus consideniana"
-"141","Eucalyptus conspicua","TRUE","Eucalyptus conspicua","Eucalyptus conspicua L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus conspicua","Eucalyptus conspicua subsp. conspicua",NA,"not found","",""
-"142","Eucalyptus coolabah","TRUE","Eucalyptus coolabah","Eucalyptus coolabah Blakely & Jacobs","scientific","Eucalyptus coolabah","Eucalyptus coolabah",NA,"Eucalyptus coolabah Blakely & Jacobs","scientific","Eucalyptus coolabah"
-"143","Eucalyptus coolabah","TRUE","Eucalyptus coolabah","Eucalyptus coolabah Blakely & Jacobs","scientific","Eucalyptus microtheca","Eucalyptus coolabah",NA,"Eucalyptus coolabah Blakely & Jacobs","scientific","Eucalyptus coolabah"
-"144","Eucalyptus coolabah","TRUE","Eucalyptus coolabah subsp. arida","Eucalyptus coolabah subsp. arida (Blakely) L.A.S.Johnson & K.D.Hill","scientific",NA,NA,NA,NA,NA,NA
-"145","Eucalyptus coolabah","TRUE","Eucalyptus coolabah subsp. coolabah","Eucalyptus coolabah Blakely & Jacobs subsp. coolabah","autonym",NA,NA,NA,NA,NA,NA
-"146","Eucalyptus corticosa","TRUE","Eucalyptus corticosa","Eucalyptus corticosa L.A.S.Johnson","scientific","Eucalyptus aromaphloia","Eucalyptus corticosa",NA,"Eucalyptus corticosa L.A.S.Johnson","scientific","Eucalyptus corticosa"
-"147","Eucalyptus corticosa","TRUE","Eucalyptus corticosa","Eucalyptus corticosa L.A.S.Johnson","scientific","Eucalyptus corticosa","Eucalyptus corticosa",NA,"Eucalyptus corticosa L.A.S.Johnson","scientific","Eucalyptus corticosa"
-"148","Eucalyptus incrassata","TRUE","Eucalyptus costata subsp. murrayana","Eucalyptus costata subsp. murrayana L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus costata","Eucalyptus incrassata",NA,"Eucalyptus incrassata Labill.","scientific","Eucalyptus incrassata"
-"149","Eucalyptus incrassata","TRUE","Eucalyptus costata subsp. murrayana","Eucalyptus costata subsp. murrayana L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus costata subsp. murrayana","Eucalyptus incrassata",NA,"Eucalyptus incrassata Labill.","scientific","Eucalyptus incrassata"
-"150","Eucalyptus incrassata","TRUE","Eucalyptus costata subsp. murrayana","Eucalyptus costata subsp. murrayana L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus incrassata","Eucalyptus incrassata",NA,"Eucalyptus incrassata Labill.","scientific","Eucalyptus incrassata"
-"151","Eucalyptus crebra","TRUE","Eucalyptus crebra","Eucalyptus crebra F.Muell.","scientific","Eucalyptus crebra","Eucalyptus crebra",NA,"Eucalyptus crebra F.Muell.","scientific","Eucalyptus crebra"
-"152","","FALSE","Eucalyptus crebra x fibrosa","not found","","Eucalyptus crebra x fibrosa","No match",NA,NA,NA,NA
-"153","","FALSE","Eucalyptus crebra x microcarpa","not found","","Eucalyptus crebra x microcarpa","No match",NA,NA,NA,NA
-"154","","FALSE","Eucalyptus crebra x nubila","not found","","Eucalyptus crebra x nubila","No match",NA,NA,NA,NA
-"155","","FALSE","Eucalyptus crebra x siderophloia","not found","","Eucalyptus crebra x siderophloia","No match",NA,NA,NA,NA
-"156","Eucalyptus crenulata","TRUE","Eucalyptus crenulata","Eucalyptus crenulata Blakely & Beuzev.","scientific","Eucalyptus crenulata","Eucalyptus crenulata",NA,"Eucalyptus crenulata Blakely & Beuzev.","scientific","Eucalyptus crenulata"
-"157","Eucalyptus croajingolensis","TRUE","Eucalyptus croajingolensis","Eucalyptus croajingolensis L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus croajingolensis","Eucalyptus croajingolensis",NA,"Eucalyptus croajingolensis L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus croajingolensis"
-"158","Eucalyptus cunninghamii","TRUE","Eucalyptus cunninghamii","Eucalyptus cunninghamii Sweet","scientific","Eucalyptus cunninghamii","Eucalyptus cunninghamii",NA,"Eucalyptus cunninghamii Sweet","scientific","Eucalyptus cunninghamii"
-"159","Eucalyptus cunninghamii","TRUE","Eucalyptus cunninghamii","Eucalyptus cunninghamii Sweet","scientific","Eucalyptus rupicola","Eucalyptus cunninghamii",NA,"Eucalyptus cunninghamii Sweet","scientific","Eucalyptus cunninghamii"
-"160","Eucalyptus cyanophylla","TRUE","Eucalyptus cyanophylla","Eucalyptus cyanophylla Brooker","scientific","Eucalyptus cyanophylla","Eucalyptus cyanophylla",NA,"Eucalyptus cyanophylla Brooker","scientific","Eucalyptus cyanophylla"
-"161","Eucalyptus cypellocarpa","TRUE","Eucalyptus cypellocarpa","Eucalyptus cypellocarpa L.A.S.Johnson","scientific","Eucalyptus cypellocarpa","Eucalyptus cypellocarpa",NA,"Eucalyptus cypellocarpa L.A.S.Johnson","scientific","Eucalyptus cypellocarpa"
-"162","Eucalyptus dalrympleana","TRUE","Eucalyptus dalrympleana","Eucalyptus dalrympleana Maiden","scientific",NA,NA,NA,NA,NA,NA
-"163","Eucalyptus dalrympleana subsp. dalrympleana","TRUE","Eucalyptus dalrympleana subsp. dalrympleana","Eucalyptus dalrympleana Maiden subsp. dalrympleana","autonym","Eucalyptus dalrympleana subsp. dalrympleana","Eucalyptus dalrympleana subsp. dalrympleana",NA,"Eucalyptus dalrympleana Maiden subsp. dalrympleana","autonym","Eucalyptus dalrympleana subsp. dalrympleana"
-"164","Eucalyptus dalrympleana subsp. heptantha","TRUE","Eucalyptus dalrympleana subsp. heptantha","Eucalyptus dalrympleana subsp. heptantha L.A.S.Johnson","scientific","Eucalyptus dalrympleana subsp. heptantha","Eucalyptus dalrympleana subsp. heptantha",NA,"Eucalyptus dalrympleana subsp. heptantha L.A.S.Johnson","scientific","Eucalyptus dalrympleana subsp. heptantha"
-"165","","FALSE","Eucalyptus dalrympleana x viminalis","not found","","Eucalyptus dalrympleana x viminalis","No match",NA,NA,NA,NA
-"166","Eucalyptus dawsonii","TRUE","Eucalyptus dawsonii","Eucalyptus dawsonii R.T.Baker","scientific","Eucalyptus dawsonii","Eucalyptus dawsonii",NA,"Eucalyptus dawsonii R.T.Baker","scientific","Eucalyptus dawsonii"
-"167","Eucalyptus dealbata","TRUE","Eucalyptus dealbata","Eucalyptus dealbata A.Cunn. ex Schauer","scientific","Eucalyptus dealbata","Eucalyptus dealbata",NA,"Eucalyptus dealbata A.Cunn. ex Schauer","scientific","Eucalyptus dealbata"
-"168","","FALSE","Eucalyptus dealbata x dwyeri","not found","","Eucalyptus dealbata x dwyeri","No match",NA,NA,NA,NA
-"169","Eucalyptus deanei","TRUE","Eucalyptus deanei","Eucalyptus deanei Maiden","scientific","Eucalyptus deanei","Eucalyptus deanei",NA,"Eucalyptus deanei Maiden","scientific","Eucalyptus deanei"
-"170","Eucalyptus pauciflora subsp. debeuzevillei","TRUE","Eucalyptus debeuzevillei","Eucalyptus debeuzevillei Maiden","scientific","Eucalyptus debeuzevillei","Eucalyptus pauciflora subsp. debeuzevillei",NA,"Eucalyptus pauciflora subsp. debeuzevillei (Maiden) L.A.S.Johnson & Blaxell","scientific","Eucalyptus pauciflora subsp. debeuzevillei"
-"171","Eucalyptus pauciflora subsp. debeuzevillei","TRUE","Eucalyptus debeuzevillei","Eucalyptus debeuzevillei Maiden","scientific","Eucalyptus pauciflora subsp. debeuzevillei","Eucalyptus pauciflora subsp. debeuzevillei",NA,"Eucalyptus pauciflora subsp. debeuzevillei (Maiden) L.A.S.Johnson & Blaxell","scientific","Eucalyptus pauciflora subsp. debeuzevillei"
-"172","Eucalyptus delegatensis subsp. delegatensis","TRUE","Eucalyptus delegatensis subsp. delegatensis","Eucalyptus delegatensis R.T.Baker subsp. delegatensis","autonym","Eucalyptus delegatensis","Eucalyptus delegatensis subsp. delegatensis",NA,"Eucalyptus delegatensis R.T.Baker subsp. delegatensis","autonym","Eucalyptus delegatensis subsp. delegatensis"
-"173","Eucalyptus delegatensis subsp. delegatensis","TRUE","Eucalyptus delegatensis subsp. delegatensis","Eucalyptus delegatensis R.T.Baker subsp. delegatensis","autonym","Eucalyptus delegatensis subsp. delegatensis","Eucalyptus delegatensis subsp. delegatensis",NA,"Eucalyptus delegatensis R.T.Baker subsp. delegatensis","autonym","Eucalyptus delegatensis subsp. delegatensis"
-"174","Eucalyptus dendromorpha","TRUE","Eucalyptus dendromorpha","Eucalyptus dendromorpha (Blakely) L.A.S.Johnson & Blaxell","scientific","Eucalyptus dendromorpha","Eucalyptus dendromorpha",NA,"Eucalyptus dendromorpha (Blakely) L.A.S.Johnson & Blaxell","scientific","Eucalyptus dendromorpha"
-"175","Eucalyptus moorei subsp. moorei","TRUE","Eucalyptus dissita","Eucalyptus dissita K.D.Hill","scientific","Eucalyptus dissita","Eucalyptus moorei subsp. moorei",NA,"Eucalyptus moorei Maiden & Cambage subsp. moorei","autonym","Eucalyptus moorei subsp. moorei"
-"176","Eucalyptus dives","TRUE","Eucalyptus dives","Eucalyptus dives Schauer","scientific","Eucalyptus dives","Eucalyptus dives",NA,"Eucalyptus dives Schauer","scientific","Eucalyptus dives"
-"177","","FALSE","Eucalyptus dives x pauciflora","not found","","Eucalyptus dives x pauciflora","No match",NA,NA,NA,NA
-"178","","FALSE","Eucalyptus dives x rossii","not found","","Eucalyptus dives x rossii","No match",NA,NA,NA,NA
-"179","Eucalyptus dorrigoensis","TRUE","Eucalyptus dorrigoensis","Eucalyptus dorrigoensis (Blakely) L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus dorrigoensis","Eucalyptus dorrigoensis",NA,"Eucalyptus dorrigoensis (Blakely) L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus dorrigoensis"
-"180","Eucalyptus dumosa","TRUE","Eucalyptus dumosa","Eucalyptus dumosa A.Cunn. ex J.Oxley","scientific","Eucalyptus dumosa","Eucalyptus dumosa",NA,"Eucalyptus dumosa A.Cunn. ex J.Oxley","scientific","Eucalyptus dumosa"
-"181","Eucalyptus dunnii","TRUE","Eucalyptus dunnii","Eucalyptus dunnii Maiden","scientific","Eucalyptus dunnii","Eucalyptus dunnii",NA,"Eucalyptus dunnii Maiden","scientific","Eucalyptus dunnii"
-"182","Eucalyptus dwyeri","TRUE","Eucalyptus dwyeri","Eucalyptus dwyeri Maiden & Blakely","scientific","Eucalyptus dwyeri","Eucalyptus dwyeri",NA,"Eucalyptus dwyeri Maiden & Blakely","scientific","Eucalyptus dwyeri"
-"183","Eucalyptus elata","TRUE","Eucalyptus elata","Eucalyptus elata Dehnh.","scientific","Eucalyptus elata","Eucalyptus elata",NA,"Eucalyptus elata Dehnh.","scientific","Eucalyptus elata"
-"184","Eucalyptus elegans","TRUE","Eucalyptus elegans","Eucalyptus elegans A.R.Bean","scientific",NA,NA,NA,NA,NA,NA
-"185","Eucalyptus elliptica","TRUE","Eucalyptus elliptica","Eucalyptus elliptica (Blakely & McKie) L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus elliptica","Eucalyptus elliptica",NA,"Eucalyptus elliptica (Blakely & McKie) L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus elliptica"
-"186","Eucalyptus eugenioides","TRUE","Eucalyptus eugenioides","Eucalyptus eugenioides Sieber ex Spreng.","scientific","Eucalyptus eugenioides","Eucalyptus eugenioides",NA,"Eucalyptus eugenioides Sieber ex Spreng.","scientific","Eucalyptus eugenioides"
-"187","Eucalyptus eugenioides","TRUE","Eucalyptus eugenioides","Eucalyptus eugenioides Sieber ex Spreng.","scientific","Eucalyptus nigra","Eucalyptus eugenioides",NA,"Eucalyptus eugenioides Sieber ex Spreng.","scientific","Eucalyptus eugenioides"
-"188","","FALSE","Eucalyptus eugenioides x globoidea","not found","","Eucalyptus eugenioides x globoidea","No match",NA,NA,NA,NA
-"189","Eucalyptus expressa","TRUE","Eucalyptus expressa","Eucalyptus expressa S.A.J.Bell & D.Nicolle","scientific","Eucalyptus expressa","Eucalyptus expressa",NA,"Eucalyptus expressa S.A.J.Bell & D.Nicolle","scientific","Eucalyptus expressa"
-"190","Eucalyptus exserta","TRUE","Eucalyptus exserta","Eucalyptus exserta F.Muell.","scientific","Eucalyptus exserta","Eucalyptus exserta",NA,"Eucalyptus exserta F.Muell.","scientific","Eucalyptus exserta"
-"191","Eucalyptus fastigata","TRUE","Eucalyptus fastigata","Eucalyptus fastigata H.Deane & Maiden","scientific","Eucalyptus fastigata","Eucalyptus fastigata",NA,"Eucalyptus fastigata H.Deane & Maiden","scientific","Eucalyptus fastigata"
-"192","Eucalyptus paniculata","TRUE","Eucalyptus fergusonii","Eucalyptus fergusonii R.T.Baker","scientific",NA,NA,NA,NA,NA,NA
-"193","Eucalyptus paniculata","TRUE","Eucalyptus fergusonii subsp. dorsiventralis","Eucalyptus fergusonii subsp. dorsiventralis L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus fergusonii subsp. dorsiventralis","Eucalyptus sp. Dorsiventralis",NA,"not found","",""
-"194","Eucalyptus paniculata","TRUE","Eucalyptus fergusonii subsp. fergusonii","Eucalyptus fergusonii R.T.Baker subsp. fergusonii","autonym",NA,NA,NA,NA,NA,NA
-"195","Eucalyptus fibrosa","TRUE","Eucalyptus fibrosa","Eucalyptus fibrosa F.Muell.","scientific","Eucalyptus fibrosa","Eucalyptus fibrosa subsp. fibrosa",NA,"Eucalyptus fibrosa F.Muell. subsp. fibrosa","autonym","Eucalyptus fibrosa subsp. fibrosa"
-"196","Eucalyptus fibrosa","TRUE","Eucalyptus fibrosa","Eucalyptus fibrosa F.Muell.","scientific","Eucalyptus fibrosa subsp. fibrosa","Eucalyptus fibrosa subsp. fibrosa",NA,"Eucalyptus fibrosa F.Muell. subsp. fibrosa","autonym","Eucalyptus fibrosa subsp. fibrosa"
-"197","","FALSE","Eucalyptus fibrosa x punctata","not found","","Eucalyptus fibrosa x punctata","No match",NA,NA,NA,NA
-"198","Eucalyptus fracta","TRUE","Eucalyptus fracta","Eucalyptus fracta K.D.Hill","scientific",NA,NA,NA,NA,NA,NA
-"199","Eucalyptus fraxinoides","TRUE","Eucalyptus fraxinoides","Eucalyptus fraxinoides H.Deane & Maiden","scientific","Eucalyptus fraxinoides","Eucalyptus fraxinoides",NA,"Eucalyptus fraxinoides H.Deane & Maiden","scientific","Eucalyptus fraxinoides"
-"200","Eucalyptus fusiformis","TRUE","Eucalyptus fusiformis","Eucalyptus fusiformis Boland & Kleinig","scientific","Eucalyptus fusiformis","Eucalyptus fusiformis",NA,"Eucalyptus fusiformis Boland & Kleinig","scientific","Eucalyptus fusiformis"
-"201","Eucalyptus gillii","TRUE","Eucalyptus gillii","Eucalyptus gillii Maiden","scientific","Eucalyptus gillii","Eucalyptus gillii",NA,"Eucalyptus gillii Maiden","scientific","Eucalyptus gillii"
-"202","Eucalyptus glaucescens","TRUE","Eucalyptus glaucescens","Eucalyptus glaucescens Maiden & Blakely","scientific","Eucalyptus glaucescens","Eucalyptus glaucescens",NA,"Eucalyptus glaucescens Maiden & Blakely","scientific","Eucalyptus glaucescens"
-"203","Eucalyptus glaucina","TRUE","Eucalyptus glaucina","Eucalyptus glaucina (Blakely) L.A.S.Johnson","scientific","Eucalyptus glaucina","Eucalyptus glaucina",NA,"Eucalyptus glaucina (Blakely) L.A.S.Johnson","scientific","Eucalyptus glaucina"
-"204","Eucalyptus globoidea","TRUE","Eucalyptus globoidea","Eucalyptus globoidea Blakely","scientific","Eucalyptus globoidea","Eucalyptus globoidea",NA,"Eucalyptus globoidea Blakely","scientific","Eucalyptus globoidea"
-"205","Eucalyptus globulus","TRUE","Eucalyptus globulus","Eucalyptus globulus Labill.","scientific",NA,NA,NA,NA,NA,NA
-"206","Eucalyptus goniocalyx","TRUE","Eucalyptus goniocalyx","Eucalyptus goniocalyx F.Muell. ex Miq.","scientific",NA,NA,NA,NA,NA,NA
-"207","Eucalyptus goniocalyx subsp. goniocalyx","TRUE","Eucalyptus goniocalyx subsp. goniocalyx","Eucalyptus goniocalyx F.Muell. ex Miq. subsp. goniocalyx","autonym","Eucalyptus goniocalyx subsp. goniocalyx","Eucalyptus goniocalyx subsp. goniocalyx",NA,"Eucalyptus goniocalyx F.Muell. ex Miq. subsp. goniocalyx","autonym","Eucalyptus goniocalyx subsp. goniocalyx"
-"208","Eucalyptus gracilis","TRUE","Eucalyptus gracilis","Eucalyptus gracilis F.Muell.","scientific","Eucalyptus gracilis","Eucalyptus gracilis",NA,"Eucalyptus gracilis F.Muell.","scientific","Eucalyptus gracilis"
-"209","Eucalyptus grandis","TRUE","Eucalyptus grandis","Eucalyptus grandis W.Hill","scientific","Eucalyptus grandis","Eucalyptus grandis",NA,"Eucalyptus grandis W.Hill","scientific","Eucalyptus grandis"
-"210","","FALSE","Eucalyptus grandis x saligna","not found","","Eucalyptus grandis x saligna","No match",NA,NA,NA,NA
-"211","Eucalyptus gregsoniana","TRUE","Eucalyptus gregsoniana","Eucalyptus gregsoniana L.A.S.Johnson & Blaxell","scientific","Eucalyptus gregsoniana","Eucalyptus gregsoniana",NA,"Eucalyptus gregsoniana L.A.S.Johnson & Blaxell","scientific","Eucalyptus gregsoniana"
-"212","Eucalyptus gunnii","TRUE","Eucalyptus gunnii","Eucalyptus gunnii Hook.f.","scientific","Eucalyptus gunnii","Eucalyptus gunnii",NA,"Eucalyptus gunnii Hook.f.","scientific","Eucalyptus gunnii"
-"213","Eucalyptus haemastoma","TRUE","Eucalyptus haemastoma","Eucalyptus haemastoma Sm.","scientific","Eucalyptus haemastoma","Eucalyptus haemastoma",NA,"Eucalyptus haemastoma Sm.","scientific","Eucalyptus haemastoma"
-"214","","FALSE","Eucalyptus haemastoma x racemosa","not found","","Eucalyptus haemastoma x racemosa","No match",NA,NA,NA,NA
-"215","Eucalyptus hypostomatica","TRUE","Eucalyptus hypostomatica","Eucalyptus hypostomatica L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus hypostomatica","Eucalyptus hypostomatica",NA,"Eucalyptus hypostomatica L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus hypostomatica"
-"216","Eucalyptus ignorabilis","TRUE","Eucalyptus ignorabilis","Eucalyptus ignorabilis L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus ignorabilis","Eucalyptus ignorabilis",NA,"Eucalyptus ignorabilis L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus ignorabilis"
-"217","Eucalyptus imitans","TRUE","Eucalyptus imitans","Eucalyptus imitans L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus imitans","Eucalyptus imitans",NA,"Eucalyptus imitans L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus imitans"
-"218","Eucalyptus interstans","TRUE","Eucalyptus interstans","Eucalyptus interstans L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus interstans","Eucalyptus interstans",NA,"Eucalyptus interstans L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus interstans"
-"219","Eucalyptus intertexta","TRUE","Eucalyptus intertexta","Eucalyptus intertexta R.T.Baker","scientific","Eucalyptus intertexta","Eucalyptus intertexta",NA,"Eucalyptus intertexta R.T.Baker","scientific","Eucalyptus intertexta"
-"220","Eucalyptus kartzoffiana","TRUE","Eucalyptus kartzoffiana","Eucalyptus kartzoffiana L.A.S.Johnson & Blaxell","scientific","Eucalyptus kartzoffiana","Eucalyptus kartzoffiana",NA,"Eucalyptus kartzoffiana L.A.S.Johnson & Blaxell","scientific","Eucalyptus kartzoffiana"
-"221","Eucalyptus kybeanensis","TRUE","Eucalyptus kybeanensis","Eucalyptus kybeanensis Maiden & Cambage","scientific","Eucalyptus kybeanensis","Eucalyptus kybeanensis",NA,"Eucalyptus kybeanensis Maiden & Cambage","scientific","Eucalyptus kybeanensis"
-"222","Eucalyptus lacrimans","TRUE","Eucalyptus lacrimans","Eucalyptus lacrimans L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus lacrimans","Eucalyptus lacrimans",NA,"Eucalyptus lacrimans L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus lacrimans"
-"223","Eucalyptus laevopinea","TRUE","Eucalyptus laevopinea","Eucalyptus laevopinea R.T.Baker","scientific","Eucalyptus laevopinea","Eucalyptus laevopinea",NA,"Eucalyptus laevopinea R.T.Baker","scientific","Eucalyptus laevopinea"
-"224","Eucalyptus langleyi","TRUE","Eucalyptus langleyi","Eucalyptus langleyi L.A.S.Johnson & Blaxell","scientific","Eucalyptus langleyi","Eucalyptus langleyi",NA,"Eucalyptus langleyi L.A.S.Johnson & Blaxell","scientific","Eucalyptus langleyi"
-"225","Eucalyptus apiculata","TRUE","Eucalyptus laophila","Eucalyptus laophila L.A.S.Johnson & Blaxell","scientific",NA,NA,NA,NA,NA,NA
-"226","Eucalyptus largeana","TRUE","Eucalyptus largeana","Eucalyptus largeana Blakely","scientific","Eucalyptus largeana","Eucalyptus largeana",NA,"Eucalyptus largeana Blakely","scientific","Eucalyptus largeana"
-"227","Eucalyptus largiflorens","TRUE","Eucalyptus largiflorens","Eucalyptus largiflorens F.Muell.","scientific","Eucalyptus largiflorens","Eucalyptus largiflorens",NA,"Eucalyptus largiflorens F.Muell.","scientific","Eucalyptus largiflorens"
-"228","Eucalyptus moorei subsp. moorei","TRUE","Eucalyptus latiuscula","Eucalyptus latiuscula (Blakely) L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus latiuscula","Eucalyptus moorei subsp. moorei",NA,"Eucalyptus moorei Maiden & Cambage subsp. moorei","autonym","Eucalyptus moorei subsp. moorei"
-"229","Eucalyptus leptophylla","TRUE","Eucalyptus leptophylla","Eucalyptus leptophylla F.Muell. ex Miq.","scientific","Eucalyptus foecunda","Eucalyptus leptophylla",NA,"Eucalyptus leptophylla F.Muell. ex Miq.","scientific","Eucalyptus leptophylla"
-"230","Eucalyptus leptophylla","TRUE","Eucalyptus leptophylla","Eucalyptus leptophylla F.Muell. ex Miq.","scientific","Eucalyptus leptophylla","Eucalyptus leptophylla",NA,"Eucalyptus leptophylla F.Muell. ex Miq.","scientific","Eucalyptus leptophylla"
-"231","Eucalyptus leucoxylon subsp. pruinosa","TRUE","Eucalyptus leucoxylon subsp. pruinosa","Eucalyptus leucoxylon subsp. pruinosa (F.Muell. ex Miq.) Boland","scientific","Eucalyptus leucoxylon","Eucalyptus leucoxylon subsp. pruinosa",NA,"Eucalyptus leucoxylon subsp. pruinosa (F.Muell. ex Miq.) Boland","scientific","Eucalyptus leucoxylon subsp. pruinosa"
-"232","Eucalyptus leucoxylon subsp. pruinosa","TRUE","Eucalyptus leucoxylon subsp. pruinosa","Eucalyptus leucoxylon subsp. pruinosa (F.Muell. ex Miq.) Boland","scientific","Eucalyptus leucoxylon subsp. pruinosa","Eucalyptus leucoxylon subsp. pruinosa",NA,"Eucalyptus leucoxylon subsp. pruinosa (F.Muell. ex Miq.) Boland","scientific","Eucalyptus leucoxylon subsp. pruinosa"
-"233","Eucalyptus ligustrina","TRUE","Eucalyptus ligustrina","Eucalyptus ligustrina DC.","scientific","Eucalyptus ligustrina","Eucalyptus ligustrina",NA,"Eucalyptus ligustrina DC.","scientific","Eucalyptus ligustrina"
-"234","Eucalyptus longifolia","TRUE","Eucalyptus longifolia","Eucalyptus longifolia Link","scientific","Eucalyptus longifolia","Eucalyptus longifolia",NA,"Eucalyptus longifolia Link","scientific","Eucalyptus longifolia"
-"235","Eucalyptus luehmanniana","TRUE","Eucalyptus luehmanniana","Eucalyptus luehmanniana F.Muell.","scientific","Eucalyptus luehmanniana","Eucalyptus luehmanniana",NA,"Eucalyptus luehmanniana F.Muell.","scientific","Eucalyptus luehmanniana"
-"236","Eucalyptus macarthurii","TRUE","Eucalyptus macarthurii","Eucalyptus macarthurii H.Deane & Maiden","scientific","Eucalyptus macarthurii","Eucalyptus macarthurii",NA,"Eucalyptus macarthurii H.Deane & Maiden","scientific","Eucalyptus macarthurii"
-"237","Eucalyptus mackintii","TRUE","Eucalyptus mackintii","Eucalyptus mackintii Kottek","scientific","Eucalyptus mackintii","Eucalyptus mackintii",NA,"Eucalyptus mackintii Kottek","scientific","Eucalyptus mackintii"
-"238","Eucalyptus macrorhyncha","TRUE","Eucalyptus macrorhyncha","Eucalyptus macrorhyncha F.Muell. ex Benth.","scientific","Eucalyptus macrorhyncha","Eucalyptus macrorhyncha subsp. macrorhyncha",NA,"Eucalyptus macrorhyncha F.Muell. ex Benth. subsp. macrorhyncha","autonym","Eucalyptus macrorhyncha subsp. macrorhyncha"
-"239","Eucalyptus macrorhyncha","TRUE","Eucalyptus macrorhyncha","Eucalyptus macrorhyncha F.Muell. ex Benth.","scientific","Eucalyptus macrorhyncha subsp. macrorhyncha","Eucalyptus macrorhyncha subsp. macrorhyncha",NA,"Eucalyptus macrorhyncha F.Muell. ex Benth. subsp. macrorhyncha","autonym","Eucalyptus macrorhyncha subsp. macrorhyncha"
-"240","Eucalyptus magnificata","TRUE","Eucalyptus magnificata","Eucalyptus magnificata L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus magnificata","Eucalyptus magnificata",NA,"Eucalyptus magnificata L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus magnificata"
-"241","Eucalyptus globulus subsp. maidenii","TRUE","Eucalyptus maidenii","Eucalyptus maidenii F.Muell.","scientific","Eucalyptus globulus subsp. maidenii","Eucalyptus globulus subsp. maidenii",NA,"Eucalyptus globulus subsp. maidenii (F.Muell.) J.B.Kirkp.","scientific","Eucalyptus globulus subsp. maidenii"
-"242","Eucalyptus globulus subsp. maidenii","TRUE","Eucalyptus maidenii","Eucalyptus maidenii F.Muell.","scientific","Eucalyptus maidenii","Eucalyptus globulus subsp. maidenii",NA,"Eucalyptus globulus subsp. maidenii (F.Muell.) J.B.Kirkp.","scientific","Eucalyptus globulus subsp. maidenii"
-"243","Eucalyptus major","TRUE","Eucalyptus major","Eucalyptus major (Maiden) Blakely","scientific","Eucalyptus major","Eucalyptus major",NA,"Eucalyptus major (Maiden) Blakely","scientific","Eucalyptus major"
-"244","Eucalyptus malacoxylon","TRUE","Eucalyptus malacoxylon","Eucalyptus malacoxylon Blakely","scientific","Eucalyptus malacoxylon","Eucalyptus malacoxylon",NA,"Eucalyptus malacoxylon Blakely","scientific","Eucalyptus malacoxylon"
-"245","Eucalyptus mannifera","TRUE","Eucalyptus mannifera","Eucalyptus mannifera Mudie","scientific",NA,NA,NA,NA,NA,NA
-"246","Eucalyptus mannifera subsp. gullickii","TRUE","Eucalyptus mannifera subsp. gullickii","Eucalyptus mannifera subsp. gullickii (R.T.Baker & H.G.Sm.) L.A.S.Johnson","scientific","Eucalyptus mannifera subsp. gullickii","Eucalyptus mannifera subsp. gullickii",NA,"Eucalyptus mannifera subsp. gullickii (R.T.Baker & H.G.Sm.) L.A.S.Johnson","scientific","Eucalyptus mannifera subsp. gullickii"
-"247","Eucalyptus mannifera subsp. mannifera","TRUE","Eucalyptus mannifera subsp. mannifera","Eucalyptus mannifera Mudie subsp. mannifera","autonym","Eucalyptus mannifera subsp. maculosa","Eucalyptus mannifera subsp. mannifera",NA,"Eucalyptus mannifera Mudie subsp. mannifera","autonym","Eucalyptus mannifera subsp. mannifera"
-"248","Eucalyptus mannifera subsp. mannifera","TRUE","Eucalyptus mannifera subsp. mannifera","Eucalyptus mannifera Mudie subsp. mannifera","autonym","Eucalyptus mannifera subsp. mannifera","Eucalyptus mannifera subsp. mannifera",NA,"Eucalyptus mannifera Mudie subsp. mannifera","autonym","Eucalyptus mannifera subsp. mannifera"
-"249","Eucalyptus mckieana","TRUE","Eucalyptus mckieana","Eucalyptus mckieana Blakely","scientific","Eucalyptus mckieana","Eucalyptus mckieana",NA,"Eucalyptus mckieana Blakely","scientific","Eucalyptus mckieana"
-"250","Eucalyptus melanophloia","TRUE","Eucalyptus melanophloia","Eucalyptus melanophloia F.Muell.","scientific","Eucalyptus melanophloia","Eucalyptus melanophloia subsp. melanophloia",NA,"Eucalyptus melanophloia F.Muell. subsp. melanophloia","autonym","Eucalyptus melanophloia subsp. melanophloia"
-"251","Eucalyptus melliodora","TRUE","Eucalyptus melliodora","Eucalyptus melliodora A.Cunn. ex Schauer","scientific","Eucalyptus melliodora","Eucalyptus melliodora",NA,"Eucalyptus melliodora A.Cunn. ex Schauer","scientific","Eucalyptus melliodora"
-"252","Eucalyptus michaeliana","TRUE","Eucalyptus michaeliana","Eucalyptus michaeliana Blakely","scientific","Eucalyptus michaeliana","Eucalyptus michaeliana",NA,"Eucalyptus michaeliana Blakely","scientific","Eucalyptus michaeliana"
-"253","Eucalyptus microcarpa","TRUE","Eucalyptus microcarpa","Eucalyptus microcarpa (Maiden) Maiden","scientific","Eucalyptus microcarpa","Eucalyptus microcarpa",NA,"Eucalyptus microcarpa (Maiden) Maiden","scientific","Eucalyptus microcarpa"
-"254","","FALSE","Eucalyptus microcarpa <--> viridis","not found","","Eucalyptus microcarpa <--> viridis","No match",NA,NA,NA,NA
-"255","","FALSE","Eucalyptus microcarpa x pilligaensis","not found","","Eucalyptus microcarpa x pilligaensis","No match",NA,NA,NA,NA
-"256","Eucalyptus microcorys","TRUE","Eucalyptus microcorys","Eucalyptus microcorys F.Muell.","scientific","Eucalyptus microcorys","Eucalyptus microcorys",NA,"Eucalyptus microcorys F.Muell.","scientific","Eucalyptus microcorys"
-"257","Eucalyptus moluccana","TRUE","Eucalyptus moluccana","Eucalyptus moluccana Roxb.","scientific","Eucalyptus moluccana","Eucalyptus moluccana",NA,"Eucalyptus moluccana Roxb.","scientific","Eucalyptus moluccana"
-"258","Eucalyptus moorei","TRUE","Eucalyptus moorei","Eucalyptus moorei Maiden & Cambage","scientific",NA,NA,NA,NA,NA,NA
-"259","Eucalyptus morrisii","TRUE","Eucalyptus morrisii","Eucalyptus morrisii R.T.Baker","scientific","Eucalyptus morrisii","Eucalyptus morrisii",NA,"Eucalyptus morrisii R.T.Baker","scientific","Eucalyptus morrisii"
-"260","Eucalyptus muelleriana","TRUE","Eucalyptus muelleriana","Eucalyptus muelleriana A.W.Howitt","scientific","Eucalyptus muelleriana","Eucalyptus muelleriana",NA,"Eucalyptus muelleriana A.W.Howitt","scientific","Eucalyptus muelleriana"
-"261","Eucalyptus multicaulis","TRUE","Eucalyptus multicaulis","Eucalyptus multicaulis Blakely","scientific","Eucalyptus multicaulis","Eucalyptus multicaulis",NA,"Eucalyptus multicaulis Blakely","scientific","Eucalyptus multicaulis"
-"262","Eucalyptus nandewarica","TRUE","Eucalyptus nandewarica","Eucalyptus nandewarica L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus nandewarica","Eucalyptus nandewarica",NA,"Eucalyptus nandewarica L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus nandewarica"
-"263","Eucalyptus nicholii","TRUE","Eucalyptus nicholii","Eucalyptus nicholii Maiden & Blakely","scientific","Eucalyptus nicholii","Eucalyptus nicholii",NA,"Eucalyptus nicholii Maiden & Blakely","scientific","Eucalyptus nicholii"
-"264","Eucalyptus pauciflora subsp. niphophila","TRUE","Eucalyptus niphophila","Eucalyptus niphophila Maiden & Blakely","scientific","Eucalyptus niphophila","Eucalyptus pauciflora subsp. niphophila",NA,"Eucalyptus pauciflora subsp. niphophila (Maiden & Blakely) L.A.S.Johnson & Blaxell","scientific","Eucalyptus pauciflora subsp. niphophila"
-"265","Eucalyptus pauciflora subsp. niphophila","TRUE","Eucalyptus niphophila","Eucalyptus niphophila Maiden & Blakely","scientific","Eucalyptus pauciflora subsp. niphophila","Eucalyptus pauciflora subsp. niphophila",NA,"Eucalyptus pauciflora subsp. niphophila (Maiden & Blakely) L.A.S.Johnson & Blaxell","scientific","Eucalyptus pauciflora subsp. niphophila"
-"266","Eucalyptus nitens","TRUE","Eucalyptus nitens","Eucalyptus nitens (H.Deane & Maiden) Maiden","scientific","Eucalyptus nitens","Eucalyptus nitens",NA,"Eucalyptus nitens (H.Deane & Maiden) Maiden","scientific","Eucalyptus nitens"
-"267","Eucalyptus nobilis","TRUE","Eucalyptus nobilis","Eucalyptus nobilis L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus nobilis","Eucalyptus nobilis",NA,"Eucalyptus nobilis L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus nobilis"
-"268","","FALSE","Eucalyptus nobilis <--> viminalis","not found","","Eucalyptus nobilis <--> viminalis","No match",NA,NA,NA,NA
-"269","Eucalyptus nortonii","TRUE","Eucalyptus nortonii","Eucalyptus nortonii (Blakely) L.A.S.Johnson","scientific","Eucalyptus nortonii","Eucalyptus nortonii",NA,"Eucalyptus nortonii (Blakely) L.A.S.Johnson","scientific","Eucalyptus nortonii"
-"270","Eucalyptus notabilis","TRUE","Eucalyptus notabilis","Eucalyptus notabilis Maiden","scientific","Eucalyptus notabilis","Eucalyptus notabilis",NA,"Eucalyptus notabilis Maiden","scientific","Eucalyptus notabilis"
-"271","Eucalyptus nova-anglica","TRUE","Eucalyptus nova-anglica","Eucalyptus nova-anglica H.Deane & Maiden","scientific","Eucalyptus nova-anglica","Eucalyptus nova-anglica",NA,"Eucalyptus nova-anglica H.Deane & Maiden","scientific","Eucalyptus nova-anglica"
-"272","","FALSE","Eucalyptus nubila","not found","","Eucalyptus fibrosa subsp. nubila","Eucalyptus fibrosa subsp. nubila",NA,"not found","",""
-"273","","FALSE","Eucalyptus nubila","not found","","Eucalyptus nubila","Eucalyptus fibrosa subsp. nubila",NA,"not found","",""
-"274","Eucalyptus obliqua","TRUE","Eucalyptus obliqua","Eucalyptus obliqua L'Hér.","scientific","Eucalyptus obliqua","Eucalyptus obliqua",NA,"Eucalyptus obliqua L'Hér.","scientific","Eucalyptus obliqua"
-"275","Eucalyptus globoidea","TRUE","Eucalyptus oblonga","Eucalyptus oblonga DC.","scientific",NA,NA,NA,NA,NA,NA
-"276","Eucalyptus burgessiana","TRUE","Eucalyptus obstans","Eucalyptus obstans L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus obstans","Eucalyptus obtusiflora",NA,"Eucalyptus obtusiflora DC.","scientific","Eucalyptus obtusiflora"
-"277","Eucalyptus burgessiana","TRUE","Eucalyptus obstans","Eucalyptus obstans L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus obtusiflora","Eucalyptus obtusiflora",NA,"Eucalyptus obtusiflora DC.","scientific","Eucalyptus obtusiflora"
-"278","Eucalyptus ochrophloia","TRUE","Eucalyptus ochrophloia","Eucalyptus ochrophloia F.Muell.","scientific","Eucalyptus ochrophloia","Eucalyptus ochrophloia",NA,"Eucalyptus ochrophloia F.Muell.","scientific","Eucalyptus ochrophloia"
-"279","Eucalyptus oleosa subsp. oleosa","TRUE","Eucalyptus oleosa subsp. oleosa","Eucalyptus oleosa F.Muell. ex Miq. subsp. oleosa","autonym","Eucalyptus oleosa","Eucalyptus oleosa subsp. oleosa",NA,"Eucalyptus oleosa F.Muell. ex Miq. subsp. oleosa","autonym","Eucalyptus oleosa subsp. oleosa"
-"280","Eucalyptus oleosa subsp. oleosa","TRUE","Eucalyptus oleosa subsp. oleosa","Eucalyptus oleosa F.Muell. ex Miq. subsp. oleosa","autonym","Eucalyptus oleosa subsp. oleosa","Eucalyptus oleosa subsp. oleosa",NA,"Eucalyptus oleosa F.Muell. ex Miq. subsp. oleosa","autonym","Eucalyptus oleosa subsp. oleosa"
-"281","Eucalyptus olida","TRUE","Eucalyptus olida","Eucalyptus olida L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus olida","Eucalyptus olida",NA,"Eucalyptus olida L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus olida"
-"282","Eucalyptus olsenii","TRUE","Eucalyptus olsenii","Eucalyptus olsenii L.A.S.Johnson & Blaxell","scientific","Eucalyptus olsenii","Eucalyptus olsenii",NA,"Eucalyptus olsenii L.A.S.Johnson & Blaxell","scientific","Eucalyptus olsenii"
-"283","Eucalyptus ophitica","TRUE","Eucalyptus ophitica","Eucalyptus ophitica L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus ophitica","Eucalyptus ophitica",NA,"Eucalyptus ophitica L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus ophitica"
-"284","Eucalyptus oreades","TRUE","Eucalyptus oreades","Eucalyptus oreades R.T.Baker","scientific","Eucalyptus oreades","Eucalyptus oreades",NA,"Eucalyptus oreades R.T.Baker","scientific","Eucalyptus oreades"
-"285","Eucalyptus cypellocarpa","TRUE","Eucalyptus oresbia","Eucalyptus oresbia J.T.Hunter & J.J.Bruhl","scientific",NA,NA,NA,NA,NA,NA
-"286","Eucalyptus ovata","TRUE","Eucalyptus ovata","Eucalyptus ovata Labill.","scientific",NA,NA,NA,NA,NA,NA
-"287","Eucalyptus pachycalyx subsp. banyabba","TRUE","Eucalyptus pachycalyx subsp. banyabba","Eucalyptus pachycalyx subsp. banyabba K.D.Hill","scientific","Eucalyptus pachycalyx subsp. banyabba","Eucalyptus pachycalyx subsp. waajensis",NA,"Eucalyptus pachycalyx subsp. waajensis L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus pachycalyx subsp. waajensis"
-"288","Eucalyptus paliformis","TRUE","Eucalyptus paliformis","Eucalyptus paliformis L.A.S.Johnson & Blaxell","scientific","Eucalyptus paliformis","Eucalyptus paliformis",NA,"Eucalyptus paliformis L.A.S.Johnson & Blaxell","scientific","Eucalyptus paliformis"
-"289","Eucalyptus panda","TRUE","Eucalyptus panda","Eucalyptus panda S.T.Blake","scientific","Eucalyptus panda","Eucalyptus panda",NA,"Eucalyptus panda S.T.Blake","scientific","Eucalyptus panda"
-"290","Eucalyptus paniculata","TRUE","Eucalyptus paniculata","Eucalyptus paniculata Sm.","scientific","Eucalyptus paniculata","Eucalyptus paniculata",NA,"Eucalyptus paniculata Sm.","scientific","Eucalyptus paniculata"
-"291","Eucalyptus paniculata","TRUE","Eucalyptus paniculata subsp. matutina","Eucalyptus paniculata subsp. matutina L.A.S.Johnson & K.D.Hill","scientific",NA,NA,NA,NA,NA,NA
-"292","Eucalyptus paniculata","TRUE","Eucalyptus paniculata subsp. paniculata","Eucalyptus paniculata Sm. subsp. paniculata","autonym",NA,NA,NA,NA,NA,NA
-"293","Eucalyptus parramattensis","TRUE","Eucalyptus parramattensis","Eucalyptus parramattensis E.C.Hall","scientific","Eucalyptus parramattensis","Eucalyptus parramattensis subsp. parramattensis",NA,"Eucalyptus parramattensis E.C.Hall subsp. parramattensis","autonym","Eucalyptus parramattensis subsp. parramattensis"
-"294","Eucalyptus parramattensis subsp. decadens","TRUE","Eucalyptus parramattensis subsp. decadens","Eucalyptus parramattensis subsp. decadens L.A.S.Johnson & Blaxell","scientific","Eucalyptus parramattensis subsp. decadens","Eucalyptus parramattensis subsp. decadens",NA,"Eucalyptus parramattensis subsp. decadens L.A.S.Johnson & Blaxell","scientific","Eucalyptus parramattensis subsp. decadens"
-"295","Eucalyptus parramattensis subsp. parramattensis","TRUE","Eucalyptus parramattensis subsp. parramattensis","Eucalyptus parramattensis E.C.Hall subsp. parramattensis","autonym","Eucalyptus parramattensis subsp. parramattensis","Eucalyptus parramattensis subsp. parramattensis",NA,"Eucalyptus parramattensis E.C.Hall subsp. parramattensis","autonym","Eucalyptus parramattensis subsp. parramattensis"
-"296","Eucalyptus parvula","TRUE","Eucalyptus parvula","Eucalyptus parvula L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus parvifolia","Eucalyptus parvula",NA,"Eucalyptus parvula L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus parvula"
-"297","Eucalyptus parvula","TRUE","Eucalyptus parvula","Eucalyptus parvula L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus parvula","Eucalyptus parvula",NA,"Eucalyptus parvula L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus parvula"
-"298","Eucalyptus pauciflora","TRUE","Eucalyptus pauciflora","Eucalyptus pauciflora Sieber ex Spreng.","scientific","Eucalyptus pauciflora","Eucalyptus pauciflora subsp. pauciflora",NA,"Eucalyptus pauciflora Sieber ex Spreng. subsp. pauciflora","autonym","Eucalyptus pauciflora subsp. pauciflora"
-"299","Eucalyptus pauciflora","TRUE","Eucalyptus pauciflora","Eucalyptus pauciflora Sieber ex Spreng.","scientific","Eucalyptus pauciflora subsp. pauciflora","Eucalyptus pauciflora subsp. pauciflora",NA,"Eucalyptus pauciflora Sieber ex Spreng. subsp. pauciflora","autonym","Eucalyptus pauciflora subsp. pauciflora"
-"300","Eucalyptus perriniana","TRUE","Eucalyptus perriniana","Eucalyptus perriniana F.Muell. ex Rodway","scientific","Eucalyptus perriniana","Eucalyptus perriniana",NA,"Eucalyptus perriniana F.Muell. ex Rodway","scientific","Eucalyptus perriniana"
-"301","Eucalyptus woollsiana","TRUE","Eucalyptus pilligaensis","Eucalyptus pilligaensis Maiden","scientific","Eucalyptus pilligaensis","Eucalyptus woollsiana",NA,"Eucalyptus woollsiana R.T.Baker","scientific","Eucalyptus woollsiana"
-"302","Eucalyptus pilularis","TRUE","Eucalyptus pilularis","Eucalyptus pilularis Sm.","scientific","Eucalyptus pilularis","Eucalyptus pilularis",NA,"Eucalyptus pilularis Sm.","scientific","Eucalyptus pilularis"
-"303","Eucalyptus piperita","TRUE","Eucalyptus piperita","Eucalyptus piperita Sm.","scientific","Eucalyptus piperita subsp. piperita","Eucalyptus piperita subsp. piperita",NA,"Eucalyptus piperita Sm. subsp. piperita","autonym","Eucalyptus piperita subsp. piperita"
-"304","Eucalyptus piperita","TRUE","Eucalyptus piperita","Eucalyptus piperita Sm.","scientific","Eucalyptus piperita subsp. urceolaris","Eucalyptus piperita subsp. urceolaris",NA,"Eucalyptus piperita subsp. urceolaris (Maiden & Blakely) L.A.S.Johnson & Blaxell","scientific","Eucalyptus piperita subsp. urceolaris"
-"305","Eucalyptus placita","TRUE","Eucalyptus placita","Eucalyptus placita L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus placita","Eucalyptus placita",NA,"Eucalyptus placita L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus placita"
-"306","Eucalyptus planchoniana","TRUE","Eucalyptus planchoniana","Eucalyptus planchoniana F.Muell.","scientific","Eucalyptus planchoniana","Eucalyptus planchoniana",NA,"Eucalyptus planchoniana F.Muell.","scientific","Eucalyptus planchoniana"
-"307","Eucalyptus polyanthemos","TRUE","Eucalyptus polyanthemos","Eucalyptus polyanthemos Schauer","scientific",NA,NA,NA,NA,NA,NA
-"308","Eucalyptus polyanthemos subsp. polyanthemos","TRUE","Eucalyptus polyanthemos subsp. polyanthemos","Eucalyptus polyanthemos Schauer subsp. polyanthemos","autonym","Eucalyptus polyanthemos subsp. polyanthemos","Eucalyptus polyanthemos subsp. polyanthemos",NA,"Eucalyptus polyanthemos Schauer subsp. polyanthemos","autonym","Eucalyptus polyanthemos subsp. polyanthemos"
-"309","Eucalyptus polyanthemos subsp. vestita","TRUE","Eucalyptus polyanthemos subsp. vestita","Eucalyptus polyanthemos subsp. vestita L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus polyanthemos subsp. vestita","Eucalyptus polyanthemos subsp. vestita",NA,"Eucalyptus polyanthemos subsp. vestita L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus polyanthemos subsp. vestita"
-"310","Eucalyptus polybractea","TRUE","Eucalyptus polybractea","Eucalyptus polybractea R.T.Baker","scientific","Eucalyptus polybractea","Eucalyptus polybractea",NA,"Eucalyptus polybractea R.T.Baker","scientific","Eucalyptus polybractea"
-"311","Eucalyptus populnea","TRUE","Eucalyptus populnea subsp. bimbil","Eucalyptus populnea subsp. bimbil L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus populnea","Eucalyptus populnea",NA,"Eucalyptus populnea F.Muell.","scientific","Eucalyptus populnea"
-"312","Eucalyptus populnea","TRUE","Eucalyptus populnea subsp. bimbil","Eucalyptus populnea subsp. bimbil L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus populnea subsp. bimbil","Eucalyptus populnea",NA,"Eucalyptus populnea F.Muell.","scientific","Eucalyptus populnea"
-"313","Eucalyptus porosa","TRUE","Eucalyptus porosa","Eucalyptus porosa F.Muell. ex Miq.","scientific","Eucalyptus porosa","Eucalyptus porosa",NA,"Eucalyptus porosa F.Muell. ex Miq.","scientific","Eucalyptus porosa"
-"314","Eucalyptus mannifera subsp. praecox","TRUE","Eucalyptus praecox","Eucalyptus praecox Maiden","scientific","Eucalyptus mannifera subsp. praecox","Eucalyptus mannifera subsp. praecox",NA,"Eucalyptus mannifera subsp. praecox (Maiden) L.A.S.Johnson","scientific","Eucalyptus mannifera subsp. praecox"
-"315","Eucalyptus mannifera subsp. praecox","TRUE","Eucalyptus praecox","Eucalyptus praecox Maiden","scientific","Eucalyptus praecox","Eucalyptus mannifera subsp. praecox",NA,"Eucalyptus mannifera subsp. praecox (Maiden) L.A.S.Johnson","scientific","Eucalyptus mannifera subsp. praecox"
-"316","Eucalyptus prava","TRUE","Eucalyptus prava","Eucalyptus prava L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus prava","Eucalyptus prava",NA,"Eucalyptus prava L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus prava"
-"317","Eucalyptus youmanii","TRUE","Eucalyptus prominula","Eucalyptus prominula L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus prominula","Eucalyptus prominula",NA,"Eucalyptus prominula L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus prominula"
-"318","Eucalyptus propinqua","TRUE","Eucalyptus propinqua","Eucalyptus propinqua H.Deane & Maiden","scientific","Eucalyptus propinqua","Eucalyptus propinqua",NA,"Eucalyptus propinqua H.Deane & Maiden","scientific","Eucalyptus propinqua"
-"319","Eucalyptus psammitica","TRUE","Eucalyptus psammitica","Eucalyptus psammitica L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus psammitica","Eucalyptus psammitica",NA,"Eucalyptus psammitica L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus psammitica"
-"320","Eucalyptus globulus subsp. pseudoglobulus","TRUE","Eucalyptus pseudoglobulus","Eucalyptus pseudoglobulus (Naudin) Maiden","scientific","Eucalyptus pseudoglobulus","Eucalyptus globulus subsp. pseudoglobulus",NA,"Eucalyptus globulus subsp. pseudoglobulus (Naudin) J.B.Kirkp.","scientific","Eucalyptus globulus subsp. pseudoglobulus"
-"321","Eucalyptus pulverulenta","TRUE","Eucalyptus pulverulenta","Eucalyptus pulverulenta Sims","scientific","Eucalyptus pulverulenta","Eucalyptus pulverulenta",NA,"Eucalyptus pulverulenta Sims","scientific","Eucalyptus pulverulenta"
-"322","Eucalyptus pumila","TRUE","Eucalyptus pumila","Eucalyptus pumila Cambage","scientific","Eucalyptus pumila","Eucalyptus pumila",NA,"Eucalyptus pumila Cambage","scientific","Eucalyptus pumila"
-"323","Eucalyptus punctata","TRUE","Eucalyptus punctata","Eucalyptus punctata DC.","scientific","Eucalyptus punctata","Eucalyptus punctata",NA,"Eucalyptus punctata DC.","scientific","Eucalyptus punctata"
-"324","Eucalyptus punctata","FALSE","Eucalyptus punctata subsp. punctata","not found","",NA,NA,NA,NA,NA,NA
-"325","Eucalyptus pyrocarpa","TRUE","Eucalyptus pyrocarpa","Eucalyptus pyrocarpa L.A.S.Johnson & Blaxell","scientific","Eucalyptus pyrocarpa","Eucalyptus pyrocarpa",NA,"Eucalyptus pyrocarpa L.A.S.Johnson & Blaxell","scientific","Eucalyptus pyrocarpa"
-"326","Eucalyptus quadrangulata","TRUE","Eucalyptus quadrangulata","Eucalyptus quadrangulata H.Deane & Maiden","scientific","Eucalyptus quadrangulata","Eucalyptus quadrangulata",NA,"Eucalyptus quadrangulata H.Deane & Maiden","scientific","Eucalyptus quadrangulata"
-"327","Eucalyptus quinniorum","TRUE","Eucalyptus quinniorum","Eucalyptus quinniorum J.T.Hunter & J.J.Bruhl","scientific",NA,NA,NA,NA,NA,NA
-"328","Eucalyptus racemosa","TRUE","Eucalyptus racemosa","Eucalyptus racemosa Cav.","scientific","Eucalyptus racemosa","Eucalyptus racemosa subsp. racemosa",NA,"Eucalyptus racemosa Cav. subsp. racemosa","autonym","Eucalyptus racemosa subsp. racemosa"
-"329","Eucalyptus racemosa","TRUE","Eucalyptus racemosa","Eucalyptus racemosa Cav.","scientific","Eucalyptus racemosa subsp. racemosa","Eucalyptus racemosa subsp. racemosa",NA,"Eucalyptus racemosa Cav. subsp. racemosa","autonym","Eucalyptus racemosa subsp. racemosa"
-"330","Eucalyptus radiata","TRUE","Eucalyptus radiata","Eucalyptus radiata Sieber ex DC.","scientific",NA,NA,NA,NA,NA,NA
-"331","Eucalyptus radiata subsp. radiata","TRUE","Eucalyptus radiata subsp. radiata","Eucalyptus radiata Sieber ex DC. subsp. radiata","autonym","Eucalyptus radiata subsp. radiata","Eucalyptus radiata subsp. radiata",NA,"Eucalyptus radiata Sieber ex DC. subsp. radiata","autonym","Eucalyptus radiata subsp. radiata"
-"332","Eucalyptus radiata subsp. sejuncta","TRUE","Eucalyptus radiata subsp. sejuncta","Eucalyptus radiata subsp. sejuncta L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus radiata subsp. sejuncta","Eucalyptus radiata subsp. sejuncta",NA,"Eucalyptus radiata subsp. sejuncta L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus radiata subsp. sejuncta"
-"333","Eucalyptus tenella","TRUE","Eucalyptus ralla","Eucalyptus ralla L.A.S.Johnson & K.D.Hill","scientific",NA,NA,NA,NA,NA,NA
-"334","Eucalyptus recurva","TRUE","Eucalyptus recurva","Eucalyptus recurva Crisp","scientific","Eucalyptus recurva","Eucalyptus recurva",NA,"Eucalyptus recurva Crisp","scientific","Eucalyptus recurva"
-"335","Eucalyptus resinifera","TRUE","Eucalyptus resinifera","Eucalyptus resinifera Sm.","scientific",NA,NA,NA,NA,NA,NA
-"336","Eucalyptus resinifera subsp. hemilampra","TRUE","Eucalyptus resinifera subsp. hemilampra","Eucalyptus resinifera subsp. hemilampra (F.Muell.) L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus resinifera subsp. hemilampra","Eucalyptus resinifera subsp. hemilampra",NA,"Eucalyptus resinifera subsp. hemilampra (F.Muell.) L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus resinifera subsp. hemilampra"
-"337","Eucalyptus resinifera subsp. resinifera","TRUE","Eucalyptus resinifera subsp. resinifera","Eucalyptus resinifera Sm. subsp. resinifera","autonym","Eucalyptus resinifera subsp. resinifera","Eucalyptus resinifera subsp. resinifera",NA,"Eucalyptus resinifera Sm. subsp. resinifera","autonym","Eucalyptus resinifera subsp. resinifera"
-"338","Eucalyptus retinens","TRUE","Eucalyptus retinens","Eucalyptus retinens L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus retinens","Eucalyptus retinens",NA,"Eucalyptus retinens L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus retinens"
-"339","Eucalyptus radiata subsp. robertsonii","TRUE","Eucalyptus robertsonii","Eucalyptus robertsonii Blakely","scientific","Eucalyptus radiata subsp. robertsonii","Eucalyptus radiata subsp. robertsonii",NA,"Eucalyptus radiata subsp. robertsonii (Blakely) L.A.S.Johnson & Blaxell","scientific","Eucalyptus radiata subsp. robertsonii"
-"340","Eucalyptus radiata subsp. robertsonii","TRUE","Eucalyptus robertsonii","Eucalyptus robertsonii Blakely","scientific","Eucalyptus robertsonii","Eucalyptus radiata subsp. robertsonii",NA,"Eucalyptus radiata subsp. robertsonii (Blakely) L.A.S.Johnson & Blaxell","scientific","Eucalyptus radiata subsp. robertsonii"
-"341","Eucalyptus radiata subsp. robertsonii","TRUE","Eucalyptus robertsonii subsp. hemisphaerica","Eucalyptus robertsonii subsp. hemisphaerica L.A.S.Johnson & K.D.Hill","scientific",NA,NA,NA,NA,NA,NA
-"342","Eucalyptus radiata subsp. robertsonii","TRUE","Eucalyptus robertsonii subsp. robertsonii","Eucalyptus robertsonii Blakely subsp. robertsonii","autonym",NA,NA,NA,NA,NA,NA
-"343","Eucalyptus robusta","TRUE","Eucalyptus robusta","Eucalyptus robusta Sm.","scientific","Eucalyptus robusta","Eucalyptus robusta",NA,"Eucalyptus robusta Sm.","scientific","Eucalyptus robusta"
-"344","","FALSE","Eucalyptus robusta x saligna","not found","","Eucalyptus robusta x saligna","No match",NA,NA,NA,NA
-"345","Eucalyptus rossii","TRUE","Eucalyptus rossii","Eucalyptus rossii R.T.Baker & H.G.Sm.","scientific","Eucalyptus racemosa subsp. rossii","Eucalyptus racemosa subsp. rossii",NA,"Eucalyptus racemosa subsp. rossii (R.T.Baker & H.G.Sm.) B.E.Pfeil & Henwood","scientific","Eucalyptus racemosa subsp. rossii"
-"346","Eucalyptus rossii","TRUE","Eucalyptus rossii","Eucalyptus rossii R.T.Baker & H.G.Sm.","scientific","Eucalyptus rossii","Eucalyptus racemosa subsp. rossii",NA,"Eucalyptus racemosa subsp. rossii (R.T.Baker & H.G.Sm.) B.E.Pfeil & Henwood","scientific","Eucalyptus racemosa subsp. rossii"
-"347","Eucalyptus rubida","TRUE","Eucalyptus rubida","Eucalyptus rubida H.Deane & Maiden","scientific",NA,NA,NA,NA,NA,NA
-"348","Eucalyptus rubida subsp. barbigerorum","TRUE","Eucalyptus rubida subsp. barbigerorum","Eucalyptus rubida subsp. barbigerorum L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus rubida subsp. barbigerorum","Eucalyptus rubida subsp. barbigerorum",NA,"Eucalyptus rubida subsp. barbigerorum L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus rubida subsp. barbigerorum"
-"349","Eucalyptus rubida subsp. rubida","TRUE","Eucalyptus rubida subsp. rubida","Eucalyptus rubida H.Deane & Maiden subsp. rubida","autonym","Eucalyptus rubida subsp. rubida","Eucalyptus rubida subsp. rubida",NA,"Eucalyptus rubida H.Deane & Maiden subsp. rubida","autonym","Eucalyptus rubida subsp. rubida"
-"350","","FALSE","Eucalyptus rubida x viminalis","not found","","Eucalyptus rubida x viminalis","No match",NA,NA,NA,NA
-"351","Eucalyptus rudderi","TRUE","Eucalyptus rudderi","Eucalyptus rudderi Maiden","scientific","Eucalyptus rudderi","Eucalyptus rudderi",NA,"Eucalyptus rudderi Maiden","scientific","Eucalyptus rudderi"
-"352","Eucalyptus rummeryi","TRUE","Eucalyptus rummeryi","Eucalyptus rummeryi Maiden","scientific","Eucalyptus rummeryi","Eucalyptus rummeryi",NA,"Eucalyptus rummeryi Maiden","scientific","Eucalyptus rummeryi"
-"353","Eucalyptus saligna","TRUE","Eucalyptus saligna","Eucalyptus saligna Sm.","scientific","Eucalyptus saligna","Eucalyptus saligna",NA,"Eucalyptus saligna Sm.","scientific","Eucalyptus saligna"
-"354","Eucalyptus saxatilis","TRUE","Eucalyptus saxatilis","Eucalyptus saxatilis J.B.Kirkp. & Brooker","scientific","Eucalyptus saxatilis","Eucalyptus saxatilis",NA,"Eucalyptus saxatilis J.B.Kirkp. & Brooker","scientific","Eucalyptus saxatilis"
-"355","Eucalyptus bridgesiana","TRUE","Eucalyptus saxicola","Eucalyptus saxicola J.T.Hunter","scientific",NA,NA,NA,NA,NA,NA
-"356","Eucalyptus scias","TRUE","Eucalyptus scias","Eucalyptus scias L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus pellita","Eucalyptus pellita",NA,"Eucalyptus pellita F.Muell.","scientific","Eucalyptus pellita"
-"357","Eucalyptus scias","TRUE","Eucalyptus scias","Eucalyptus scias L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus scias","Eucalyptus pellita",NA,"Eucalyptus pellita F.Muell.","scientific","Eucalyptus pellita"
-"358","Eucalyptus scias subsp. apoda","TRUE","Eucalyptus scias subsp. apoda","Eucalyptus scias subsp. apoda L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus scias subsp. apoda","Eucalyptus scias subsp. apoda",NA,"Eucalyptus scias subsp. apoda L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus scias subsp. apoda"
-"359","Eucalyptus scias subsp. scias","TRUE","Eucalyptus scias subsp. callimastha","Eucalyptus scias subsp. callimastha L.A.S.Johnson & K.D.Hill","scientific",NA,NA,NA,NA,NA,NA
-"360","Eucalyptus scias subsp. scias","TRUE","Eucalyptus scias subsp. scias","Eucalyptus scias L.A.S.Johnson & K.D.Hill subsp. scias","autonym","Eucalyptus scias subsp. scias","Eucalyptus scias subsp. scias",NA,"Eucalyptus scias L.A.S.Johnson & K.D.Hill subsp. scias","autonym","Eucalyptus scias subsp. scias"
-"361","Eucalyptus racemosa","TRUE","Eucalyptus sclerophylla","Eucalyptus sclerophylla (Blakely) L.A.S.Johnson & Blaxell","scientific",NA,NA,NA,NA,NA,NA
-"362","Eucalyptus scoparia","TRUE","Eucalyptus scoparia","Eucalyptus scoparia Maiden","scientific","Eucalyptus scoparia","Eucalyptus scoparia",NA,"Eucalyptus scoparia Maiden","scientific","Eucalyptus scoparia"
-"363","Eucalyptus seeana","TRUE","Eucalyptus seeana","Eucalyptus seeana Maiden","scientific","Eucalyptus seeana","Eucalyptus seeana",NA,"Eucalyptus seeana Maiden","scientific","Eucalyptus seeana"
-"364","Eucalyptus moorei subsp. serpentinicola","TRUE","Eucalyptus serpentinicola","Eucalyptus serpentinicola L.A.S.Johnson & Blaxell","scientific","Eucalyptus serpentinicola","Eucalyptus moorei subsp. serpentinicola",NA,"Eucalyptus moorei subsp. serpentinicola (L.A.S.Johnson & Blaxell) Brooker & Kleinig","scientific","Eucalyptus moorei subsp. serpentinicola"
-"365","Eucalyptus siderophloia","TRUE","Eucalyptus siderophloia","Eucalyptus siderophloia Benth.","scientific","Eucalyptus siderophloia","Eucalyptus siderophloia",NA,"Eucalyptus siderophloia Benth.","scientific","Eucalyptus siderophloia"
-"366","Eucalyptus sideroxylon","TRUE","Eucalyptus sideroxylon","Eucalyptus sideroxylon A.Cunn. ex Woolls","scientific","Eucalyptus sideroxylon","Eucalyptus sideroxylon",NA,"Eucalyptus sideroxylon A.Cunn. ex Woolls","scientific","Eucalyptus sideroxylon"
-"367","Eucalyptus sideroxylon","TRUE","Eucalyptus sideroxylon","Eucalyptus sideroxylon A.Cunn. ex Woolls","scientific","Eucalyptus sideroxylon subsp. sideroxylon","Eucalyptus sideroxylon",NA,"Eucalyptus sideroxylon A.Cunn. ex Woolls","scientific","Eucalyptus sideroxylon"
-"368","","FALSE","Eucalyptus sideroxylon <--> viridis","not found","","Eucalyptus sideroxylon <--> viridis","No match",NA,NA,NA,NA
-"369","Eucalyptus sieberi","TRUE","Eucalyptus sieberi","Eucalyptus sieberi L.A.S.Johnson","scientific","Eucalyptus sieberi","Eucalyptus sieberi",NA,"Eucalyptus sieberi L.A.S.Johnson","scientific","Eucalyptus sieberi"
-"370","Eucalyptus racemosa","TRUE","Eucalyptus signata","Eucalyptus signata F.Muell.","scientific",NA,NA,NA,NA,NA,NA
-"371","Eucalyptus smithii","TRUE","Eucalyptus smithii","Eucalyptus smithii R.T.Baker","scientific","Eucalyptus smithii","Eucalyptus smithii",NA,"Eucalyptus smithii R.T.Baker","scientific","Eucalyptus smithii"
-"372","Eucalyptus socialis","TRUE","Eucalyptus socialis","Eucalyptus socialis F.Muell. ex Miq.","scientific","Eucalyptus socialis","Eucalyptus socialis subsp. socialis",NA,"Eucalyptus socialis F.Muell. ex Miq. subsp. socialis","autonym","Eucalyptus socialis subsp. socialis"
-"373","","FALSE","Eucalyptus sp. aff. agglomerata","not found","",NA,NA,NA,NA,NA,NA
-"374","","FALSE","Eucalyptus sp. aff. cameronii (Macleay-Apsley)","not found","",NA,NA,NA,NA,NA,NA
-"375","","FALSE","Eucalyptus sp. aff. dwyeri","not found","",NA,NA,NA,NA,NA,NA
-"376","","FALSE","Eucalyptus sp. aff. fibrosa (Pokolbin)","not found","",NA,NA,NA,NA,NA,NA
-"377","","TRUE","Eucalyptus sp. aff. fibrosa (Yarrawa)","Eucalyptus sp. aff. fibrosa (Yarrawa)","phrase name",NA,NA,NA,NA,NA,NA
-"378","Eucalyptus mackintii","FALSE","Eucalyptus sp. aff. macrorhyncha","not found","",NA,NA,NA,NA,NA,NA
-"379","Eucalyptus sp. Cattai","FALSE","Eucalyptus sp. Cattai","not found","",NA,NA,NA,NA,NA,NA
-"380","Eucalyptus sparsifolia","TRUE","Eucalyptus sparsifolia","Eucalyptus sparsifolia Blakely","scientific","Eucalyptus sparsifolia","Eucalyptus sparsifolia",NA,"Eucalyptus sparsifolia Blakely","scientific","Eucalyptus sparsifolia"
-"381","Eucalyptus stricta","TRUE","Eucalyptus spectatrix","Eucalyptus spectatrix L.A.S.Johnson & Blaxell","scientific",NA,NA,NA,NA,NA,NA
-"382","","FALSE","Eucalyptus spp.","not found","","Eucalyptus spp.","No match",NA,NA,NA,NA
-"383","Eucalyptus squamosa","TRUE","Eucalyptus squamosa","Eucalyptus squamosa H.Deane & Maiden","scientific","Eucalyptus squamosa","Eucalyptus squamosa",NA,"Eucalyptus squamosa H.Deane & Maiden","scientific","Eucalyptus squamosa"
-"384","Eucalyptus stellulata","TRUE","Eucalyptus stellulata","Eucalyptus stellulata Sieber ex DC.","scientific","Eucalyptus stellulata","Eucalyptus stellulata",NA,"Eucalyptus stellulata Sieber ex DC.","scientific","Eucalyptus stellulata"
-"385","Eucalyptus stenostoma","TRUE","Eucalyptus stenostoma","Eucalyptus stenostoma L.A.S.Johnson & Blaxell","scientific","Eucalyptus stenostoma","Eucalyptus stenostoma",NA,"Eucalyptus stenostoma L.A.S.Johnson & Blaxell","scientific","Eucalyptus stenostoma"
-"386","Eucalyptus stricta","TRUE","Eucalyptus stricta","Eucalyptus stricta Sieber ex Spreng.","scientific","Eucalyptus stricta","Eucalyptus stricta",NA,"Eucalyptus stricta Sieber ex Spreng.","scientific","Eucalyptus stricta"
-"387","Eucalyptus sturgissiana","TRUE","Eucalyptus sturgissiana","Eucalyptus sturgissiana L.A.S.Johnson & Blaxell","scientific","Eucalyptus sturgissiana","Eucalyptus sturgissiana",NA,"Eucalyptus sturgissiana L.A.S.Johnson & Blaxell","scientific","Eucalyptus sturgissiana"
-"388","Eucalyptus agglomerata","TRUE","Eucalyptus subcaerulea","Eucalyptus subcaerulea K.D.Hill","scientific",NA,NA,NA,NA,NA,NA
-"389","Eucalyptus youmanii","TRUE","Eucalyptus subtilior","Eucalyptus subtilior L.A.S.Johnson & K.D.Hill","scientific",NA,NA,NA,NA,NA,NA
-"390","Eucalyptus tenella","TRUE","Eucalyptus tenella","Eucalyptus tenella L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus tenella","Eucalyptus tenella",NA,"Eucalyptus tenella L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus tenella"
-"391","Eucalyptus tereticornis","TRUE","Eucalyptus tereticornis","Eucalyptus tereticornis Sm.","scientific",NA,NA,NA,NA,NA,NA
-"392","Eucalyptus tereticornis subsp. tereticornis","TRUE","Eucalyptus tereticornis subsp. tereticornis","Eucalyptus tereticornis Sm. subsp. tereticornis","autonym","Eucalyptus tereticornis subsp. tereticornis","Eucalyptus tereticornis subsp. tereticornis",NA,"Eucalyptus tereticornis Sm. subsp. tereticornis","autonym","Eucalyptus tereticornis subsp. tereticornis"
-"393","Eucalyptus tetrapleura","TRUE","Eucalyptus tetrapleura","Eucalyptus tetrapleura L.A.S.Johnson","scientific","Eucalyptus tetrapleura","Eucalyptus tetrapleura",NA,"Eucalyptus tetrapleura L.A.S.Johnson","scientific","Eucalyptus tetrapleura"
-"394","Eucalyptus tindaliae","TRUE","Eucalyptus tindaliae","Eucalyptus tindaliae Blakely","scientific","Eucalyptus tindaliae","Eucalyptus tindaliae",NA,"Eucalyptus tindaliae Blakely","scientific","Eucalyptus tindaliae"
-"395","Eucalyptus tricarpa","TRUE","Eucalyptus tricarpa","Eucalyptus tricarpa (L.A.S.Johnson) L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus tricarpa","Eucalyptus tricarpa",NA,"Eucalyptus tricarpa (L.A.S.Johnson) L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus tricarpa"
-"396","Eucalyptus triflora","TRUE","Eucalyptus triflora","Eucalyptus triflora (Maiden) Blakely","scientific","Eucalyptus triflora","Eucalyptus triflora",NA,"Eucalyptus triflora (Maiden) Blakely","scientific","Eucalyptus triflora"
-"397","Eucalyptus cinerea subsp. triplex","TRUE","Eucalyptus triplex","Eucalyptus triplex L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus triplex","Eucalyptus cinerea subsp. triplex",NA,"Eucalyptus cinerea subsp. triplex (L.A.S.Johnson & K.D.Hill) Brooker, Slee & J.D.Briggs","scientific","Eucalyptus cinerea subsp. triplex"
-"398","Eucalyptus umbra","TRUE","Eucalyptus umbra","Eucalyptus umbra R.T.Baker","scientific","Eucalyptus umbra","Eucalyptus umbra",NA,"Eucalyptus umbra R.T.Baker","scientific","Eucalyptus umbra"
-"399","Eucalyptus umbra","TRUE","Eucalyptus umbra","Eucalyptus umbra R.T.Baker","scientific","Eucalyptus umbra subsp. umbra","Eucalyptus umbra",NA,"Eucalyptus umbra R.T.Baker","scientific","Eucalyptus umbra"
-"400","Eucalyptus vicina","TRUE","Eucalyptus vicina","Eucalyptus vicina L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus vicina","Eucalyptus vicina",NA,"Eucalyptus vicina L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus vicina"
-"401","Eucalyptus viminalis","TRUE","Eucalyptus viminalis","Eucalyptus viminalis Labill.","scientific","Eucalyptus viminalis","Eucalyptus viminalis subsp. viminalis",NA,"Eucalyptus viminalis Labill. subsp. viminalis","autonym","Eucalyptus viminalis subsp. viminalis"
-"402","Eucalyptus viminalis","TRUE","Eucalyptus viminalis","Eucalyptus viminalis Labill.","scientific","Eucalyptus viminalis subsp. viminalis","Eucalyptus viminalis subsp. viminalis",NA,"Eucalyptus viminalis Labill. subsp. viminalis","autonym","Eucalyptus viminalis subsp. viminalis"
-"403","","FALSE","Eucalyptus viminalis subsp. luxurians","not found","",NA,NA,NA,NA,NA,NA
-"404","Eucalyptus viridis","TRUE","Eucalyptus viridis","Eucalyptus viridis R.T.Baker","scientific","Eucalyptus viridis","Eucalyptus viridis",NA,"Eucalyptus viridis R.T.Baker","scientific","Eucalyptus viridis"
-"405","Eucalyptus volcanica","TRUE","Eucalyptus volcanica","Eucalyptus volcanica L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus volcanica","Eucalyptus volcanica",NA,"Eucalyptus volcanica L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus volcanica"
-"406","Eucalyptus wilcoxii","TRUE","Eucalyptus wilcoxii","Eucalyptus wilcoxii Boland & Kleinig","scientific","Eucalyptus wilcoxii","Eucalyptus wilcoxii",NA,"Eucalyptus wilcoxii Boland & Kleinig","scientific","Eucalyptus wilcoxii"
-"407","Eucalyptus williamsiana","TRUE","Eucalyptus williamsiana","Eucalyptus williamsiana L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus williamsiana","Eucalyptus williamsiana",NA,"Eucalyptus williamsiana L.A.S.Johnson & K.D.Hill","scientific","Eucalyptus williamsiana"
-"408","","TRUE","Eucalyptus x kirtoniana","Eucalyptus x kirtoniana F.Muell.","named hybrid","Eucalyptus patentinervis","No match",NA,NA,NA,NA
-"409","","TRUE","Eucalyptus x kirtoniana","Eucalyptus x kirtoniana F.Muell.","named hybrid","Eucalyptus robusta x tereticornis","No match",NA,NA,NA,NA
-"410","","TRUE","Eucalyptus x vitrea","Eucalyptus x vitrea R.T.Baker","named hybrid","Eucalyptus pauciflora x radiata","No match",NA,NA,NA,NA
-"411","Eucalyptus youmanii","TRUE","Eucalyptus youmanii","Eucalyptus youmanii Blakely & McKie","scientific","Eucalyptus youmanii","Eucalyptus youmanii",NA,"Eucalyptus youmanii Blakely & McKie","scientific","Eucalyptus youmanii"
-"412",NA,NA,NA,NA,NA,NA,"Match found","Corymbia clarksoniana",NA,NA,NA
-"413",NA,NA,NA,NA,NA,NA,"Match found","Corymbia terminalis",NA,NA,NA
-"414",NA,NA,NA,NA,NA,NA,"Match found","Eucalyptus approximans subsp. approximans",NA,NA,NA
-"415",NA,NA,NA,NA,NA,NA,"Match found","Eucalyptus approximans subsp. codonocarpa",NA,NA,NA
-"416",NA,NA,NA,NA,NA,NA,"Match found","Eucalyptus calycogona subsp. trachybasis",NA,NA,NA
-"417",NA,NA,NA,NA,NA,NA,"Match found","Eucalyptus cinerea subsp. triplex",NA,NA,NA
-"418",NA,NA,NA,NA,NA,NA,"Match found","Eucalyptus conspicua subsp. conspicua",NA,NA,NA
-"419",NA,NA,NA,NA,NA,NA,"Match found","Eucalyptus globulus subsp. pseudoglobulus",NA,NA,NA
-"420",NA,NA,NA,NA,NA,NA,"Match found","Eucalyptus melanophloia subsp. melanophloia",NA,NA,NA
-"421",NA,NA,NA,NA,NA,NA,"Match found","Eucalyptus moorei subsp. moorei",NA,NA,NA
-"422",NA,NA,NA,NA,NA,NA,"Match found","Eucalyptus moorei subsp. serpentinicola",NA,NA,NA
-"423",NA,NA,NA,NA,NA,NA,"Match found","Eucalyptus ovata subsp. ovata",NA,NA,NA
-"424",NA,NA,NA,NA,NA,NA,"Match found","Eucalyptus pachycalyx subsp. waajensis",NA,NA,NA
-"425",NA,NA,NA,NA,NA,NA,"No match","Eucalyptus parramattensis var. sphaerocalyx",NA,NA,NA
-"426",NA,NA,NA,NA,NA,NA,"Match found","Eucalyptus socialis subsp. socialis",NA,NA,NA
-"427",NA,NA,NA,NA,NA,NA,"Match found","Eucalyptus sp. Dorsiventralis",NA,NA,NA
-"428",NA,NA,NA,NA,NA,NA,"Match found","Eucalyptus woollsiana",NA,NA,NA
+"APC_confirmed_name","BioNet_assigned","BioNet_unassigned","EUCLID_checked","EUCLID_no_match"
+"Angophora bakeri","Angophora bakeri","Angophora bakeri","Angophora bakeri subsp. bakeri",NA
+"Angophora bakeri","Angophora bakeri","Angophora bakeri subsp. bakeri","Angophora bakeri subsp. bakeri",NA
+"Angophora costata","Angophora costata","Angophora costata","Angophora costata subsp. costata",NA
+"Angophora costata","Angophora costata","Angophora costata subsp. costata","Angophora costata subsp. costata",NA
+"Angophora bakeri subsp. crassifolia","Angophora crassifolia","Angophora bakeri subsp. crassifolia","Angophora bakeri subsp. crassifolia",NA
+"Angophora bakeri subsp. crassifolia","Angophora crassifolia","Angophora crassifolia","Angophora bakeri subsp. crassifolia",NA
+"Angophora costata subsp. euryphylla","Angophora euryphylla","Angophora costata subsp. euryphylla","Angophora costata subsp. euryphylla",NA
+"Angophora costata subsp. euryphylla","Angophora euryphylla","Angophora euryphylla","Angophora costata subsp. euryphylla",NA
+"Angophora bakeri subsp. bakeri","Angophora exul","Angophora exul","Angophora bakeri subsp. bakeri",NA
+"Angophora floribunda","Angophora floribunda","Angophora floribunda","Angophora floribunda",NA
+"","Angophora floribunda x paludosa","Angophora floribunda x paludosa","No match",NA
+"Angophora hispida","Angophora hispida","Angophora hispida","Angophora hispida",NA
+"Angophora inopina","Angophora inopina","Angophora inopina","Angophora inopina",NA
+"Angophora leiocarpa","Angophora leiocarpa","Angophora costata subsp. leiocarpa","Angophora costata subsp. leiocarpa",NA
+"Angophora leiocarpa","Angophora leiocarpa","Angophora leiocarpa","Angophora costata subsp. leiocarpa",NA
+"Angophora melanoxylon","Angophora melanoxylon","Angophora melanoxylon","Angophora melanoxylon",NA
+"Angophora bakeri subsp. bakeri ","Angophora paludosa","Angophora bakeri subsp. paludosa","Eucalyptus ovata subsp. ovata",NA
+"Angophora bakeri subsp. bakeri ","Angophora paludosa","Angophora paludosa","Eucalyptus ovata subsp. ovata",NA
+"Angophora robur","Angophora robur","Angophora robur","Angophora robur",NA
+"","Angophora robur x subvelutina","Angophora robur x subvelutina","No match",NA
+"Angophora subvelutina","Angophora subvelutina","Angophora subvelutina","Angophora subvelutina",NA
+"Angophora woodsiana","Angophora woodsiana","Angophora woodsiana","Angophora woodsiana",NA
+"Corymbia citriodora","Corymbia citriodora","Corymbia citriodora","Corymbia citriodora",NA
+"Corymbia citriodora","Corymbia citriodora","Corymbia citriodora subsp. variegata","Corymbia citriodora",NA
+"Corymbia clarksoniana","Corymbia dolichocarpa","Corymbia dolichocarpa","Corymbia clarksoniana",NA
+"Corymbia clarksoniana","Corymbia dolichocarpa","Eucalyptus dolichocarpa","Corymbia clarksoniana",NA
+"Corymbia clarksoniana","Corymbia dolichocarpa","Eucalyptus polycarpa","Corymbia clarksoniana",NA
+"Corymbia eximia","Corymbia eximia","Corymbia eximia","Corymbia eximia",NA
+"Corymbia eximia","Corymbia eximia","Eucalyptus eximia","Corymbia eximia",NA
+"Corymbia gummifera","Corymbia gummifera","Corymbia gummifera","Corymbia gummifera",NA
+"Corymbia gummifera","Corymbia gummifera","Eucalyptus gummifera","Corymbia gummifera",NA
+"Corymbia henryi","Corymbia henryi","Corymbia henryi","Corymbia henryi",NA
+"Corymbia henryi","Corymbia henryi","Eucalyptus henryi","Corymbia henryi",NA
+"Corymbia intermedia","Corymbia intermedia","Corymbia intermedia","Corymbia intermedia",NA
+"Corymbia intermedia","Corymbia intermedia","Eucalyptus intermedia","Corymbia intermedia",NA
+"Corymbia maculata","Corymbia maculata","Corymbia maculata","Corymbia maculata",NA
+"Corymbia maculata","Corymbia maculata","Eucalyptus maculata","Corymbia maculata",NA
+"","Corymbia maculata <--> variegata intergrade","Corymbia maculata <--> variegata intergrade","No match",NA
+"Corymbia tessellaris","Corymbia tessellaris","Corymbia tessellaris","Corymbia tessellaris",NA
+"Corymbia tessellaris","Corymbia tessellaris","Eucalyptus tessellaris","Corymbia tessellaris",NA
+"Corymbia torelliana","Corymbia torelliana","Corymbia torelliana","Corymbia torelliana",NA
+"Corymbia torelliana","Corymbia torelliana","Eucalyptus torelliana","Corymbia torelliana",NA
+"Corymbia trachyphloia","Corymbia trachyphloia","Corymbia trachyphloia","Corymbia trachyphloia",NA
+"Corymbia trachyphloia","Corymbia trachyphloia subsp. amphistomatica","Corymbia trachyphloia subsp. amphistomatica","Corymbia trachyphloia",NA
+"Corymbia trachyphloia","Corymbia trachyphloia subsp. trachyphloia","Corymbia trachyphloia subsp. trachyphloia","Corymbia trachyphloia",NA
+"Corymbia terminalis","Corymbia tumescens","Corymbia tumescens","Corymbia terminalis",NA
+"Corymbia terminalis","Corymbia tumescens","Eucalyptus opaca","Corymbia terminalis",NA
+"Corymbia terminalis","Corymbia tumescens","Eucalyptus terminalis","Corymbia terminalis",NA
+"Corymbia citriodora","Corymbia variegata","Corymbia variegata","Corymbia citriodora",NA
+"Eucalyptus acaciiformis","Eucalyptus acaciiformis","Eucalyptus acaciiformis","Eucalyptus acaciiformis",NA
+"Eucalyptus acmenoides","Eucalyptus acmenoides","Eucalyptus acmenioides","Eucalyptus acmenoides",NA
+"Eucalyptus acmenoides","Eucalyptus acmenoides","Eucalyptus acmenoides","Eucalyptus acmenoides",NA
+"Eucalyptus viridis","Eucalyptus aenea","Eucalyptus aenea","Eucalyptus viridis",NA
+"Eucalyptus agglomerata","Eucalyptus agglomerata","Eucalyptus agglomerata","Eucalyptus agglomerata",NA
+"Eucalyptus aggregata","Eucalyptus aggregata","Eucalyptus aggregata","Eucalyptus aggregata",NA
+"Eucalyptus albens","Eucalyptus albens","Eucalyptus albens","Eucalyptus albens",NA
+"","Eucalyptus albens <--> moluccana","Eucalyptus albens <--> moluccana","No match",NA
+"","Eucalyptus albens <--> moluccana","Eucalyptus albens x moluccana","No match",NA
+"","Eucalyptus albens x crebra","Eucalyptus albens x crebra","No match",NA
+"Eucalyptus amplifolia","Eucalyptus amplifolia","Eucalyptus amplifolia","Eucalyptus amplifolia subsp. sessiliflora",NA
+"Eucalyptus amplifolia subsp. amplifolia","Eucalyptus amplifolia subsp. amplifolia","Eucalyptus amplifolia subsp. amplifolia","Eucalyptus amplifolia subsp. amplifolia",NA
+"Eucalyptus amplifolia subsp. sessiliflora","Eucalyptus amplifolia subsp. sessiliflora","Eucalyptus amplifolia subsp. sessiliflora","Eucalyptus amplifolia subsp. sessiliflora",NA
+"Eucalyptus ancophila","Eucalyptus ancophila","Eucalyptus ancophila","Eucalyptus ancophila",NA
+"Eucalyptus andrewsii","Eucalyptus andrewsii","Eucalyptus andrewsii","Eucalyptus andrewsii subsp. andrewsii",NA
+"Eucalyptus andrewsii","Eucalyptus andrewsii","Eucalyptus andrewsii subsp. andrewsii","Eucalyptus andrewsii subsp. andrewsii",NA
+"Eucalyptus angophoroides","Eucalyptus angophoroides","Eucalyptus angophoroides","Eucalyptus angophoroides",NA
+"Eucalyptus apiculata","Eucalyptus apiculata","Eucalyptus apiculata","Eucalyptus apiculata",NA
+"Eucalyptus apothalassica","Eucalyptus apothalassica","Eucalyptus apothalassica","Eucalyptus apothalassica",NA
+"","Eucalyptus apothalassica x chloroclada","Eucalyptus apothalassica x chloroclada","No match",NA
+"Eucalyptus approximans","Eucalyptus approximans","Eucalyptus approximans","Eucalyptus approximans subsp. approximans",NA
+"Eucalyptus aquatica","Eucalyptus aquatica","Eucalyptus aquatica","Eucalyptus camphora subsp. camphora",NA
+"Eucalyptus badjensis","Eucalyptus badjensis","Eucalyptus badjensis","Eucalyptus badjensis",NA
+"Eucalyptus baeuerlenii","Eucalyptus baeuerlenii","Eucalyptus baeuerlenii","Eucalyptus baeuerlenii",NA
+"Eucalyptus baileyana","Eucalyptus baileyana","Eucalyptus baileyana","Eucalyptus baileyana",NA
+"Eucalyptus bakeri","Eucalyptus bakeri","Eucalyptus bakeri","Eucalyptus bakeri",NA
+"Eucalyptus bancroftii","Eucalyptus bancroftii","Eucalyptus bancroftii","Eucalyptus bancroftii",NA
+"Eucalyptus banksii","Eucalyptus banksii","Eucalyptus banksii","Eucalyptus banksii",NA
+"Eucalyptus baueriana","Eucalyptus baueriana","Eucalyptus bauerana","Eucalyptus baueriana",NA
+"Eucalyptus baueriana","Eucalyptus baueriana","Eucalyptus baueriana","Eucalyptus baueriana",NA
+"Eucalyptus baxteri","Eucalyptus baxteri","Eucalyptus baxteri","Eucalyptus baxteri",NA
+"Eucalyptus behriana","Eucalyptus behriana","Eucalyptus behriana","Eucalyptus behriana",NA
+"Eucalyptus bensonii","Eucalyptus bensonii","Eucalyptus bensonii","Eucalyptus bensonii",NA
+"Eucalyptus benthamii","Eucalyptus benthamii","Eucalyptus benthamii","Eucalyptus benthamii",NA
+"Eucalyptus beyeriana","Eucalyptus beyeriana","Eucalyptus beyeri","Eucalyptus beyeri",NA
+"Eucalyptus beyeriana","Eucalyptus beyeriana","Eucalyptus beyeriana","Eucalyptus beyeri",NA
+"Eucalyptus x beyeri","Eucalyptus beyeriana <--> crebra","Eucalyptus beyeriana <--> crebra","No match",NA
+"Eucalyptus globulus subsp. bicostata","Eucalyptus bicostata","Eucalyptus bicostata","Eucalyptus globulus subsp. bicostata",NA
+"Eucalyptus globulus subsp. bicostata","Eucalyptus bicostata","Eucalyptus globulus subsp. bicostata","Eucalyptus globulus subsp. bicostata",NA
+"Eucalyptus punctata","Eucalyptus biturbinata","Eucalyptus biturbinata","NA",NA
+"Eucalyptus punctata","Eucalyptus biturbinata","Eucalyptus punctata var. didyma","NA",NA
+"Eucalyptus blakelyi","Eucalyptus blakelyi","Eucalyptus blakelyi","Eucalyptus blakelyi",NA
+"","Eucalyptus blakelyi <--> dealbata","Eucalyptus blakelyi <--> dealbata","No match",NA
+"","Eucalyptus blakelyi <--> tereticornis","Eucalyptus blakelyi <--> tereticornis","No match",NA
+"","Eucalyptus blakelyi x chloroclada","Eucalyptus blakelyi x chloroclada","No match",NA
+"","Eucalyptus blakelyi x dwyeri","Eucalyptus blakelyi x dwyeri","No match",NA
+"","Eucalyptus blakelyi x melliodora","Eucalyptus blakelyi x melliodora","No match",NA
+"Eucalyptus blaxlandii","Eucalyptus blaxlandii","Eucalyptus blaxlandii","Eucalyptus blaxlandii",NA
+"Eucalyptus boliviana","Eucalyptus boliviana","Eucalyptus boliviana","Eucalyptus boliviana",NA
+"Eucalyptus bosistoana","Eucalyptus bosistoana","Eucalyptus bosistoana","Eucalyptus bosistoana",NA
+"Eucalyptus botryoides","Eucalyptus botryoides","Eucalyptus botryoides","Eucalyptus botryoides",NA
+"","Eucalyptus botryoides <--> saligna","Eucalyptus botryoides <--> saligna","No match",NA
+"Eucalyptus bridgesiana","Eucalyptus bridgesiana","Eucalyptus bridgesiana","Eucalyptus bridgesiana",NA
+"Eucalyptus deanei","Eucalyptus brunnea","Eucalyptus brunnea","NA",NA
+"Eucalyptus burgessiana","Eucalyptus burgessiana","Eucalyptus burgessiana","Eucalyptus burgessiana",NA
+"Eucalyptus caleyi","Eucalyptus caleyi","Eucalyptus caleyi","NA",NA
+"Eucalyptus caleyi subsp. caleyi","Eucalyptus caleyi subsp. caleyi","Eucalyptus caleyi subsp. caleyi","Eucalyptus caleyi subsp. caleyi",NA
+"Eucalyptus caleyi subsp. ovendenii","Eucalyptus caleyi subsp. ovendenii","Eucalyptus caleyi subsp. ovendenii","Eucalyptus caleyi subsp. ovendenii",NA
+"Eucalyptus caliginosa","Eucalyptus caliginosa","Eucalyptus caliginosa","Eucalyptus caliginosa",NA
+"","Eucalyptus caliginosa <--> laevopinea","Eucalyptus caliginosa <--> laevopinea","No match",NA
+"Eucalyptus calycogona","Eucalyptus calycogona","Eucalyptus calycogona","Eucalyptus calycogona subsp. trachybasis",NA
+"Eucalyptus camaldulensis","Eucalyptus camaldulensis","Eucalyptus camaldulensis","Eucalyptus camaldulensis subsp. camaldulensis",NA
+"Eucalyptus camaldulensis","Eucalyptus camaldulensis","Eucalyptus camaldulensis subsp. camaldulensis","Eucalyptus camaldulensis subsp. camaldulensis",NA
+"","Eucalyptus camaldulensis <--> chloroclada","Eucalyptus camaldulensis <--> chloroclada","No match",NA
+"Eucalyptus cameronii","Eucalyptus cameronii","Eucalyptus cameronii","Eucalyptus cameronii",NA
+"","Eucalyptus cameronii x mckiei","Eucalyptus cameronii x mckiei","No match",NA
+"Eucalyptus camfieldii","Eucalyptus camfieldii","Eucalyptus camfieldii","Eucalyptus camfieldii",NA
+"Eucalyptus campanulata","Eucalyptus campanulata","Eucalyptus andrewsii subsp. campanulata","Eucalyptus andrewsii subsp. campanulata",NA
+"Eucalyptus campanulata","Eucalyptus campanulata","Eucalyptus campanulata","Eucalyptus andrewsii subsp. campanulata",NA
+"Eucalyptus camphora","Eucalyptus camphora","Eucalyptus camphora","NA",NA
+"Eucalyptus camphora subsp. camphora","Eucalyptus camphora subsp. camphora","Eucalyptus camphora subsp. camphora","Eucalyptus camphora subsp. camphora",NA
+"Eucalyptus camphora subsp. humeana","Eucalyptus camphora subsp. humeana","Eucalyptus camphora subsp. humeana","Eucalyptus camphora subsp. humeana",NA
+"Eucalyptus camphora subsp. camphora","Eucalyptus camphora subsp. relicta","Eucalyptus camphora subsp. relicta","NA",NA
+"Eucalyptus canaliculata","Eucalyptus canaliculata","Eucalyptus canaliculata","Eucalyptus canaliculata",NA
+"","Eucalyptus canaliculata <--> punctata","Eucalyptus canaliculata <--> punctata","No match",NA
+"Eucalyptus macrorhyncha subsp. cannonii","Eucalyptus cannonii","Eucalyptus cannonii","Eucalyptus macrorhyncha subsp. cannonii",NA
+"Eucalyptus macrorhyncha subsp. cannonii","Eucalyptus cannonii","Eucalyptus macrorhyncha subsp. cannonii","Eucalyptus macrorhyncha subsp. cannonii",NA
+"Eucalyptus macrorhyncha subsp. cannonii","Eucalyptus cannonii <--> macrorhyncha","Eucalyptus cannonii <--> macrorhyncha","No match",NA
+"Eucalyptus canobolensis","Eucalyptus canobolensis","Eucalyptus canobolensis","Eucalyptus canobolensis",NA
+"Eucalyptus capitellata","Eucalyptus capitellata","Eucalyptus capitellata","Eucalyptus capitellata",NA
+"Eucalyptus carnea","Eucalyptus carnea","Eucalyptus carnea","Eucalyptus carnea",NA
+"Eucalyptus castrensis","Eucalyptus castrensis","Eucalyptus castrensis","NA",NA
+"Eucalyptus chapmaniana","Eucalyptus chapmaniana","Eucalyptus chapmaniana","Eucalyptus chapmaniana",NA
+"Eucalyptus chloroclada","Eucalyptus chloroclada","Eucalyptus chloroclada","Eucalyptus chloroclada",NA
+"Eucalyptus cinerea","Eucalyptus cinerea","Eucalyptus cinerea","NA",NA
+"Eucalyptus cladocalyx","Eucalyptus cladocalyx","Eucalyptus cladocalyx","Eucalyptus cladocalyx",NA
+"Eucalyptus codonocarpa","Eucalyptus codonocarpa","Eucalyptus codonocarpa","Eucalyptus approximans subsp. codonocarpa",NA
+"Eucalyptus conica","Eucalyptus conica","Eucalyptus conica","Eucalyptus conica",NA
+"","Eucalyptus conjuncta","Eucalyptus conjuncta","NA",NA
+"Eucalyptus consideniana","Eucalyptus consideniana","Eucalyptus consideniana","Eucalyptus consideniana",NA
+"Eucalyptus conspicua","Eucalyptus conspicua","Eucalyptus conspicua","Eucalyptus conspicua subsp. conspicua",NA
+"Eucalyptus coolabah","Eucalyptus coolabah","Eucalyptus coolabah","Eucalyptus coolabah",NA
+"Eucalyptus coolabah","Eucalyptus coolabah","Eucalyptus microtheca","Eucalyptus coolabah",NA
+"Eucalyptus coolabah","Eucalyptus coolabah subsp. arida","Eucalyptus coolabah subsp. arida","NA",NA
+"Eucalyptus coolabah","Eucalyptus coolabah subsp. coolabah","Eucalyptus coolabah subsp. coolabah","NA",NA
+"Eucalyptus corticosa","Eucalyptus corticosa","Eucalyptus aromaphloia","Eucalyptus corticosa",NA
+"Eucalyptus corticosa","Eucalyptus corticosa","Eucalyptus corticosa","Eucalyptus corticosa",NA
+"Eucalyptus incrassata","Eucalyptus costata subsp. murrayana","Eucalyptus costata","Eucalyptus incrassata",NA
+"Eucalyptus incrassata","Eucalyptus costata subsp. murrayana","Eucalyptus costata subsp. murrayana","Eucalyptus incrassata",NA
+"Eucalyptus incrassata","Eucalyptus costata subsp. murrayana","Eucalyptus incrassata","Eucalyptus incrassata",NA
+"Eucalyptus crebra","Eucalyptus crebra","Eucalyptus crebra","Eucalyptus crebra",NA
+"","Eucalyptus crebra x fibrosa","Eucalyptus crebra x fibrosa","No match",NA
+"","Eucalyptus crebra x microcarpa","Eucalyptus crebra x microcarpa","No match",NA
+"","Eucalyptus crebra x nubila","Eucalyptus crebra x nubila","No match",NA
+"","Eucalyptus crebra x siderophloia","Eucalyptus crebra x siderophloia","No match",NA
+"Eucalyptus crenulata","Eucalyptus crenulata","Eucalyptus crenulata","Eucalyptus crenulata",NA
+"Eucalyptus croajingolensis","Eucalyptus croajingolensis","Eucalyptus croajingolensis","Eucalyptus croajingolensis",NA
+"Eucalyptus cunninghamii","Eucalyptus cunninghamii","Eucalyptus cunninghamii","Eucalyptus cunninghamii",NA
+"Eucalyptus cunninghamii","Eucalyptus cunninghamii","Eucalyptus rupicola","Eucalyptus cunninghamii",NA
+"Eucalyptus cyanophylla","Eucalyptus cyanophylla","Eucalyptus cyanophylla","Eucalyptus cyanophylla",NA
+"Eucalyptus cypellocarpa","Eucalyptus cypellocarpa","Eucalyptus cypellocarpa","Eucalyptus cypellocarpa",NA
+"Eucalyptus dalrympleana","Eucalyptus dalrympleana","Eucalyptus dalrympleana","NA",NA
+"Eucalyptus dalrympleana subsp. dalrympleana","Eucalyptus dalrympleana subsp. dalrympleana","Eucalyptus dalrympleana subsp. dalrympleana","Eucalyptus dalrympleana subsp. dalrympleana",NA
+"Eucalyptus dalrympleana subsp. heptantha","Eucalyptus dalrympleana subsp. heptantha","Eucalyptus dalrympleana subsp. heptantha","Eucalyptus dalrympleana subsp. heptantha",NA
+"","Eucalyptus dalrympleana x viminalis","Eucalyptus dalrympleana x viminalis","No match",NA
+"Eucalyptus dawsonii","Eucalyptus dawsonii","Eucalyptus dawsonii","Eucalyptus dawsonii",NA
+"Eucalyptus dealbata","Eucalyptus dealbata","Eucalyptus dealbata","Eucalyptus dealbata",NA
+"","Eucalyptus dealbata x dwyeri","Eucalyptus dealbata x dwyeri","No match",NA
+"Eucalyptus deanei","Eucalyptus deanei","Eucalyptus deanei","Eucalyptus deanei",NA
+"Eucalyptus pauciflora subsp. debeuzevillei","Eucalyptus debeuzevillei","Eucalyptus debeuzevillei","Eucalyptus pauciflora subsp. debeuzevillei",NA
+"Eucalyptus pauciflora subsp. debeuzevillei","Eucalyptus debeuzevillei","Eucalyptus pauciflora subsp. debeuzevillei","Eucalyptus pauciflora subsp. debeuzevillei",NA
+"Eucalyptus delegatensis subsp. delegatensis","Eucalyptus delegatensis subsp. delegatensis","Eucalyptus delegatensis","Eucalyptus delegatensis subsp. delegatensis",NA
+"Eucalyptus delegatensis subsp. delegatensis","Eucalyptus delegatensis subsp. delegatensis","Eucalyptus delegatensis subsp. delegatensis","Eucalyptus delegatensis subsp. delegatensis",NA
+"Eucalyptus dendromorpha","Eucalyptus dendromorpha","Eucalyptus dendromorpha","Eucalyptus dendromorpha",NA
+"Eucalyptus moorei subsp. moorei","Eucalyptus dissita","Eucalyptus dissita","Eucalyptus moorei subsp. moorei",NA
+"Eucalyptus dives","Eucalyptus dives","Eucalyptus dives","Eucalyptus dives",NA
+"","Eucalyptus dives x pauciflora","Eucalyptus dives x pauciflora","No match",NA
+"","Eucalyptus dives x rossii","Eucalyptus dives x rossii","No match",NA
+"Eucalyptus dorrigoensis","Eucalyptus dorrigoensis","Eucalyptus dorrigoensis","Eucalyptus dorrigoensis",NA
+"Eucalyptus dumosa","Eucalyptus dumosa","Eucalyptus dumosa","Eucalyptus dumosa",NA
+"Eucalyptus dunnii","Eucalyptus dunnii","Eucalyptus dunnii","Eucalyptus dunnii",NA
+"Eucalyptus dwyeri","Eucalyptus dwyeri","Eucalyptus dwyeri","Eucalyptus dwyeri",NA
+"Eucalyptus elata","Eucalyptus elata","Eucalyptus elata","Eucalyptus elata",NA
+"Eucalyptus elegans","Eucalyptus elegans","Eucalyptus elegans","NA",NA
+"Eucalyptus elliptica","Eucalyptus elliptica","Eucalyptus elliptica","Eucalyptus elliptica",NA
+"Eucalyptus eugenioides","Eucalyptus eugenioides","Eucalyptus eugenioides","Eucalyptus eugenioides",NA
+"Eucalyptus eugenioides","Eucalyptus eugenioides","Eucalyptus nigra","Eucalyptus eugenioides",NA
+"","Eucalyptus eugenioides x globoidea","Eucalyptus eugenioides x globoidea","No match",NA
+"Eucalyptus expressa","Eucalyptus expressa","Eucalyptus expressa","Eucalyptus expressa",NA
+"Eucalyptus exserta","Eucalyptus exserta","Eucalyptus exserta","Eucalyptus exserta",NA
+"Eucalyptus fastigata","Eucalyptus fastigata","Eucalyptus fastigata","Eucalyptus fastigata",NA
+"Eucalyptus paniculata","Eucalyptus fergusonii","Eucalyptus fergusonii","NA",NA
+"Eucalyptus paniculata","Eucalyptus fergusonii subsp. dorsiventralis","Eucalyptus fergusonii subsp. dorsiventralis","Eucalyptus sp. Dorsiventralis",NA
+"Eucalyptus paniculata","Eucalyptus fergusonii subsp. fergusonii","Eucalyptus fergusonii subsp. fergusonii","NA",NA
+"Eucalyptus fibrosa","Eucalyptus fibrosa","Eucalyptus fibrosa","Eucalyptus fibrosa subsp. fibrosa",NA
+"Eucalyptus fibrosa","Eucalyptus fibrosa","Eucalyptus fibrosa subsp. fibrosa","Eucalyptus fibrosa subsp. fibrosa",NA
+"","Eucalyptus fibrosa x punctata","Eucalyptus fibrosa x punctata","No match",NA
+"Eucalyptus fracta","Eucalyptus fracta","Eucalyptus fracta","NA",NA
+"Eucalyptus fraxinoides","Eucalyptus fraxinoides","Eucalyptus fraxinoides","Eucalyptus fraxinoides",NA
+"Eucalyptus fusiformis","Eucalyptus fusiformis","Eucalyptus fusiformis","Eucalyptus fusiformis",NA
+"Eucalyptus gillii","Eucalyptus gillii","Eucalyptus gillii","Eucalyptus gillii",NA
+"Eucalyptus glaucescens","Eucalyptus glaucescens","Eucalyptus glaucescens","Eucalyptus glaucescens",NA
+"Eucalyptus glaucina","Eucalyptus glaucina","Eucalyptus glaucina","Eucalyptus glaucina",NA
+"Eucalyptus globoidea","Eucalyptus globoidea","Eucalyptus globoidea","Eucalyptus globoidea",NA
+"Eucalyptus globulus","Eucalyptus globulus","Eucalyptus globulus","NA",NA
+"Eucalyptus goniocalyx","Eucalyptus goniocalyx","Eucalyptus goniocalyx","NA",NA
+"Eucalyptus goniocalyx subsp. goniocalyx","Eucalyptus goniocalyx subsp. goniocalyx","Eucalyptus goniocalyx subsp. goniocalyx","Eucalyptus goniocalyx subsp. goniocalyx",NA
+"Eucalyptus gracilis","Eucalyptus gracilis","Eucalyptus gracilis","Eucalyptus gracilis",NA
+"Eucalyptus grandis","Eucalyptus grandis","Eucalyptus grandis","Eucalyptus grandis",NA
+"","Eucalyptus grandis x saligna","Eucalyptus grandis x saligna","No match",NA
+"Eucalyptus gregsoniana","Eucalyptus gregsoniana","Eucalyptus gregsoniana","Eucalyptus gregsoniana",NA
+"Eucalyptus gunnii","Eucalyptus gunnii","Eucalyptus gunnii","Eucalyptus gunnii",NA
+"Eucalyptus haemastoma","Eucalyptus haemastoma","Eucalyptus haemastoma","Eucalyptus haemastoma",NA
+"","Eucalyptus haemastoma x racemosa","Eucalyptus haemastoma x racemosa","No match",NA
+"Eucalyptus hypostomatica","Eucalyptus hypostomatica","Eucalyptus hypostomatica","Eucalyptus hypostomatica",NA
+"Eucalyptus ignorabilis","Eucalyptus ignorabilis","Eucalyptus ignorabilis","Eucalyptus ignorabilis",NA
+"Eucalyptus imitans","Eucalyptus imitans","Eucalyptus imitans","Eucalyptus imitans",NA
+"Eucalyptus interstans","Eucalyptus interstans","Eucalyptus interstans","Eucalyptus interstans",NA
+"Eucalyptus intertexta","Eucalyptus intertexta","Eucalyptus intertexta","Eucalyptus intertexta",NA
+"Eucalyptus kartzoffiana","Eucalyptus kartzoffiana","Eucalyptus kartzoffiana","Eucalyptus kartzoffiana",NA
+"Eucalyptus kybeanensis","Eucalyptus kybeanensis","Eucalyptus kybeanensis","Eucalyptus kybeanensis",NA
+"Eucalyptus lacrimans","Eucalyptus lacrimans","Eucalyptus lacrimans","Eucalyptus lacrimans",NA
+"Eucalyptus laevopinea","Eucalyptus laevopinea","Eucalyptus laevopinea","Eucalyptus laevopinea",NA
+"Eucalyptus langleyi","Eucalyptus langleyi","Eucalyptus langleyi","Eucalyptus langleyi",NA
+"Eucalyptus apiculata","Eucalyptus laophila","Eucalyptus laophila","NA",NA
+"Eucalyptus largeana","Eucalyptus largeana","Eucalyptus largeana","Eucalyptus largeana",NA
+"Eucalyptus largiflorens","Eucalyptus largiflorens","Eucalyptus largiflorens","Eucalyptus largiflorens",NA
+"Eucalyptus moorei subsp. moorei","Eucalyptus latiuscula","Eucalyptus latiuscula","Eucalyptus moorei subsp. moorei",NA
+"Eucalyptus leptophylla","Eucalyptus leptophylla","Eucalyptus foecunda","Eucalyptus leptophylla",NA
+"Eucalyptus leptophylla","Eucalyptus leptophylla","Eucalyptus leptophylla","Eucalyptus leptophylla",NA
+"Eucalyptus leucoxylon subsp. pruinosa","Eucalyptus leucoxylon subsp. pruinosa","Eucalyptus leucoxylon","Eucalyptus leucoxylon subsp. pruinosa",NA
+"Eucalyptus leucoxylon subsp. pruinosa","Eucalyptus leucoxylon subsp. pruinosa","Eucalyptus leucoxylon subsp. pruinosa","Eucalyptus leucoxylon subsp. pruinosa",NA
+"Eucalyptus ligustrina","Eucalyptus ligustrina","Eucalyptus ligustrina","Eucalyptus ligustrina",NA
+"Eucalyptus longifolia","Eucalyptus longifolia","Eucalyptus longifolia","Eucalyptus longifolia",NA
+"Eucalyptus luehmanniana","Eucalyptus luehmanniana","Eucalyptus luehmanniana","Eucalyptus luehmanniana",NA
+"Eucalyptus macarthurii","Eucalyptus macarthurii","Eucalyptus macarthurii","Eucalyptus macarthurii",NA
+"Eucalyptus mackintii","Eucalyptus mackintii","Eucalyptus mackintii","Eucalyptus mackintii",NA
+"Eucalyptus macrorhyncha","Eucalyptus macrorhyncha","Eucalyptus macrorhyncha","Eucalyptus macrorhyncha subsp. macrorhyncha",NA
+"Eucalyptus macrorhyncha","Eucalyptus macrorhyncha","Eucalyptus macrorhyncha subsp. macrorhyncha","Eucalyptus macrorhyncha subsp. macrorhyncha",NA
+"Eucalyptus magnificata","Eucalyptus magnificata","Eucalyptus magnificata","Eucalyptus magnificata",NA
+"Eucalyptus globulus subsp. maidenii","Eucalyptus maidenii","Eucalyptus globulus subsp. maidenii","Eucalyptus globulus subsp. maidenii",NA
+"Eucalyptus globulus subsp. maidenii","Eucalyptus maidenii","Eucalyptus maidenii","Eucalyptus globulus subsp. maidenii",NA
+"Eucalyptus major","Eucalyptus major","Eucalyptus major","Eucalyptus major",NA
+"Eucalyptus malacoxylon","Eucalyptus malacoxylon","Eucalyptus malacoxylon","Eucalyptus malacoxylon",NA
+"Eucalyptus mannifera","Eucalyptus mannifera","Eucalyptus mannifera","NA",NA
+"Eucalyptus mannifera subsp. gullickii","Eucalyptus mannifera subsp. gullickii","Eucalyptus mannifera subsp. gullickii","Eucalyptus mannifera subsp. gullickii",NA
+"Eucalyptus mannifera subsp. mannifera","Eucalyptus mannifera subsp. mannifera","Eucalyptus mannifera subsp. maculosa","Eucalyptus mannifera subsp. mannifera",NA
+"Eucalyptus mannifera subsp. mannifera","Eucalyptus mannifera subsp. mannifera","Eucalyptus mannifera subsp. mannifera","Eucalyptus mannifera subsp. mannifera",NA
+"Eucalyptus mckieana","Eucalyptus mckieana","Eucalyptus mckieana","Eucalyptus mckieana",NA
+"Eucalyptus melanophloia","Eucalyptus melanophloia","Eucalyptus melanophloia","Eucalyptus melanophloia subsp. melanophloia",NA
+"Eucalyptus melliodora","Eucalyptus melliodora","Eucalyptus melliodora","Eucalyptus melliodora",NA
+"Eucalyptus michaeliana","Eucalyptus michaeliana","Eucalyptus michaeliana","Eucalyptus michaeliana",NA
+"Eucalyptus microcarpa","Eucalyptus microcarpa","Eucalyptus microcarpa","Eucalyptus microcarpa",NA
+"","Eucalyptus microcarpa <--> viridis","Eucalyptus microcarpa <--> viridis","No match",NA
+"","Eucalyptus microcarpa x pilligaensis","Eucalyptus microcarpa x pilligaensis","No match",NA
+"Eucalyptus microcorys","Eucalyptus microcorys","Eucalyptus microcorys","Eucalyptus microcorys",NA
+"Eucalyptus moluccana","Eucalyptus moluccana","Eucalyptus moluccana","Eucalyptus moluccana",NA
+"Eucalyptus moorei","Eucalyptus moorei","Eucalyptus moorei","NA",NA
+"Eucalyptus morrisii","Eucalyptus morrisii","Eucalyptus morrisii","Eucalyptus morrisii",NA
+"Eucalyptus muelleriana","Eucalyptus muelleriana","Eucalyptus muelleriana","Eucalyptus muelleriana",NA
+"Eucalyptus multicaulis","Eucalyptus multicaulis","Eucalyptus multicaulis","Eucalyptus multicaulis",NA
+"Eucalyptus nandewarica","Eucalyptus nandewarica","Eucalyptus nandewarica","Eucalyptus nandewarica",NA
+"Eucalyptus nicholii","Eucalyptus nicholii","Eucalyptus nicholii","Eucalyptus nicholii",NA
+"Eucalyptus pauciflora subsp. niphophila","Eucalyptus niphophila","Eucalyptus niphophila","Eucalyptus pauciflora subsp. niphophila",NA
+"Eucalyptus pauciflora subsp. niphophila","Eucalyptus niphophila","Eucalyptus pauciflora subsp. niphophila","Eucalyptus pauciflora subsp. niphophila",NA
+"Eucalyptus nitens","Eucalyptus nitens","Eucalyptus nitens","Eucalyptus nitens",NA
+"Eucalyptus nobilis","Eucalyptus nobilis","Eucalyptus nobilis","Eucalyptus nobilis",NA
+"","Eucalyptus nobilis <--> viminalis","Eucalyptus nobilis <--> viminalis","No match",NA
+"Eucalyptus nortonii","Eucalyptus nortonii","Eucalyptus nortonii","Eucalyptus nortonii",NA
+"Eucalyptus notabilis","Eucalyptus notabilis","Eucalyptus notabilis","Eucalyptus notabilis",NA
+"Eucalyptus nova-anglica","Eucalyptus nova-anglica","Eucalyptus nova-anglica","Eucalyptus nova-anglica",NA
+"Eucalyptus fibrosa subsp. nubilis","Eucalyptus nubila","Eucalyptus fibrosa subsp. nubila","Eucalyptus fibrosa subsp. nubila",NA
+"Eucalyptus fibrosa subsp. nubilis","Eucalyptus nubila","Eucalyptus nubila","Eucalyptus fibrosa subsp. nubila",NA
+"Eucalyptus obliqua","Eucalyptus obliqua","Eucalyptus obliqua","Eucalyptus obliqua",NA
+"Eucalyptus globoidea","Eucalyptus oblonga","Eucalyptus oblonga","NA",NA
+"Eucalyptus burgessiana","Eucalyptus obstans","Eucalyptus obstans","Eucalyptus obtusiflora",NA
+"Eucalyptus burgessiana","Eucalyptus obstans","Eucalyptus obtusiflora","Eucalyptus obtusiflora",NA
+"Eucalyptus ochrophloia","Eucalyptus ochrophloia","Eucalyptus ochrophloia","Eucalyptus ochrophloia",NA
+"Eucalyptus oleosa subsp. oleosa","Eucalyptus oleosa subsp. oleosa","Eucalyptus oleosa","Eucalyptus oleosa subsp. oleosa",NA
+"Eucalyptus oleosa subsp. oleosa","Eucalyptus oleosa subsp. oleosa","Eucalyptus oleosa subsp. oleosa","Eucalyptus oleosa subsp. oleosa",NA
+"Eucalyptus olida","Eucalyptus olida","Eucalyptus olida","Eucalyptus olida",NA
+"Eucalyptus olsenii","Eucalyptus olsenii","Eucalyptus olsenii","Eucalyptus olsenii",NA
+"Eucalyptus ophitica","Eucalyptus ophitica","Eucalyptus ophitica","Eucalyptus ophitica",NA
+"Eucalyptus oreades","Eucalyptus oreades","Eucalyptus oreades","Eucalyptus oreades",NA
+"Eucalyptus cypellocarpa","Eucalyptus oresbia","Eucalyptus oresbia","NA",NA
+"Eucalyptus ovata","Eucalyptus ovata","Eucalyptus ovata","NA",NA
+"Eucalyptus pachycalyx subsp. banyabba","Eucalyptus pachycalyx subsp. banyabba","Eucalyptus pachycalyx","NA",NA
+"Eucalyptus pachycalyx subsp. banyabba","Eucalyptus pachycalyx subsp. banyabba","Eucalyptus pachycalyx subsp. banyabba","Eucalyptus pachycalyx subsp. waajensis",NA
+"Eucalyptus paliformis","Eucalyptus paliformis","Eucalyptus paliformis","Eucalyptus paliformis",NA
+"Eucalyptus panda","Eucalyptus panda","Eucalyptus panda","Eucalyptus panda",NA
+"Eucalyptus paniculata","Eucalyptus paniculata","Eucalyptus paniculata","Eucalyptus paniculata",NA
+"Eucalyptus paniculata","Eucalyptus paniculata subsp. matutina","Eucalyptus paniculata subsp. matutina","NA",NA
+"Eucalyptus paniculata","Eucalyptus paniculata subsp. paniculata","Eucalyptus paniculata subsp. paniculata","NA",NA
+"Eucalyptus parramattensis","Eucalyptus parramattensis","Eucalyptus parramattensis","Eucalyptus parramattensis subsp. parramattensis",NA
+"Eucalyptus parramattensis subsp. decadens","Eucalyptus parramattensis subsp. decadens","Eucalyptus parramattensis subsp. decadens","Eucalyptus parramattensis subsp. decadens",NA
+"Eucalyptus parramattensis subsp. parramattensis","Eucalyptus parramattensis subsp. parramattensis","Eucalyptus parramattensis subsp. parramattensis","Eucalyptus parramattensis subsp. parramattensis",NA
+"Eucalyptus parvula","Eucalyptus parvula","Eucalyptus parvifolia","Eucalyptus parvula",NA
+"Eucalyptus parvula","Eucalyptus parvula","Eucalyptus parvula","Eucalyptus parvula",NA
+"Eucalyptus pauciflora","Eucalyptus pauciflora","Eucalyptus pauciflora","Eucalyptus pauciflora subsp. pauciflora",NA
+"Eucalyptus pauciflora","Eucalyptus pauciflora","Eucalyptus pauciflora subsp. pauciflora","Eucalyptus pauciflora subsp. pauciflora",NA
+"Eucalyptus perriniana","Eucalyptus perriniana","Eucalyptus perriniana","Eucalyptus perriniana",NA
+"Eucalyptus woollsiana","Eucalyptus pilligaensis","Eucalyptus pilligaensis","Eucalyptus woollsiana",NA
+"Eucalyptus pilularis","Eucalyptus pilularis","Eucalyptus pilularis","Eucalyptus pilularis",NA
+"Eucalyptus piperita","Eucalyptus piperita","Eucalyptus piperita","NA",NA
+"Eucalyptus piperita","Eucalyptus piperita","Eucalyptus piperita subsp. piperita","Eucalyptus piperita subsp. piperita",NA
+"Eucalyptus piperita","Eucalyptus piperita","Eucalyptus piperita subsp. urceolaris","Eucalyptus piperita subsp. urceolaris",NA
+"Eucalyptus placita","Eucalyptus placita","Eucalyptus placita","Eucalyptus placita",NA
+"Eucalyptus planchoniana","Eucalyptus planchoniana","Eucalyptus planchoniana","Eucalyptus planchoniana",NA
+"Eucalyptus polyanthemos","Eucalyptus polyanthemos","Eucalyptus polyanthemos","NA",NA
+"Eucalyptus polyanthemos","Eucalyptus polyanthemos","Eucalyptus polyanthemos subsp. tarda","NA",NA
+"Eucalyptus polyanthemos subsp. polyanthemos","Eucalyptus polyanthemos subsp. polyanthemos","Eucalyptus polyanthemos subsp. polyanthemos","Eucalyptus polyanthemos subsp. polyanthemos",NA
+"Eucalyptus polyanthemos subsp. vestita","Eucalyptus polyanthemos subsp. vestita","Eucalyptus polyanthemos subsp. vestita","Eucalyptus polyanthemos subsp. vestita",NA
+"Eucalyptus polybractea","Eucalyptus polybractea","Eucalyptus polybractea","Eucalyptus polybractea",NA
+"Eucalyptus populnea","Eucalyptus populnea subsp. bimbil","Eucalyptus populnea","Eucalyptus populnea",NA
+"Eucalyptus populnea","Eucalyptus populnea subsp. bimbil","Eucalyptus populnea subsp. bimbil","Eucalyptus populnea",NA
+"Eucalyptus porosa","Eucalyptus porosa","Eucalyptus porosa","Eucalyptus porosa",NA
+"Eucalyptus mannifera subsp. praecox","Eucalyptus praecox","Eucalyptus mannifera subsp. praecox","Eucalyptus mannifera subsp. praecox",NA
+"Eucalyptus mannifera subsp. praecox","Eucalyptus praecox","Eucalyptus praecox","Eucalyptus mannifera subsp. praecox",NA
+"Eucalyptus prava","Eucalyptus prava","Eucalyptus prava","Eucalyptus prava",NA
+"Eucalyptus youmanii","Eucalyptus prominula","Eucalyptus prominula","Eucalyptus prominula",NA
+"Eucalyptus propinqua","Eucalyptus propinqua","Eucalyptus propinqua","Eucalyptus propinqua",NA
+"Eucalyptus psammitica","Eucalyptus psammitica","Eucalyptus psammitica","Eucalyptus psammitica",NA
+"Eucalyptus globulus subsp. pseudoglobulus","Eucalyptus pseudoglobulus","Eucalyptus pseudoglobulus","Eucalyptus globulus subsp. pseudoglobulus",NA
+"Eucalyptus pulverulenta","Eucalyptus pulverulenta","Eucalyptus pulverulenta","Eucalyptus pulverulenta",NA
+"Eucalyptus pumila","Eucalyptus pumila","Eucalyptus pumila","Eucalyptus pumila",NA
+"Eucalyptus punctata","Eucalyptus punctata","Eucalyptus punctata","Eucalyptus punctata",NA
+"Eucalyptus punctata","Eucalyptus punctata subsp. punctata","Eucalyptus punctata subsp. punctata","NA",NA
+"Eucalyptus pyrocarpa","Eucalyptus pyrocarpa","Eucalyptus pyrocarpa","Eucalyptus pyrocarpa",NA
+"Eucalyptus quadrangulata","Eucalyptus quadrangulata","Eucalyptus quadrangulata","Eucalyptus quadrangulata",NA
+"Eucalyptus quinniorum","Eucalyptus quinniorum","Eucalyptus quinniorum","NA",NA
+"Eucalyptus racemosa","Eucalyptus racemosa","Eucalyptus racemosa","Eucalyptus racemosa subsp. racemosa",NA
+"Eucalyptus racemosa","Eucalyptus racemosa","Eucalyptus racemosa subsp. racemosa","Eucalyptus racemosa subsp. racemosa",NA
+"Eucalyptus radiata","Eucalyptus radiata","Eucalyptus radiata","NA",NA
+"Eucalyptus radiata subsp. radiata","Eucalyptus radiata subsp. radiata","Eucalyptus radiata subsp. radiata","Eucalyptus radiata subsp. radiata",NA
+"Eucalyptus radiata subsp. sejuncta","Eucalyptus radiata subsp. sejuncta","Eucalyptus radiata subsp. sejuncta","Eucalyptus radiata subsp. sejuncta",NA
+"Eucalyptus tenella","Eucalyptus ralla","Eucalyptus ralla","NA",NA
+"Eucalyptus recurva","Eucalyptus recurva","Eucalyptus recurva","Eucalyptus recurva",NA
+"Eucalyptus resinifera","Eucalyptus resinifera","Eucalyptus resinifera","NA",NA
+"Eucalyptus resinifera subsp. hemilampra","Eucalyptus resinifera subsp. hemilampra","Eucalyptus resinifera subsp. hemilampra","Eucalyptus resinifera subsp. hemilampra",NA
+"Eucalyptus resinifera subsp. resinifera","Eucalyptus resinifera subsp. resinifera","Eucalyptus resinifera subsp. resinifera","Eucalyptus resinifera subsp. resinifera",NA
+"Eucalyptus retinens","Eucalyptus retinens","Eucalyptus retinens","Eucalyptus retinens",NA
+"Eucalyptus radiata subsp. robertsonii","Eucalyptus robertsonii","Eucalyptus radiata subsp. robertsonii","Eucalyptus radiata subsp. robertsonii",NA
+"Eucalyptus radiata subsp. robertsonii","Eucalyptus robertsonii","Eucalyptus robertsonii","Eucalyptus radiata subsp. robertsonii",NA
+"Eucalyptus radiata subsp. robertsonii","Eucalyptus robertsonii subsp. hemisphaerica","Eucalyptus robertsonii subsp. hemisphaerica","NA",NA
+"Eucalyptus radiata subsp. robertsonii","Eucalyptus robertsonii subsp. robertsonii","Eucalyptus robertsonii subsp. robertsonii","NA",NA
+"Eucalyptus robusta","Eucalyptus robusta","Eucalyptus robusta","Eucalyptus robusta",NA
+"","Eucalyptus robusta x saligna","Eucalyptus robusta x saligna","No match",NA
+"Eucalyptus rossii","Eucalyptus rossii","Eucalyptus racemosa subsp. rossii","Eucalyptus racemosa subsp. rossii",NA
+"Eucalyptus rossii","Eucalyptus rossii","Eucalyptus rossii","Eucalyptus racemosa subsp. rossii",NA
+"Eucalyptus rubida","Eucalyptus rubida","Eucalyptus rubida","NA",NA
+"Eucalyptus rubida subsp. barbigerorum","Eucalyptus rubida subsp. barbigerorum","Eucalyptus rubida subsp. barbigerorum","Eucalyptus rubida subsp. barbigerorum",NA
+"Eucalyptus rubida subsp. rubida","Eucalyptus rubida subsp. rubida","Eucalyptus rubida subsp. rubida","Eucalyptus rubida subsp. rubida",NA
+"","Eucalyptus rubida x viminalis","Eucalyptus rubida x viminalis","No match",NA
+"Eucalyptus rudderi","Eucalyptus rudderi","Eucalyptus rudderi","Eucalyptus rudderi",NA
+"Eucalyptus rummeryi","Eucalyptus rummeryi","Eucalyptus rummeryi","Eucalyptus rummeryi",NA
+"Eucalyptus saligna","Eucalyptus saligna","Eucalyptus saligna","Eucalyptus saligna",NA
+"Eucalyptus saxatilis","Eucalyptus saxatilis","Eucalyptus saxatilis","Eucalyptus saxatilis",NA
+"Eucalyptus bridgesiana","Eucalyptus saxicola","Eucalyptus saxicola","NA",NA
+"Eucalyptus scias","Eucalyptus scias","Eucalyptus pellita","Eucalyptus pellita",NA
+"Eucalyptus scias","Eucalyptus scias","Eucalyptus scias","Eucalyptus pellita",NA
+"Eucalyptus scias subsp. apoda","Eucalyptus scias subsp. apoda","Eucalyptus scias subsp. apoda","Eucalyptus scias subsp. apoda",NA
+"Eucalyptus scias subsp. scias","Eucalyptus scias subsp. callimastha","Eucalyptus scias subsp. callimastha","NA",NA
+"Eucalyptus scias subsp. scias","Eucalyptus scias subsp. scias","Eucalyptus scias subsp. scias","Eucalyptus scias subsp. scias",NA
+"Eucalyptus racemosa","Eucalyptus sclerophylla","Eucalyptus sclerophylla","NA",NA
+"Eucalyptus scoparia","Eucalyptus scoparia","Eucalyptus scoparia","Eucalyptus scoparia",NA
+"Eucalyptus seeana","Eucalyptus seeana","Eucalyptus seeana","Eucalyptus seeana",NA
+"Eucalyptus moorei subsp. serpentinicola","Eucalyptus serpentinicola","Eucalyptus serpentinicola","Eucalyptus moorei subsp. serpentinicola",NA
+"Eucalyptus siderophloia","Eucalyptus siderophloia","Eucalyptus siderophloia","Eucalyptus siderophloia",NA
+"Eucalyptus sideroxylon","Eucalyptus sideroxylon","Eucalyptus sideroxylon","Eucalyptus sideroxylon",NA
+"Eucalyptus sideroxylon","Eucalyptus sideroxylon","Eucalyptus sideroxylon subsp. sideroxylon","Eucalyptus sideroxylon",NA
+"","Eucalyptus sideroxylon <--> viridis","Eucalyptus sideroxylon <--> viridis","No match",NA
+"Eucalyptus sieberi","Eucalyptus sieberi","Eucalyptus sieberi","Eucalyptus sieberi",NA
+"Eucalyptus racemosa","Eucalyptus signata","Eucalyptus signata","NA",NA
+"Eucalyptus smithii","Eucalyptus smithii","Eucalyptus smithii","Eucalyptus smithii",NA
+"Eucalyptus socialis","Eucalyptus socialis","Eucalyptus socialis","Eucalyptus socialis subsp. socialis",NA
+"","Eucalyptus sp. aff. agglomerata","Eucalyptus sp. aff. agglomerata","NA",NA
+"","Eucalyptus sp. aff. cameronii (Macleay-Apsley)","Eucalyptus sp. aff. cameronii (Macleay-Apsley)","NA",NA
+"","Eucalyptus sp. aff. dwyeri","Eucalyptus sp. aff. dwyeri","NA",NA
+"","Eucalyptus sp. aff. fibrosa (Pokolbin)","Eucalyptus sp. aff. fibrosa (Pokolbin)","NA",NA
+"","Eucalyptus sp. aff. fibrosa (Yarrawa)","Eucalyptus sp. aff. fibrosa (Yarrawa)","NA",NA
+"Eucalyptus mackintii","Eucalyptus sp. aff. macrorhyncha","Eucalyptus sp. aff. macrorhyncha","NA",NA
+"Eucalyptus sp. Cattai","Eucalyptus sp. Cattai","Eucalyptus sp. 'Cattai'","NA",NA
+"Eucalyptus sparsifolia","Eucalyptus sparsifolia","Eucalyptus sparsifolia","Eucalyptus sparsifolia",NA
+"Eucalyptus stricta","Eucalyptus spectatrix","Eucalyptus spectatrix","NA",NA
+"Eucalyptus squamosa","Eucalyptus squamosa","Eucalyptus squamosa","Eucalyptus squamosa",NA
+"Eucalyptus stellulata","Eucalyptus stellulata","Eucalyptus stellulata","Eucalyptus stellulata",NA
+"Eucalyptus stenostoma","Eucalyptus stenostoma","Eucalyptus stenostoma","Eucalyptus stenostoma",NA
+"Eucalyptus stricta","Eucalyptus stricta","Eucalyptus stricta","Eucalyptus stricta",NA
+"Eucalyptus sturgissiana","Eucalyptus sturgissiana","Eucalyptus sturgissiana","Eucalyptus sturgissiana",NA
+"Eucalyptus agglomerata","Eucalyptus subcaerulea","Eucalyptus subcaerula","NA",NA
+"Eucalyptus agglomerata","Eucalyptus subcaerulea","Eucalyptus subcaerulea","NA",NA
+"Eucalyptus youmanii","Eucalyptus subtilior","Eucalyptus stannicola","NA",NA
+"Eucalyptus youmanii","Eucalyptus subtilior","Eucalyptus subtilior","NA",NA
+"Eucalyptus tenella","Eucalyptus tenella","Eucalyptus tenella","Eucalyptus tenella",NA
+"Eucalyptus tereticornis","Eucalyptus tereticornis","Eucalyptus tereticornis","NA",NA
+"Eucalyptus tereticornis subsp. tereticornis","Eucalyptus tereticornis subsp. tereticornis","Eucalyptus tereticornis subsp. tereticornis","Eucalyptus tereticornis subsp. tereticornis",NA
+"Eucalyptus tetrapleura","Eucalyptus tetrapleura","Eucalyptus tetrapleura","Eucalyptus tetrapleura",NA
+"Eucalyptus tindaliae","Eucalyptus tindaliae","Eucalyptus tindaliae","Eucalyptus tindaliae",NA
+"Eucalyptus tricarpa","Eucalyptus tricarpa","Eucalyptus tricarpa","Eucalyptus tricarpa",NA
+"Eucalyptus triflora","Eucalyptus triflora","Eucalyptus triflora","Eucalyptus triflora",NA
+"Eucalyptus cinerea subsp. triplex","Eucalyptus triplex","Eucalyptus triplex","Eucalyptus cinerea subsp. triplex",NA
+"Eucalyptus umbra","Eucalyptus umbra","Eucalyptus umbra","Eucalyptus umbra",NA
+"Eucalyptus umbra","Eucalyptus umbra","Eucalyptus umbra subsp. umbra","Eucalyptus umbra",NA
+"Eucalyptus vicina","Eucalyptus vicina","Eucalyptus vicina","Eucalyptus vicina",NA
+"Eucalyptus viminalis","Eucalyptus viminalis","Eucalyptus viminalis","Eucalyptus viminalis subsp. viminalis",NA
+"Eucalyptus viminalis","Eucalyptus viminalis","Eucalyptus viminalis subsp. viminalis","Eucalyptus viminalis subsp. viminalis",NA
+"","Eucalyptus viminalis subsp. luxurians","Eucalyptus viminalis subsp. luxurians","NA",NA
+"Eucalyptus viridis","Eucalyptus viridis","Eucalyptus viridis","Eucalyptus viridis",NA
+"Eucalyptus volcanica","Eucalyptus volcanica","Eucalyptus volcanica","Eucalyptus volcanica",NA
+"Eucalyptus wilcoxii","Eucalyptus wilcoxii","Eucalyptus wilcoxii","Eucalyptus wilcoxii",NA
+"Eucalyptus williamsiana","Eucalyptus williamsiana","Eucalyptus williamsiana","Eucalyptus williamsiana",NA
+"Eucalyptus youmanii","Eucalyptus youmanii","Eucalyptus youmanii","Eucalyptus youmanii",NA
+"NA","NA",NA,"NA","Eucalyptus alligatrix subsp. miscella"
+"NA","NA",NA,"NA","Eucalyptus camaldulensis subsp. acuta"
+"NA","NA",NA,"NA","Eucalyptus camaldulensis subsp. arida"
+"NA","NA",NA,"NA","Eucalyptus cephalocarpa"
+"NA","NA",NA,"NA","Eucalyptus cinerea subsp. cinerea"
+"NA","NA",NA,"NA","Eucalyptus denticulata"
+"NA","NA",NA,"NA","Eucalyptus deuaensis"
+"NA","NA",NA,"NA","Eucalyptus dura"
+"NA","NA",NA,"NA","Eucalyptus imlayensis"
+"NA","NA",NA,"NA","Eucalyptus infera"
+"NA","NA",NA,"No match","Eucalyptus parramattensis var. sphaerocalyx"
+"NA","NA",NA,"NA","Eucalyptus polyanthemos subsp. longior"
+"NA","NA",NA,"NA","Eucalyptus scopulorum"
+"NA","NA",NA,"NA","Eucalyptus tereticornis subsp. basaltica"
