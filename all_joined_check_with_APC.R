@@ -35,4 +35,4 @@ All = All %>%
                   BioNet_assigned != "Eucalyptus spp.")
 
 # write csv
-write.csv(All, "EUCLID_manual_BioNet_joinV.4_checking-1.csv", row.names = FALSE)
+write.csv(All, "EUCLID_BioNet_APC_joinV.1.csv", row.names = FALSE)
