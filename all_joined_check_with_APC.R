@@ -17,7 +17,9 @@ All = All %>%
   dplyr::filter(EUCLID_checked != "Absent in NSW" & EUCLID_checked != "Match found")
 
 # Join APC search with BioNet and EUCLID accepted names
+# x is the list of names searched in the APC database, directly copied from y; y is the eucalypt species list extracted from "BioNet_FloraSurveys_SpeciesList_all.csv" by filter for eucalypt genera in Excel. Species names are therefore the same.
 All = full_join(BioNet, All, by = c("Search.term" = "BioNet_assigned"))
+# x is the original list of names matched from the EUCLID database to BioNet_assigned and BioNet_unassigned using scripted methods (EUCLID_manual_BioNet_join.R) and manual methods (EUCLID_manual_BioNet_joinV.3_checking-1.xlsx); y is the list of names searched in the APC database, directly copied from x. Species names are therefore the same.
 All = full_join(All, EUCLID, by = c("EUCLID_checked" = "Search.term"))
 All = All %>% 
   dplyr::select("Confirmed_name", "Search.term", "BioNet_unassigned", "EUCLID_checked", "EUCLID_no_match")
