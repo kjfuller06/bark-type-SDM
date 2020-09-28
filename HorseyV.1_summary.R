@@ -5,7 +5,13 @@ library(rnaturalearth)
 
 # load dataset and map of Australia
 ## need to select only columns of interest from "records". Some Aus columns are in there from the join in the previous script. I'm going back to look at all the processing steps to double-check everything.
-records = st_read("data/Horsey_sampleV.1.shp")
+records = st_read("data/Horsey_sampleV.1.shp") %>% 
+  dplyr::select('ID',
+                'Assg_SN',
+                'DatFrst',
+                'DateLst',
+                'bark',
+                'geometry')
 aus = st_read("data/australia.shp")
 
 # plot
@@ -15,6 +21,7 @@ aus = st_read("data/australia.shp")
 #   theme(legend.position = "none")
 
 # get WorldClim data
+# WorldClim metadata notes are in my data layers metadata xlsx
 r2.5 = getData('worldclim', var = 'bio', res = 2.5, path = "data/")
 # reduce data size by cropping raster by extent of NSW
 nsw = st_read("data/NSW_sans_islands.shp") %>% 
@@ -22,17 +29,20 @@ nsw = st_read("data/NSW_sans_islands.shp") %>%
 # use nsw bbox to crop the raster image
 r2.5_crop = crop(x = r2.5, y = nsw)
 # plot(r2.5_crop[['bio1']])
+# extract WorldClim values at species occurrence locations and cbind to records df
+records = cbind(records, raster::extract(r2.5_crop, st_coordinates(records), methods = 'simple'))
 
 # perform same processing for aridity data. Data were downloading by following this link: https://cgiarcsi.community/2019/01/24/global-aridity-index-and-potential-evapotranspiration-climate-database-v2/
 arid = raster('data/ai_et0/ai_et0.tif')
 # use nsw bbox to crop the raster image
 arid_crop = crop(x = arid, y = nsw)
-plot(arid_crop)
+# plot(arid_crop)
+# extract aridity values at species occurrence locations and cbind to records df
+records = cbind(records, aridity = raster::extract(arid_crop, st_coordinates(records), methods = 'simple'))
 
 # Actual next step ####
 # Getting env. data for presence records is good, then I'll be able to do variance partitioning/PCA to describe the environmental envelops of the species/trait groups
 # After that, I'll want to extract presence AND absence data for each species. This will require retaining all unique survey records from the BioNet dataset, instead of just records for the target species. Then, sampling each location for occurrence of each target species.
 
-# WorldClim data notes are in my metadata file
 
 
