@@ -2,7 +2,10 @@ library(raster)
 library(tidyverse)
 library(sf)
 library(rnaturalearth)
+library(ggplot2)
+library(RColorBrewer)
 
+# Extract environmental data for species records ####
 # load dataset and map of Australia
 ## need to select only columns of interest from "records". Some Aus columns are in there from the join in the previous script. I'm going back to look at all the processing steps to double-check everything.
 records = st_read("data/Horsey_sampleV.1.shp") %>% 
@@ -40,9 +43,25 @@ arid_crop = crop(x = arid, y = nsw)
 # extract aridity values at species occurrence locations and cbind to records df
 records = cbind(records, aridity = raster::extract(arid_crop, st_coordinates(records), methods = 'simple'))
 
-# Actual next step ####
-# Getting env. data for presence records is good, then I'll be able to do variance partitioning/PCA to describe the environmental envelops of the species/trait groups
-# After that, I'll want to extract presence AND absence data for each species. This will require retaining all unique survey records from the BioNet dataset, instead of just records for the target species. Then, sampling each location for occurrence of each target species.
+# can't do any prediction from here. Data are at different spatial res and extent. But this gives me data for plotting species envelopes.
 
+# Plot environmental axes for each species ####
+tiff(file = "frequency_HorseyV.1_records_by_species.tiff", width =2200, height = 750, units = "px", res = 200)
+# counts
+ggplot(data.frame(records), aes(x=Assg_SN)) +
+  geom_bar()+
+  theme(axis.text.x = element_text(angle = 45,
+                                   size = 7,
+                                   hjust = 1))+ 
+  coord_cartesian(ylim=c(0, 50))
+dev.off()
+## some species have only 2-3 records
 
+# write shapefile to disk and convert sf to df, only because I'm so bad at this with sf's
+st_write(records, "data/HorseyV.1_extracted_dataV.1.shp", delete_layer = TRUE)
+st_geometry(records) = NULL
+# do some environmental plotting
+f = ggplot(records, aes(bio5, bio14, color = bark))
+f + geom_point()
 
+        
