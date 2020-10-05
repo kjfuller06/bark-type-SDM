@@ -23,25 +23,22 @@ b2 = records$bark2
 # 1. ####
 # split records by ribboning type. the new df will be a list of three df's, named rib[['n']], rib[['s']] and rib[['y']]
 rib = split(records, records$ribbons)
-with(rib[['n']], plot(density(bio1)$y, type = 'l'))
 
 # write a loop to plot all three df's in rib
 colours <- brewer.pal(3, "Dark2")
-colours[3] = "white"
-plot(1, type="n", xlab= "Annual Mean Temperature", ylab="Density", xlim=c(min(b$x), max(b$x)), ylim=c(0, 0.03))
-legend("topleft", legend = c("No ribboning", "Some ribboning", "Prolific ribboning"), col = c(colours[1:2], 1), lty = 1)
-d = density(records$bio1)
-points(d, type = 'l', col = "red")
-# polygon(c(seq(max(d$x), min(d$x), length.out = length(d$y)), seq(min(d$x), max(d$x), length.out = length(d$y)), c(rep(0, length(d$y)), d$y), col = "red"))
+xmin = min(density(rib[[1]]$bio1)$x, density(rib[[2]]$bio1)$x, density(rib[[3]]$bio1)$x)
+xmax = max(density(rib[[1]]$bio1)$x, density(rib[[2]]$bio1)$x, density(rib[[3]]$bio1)$x)
+plot(1, type="n", xlab= "Annual Mean Temperature", ylab="Density", xlim=c(xmin, xmax), ylim=c(0, 0.008))
+legend("topleft", legend = c("No ribboning", "Some ribboning", "Prolific ribboning"), col = c(colours[1:3]), lty = 1)
+# polygon(c(seq(xmax1, xmin1, length.out = leny1), seq(xmin1, xmax1, length.out = leny1)), c(rep(0, leny1), m1$y), col = adjustcolor("red", alpha = 0.5), border = "red")
 # ^ this doesn't work. Needs fixing.
 for(i in c(1:3)){
   a = density(rib[[i]]$bio1)
-  why = length(a$y)
-  ex = max(a$x)
-  exx = min(a$x)
-  points(a, type = 'l', col = colours[i])
-  # with(rib[[i]], plot(density(bio1)$y, type = 'h', col = adjustcolor(colours[i], alpha = 0.5)))
-  polygon(c(seq(ex, exx, length.out = why), seq(exx, ex, length.out = why)), c(rep(0, why), a$y), col = adjustcolor(colours[i], alpha = 0.5))
+  a$y = a$y/sum(a$y)
+  lenya = length(a$y)
+  xmaxa = max(a$x)
+  xmina = min(a$x)
+  polygon(c(seq(xmaxa, xmina, length.out = lenya), seq(xmina, xmaxa, length.out = lenya)), c(rep(0, lenya), a$y), col = adjustcolor(colours[i], alpha = 0.5), border = colours[i])
 }
 dev.off()
 
