@@ -49,7 +49,7 @@ withlabels = function(frst){
   xmin = min(density(rib[[1]][,frst])$x, density(rib[[2]][,frst])$x, density(rib[[3]][,frst])$x)
   xmax = max(density(rib[[1]][,frst])$x, density(rib[[2]][,frst])$x, density(rib[[3]][,frst])$x)
   par(mar = c(4, 2, 0.5, 0))
-  plot(1, type="n", xlab= nom[1], ylab="", xlim=c(xmin, xmax), ylim=c(0, 0.015))
+  plot(1, type="n", xlab= nom[frst-8], ylab="", xlim=c(xmin, xmax), ylim=c(0, 0.015))
   for(i in c(1:3)){
     a = density(rib[[i]][,frst])
     a$y = a$y/sum(a$y)
