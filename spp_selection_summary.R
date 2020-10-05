@@ -11,7 +11,7 @@ records = st_read("data/HorseyV.2_extracted_dataV.1.shp")
 st_geometry(records) = NULL
 records = drop_na(records)
 
-# visualisations:
+# visualisations ####
 #   1) proportion of points occurring along an environmental gradient (as in, the proportion of temp observations that occur at each temperature), coloured and shaded by group- these could be curves for single variables and hexbins for two variables
 #   2) could also do that precip by temp visualisation Jeff sent me for the oaks project- with the overall distribution of all species in gray and individual species highlighted in red
 
@@ -20,7 +20,9 @@ records = drop_na(records)
 rib = split(records, records$ribbons)
 
 # write a loop to plot all three df's in rib. Then loop this through all variables
+# select colours
 colours <- brewer.pal(3, "Dark2")
+# create labels for plots
 nom = c("Annual Mean Temperature",
         "Mean Diurnal Range (Mean of\nmonthly (max temp - min temp))",
         "Isothermality\n(BIO2/BIO7) (×100)",
@@ -42,16 +44,7 @@ nom = c("Annual Mean Temperature",
         "Precipitation of\nColdest Quarter",
         "Aridity")
 
-# write to disk
-tiff(file = "ribboning1.tiff", width =2200, height = 1100, units = "px", res = 200)
-par(mfrow = c(3, 7))
-
-# legend
-plot(1, type="n", xaxt = 'n', yaxt = 'n', bty = 'n', xlim=c(xmin, xmax), ylim=c(0, 0.01), ann = FALSE)
-par(mar = c(4, 0, 0.5, 0))
-legend("center", legend = c("No ribboning", "Some ribboning", "Prolific ribboning"), col = c(colours[1:3]), lty = 1, lwd = 5, y.intersp = 2)
-
-# plot with yaxt
+# function for plots with yaxt
 withlabels = function(frst){
   xmin = min(density(rib[[1]][,frst])$x, density(rib[[2]][,frst])$x, density(rib[[3]][,frst])$x)
   xmax = max(density(rib[[1]][,frst])$x, density(rib[[2]][,frst])$x, density(rib[[3]][,frst])$x)
@@ -66,6 +59,8 @@ withlabels = function(frst){
     polygon(c(seq(xmaxa, xmina, length.out = lenya), seq(xmina, xmaxa, length.out = lenya)), c(rep(0, lenya), a$y), col = adjustcolor(colours[i], alpha = 0.5), border = colours[i])
   }
 }
+
+# function for plots without yaxt
 withoutlabels = function(allothers){
   for(k in c(allothers)){
     xmin = min(density(rib[[1]][,k])$x, density(rib[[2]][,k])$x, density(rib[[3]][,k])$x)
@@ -82,6 +77,15 @@ withoutlabels = function(allothers){
     }
   }
 }
+
+# write multipanel tiff to disk
+tiff(file = "ribboning1.tiff", width =2200, height = 1100, units = "px", res = 200)
+par(mfrow = c(3, 7))
+
+# legend
+plot(1, type="n", xaxt = 'n', yaxt = 'n', bty = 'n', xlim=c(xmin, xmax), ylim=c(0, 0.01), ann = FALSE)
+par(mar = c(4, 0, 0.5, 0))
+legend("center", legend = c("No ribboning", "Some ribboning", "Prolific ribboning"), col = c(colours[1:3]), lty = 1, lwd = 5, y.intersp = 2)
 
 withlabels(9)
 withoutlabels(c(10:14))
