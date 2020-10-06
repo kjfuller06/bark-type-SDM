@@ -28,3 +28,12 @@ for(i in c(1:98)){
     }
   }
 }
+
+st_geometry(sample) = NULL
+sample = sample %>% 
+  dplyr::select(-spp_shr)
+
+sumstats = colSums(sample)/nrow(sample)
+sumstats <- sumstats[which(sumstats > 0.03 & sumstats < 0.5)]
+sample = sample[,which(names(sample) %in% names(sumstats))]
+
