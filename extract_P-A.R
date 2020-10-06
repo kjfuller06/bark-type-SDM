@@ -13,7 +13,7 @@ records = st_read("data/Horsey_sampleV.2.shp") %>%
 spp = unique(records$spp_shr)
 
 # let's work with a subsample for now
-sample = records[c(1:200),]
+sample = records
 
 # write a column for every unique species in the dataset and populate the columns with presence and absence observations represented as 1 and 0, respectively
 df = sample
