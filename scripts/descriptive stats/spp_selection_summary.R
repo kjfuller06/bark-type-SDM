@@ -17,11 +17,11 @@ records = drop_na(records)
 
 # 1a. ribbon categories ####
 # split records by ribboning type. the new df will be a list of three df's, named rib[['n']], rib[['s']] and rib[['y']]
-rib = split(records, records$ribbons)
+df = split(records, records$ribbons)
 
 # write a loop to plot all three df's in rib. Then loop this through all variables
 # select colours
-colours <- brewer.pal(3, "Dark2")
+colours <- rainbow(length(df))
 # create labels for plots
 nom = c("Annual Mean Temperature",
         "Mean Diurnal Range (Mean of\nmonthly (max temp - min temp))",
@@ -46,12 +46,12 @@ nom = c("Annual Mean Temperature",
 
 # function for plots with yaxt
 withlabels = function(frst){
-  xmin = min(density(rib[[1]][,frst])$x, density(rib[[2]][,frst])$x, density(rib[[3]][,frst])$x)
-  xmax = max(density(rib[[1]][,frst])$x, density(rib[[2]][,frst])$x, density(rib[[3]][,frst])$x)
+  xmin = min(density(df[[1]][,frst])$x, density(df[[2]][,frst])$x, density(df[[3]][,frst])$x)
+  xmax = max(density(df[[1]][,frst])$x, density(df[[2]][,frst])$x, density(df[[3]][,frst])$x)
   par(mar = c(4, 2, 0.5, 0))
   plot(1, type="n", xlab= nom[frst-8], ylab="", xlim=c(xmin, xmax), ylim=c(0, 0.015))
   for(i in c(1:3)){
-    a = density(rib[[i]][,frst])
+    a = density(df[[i]][,frst])
     a$y = a$y/sum(a$y)
     lenya = length(a$y)
     xmaxa = max(a$x)
@@ -63,12 +63,12 @@ withlabels = function(frst){
 # function for plots without yaxt
 withoutlabels = function(allothers){
   for(k in c(allothers)){
-    xmin = min(density(rib[[1]][,k])$x, density(rib[[2]][,k])$x, density(rib[[3]][,k])$x)
-    xmax = max(density(rib[[1]][,k])$x, density(rib[[2]][,k])$x, density(rib[[3]][,k])$x)
+    xmin = min(density(df[[1]][,k])$x, density(df[[2]][,k])$x, density(df[[3]][,k])$x)
+    xmax = max(density(df[[1]][,k])$x, density(df[[2]][,k])$x, density(df[[3]][,k])$x)
     par(mar = c(4, 0, 0.5, 0))
     plot(1, type="n", xlab= nom[k-8], ylab="", yaxt = 'n', xlim=c(xmin, xmax), ylim=c(0, 0.015))
     for(i in c(1:3)){
-      a = density(rib[[i]][,k])
+      a = density(df[[i]][,k])
       a$y = a$y/sum(a$y)
       lenya = length(a$y)
       xmaxa = max(a$x)
@@ -95,3 +95,4 @@ withlabels(22)
 withoutlabels(23:28)
 dev.off()
 
+# make the above script work for any data breakdown
