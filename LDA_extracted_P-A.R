@@ -46,4 +46,6 @@ for(i in c(1:ncol(Thetas))){
   }
 }
 
+write.csv(Phis, "data/HorseyV.2_LDA_Phis_V.1.csv")
+write.csv(Thetas, "data/HorseyV.2_LDA_Thetas_V.1.csv")
 
