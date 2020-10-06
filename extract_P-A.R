@@ -1,10 +1,6 @@
 # script for extracting presence/absence data from species selection records
-library(raster)
 library(tidyverse)
 library(sf)
-library(rnaturalearth)
-library(ggplot2)
-library(RColorBrewer)
 library(reshape2)
 
 # read records in again for plotting
@@ -34,3 +30,4 @@ sample = no_coords[,which(names(no_coords) %in% names(sumstats))]
 
 # write to disk
 write.csv(sample, "data/spp_selection_P-A.csv", row.names = FALSE)
+write.csv(df, "data/spp_selection_P-A_coordinates.csv", row.names = FALSE)
