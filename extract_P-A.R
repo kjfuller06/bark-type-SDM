@@ -1,4 +1,4 @@
-# script for visualising species selections
+# script for extracting presence/absence data from species selection records
 library(raster)
 library(tidyverse)
 library(sf)
