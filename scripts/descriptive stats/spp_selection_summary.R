@@ -17,7 +17,7 @@ records = drop_na(records)
 
 # 1a. functions ####
 # split records by categorical variable. 
-df = split(records, records$ribbons)
+df = split(records, records$spp_shr)
 
 # write a loop to plot all three df's in rib. Then loop this through all variables
 # select colours
@@ -38,7 +38,7 @@ withlabels = function(frst){
   xmax = max(maxs)
   par(mar = c(4, 2, 0.5, 0))
   plot(1, type="n", xlab= nom[frst-8], ylab="", xlim=c(xmin, xmax), ylim=c(0, 0.015))
-  for(i in c(1:3)){
+  for(i in c(1:length(df))){
     a = density(df[[i]][,frst])
     a$y = a$y/sum(a$y)
     lenya = length(a$y)
@@ -81,6 +81,23 @@ par(mfrow = c(3, 7))
 plot(1, type="n", xaxt = 'n', yaxt = 'n', bty = 'n', xlim=c(0, 0.01), ylim=c(0, 0.01), ann = FALSE)
 par(mar = c(4, 0, 0.5, 0))
 legend("center", legend = c("No ribboning", "Some ribboning", "Prolific ribboning"), col = c(colours[1:3]), lty = 1, lwd = 5, y.intersp = 2)
+
+withlabels(9)
+withoutlabels(c(10:14))
+withlabels(15)
+withoutlabels(16:21)
+withlabels(22)
+withoutlabels(23:28)
+dev.off()
+
+# 1c. species ####
+tiff(file = "outputs/species1.tiff", width =2200, height = 1100, units = "px", res = 200)
+par(mfrow = c(3, 7))
+
+# legend
+plot(1, type="n", xaxt = 'n', yaxt = 'n', bty = 'n', xlim=c(0, 0.01), ylim=c(0, 0.01), ann = FALSE)
+par(mar = c(4, 0, 0.5, 0))
+legend("center", legend = levels(as.factor(records$spp_shr)), col = c(colours[1:length(df)]), lty = 1, lwd = 5, cex = 0.5)
 
 withlabels(9)
 withoutlabels(c(10:14))
