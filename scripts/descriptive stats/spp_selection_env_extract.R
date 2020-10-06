@@ -18,6 +18,10 @@ records = st_read("data/Horsey_sampleV.2.shp") %>%
                 'bark2',
                 'ribbons',
                 'geometry')
+
+# select only the species to be used for the LDA
+selection = read.csv("data/spp_selection_P-A.csv")
+records = records[records$spp_shr %in% names(selection),]
 aus = st_read("data/australia.shp")
 
 # plot
@@ -56,7 +60,7 @@ ggplot(data.frame(records), aes(x=spp_shr)) +
   theme(axis.text.x = element_text(angle = 45,
                                    size = 7,
                                    hjust = 1))+ 
-  coord_cartesian(ylim=c(0, 50))
+  coord_cartesian(ylim=c(0, 1000))
 dev.off()
 ## some species have only 2-3 records
 
