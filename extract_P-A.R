@@ -42,4 +42,4 @@ sumstats <- sumstats[which(sumstats > 0.01 & sumstats < 0.5)]
 sample = sample[,which(names(sample) %in% names(sumstats))]
 
 # write to disk
-write.csv(sample, "data/spp_selection_P-A.csv")
+write.csv(sample, "data/spp_selection_P-A.csv", row.names = FALSE)
