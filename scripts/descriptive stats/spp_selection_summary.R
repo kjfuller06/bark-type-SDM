@@ -16,38 +16,26 @@ records = drop_na(records)
 #   2) could also do that precip by temp visualisation Jeff sent me for the oaks project- with the overall distribution of all species in gray and individual species highlighted in red
 
 # 1a. ribbon categories ####
-# split records by ribboning type. the new df will be a list of three df's, named rib[['n']], rib[['s']] and rib[['y']]
+# split records by categorical variable. 
 df = split(records, records$ribbons)
 
 # write a loop to plot all three df's in rib. Then loop this through all variables
 # select colours
 colours <- rainbow(length(df))
 # create labels for plots
-nom = c("Annual Mean Temperature",
-        "Mean Diurnal Range (Mean of\nmonthly (max temp - min temp))",
-        "Isothermality\n(BIO2/BIO7) (×100)",
-        "Temperature Seasonality\n(standard deviation ×100)",
-        "Max Temperature of\nWarmest Month",
-        "Min Temperature of\nColdest Month",
-        "Temperature Annual\nRange (BIO5-BIO6)",
-        "Mean Temperature of\nWettest Quarter",
-        "Mean Temperature of\nDriest Quarter",
-        "Mean Temperature of\nWarmest Quarter",
-        "Mean Temperature of\nColdest Quarter",
-        "Annual Precipitation",
-        "Precipitation of\nWettest Month",
-        "Precipitation of\nDriest Month",
-        "Precipitation Seasonality\n(Coefficient of Variation)",
-        "Precipitation of\nWettest Quarter",
-        "Precipitation of\nDriest Quarter",
-        "Precipitation of\nWarmest Quarter",
-        "Precipitation of\nColdest Quarter",
-        "Aridity")
+nom = read.csv("data/env_variable_labels.csv")
+nom = c(paste(nom$labels, nom$labels2, sep = "\n"))
 
 # function for plots with yaxt
 withlabels = function(frst){
-  xmin = min(density(df[[1]][,frst])$x, density(df[[2]][,frst])$x, density(df[[3]][,frst])$x)
-  xmax = max(density(df[[1]][,frst])$x, density(df[[2]][,frst])$x, density(df[[3]][,frst])$x)
+  mins = c()
+  maxs = c()
+  for(a in c(1:length(df))){
+    mins[a] = min(density(df[[a]][,frst])$x)
+    maxs[a] = max(density(df[[a]][,frst])$x)
+  }
+  xmin = min(mins)
+  xmax = max(maxs)
   par(mar = c(4, 2, 0.5, 0))
   plot(1, type="n", xlab= nom[frst-8], ylab="", xlim=c(xmin, xmax), ylim=c(0, 0.015))
   for(i in c(1:3)){
@@ -63,11 +51,17 @@ withlabels = function(frst){
 # function for plots without yaxt
 withoutlabels = function(allothers){
   for(k in c(allothers)){
-    xmin = min(density(df[[1]][,k])$x, density(df[[2]][,k])$x, density(df[[3]][,k])$x)
-    xmax = max(density(df[[1]][,k])$x, density(df[[2]][,k])$x, density(df[[3]][,k])$x)
+    mins = c()
+    maxs = c()
+    for(a in c(1:length(df))){
+      mins[a] = min(density(df[[a]][,k])$x)
+      maxs[a] = max(density(df[[a]][,k])$x)
+    }
+    xmin = min(mins)
+    xmax = max(maxs)
     par(mar = c(4, 0, 0.5, 0))
     plot(1, type="n", xlab= nom[k-8], ylab="", yaxt = 'n', xlim=c(xmin, xmax), ylim=c(0, 0.015))
-    for(i in c(1:3)){
+    for(i in c(1:length(df))){
       a = density(df[[i]][,k])
       a$y = a$y/sum(a$y)
       lenya = length(a$y)
@@ -83,7 +77,7 @@ tiff(file = "outputs/ribboning1.tiff", width =2200, height = 1100, units = "px",
 par(mfrow = c(3, 7))
 
 # legend
-plot(1, type="n", xaxt = 'n', yaxt = 'n', bty = 'n', xlim=c(xmin, xmax), ylim=c(0, 0.01), ann = FALSE)
+plot(1, type="n", xaxt = 'n', yaxt = 'n', bty = 'n', xlim=c(0, 0.01), ylim=c(0, 0.01), ann = FALSE)
 par(mar = c(4, 0, 0.5, 0))
 legend("center", legend = c("No ribboning", "Some ribboning", "Prolific ribboning"), col = c(colours[1:3]), lty = 1, lwd = 5, y.intersp = 2)
 
