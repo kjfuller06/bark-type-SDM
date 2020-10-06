@@ -15,7 +15,7 @@ records = drop_na(records)
 #   1) proportion of points occurring along an environmental gradient (as in, the proportion of temp observations that occur at each temperature), coloured and shaded by group- these could be curves for single variables and hexbins for two variables
 #   2) could also do that precip by temp visualisation Jeff sent me for the oaks project- with the overall distribution of all species in gray and individual species highlighted in red
 
-# 1. ####
+# 1a. ribbon categories ####
 # split records by ribboning type. the new df will be a list of three df's, named rib[['n']], rib[['s']] and rib[['y']]
 rib = split(records, records$ribbons)
 
@@ -79,7 +79,7 @@ withoutlabels = function(allothers){
 }
 
 # write multipanel tiff to disk
-tiff(file = "ribboning1.tiff", width =2200, height = 1100, units = "px", res = 200)
+tiff(file = "outputs/ribboning1.tiff", width =2200, height = 1100, units = "px", res = 200)
 par(mfrow = c(3, 7))
 
 # legend
@@ -95,4 +95,3 @@ withlabels(22)
 withoutlabels(23:28)
 dev.off()
 
-## Still need to scale the density data to 1: divide all values by the sum of all values.
