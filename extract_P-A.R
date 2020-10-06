@@ -5,6 +5,7 @@ library(sf)
 library(rnaturalearth)
 library(ggplot2)
 library(RColorBrewer)
+library(reshape2)
 
 # read records in again for plotting
 records = st_read("data/Horsey_sampleV.2.shp") %>% 
@@ -16,30 +17,20 @@ records = st_read("data/Horsey_sampleV.2.shp") %>%
 spp = unique(records$spp_shr)
 
 # let's work with a subsample for now
-sample = records[c(1:20),]
+sample = records[c(1:200),]
 
-# write a column for every unique species in the dataset and then populate the columns with presence and absence observations represented as 1 and 0, respectively
-for(i in c(1:98)){
-  sample[, i+2] = NA
-  names(sample)[i+2] = spp[i]
-  for(k in c(1:nrow(sample))){
-    if(sample[k,][[1]] == names(sample)[i+2]){
-      sample[k,][[i+2]] = 1
-    } else {
-      sample[k,][[i+2]] = 0
-    }
-  }
-}
-
-# simplify dataframe
-st_geometry(sample) = NULL
-sample = sample %>% 
-  dplyr::select(-spp_shr)
+# write a column for every unique species in the dataset and populate the columns with presence and absence observations represented as 1 and 0, respectively
+df = sample
+df$lon = st_coordinates(df)[,1]
+df$lat = st_coordinates(df)[,2]
+df <- st_set_geometry(df, NULL)
+df = dcast(df, lon + lat ~ spp_shr, fill = 0, length)
 
 # remove species that are in less than 1% of samples and greater than 50% of samples
-sumstats = colSums(sample)/nrow(sample)
+no_coords = df[,c(3:ncol(df))]
+sumstats = colSums(no_coords)/nrow(no_coords)
 sumstats <- sumstats[which(sumstats > 0.01 & sumstats < 0.5)]
-sample = sample[,which(names(sample) %in% names(sumstats))]
+sample = no_coords[,which(names(no_coords) %in% names(sumstats))]
 
 # write to disk
 write.csv(sample, "data/spp_selection_P-A.csv", row.names = FALSE)
