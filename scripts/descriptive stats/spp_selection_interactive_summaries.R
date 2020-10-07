@@ -70,5 +70,8 @@ for(envvar in c(9:ncol(df[[1]]))){
   }
 }
 
+densities = densities %>% 
+  left_join(nom[,c(3, 4)], by = "variable")
+
 # write to disk
 write.csv(densities, "outputs/densities.csv")
