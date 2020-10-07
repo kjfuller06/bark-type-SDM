@@ -72,19 +72,3 @@ for(envvar in c(9:ncol(df[[1]]))){
 
 # write to disk
 write.csv(densities, "outputs/densities.csv")
-
-# split for plotting
-byvar = split(densities, densities$variable)
-
-plotify = function(envvar){
-  p = byvar[[envvar]] %>%
-    ggplot( aes(x=x, y=y, fill=species, color = species)) +
-    geom_line() +
-    geom_area(alpha = 0.75) +
-    ggtitle(nom[envvar]) +
-    xlab("") +
-    ylab("Proportional Density") +
-    theme_bw() +
-    theme(legend.position= "none")
-  ggplotly(p, tooltip = "fill")
-} 
