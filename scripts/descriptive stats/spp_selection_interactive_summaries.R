@@ -70,6 +70,10 @@ for(envvar in c(9:ncol(df[[1]]))){
   }
 }
 
+# write to disk
+write.csv(densities, "outputs/densities.csv")
+
+# split for plotting
 byvar = split(densities, densities$variable)
 
 plotify = function(envvar){
@@ -84,5 +88,3 @@ plotify = function(envvar){
     theme(legend.position= "none")
   ggplotly(p, tooltip = "fill")
 } 
-
-plotify(2)
