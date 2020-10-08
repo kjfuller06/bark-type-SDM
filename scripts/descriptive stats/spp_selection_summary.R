@@ -116,3 +116,50 @@ withlabels(22)
 withoutlabels(23:28)
 dev.off()
 
+# 1d. bark types 1 ####
+# split records by categorical variable. 
+df = split(records, records$bark1)
+
+# select colours
+colours <- rainbow(length(df))
+
+# write to disk
+tiff(file = "outputs/bark1.tiff", width =2200, height = 1100, units = "px", res = 200)
+par(mfrow = c(3, 7))
+
+# legend
+plot(1, type="n", xaxt = 'n', yaxt = 'n', bty = 'n', xlim=c(0, 0.01), ylim=c(0, 0.01), ann = FALSE)
+par(mar = c(4, 0, 0.5, 0))
+legend("center", legend = levels(as.factor(records$bark1)), col = c(colours[1:length(df)]), lty = 1, lwd = 5)
+
+withlabels(9)
+withoutlabels(c(10:14))
+withlabels(15)
+withoutlabels(16:21)
+withlabels(22)
+withoutlabels(23:28)
+dev.off()
+
+# 1e. bark types 1 ####
+# split records by categorical variable. 
+df = split(records, records$bark2)
+
+# select colours
+colours <- rainbow(length(df))
+
+# write to disk
+tiff(file = "outputs/bark2.tiff", width =2200, height = 1100, units = "px", res = 200)
+par(mfrow = c(3, 7))
+
+# legend
+plot(1, type="n", xaxt = 'n', yaxt = 'n', bty = 'n', xlim=c(0, 0.01), ylim=c(0, 0.01), ann = FALSE)
+par(mar = c(4, 0, 0.5, 0))
+legend("center", legend = levels(as.factor(records$bark2)), col = c(colours[1:length(df)]), lty = 1, lwd = 5)
+
+withlabels(9)
+withoutlabels(c(10:14))
+withlabels(15)
+withoutlabels(16:21)
+withlabels(22)
+withoutlabels(23:28)
+dev.off()
