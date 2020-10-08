@@ -36,5 +36,5 @@ Phis[row.names(Phis) %in% superfluous,] = NA
 Thetas = Thetas[,!(colnames(Thetas) %in% superfluous)]
 
 # write df's to disk
-write.csv(Phis, "data/HorseyV.2_LDA_PhisV.1.csv")
-write.csv(Thetas, "data/HorseyV.2_LDA_ThetasV.1.csv")
+write.csv(Phis, "outputs/HorseyV.2_LDA_PhisV.1.csv")
+write.csv(Thetas, "outputs/HorseyV.2_LDA_ThetasV.1.csv")
