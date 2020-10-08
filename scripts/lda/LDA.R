@@ -11,7 +11,7 @@ set.seed(9842)
 
 # cluster species and generate group stats for locations
 groups_n = 20
-LDA1 = rlda.bernoulli(PA, groups_n, 0.5, 0.5, 0.1, 200, ll_prior = TRUE, display_progress = TRUE)
+LDA1 = rlda.bernoulli(PA, groups_n, 0.5, 0.5, 0.1, 3000, ll_prior = TRUE, display_progress = TRUE)
 
 # Phi represents the probability of species belonging to each group (200spp means there are 200 Phi values per group)
 Phis = getPhi.rlda(LDA1)
@@ -36,5 +36,5 @@ Phis[row.names(Phis) %in% superfluous,] = NA
 Thetas = Thetas[,!(colnames(Thetas) %in% superfluous)]
 
 # write df's to disk
-write.csv(Phis, "outputs/HorseyV.2_LDA_PhisV.1.csv")
-write.csv(Thetas, "outputs/HorseyV.2_LDA_ThetasV.1.csv")
+write.csv(Phis, "outputs/HorseyV.2_LDA_PhisV.2.csv")
+write.csv(Thetas, "outputs/HorseyV.2_LDA_ThetasV.2.csv")
