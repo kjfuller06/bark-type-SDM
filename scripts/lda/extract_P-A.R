@@ -17,15 +17,23 @@ samplearea = st_union(buffers) %>%
   st_as_sf()
 samplearea$ID = c(1:nrow(samplearea))
 records = st_join(samplearea, records)
-records$cent = st_centroid(records$x)
+st_geometry(records) = st_centroid(records$x)
 
 # write a column for every unique species in the dataset and populate the columns with presence and absence observations represented as 1 and 0, respectively
-df = sample
+df = records %>% 
+  st_transform(4326)
 df$lon = st_coordinates(df)[,1]
 df$lat = st_coordinates(df)[,2]
 df <- st_set_geometry(df, NULL)
-df = dcast(df, lon + lat ~ spp_shr, fill = 0, length)
+df = df %>% 
+  dplyr::select(spp_shr,
+                lon,
+                lat)
+df = dcast(df, lon + lat ~ spp_shr, fill = 0, value.var = "spp_shr")
+df[,c(3:ncol(df))] = df[,c(3:ncol(df))] %>% 
+  mutate_if(is.numeric, ~1 * (. != 0))
 
+  
 # remove species that are in less than 1% of samples and greater than 50% of samples
 no_coords = df[,c(3:ncol(df))]
 sumstats = colSums(no_coords)/nrow(no_coords)
