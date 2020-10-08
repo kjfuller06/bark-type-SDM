@@ -6,8 +6,7 @@ library(ggplot2)
 library(RColorBrewer)
 
 # Extract environmental data for species records ####
-# load dataset and map of Australia
-## need to select only columns of interest from "records". Some Aus columns are in there from the join in the previous script. I'm going back to look at all the processing steps to double-check everything.
+## select only columns of interest from "records"
 records = st_read("data/Horsey_sampleV.2.shp") %>%  
   dplyr::select('ID',
                 'Assg_SN',
@@ -22,13 +21,6 @@ records = st_read("data/Horsey_sampleV.2.shp") %>%
 # select only the species to be used for the LDA
 selection = read.csv("data/spp_selection_P-A.csv")
 records = records[records$spp_shr %in% names(selection),]
-aus = st_read("data/australia.shp")
-
-# plot
-# ggplot(records)+
-#   geom_sf(data = aus)+
-#   geom_sf(aes(colour = Assg_SN))+
-#   theme(legend.position = "none")
 
 # get WorldClim data
 # WorldClim metadata notes are in my data layers metadata xlsx
