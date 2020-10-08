@@ -7,13 +7,17 @@ library(reshape2)
 records = st_read("data/Horsey_sampleV.2.shp") %>% 
   dplyr::select(
     "spp_shr",
-    "geometry")
+    "geometry") %>% 
+  st_transform(crs = 3577)
 
-# write columns for each species of interest
-spp = unique(records$spp_shr)
-
-# let's work with a subsample for now
-sample = records
+# combine the points that are within 100m of each other by 2) creating buffers around all points, 3) combining buffers, 4) checking area, so that the polygons aren't gigantic, 5) generating a centroid for each polygon, 6) assigning this as a column in the df for records that occur within each polygon, 7) doing another dcast() to generate presence-absence data
+buffers = st_buffer(records, dist = 100)
+samplearea = st_union(buffers) %>% 
+  st_cast(to = "POLYGON") %>% 
+  st_as_sf()
+samplearea$ID = c(1:nrow(samplearea))
+records = st_join(samplearea, records)
+records$cent = st_centroid(records$x)
 
 # write a column for every unique species in the dataset and populate the columns with presence and absence observations represented as 1 and 0, respectively
 df = sample
