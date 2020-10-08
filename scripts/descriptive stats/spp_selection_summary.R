@@ -16,12 +16,7 @@ records = drop_na(records)
 #   2) could also do that precip by temp visualisation Jeff sent me for the oaks project- with the overall distribution of all species in gray and individual species highlighted in red
 
 # 1a. functions ####
-# split records by categorical variable. 
-df = split(records, records$spp_shr)
-
 # write a loop to plot all three df's in rib. Then loop this through all variables
-# select colours
-colours <- rainbow(length(df))
 # create labels for plots
 nom = read.csv("data/env_variable_labels.csv")
 nom = c(paste(nom$labels, nom$labels2, sep = "\n"))
@@ -73,8 +68,14 @@ withoutlabels = function(allothers){
 }
 
 # 1b. ribbons ####
+# split records by categorical variable. 
+df = split(records, records$ribbons)
+
+# select colours
+colours <- rainbow(length(df))
+
 # write multipanel tiff to disk
-tiff(file = "outputs/ribboning1.tiff", width =2200, height = 1100, units = "px", res = 200)
+tiff(file = "outputs/ribboning2.tiff", width =2200, height = 1100, units = "px", res = 200)
 par(mfrow = c(3, 7))
 
 # legend
@@ -90,8 +91,16 @@ withlabels(22)
 withoutlabels(23:28)
 dev.off()
 
+
 # 1c. species ####
-tiff(file = "outputs/species1.tiff", width =2200, height = 1100, units = "px", res = 200)
+# split records by categorical variable. 
+df = split(records, records$spp_shr)
+
+# select colours
+colours <- rainbow(length(df))
+
+# write to disk
+tiff(file = "outputs/species2.tiff", width =2200, height = 1100, units = "px", res = 200)
 par(mfrow = c(3, 7))
 
 # legend
