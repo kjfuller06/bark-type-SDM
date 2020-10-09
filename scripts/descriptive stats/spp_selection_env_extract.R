@@ -6,21 +6,8 @@ library(ggplot2)
 library(RColorBrewer)
 
 # Extract environmental data for species records ####
-## select only columns of interest from "records"
-records = st_read("data/Horsey_sampleV.2.shp") %>%  
-  dplyr::select('ID',
-                'Assg_SN',
-                'DatFrst',
-                'DateLst',
-                'spp_shr',
-                'bark1',
-                'bark2',
-                'ribbons',
-                'geometry')
-
-# select only the species to be used for the LDA
-selection = read.csv("data/spp_selection_P-A.csv")
-records = records[records$spp_shr %in% names(selection),]
+## load dataset
+records = st_read("data/spp_selection_forLDA.shp")
 
 # get WorldClim data
 # WorldClim metadata notes are in my data layers metadata xlsx
@@ -57,4 +44,4 @@ dev.off()
 ## some species have only 2-3 records
 
 # write shapefile to disk and convert sf to df, only because I'm so bad at this with sf's
-st_write(records, "data/HorseyV.2_extracted_dataV.1.shp", delete_layer = TRUE)
+st_write(records, "data/HorseyV.2_extracted_dataV.2.shp", delete_layer = TRUE)
