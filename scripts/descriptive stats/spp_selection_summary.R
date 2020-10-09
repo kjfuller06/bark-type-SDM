@@ -10,6 +10,9 @@ library(RColorBrewer)
 records = st_read("data/HorseyV.2_extracted_dataV.1.shp")
 st_geometry(records) = NULL
 records = drop_na(records)
+# remove outlier species
+records = records %>% 
+  filter(spp_shr != "E.populneasubsp.bimbil" & spp_shr != "E.largiflorens")
 
 # visualisations ####
 #   1) proportion of points occurring along an environmental gradient (as in, the proportion of temp observations that occur at each temperature), coloured and shaded by group- these could be curves for single variables and hexbins for two variables
@@ -75,7 +78,7 @@ df = split(records, records$ribbons)
 colours <- rainbow(length(df))
 
 # write multipanel tiff to disk
-tiff(file = "outputs/ribboning2.tiff", width =2200, height = 1100, units = "px", res = 200)
+tiff(file = "outputs/ribboning3.tiff", width =2200, height = 1100, units = "px", res = 200)
 par(mfrow = c(3, 7))
 
 # legend
@@ -100,7 +103,7 @@ df = split(records, records$spp_shr)
 colours <- rainbow(length(df))
 
 # write to disk
-tiff(file = "outputs/species2.tiff", width =2200, height = 1100, units = "px", res = 200)
+tiff(file = "outputs/species3.tiff", width =2200, height = 1100, units = "px", res = 200)
 par(mfrow = c(3, 7))
 
 # legend
@@ -124,7 +127,7 @@ df = split(records, records$bark1)
 colours <- rainbow(length(df))
 
 # write to disk
-tiff(file = "outputs/bark1.tiff", width =2200, height = 1100, units = "px", res = 200)
+tiff(file = "outputs/bark1.V.3.tiff", width =2200, height = 1100, units = "px", res = 200)
 par(mfrow = c(3, 7))
 
 # legend
@@ -148,7 +151,7 @@ df = split(records, records$bark2)
 colours <- rainbow(length(df))
 
 # write to disk
-tiff(file = "outputs/bark2.tiff", width =2200, height = 1100, units = "px", res = 200)
+tiff(file = "outputs/bark2_V.3.tiff", width =2200, height = 1100, units = "px", res = 200)
 par(mfrow = c(3, 7))
 
 # legend

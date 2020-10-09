@@ -9,6 +9,7 @@ PA_coords = read.csv("data/spp_selection_P-A_coordinates.csv")
 # remove two outlier species from consideration
 PA = PA %>% 
   dplyr::select(-c(E.largiflorens, E.populneasubsp.bimbil))
+# ^ this leads to locations with no species present. Need to remove these.
 
 # set the starting number for random number generation to ensure consistent results
 set.seed(9842)

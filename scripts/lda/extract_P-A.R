@@ -41,22 +41,28 @@ df2 = dcast(df, lon + lat ~ spp_shr, fill = 0, value.var = "spp_shr")
 df2[,c(3:ncol(df2))] = df2[,c(3:ncol(df2))] %>% 
   mutate_if(is.numeric, ~1 * (. != 0))
 # create df with just bark traits to join back to df2 later
-df = unique(df[,c(1:4)])
+info = unique(df[,c(1:4)])
 
 # remove species that are in less than 1% of samples and greater than 50% of samples
+df3 = df2
 no_coords = df2[,c(3:ncol(df2))]
 sumstats = colSums(no_coords)/nrow(no_coords)
 sumstats <- sumstats[which(sumstats > 0.01 & sumstats < 0.5)]
 sample = no_coords[,which(names(no_coords) %in% names(sumstats))]
+# create df3 for merging coordinates in LDA.r script
+df3 = df3[, which(names(df3) %in% names(sumstats))]
+# create shapefile for environmental data extraction
 df2 = df2[,c(1, 2, which(names(df2) %in% names(sumstats)))]
 df2 = melt(df2, id.vars = c("lon", "lat")) %>% 
   filter(value == 1) %>% 
   dplyr::select(-value)
+
 df = df2 %>% 
-  left_join(df, by = c("variable" = "spp_shr")) %>% 
+  left_join(info, by = c("variable" = "spp_shr")) %>% 
   st_as_sf(coords = c(lon = "lon", lat = "lat"), crs = 4326)
 names(df)[1] = "spp_shr"
 
 # write to disk
 write.csv(sample, "data/spp_selection_P-A.csv", row.names = FALSE)
+write.csv(df3, "data/spp_selection_P-A_coordinates.csv", row.names = FALSE)
 write_sf(df, "data/spp_selection_forLDA.shp")
