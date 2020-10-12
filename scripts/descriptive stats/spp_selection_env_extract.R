@@ -9,6 +9,8 @@ library(RColorBrewer)
 ## load dataset
 records = st_read("data/spp_selection_forLDA.shp")
 
+# load map of fuel types
+fuels = raster("data/FuelTypeV2_FuelLUT1.tif")
 # get WorldClim data
 # WorldClim metadata notes are in my data layers metadata xlsx
 r2.5 = getData('worldclim', var = 'bio', res = 2.5, path = "data/")
