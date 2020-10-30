@@ -9,7 +9,7 @@ library(tmap)
 ## load dataset
 records = st_read("data/spp_selection_forLDA.shp")
 tmap_mode("view")
-qtm(records[records$spp_shr == "E.agglomerata",])
+qtm(records[records$spp_shr == "E. agglomerata",])
 
 # read records in again for plotting
 records = st_read("data/HorseyV.2_extracted_dataV.1.shp")
