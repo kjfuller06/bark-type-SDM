@@ -4,7 +4,7 @@ library(sf)
 library(reshape2)
 
 # read records in again for plotting
-records = st_read("data/Horsey_sampleV.2.shp") %>% 
+records = st_read("data/Horsey_sampleV.3.shp") %>% 
   dplyr::select('spp_shr',
                 'bark1',
                 'bark2',
@@ -51,12 +51,15 @@ sumstats <- sumstats[which(sumstats > 0.01 & sumstats < 0.5)]
 sample = no_coords[,which(names(no_coords) %in% names(sumstats))]
 # create df3 for merging coordinates in LDA.r script
 df3 = df3[, which(names(df3) %in% names(sumstats))]
-# create shapefile for environmental data extraction
-df2 = df2[,c(1, 2, which(names(df2) %in% names(sumstats)))]
+## create shapefile for environmental data extraction
+# remove rare and common species
+# df2 = df2[,c(1, 2, which(names(df2) %in% names(sumstats)))]
+# melt back to long form
 df2 = melt(df2, id.vars = c("lon", "lat")) %>% 
   filter(value == 1) %>% 
   dplyr::select(-value)
 
+# add bark traits back to long form df
 df = df2 %>% 
   left_join(info, by = c("variable" = "spp_shr")) %>% 
   st_as_sf(coords = c(lon = "lon", lat = "lat"), crs = 4326)
