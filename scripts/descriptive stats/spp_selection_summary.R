@@ -7,12 +7,12 @@ library(ggplot2)
 library(RColorBrewer)
 
 # read records in again for plotting
-records = st_read("data/HorseyV.2_extracted_dataV.1.shp")
+records = st_read("data/HorseyV.3_extracted_dataV.2.shp")
 st_geometry(records) = NULL
 records = drop_na(records)
 # remove outlier species
-records = records %>% 
-  filter(spp_shr != "E.populneasubsp.bimbil" & spp_shr != "E.largiflorens")
+# records = records %>% 
+#   filter(spp_shr != "E.populneasubsp.bimbil" & spp_shr != "E.largiflorens")
 
 # visualisations ####
 #   1) proportion of points occurring along an environmental gradient (as in, the proportion of temp observations that occur at each temperature), coloured and shaded by group- these could be curves for single variables and hexbins for two variables
@@ -35,7 +35,7 @@ withlabels = function(frst){
   xmin = min(mins)
   xmax = max(maxs)
   par(mar = c(4, 2, 0.5, 0))
-  plot(1, type="n", xlab= nom[frst-8], ylab="", xlim=c(xmin, xmax), ylim=c(0, 0.015))
+  plot(1, type="n", xlab= nom[frst-4], ylab="", xlim=c(xmin, xmax), ylim=c(0, 0.015))
   for(i in c(1:length(df))){
     a = density(df[[i]][,frst])
     a$y = a$y/sum(a$y)
@@ -58,7 +58,7 @@ withoutlabels = function(allothers){
     xmin = min(mins)
     xmax = max(maxs)
     par(mar = c(4, 0, 0.5, 0))
-    plot(1, type="n", xlab= nom[k-8], ylab="", yaxt = 'n', xlim=c(xmin, xmax), ylim=c(0, 0.015))
+    plot(1, type="n", xlab= nom[k-4], ylab="", yaxt = 'n', xlim=c(xmin, xmax), ylim=c(0, 0.015))
     for(i in c(1:length(df))){
       a = density(df[[i]][,k])
       a$y = a$y/sum(a$y)
@@ -86,24 +86,28 @@ plot(1, type="n", xaxt = 'n', yaxt = 'n', bty = 'n', xlim=c(0, 0.01), ylim=c(0, 
 par(mar = c(4, 0, 0.5, 0))
 legend("center", legend = c("No ribboning", "Some ribboning", "Prolific ribboning"), col = c(colours[1:3]), lty = 1, lwd = 5, y.intersp = 2)
 
-withlabels(9)
-withoutlabels(c(10:14))
-withlabels(15)
-withoutlabels(16:21)
-withlabels(22)
-withoutlabels(23:28)
+withlabels(5)
+withoutlabels(c(6:10))
+withlabels(11)
+withoutlabels(12:17)
+withlabels(18)
+withoutlabels(19:24)
 dev.off()
 
 
 # 1c. species ####
 # split records by categorical variable. 
-df = split(records, records$spp_shr)
+tal = records %>% 
+  group_by(spp_shr) %>% 
+  tally() %>% 
+  filter(n < 5)
+df = split(records[!c(records$spp_shr %in% tal$spp_shr),], records[!c(records$spp_shr %in% tal$spp_shr),]$spp_shr)
 
 # select colours
 colours <- rainbow(length(df))
 
 # write to disk
-tiff(file = "outputs/species3.tiff", width =2200, height = 1100, units = "px", res = 200)
+tiff(file = "outputs/species4.tiff", width =2200, height = 1100, units = "px", res = 200)
 par(mfrow = c(3, 7))
 
 # legend
@@ -111,12 +115,12 @@ plot(1, type="n", xaxt = 'n', yaxt = 'n', bty = 'n', xlim=c(0, 0.01), ylim=c(0, 
 par(mar = c(4, 0, 0.5, 0))
 legend("center", legend = levels(as.factor(records$spp_shr)), col = c(colours[1:length(df)]), lty = 1, lwd = 5, cex = 0.5)
 
-withlabels(9)
-withoutlabels(c(10:14))
-withlabels(15)
-withoutlabels(16:21)
-withlabels(22)
-withoutlabels(23:28)
+withlabels(5)
+withoutlabels(c(6:10))
+withlabels(11)
+withoutlabels(12:17)
+withlabels(18)
+withoutlabels(19:24)
 dev.off()
 
 # 1d. bark types 1 ####
@@ -127,7 +131,7 @@ df = split(records, records$bark1)
 colours <- rainbow(length(df))
 
 # write to disk
-tiff(file = "outputs/bark1.V.3.tiff", width =2200, height = 1100, units = "px", res = 200)
+tiff(file = "outputs/bark1.V.4.tiff", width =2200, height = 1100, units = "px", res = 200)
 par(mfrow = c(3, 7))
 
 # legend
@@ -135,12 +139,12 @@ plot(1, type="n", xaxt = 'n', yaxt = 'n', bty = 'n', xlim=c(0, 0.01), ylim=c(0, 
 par(mar = c(4, 0, 0.5, 0))
 legend("center", legend = levels(as.factor(records$bark1)), col = c(colours[1:length(df)]), lty = 1, lwd = 5)
 
-withlabels(9)
-withoutlabels(c(10:14))
-withlabels(15)
-withoutlabels(16:21)
-withlabels(22)
-withoutlabels(23:28)
+withlabels(5)
+withoutlabels(c(6:10))
+withlabels(11)
+withoutlabels(12:17)
+withlabels(18)
+withoutlabels(19:24)
 dev.off()
 
 # 1e. bark types 1 ####
@@ -151,7 +155,7 @@ df = split(records, records$bark2)
 colours <- rainbow(length(df))
 
 # write to disk
-tiff(file = "outputs/bark2_V.3.tiff", width =2200, height = 1100, units = "px", res = 200)
+tiff(file = "outputs/bark2_V.4.tiff", width =2200, height = 1100, units = "px", res = 200)
 par(mfrow = c(3, 7))
 
 # legend
@@ -159,10 +163,10 @@ plot(1, type="n", xaxt = 'n', yaxt = 'n', bty = 'n', xlim=c(0, 0.01), ylim=c(0, 
 par(mar = c(4, 0, 0.5, 0))
 legend("center", legend = levels(as.factor(records$bark2)), col = c(colours[1:length(df)]), lty = 1, lwd = 5)
 
-withlabels(9)
-withoutlabels(c(10:14))
-withlabels(15)
-withoutlabels(16:21)
-withlabels(22)
-withoutlabels(23:28)
+withlabels(5)
+withoutlabels(c(6:10))
+withlabels(11)
+withoutlabels(12:17)
+withlabels(18)
+withoutlabels(19:24)
 dev.off()
