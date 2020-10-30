@@ -34,7 +34,7 @@ records = cbind(records, aridity = raster::extract(arid_crop, st_coordinates(rec
 # can't do any prediction from here. Data are at different spatial res and extent. But this gives me data for plotting species envelopes.
 
 # Plot environmental axes for each species ####
-tiff(file = "outputs/frequency_HorseyV.2_records_by_species.tiff", width =2200, height = 750, units = "px", res = 200)
+tiff(file = "outputs/frequency_HorseyV.3_records_by_species.tiff", width =2200, height = 750, units = "px", res = 200)
 # counts
 ggplot(data.frame(records), aes(x=spp_shr)) +
   geom_bar()+
@@ -46,4 +46,4 @@ dev.off()
 ## some species have only 2-3 records
 
 # write shapefile to disk and convert sf to df, only because I'm so bad at this with sf's
-st_write(records, "data/HorseyV.2_extracted_dataV.2.shp", delete_layer = TRUE)
+st_write(records, "data/HorseyV.3_extracted_dataV.2.shp", delete_layer = TRUE)
