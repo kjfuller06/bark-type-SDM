@@ -64,8 +64,13 @@ df = df2 %>%
   left_join(info, by = c("variable" = "spp_shr")) %>% 
   st_as_sf(coords = c(lon = "lon", lat = "lat"), crs = 4326)
 names(df)[1] = "spp_shr"
+# add new bark categories
+cat = read.csv("data/Horsey_candidate_speciesV.4_types.csv")
+cat = cat[,1:6]
+df5 = df %>% 
+  left_join(cat, by = c("bark1", "bark2", "ribbons"))
 
 # write to disk
 write.csv(sample, "data/spp_selection_P-A.csv", row.names = FALSE)
 write.csv(df3, "data/spp_selection_P-A_coordinates.csv", row.names = FALSE)
-write_sf(df, "data/spp_selection_forLDA.shp")
+write_sf(df5, "data/spp_selection_forLDA.shp")
