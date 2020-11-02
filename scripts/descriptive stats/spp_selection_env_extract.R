@@ -1,3 +1,4 @@
+## need to examine res/extent of data layers before extraction
 library(raster)
 library(tidyverse)
 library(sf)
