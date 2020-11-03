@@ -3,6 +3,7 @@ library(raster)
 library(tidyverse)
 library(sf)
 library(rgdal)
+library(tmap)
 
 # get codes
 codes = make_EPSG()
@@ -17,4 +18,11 @@ lcc = lcc[grep("+lat_0=-33.25", lcc$prj4),]
 ## use 3308 as this is a government data source so likely isn't up to date
 
 # have to figure out the crs for this file
-records = st_read("data/spp_selection_forLDA.shp")
+records = st_read("data/spp_selection_forLDA.shp") %>% 
+  st_transform(crs = 3308)
+
+tmap_mode("view")
+tm_shape(veg)+tm_raster()+tm_shape(records)+tm_dots(col = "spp_shr")
+
+# bind veg values to records df
+records = cbind(records, fuel = raster::extract(veg, st_coordinates(records), methods = 'simple'))
