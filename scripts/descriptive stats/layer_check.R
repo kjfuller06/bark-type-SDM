@@ -22,7 +22,17 @@ records = st_read("data/spp_selection_forLDA.shp") %>%
   st_transform(crs = 3308)
 
 tmap_mode("view")
-tm_shape(veg)+tm_raster()+tm_shape(records)+tm_dots(col = "spp_shr")
+tm_shape(veg)+tm_raster()+tm_shape(records)+tm_dots(col = "lng_spt")
 
 # bind veg values to records df
 records = cbind(records, fuel = raster::extract(veg, st_coordinates(records), methods = 'simple'))
+
+records_df = records
+st_geometry(records_df) = NULL
+records_df$fuel = as.factor(records_df$fuel)
+records_df$spp_shr = as.factor(records_df$spp_shr)
+records_df = unique(records_df)
+
+tal = records_df %>% 
+  group_by(fuel) %>% 
+  tally()
