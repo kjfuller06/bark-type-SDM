@@ -7,7 +7,8 @@ library(ggplot2)
 library(RColorBrewer)
 
 # read records in again for plotting
-records = st_read("data/HorseyV.3_extracted_dataV.2.shp")
+records_sf = st_read("data/HorseyV.4_extracted_dataV.3.shp")
+records = records_sf
 st_geometry(records) = NULL
 records = drop_na(records)
 # remove outlier species
@@ -23,6 +24,7 @@ records = drop_na(records)
 # create labels for plots
 nom = read.csv("data/env_variable_labels.csv")
 nom = c(paste(nom$labels, nom$labels2, sep = "\n"))
+numberofrecordscol = length(names(records)) - length(nom)
 
 # function for plots with yaxt
 withlabels = function(frst){
@@ -35,7 +37,7 @@ withlabels = function(frst){
   xmin = min(mins)
   xmax = max(maxs)
   par(mar = c(4, 2, 0.5, 0))
-  plot(1, type="n", xlab= nom[frst-4], ylab="", xlim=c(xmin, xmax), ylim=c(0, 0.015))
+  plot(1, type="n", xlab= nom[frst - numberofrecordscol], ylab="", xlim=c(xmin, xmax), ylim=c(0, 0.015))
   for(i in c(1:length(df))){
     a = density(df[[i]][,frst])
     a$y = a$y/sum(a$y)
@@ -58,7 +60,7 @@ withoutlabels = function(allothers){
     xmin = min(mins)
     xmax = max(maxs)
     par(mar = c(4, 0, 0.5, 0))
-    plot(1, type="n", xlab= nom[k-4], ylab="", yaxt = 'n', xlim=c(xmin, xmax), ylim=c(0, 0.015))
+    plot(1, type="n", xlab= nom[k - numberofrecordscol], ylab="", yaxt = 'n', xlim=c(xmin, xmax), ylim=c(0, 0.015))
     for(i in c(1:length(df))){
       a = density(df[[i]][,k])
       a$y = a$y/sum(a$y)
@@ -147,7 +149,7 @@ withlabels(18)
 withoutlabels(19:24)
 dev.off()
 
-# 1e. bark types 1 ####
+# 1e. bark types 2 ####
 # split records by categorical variable. 
 df = split(records, records$bark2)
 
@@ -169,4 +171,34 @@ withlabels(11)
 withoutlabels(12:17)
 withlabels(18)
 withoutlabels(19:24)
+dev.off()
+
+# 1f. vertical fuel contribution ####
+# split records by categorical variable.
+vert_rec = records[records$vrt_cnt != "n",]
+vert_rec_sf = records_sf[records_sf$vrt_cnt != "n",]
+maps = qtm(vert_rec_sf, dots.col = c(colours[1:length(df)]))
+df = split(vert_rec, vert_rec$vrt_cnt)
+
+# select colours
+colours <- rainbow(length(df))
+
+# write to disk
+tiff(file = "outputs/vert_contribV.1.tiff", width =2200, height = 1100, units = "px", res = 200)
+par(mfrow = c(4, 7))
+
+# legend
+plot(1, type="n", xaxt = 'n', yaxt = 'n', bty = 'n', xlim=c(0, 0.01), ylim=c(0, 0.01), ann = FALSE)
+par(mar = c(4, 0, 0.5, 0))
+legend("center", legend = levels(as.factor(vert_rec$vrt_cnt)), col = c(colours[1:length(df)]), lty = 1, lwd = 5)
+
+withlabels(8)
+withoutlabels(c(9:13))
+withlabels(14)
+withoutlabels(15:20)
+withlabels(21)
+withoutlabels(22:27)
+withlabels(28)
+# tmap_mode("plot")
+# print(maps)
 dev.off()
