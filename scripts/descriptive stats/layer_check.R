@@ -43,3 +43,7 @@ r2.5 = getData('worldclim', var = 'bio', res = 2.5, path = "data/")
 r_check = codes[grep("proj=longlat", codes$prj4),]
 r_check = r_check[grep("datum=WGS84", r_check$prj4),]
 # use code 4326
+
+# check out the aridity data
+arid = raster('data/ai_et0/ai_et0.tif')
+# same as above
