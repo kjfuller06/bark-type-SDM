@@ -184,6 +184,8 @@ dev.off()
 # select only relevant categories
 vert_rec = records[records$vrt_cnt != "n",]
 vert_rec_sf = records_sf[records_sf$vrt_cnt != "n",]
+# select colours
+colours <- rainbow(length(df))
 # create map for final panel
 map_vert = tm_shape(nsw) + 
   tm_borders() + 
