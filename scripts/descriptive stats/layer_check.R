@@ -11,9 +11,9 @@ codes = make_EPSG()
 # load vegetation data
 veg = raster("data/FuelTypeV2_FuelLUT1.tif")
 # look for crs code in "codes"
-lcc = codes[grep("proj=lcc", codes$prj4),]
-lcc = lcc[grep("ellps=GRS80", lcc$prj4),]
-lcc = lcc[grep("+lat_0=-33.25", lcc$prj4),]
+# lcc = codes[grep("proj=lcc", codes$prj4),]
+# lcc = lcc[grep("ellps=GRS80", lcc$prj4),]
+# lcc = lcc[grep("+lat_0=-33.25", lcc$prj4),]
 # EPSG is either 3308 for GDA94 / NSW Lambert or 8058 for GDA2020 / NSW Lambert
 ## use 3308 as this is a government data source so likely isn't up to date
 
@@ -22,7 +22,7 @@ records = st_read("data/spp_selection_forLDA.shp") %>%
   st_transform(crs = 3308)
 
 tmap_mode("view")
-tm_shape(veg)+tm_raster()+tm_shape(records)+tm_dots(col = "lng_spt")
+tm_shape(veg)+tm_raster()+tm_shape(records[records$lng_spt != "n",])+tm_dots(col = "lng_spt")
 
 # bind veg values to records df
 records = cbind(records, fuel = raster::extract(veg, st_coordinates(records), methods = 'simple'))
@@ -36,3 +36,10 @@ records_df = unique(records_df)
 tal = records_df %>% 
   group_by(fuel) %>% 
   tally()
+
+# check out WorldClim data
+r2.5 = getData('worldclim', var = 'bio', res = 2.5, path = "data/")
+# look for crs code in "codes"
+r_check = codes[grep("proj=longlat", codes$prj4),]
+r_check = r_check[grep("datum=WGS84", r_check$prj4),]
+# use code 4326
