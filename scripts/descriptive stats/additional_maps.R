@@ -9,6 +9,7 @@ library(tmap)
 library(jpeg)
 library(png)
 library(colorspace)
+library(spData)
 
 # load nsw border for maps
 nsw = st_read("data/NSW_sans_islands.shp") %>% 
@@ -54,3 +55,12 @@ map_vert = tm_shape(nsw) +
   tm_layout(title = "Vertical Fuel Contribution", legend.position = c("left", "bottom"))
 map_vert
 tmap_save(map_vert, filename = "outputs/vert_sppV.1.tiff")
+
+
+# map for #30daymap challenge
+# aus = getData(name = "GADM", country = "AUS", level = 1, download = TRUE) %>% 
+#   st_as_sf()
+# check out WorldClim data
+r2.5 = getData('worldclim', var = 'bio', res = 2.5, path = "data/")
+precip = r2.5[['bio12']]
+tm_shape(precip) + tm_raster(palette = sequential_hcl(20, palette = "Teal"))
