@@ -1,7 +1,7 @@
 # this script is for reprojecting rasters to all be the same EPSG for modeling
 # 1) load datasets
 # 2) reproject NSW shapefile to each of the raster layers' EPSG and clip to make reprojection faster
-# 3) resample rasters to crs of veg layer
+# 3) resample rasters to crs and res of veg layer
 #     - method = biliear for continuous data; weighted average of the four nearest cells
 #     - method = ngb for categorical data; value of the nearest cell
 
@@ -33,7 +33,11 @@ nsw1 = nsw %>%
 arid1 = crop(arid, extent(nsw1))
 
 # 3) ####
+
+## do an intermediate step of aggregating. Look at the actual resolution. The res I've looked at so far shows resolution in different crs's
+
 # aridity layer is continuous; method = 'bilinear'
-arid2 = resample(arid1, veg, method = 'bilinear')
+arid2 = projectRaster(arid1, veg, method = 'bilinear')
+
 # WorldClim layers
-r2.5.2 = projectRaster(r2.5.1, crs = crs(veg), extent = extent(veg))
+r2.5.2 = projectRaster(r2.5.1, veg, method = 'bilinear')
