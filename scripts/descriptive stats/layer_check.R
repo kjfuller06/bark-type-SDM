@@ -15,7 +15,7 @@ veg = raster("data/FuelTypeV2_FuelLUT1.tif")
 # lcc = lcc[grep("ellps=GRS80", lcc$prj4),]
 # lcc = lcc[grep("+lat_0=-33.25", lcc$prj4),]
 # EPSG is either 3308 for GDA94 / NSW Lambert or 8058 for GDA2020 / NSW Lambert
-## use 3308 as this is a government data source so likely isn't up to date
+## use 8058
 
 # have to figure out the crs for this file
 records = st_read("data/spp_selection_forLDA.shp") %>% 
