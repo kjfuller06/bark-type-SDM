@@ -44,7 +44,7 @@ withlabels = function(frst){
   xmin = min(mins)
   xmax = max(maxs)
   par(mar = c(4, 2, 0.5, 0))
-  plot(1, type="n", xlab= nom[frst - numberofrecordscol], ylab="", xlim=c(xmin, xmax), ylim=c(0, 0.015))
+  plot(1, type="n", xlab= nom[frst - numberofrecordscol], ylab="", xlim=c(xmin, xmax), ylim=c(0, 0.02))
   for(i in c(1:length(df))){
     a = density(df[[i]][,frst])
     a$y = a$y/sum(a$y)
@@ -67,7 +67,7 @@ withoutlabels = function(allothers){
     xmin = min(mins)
     xmax = max(maxs)
     par(mar = c(4, 0, 0.5, 0))
-    plot(1, type="n", xlab= nom[k - numberofrecordscol], ylab="", yaxt = 'n', xlim=c(xmin, xmax), ylim=c(0, 0.015))
+    plot(1, type="n", xlab= nom[k - numberofrecordscol], ylab="", yaxt = 'n', xlim=c(xmin, xmax), ylim=c(0, 0.02))
     for(i in c(1:length(df))){
       a = density(df[[i]][,k])
       a$y = a$y/sum(a$y)
@@ -140,19 +140,20 @@ df = split(records, records$bark1)
 colours <- rainbow(length(df))
 
 # write to disk
-tiff(file = "outputs/bark1.V.4.tiff", width =2200, height = 1100, units = "px", res = 200)
+tiff(file = "outputs/bark1.V.5.tiff", width =2200, height = 1100, units = "px", res = 200)
 par(mfrow = c(3, 7))
 
 # legend
+par(mar = c(0, 0, 0, 0))
 plot(1, type="n", xaxt = 'n', yaxt = 'n', bty = 'n', xlim=c(0, 0.01), ylim=c(0, 0.01), ann = FALSE)
-par(mar = c(4, 0, 0.5, 0))
-legend("center", legend = levels(as.factor(records$bark1)), col = c(colours[1:length(df)]), lty = 1, lwd = 5)
+legend("center", legend = levels(as.factor(records$bark1)), col = c(colours[1:length(df)]), lty = 1, lwd = 5, cex = 0.7)
 
-withlabels(5)
-withoutlabels(c(6:10))
-withlabels(11)
-withoutlabels(12:17)
-withlabels(18)
+par(mar = c(4, 0, 0.5, 0))
+withlabels(8)
+withoutlabels(c(9:13))
+withlabels(14)
+withoutlabels(15:20)
+withlabels(21)
 withoutlabels(19:24)
 dev.off()
 
