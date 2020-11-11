@@ -10,6 +10,7 @@ library(jpeg)
 library(png)
 library(colorspace)
 library(spData)
+library(randomForest)
 
 # load nsw border for maps
 nsw = st_read("data/NSW_sans_islands.shp") %>% 
@@ -64,3 +65,12 @@ tmap_save(map_vert, filename = "outputs/vert_sppV.1.tiff")
 r2.5 = getData('worldclim', var = 'bio', res = 2.5, path = "data/")
 precip = r2.5[['bio12']]
 tm_shape(precip) + tm_raster(palette = sequential_hcl(20, palette = "Teal"))
+
+
+# testing random forest ####
+# stck is from layer_check.R
+stck = stck[[c(4, 6:7, 9, 10, 16, 19)]]
+stck
+records = st_read("data/spp_selection_forLDA.shp") %>% 
+  st_transform(crs = st_crs(stck))
+records = cbind(records, raster::extract(stck, st_coordinates(records), methods = 'simple'))
