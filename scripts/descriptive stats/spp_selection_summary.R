@@ -15,6 +15,15 @@ nsw = st_read("data/NSW_sans_islands.shp") %>%
 
 # read records in again for plotting
 records_sf = st_read("data/HorseyV.4_extracted_dataV.3.shp")
+# combine categories "smooth with stocking" and "smooth with short stocking"
+rec2 = records_sf %>% 
+  filter(bark1 == "smooth - stocking" | bark1 == "smooth - short stocking") %>% 
+  mutate(bark1 = "smooth with stocking")
+records_sf = records_sf %>%  
+  filter(bark1 != "smooth - stocking", bark1 != "smooth - short stocking")
+records_sf = rbind(records_sf, rec2)
+
+# create df with no geometry column
 records = records_sf
 st_geometry(records) = NULL
 records = drop_na(records)
@@ -44,7 +53,7 @@ withlabels = function(frst){
   xmin = min(mins)
   xmax = max(maxs)
   par(mar = c(4, 2, 0.5, 0))
-  plot(1, type="n", xlab= nom[frst - numberofrecordscol], ylab="", xlim=c(xmin, xmax), ylim=c(0, 0.02))
+  plot(1, type="n", xlab= nom[frst - numberofrecordscol], ylab="", xlim=c(xmin, xmax), ylim=c(0, 0.015))
   for(i in c(1:length(df))){
     a = density(df[[i]][,frst])
     a$y = a$y/sum(a$y)
@@ -67,7 +76,7 @@ withoutlabels = function(allothers){
     xmin = min(mins)
     xmax = max(maxs)
     par(mar = c(4, 0, 0.5, 0))
-    plot(1, type="n", xlab= nom[k - numberofrecordscol], ylab="", yaxt = 'n', xlim=c(xmin, xmax), ylim=c(0, 0.02))
+    plot(1, type="n", xlab= nom[k - numberofrecordscol], ylab="", yaxt = 'n', xlim=c(xmin, xmax), ylim=c(0, 0.015))
     for(i in c(1:length(df))){
       a = density(df[[i]][,k])
       a$y = a$y/sum(a$y)
@@ -139,23 +148,67 @@ df = split(records, records$bark1)
 # select colours
 colours <- rainbow(length(df))
 
+# create map for plots
+map_b1 = tm_shape(nsw) + 
+  tm_borders() + 
+  tm_shape(records_sf) + 
+  tm_dots("bark1", palette = c("half bark" = colours[1],
+                               "ironbark" = colours[2], 
+                               "smooth" = colours[3],
+                               "smooth with stocking" = colours[4],    
+                               "stringybark" = colours[5],
+                               "subfibrous - box" = colours[6],        
+                               "subfibrous - peppermint" = colours[7],
+                               "subfibrous - rough" = colours[8],     
+                               "subfibrous - stingy" = colours[9],
+                               "subfibrous - tessellated" = colours[10]),
+          legend.show = FALSE, size = 0.25) +
+  tm_layout(legend.position = c("right", "bottom"))
+# save image to file
+tmap_save(map_b1, filename = "outputs/b1V.1.png")
+# load image back and create plot
+# load back the image as an R object with the "PNG" package
+my_image <- readPNG("outputs/b1V.1.png")
+
 # write to disk
 tiff(file = "outputs/bark1.V.5.tiff", width =2200, height = 1100, units = "px", res = 200)
-par(mfrow = c(3, 7))
+layout.matrix = matrix(c(1, 1, 2, 3, 4, 5, 6,
+                         1, 1, 7, 8, 9, 10, 11,
+                         12, 13, 14, 15, 16, 17, 18,
+                         19, 20, 21, 22, 23, 24, 25
+),
+nrow = 4, ncol = 7,
+byrow = TRUE)
+layout(mat = layout.matrix,
+       heights = 1,
+       widths = 1)
+
+# map
+par(mar = c(2, 1.5, 2, 0.5))
+plot(1:2, type='n', main="", xaxt = "n", yaxt = 'n', axes = FALSE, ann = FALSE)
+# Get the plot information so the image will fill the plot box, and draw it
+lim <- par()
+rasterImage(my_image, 
+            xleft=1, xright=2, 
+            ybottom=1, ytop=2)
 
 # legend
-par(mar = c(0, 0, 0, 0))
 plot(1, type="n", xaxt = 'n', yaxt = 'n', bty = 'n', xlim=c(0, 0.01), ylim=c(0, 0.01), ann = FALSE)
-legend("center", legend = levels(as.factor(records$bark1)), col = c(colours[1:length(df)]), lty = 1, lwd = 5, cex = 0.7)
+par(mar = c(0, 0, 0, 0))
+legend("center", legend = levels(as.factor(records$bark1)), col = c(colours[1:length(df)]), lty = 1, lwd = 5, cex = 0.9)
 
 par(mar = c(4, 0, 0.5, 0))
 withlabels(8)
-withoutlabels(c(9:13))
-withlabels(14)
-withoutlabels(15:20)
-withlabels(21)
-withoutlabels(19:24)
+withoutlabels(c(9:11))
+withlabels(12)
+withoutlabels(13:16)
+withlabels(17)
+withoutlabels(18:23)
+withlabels(24)
+withoutlabels(25:28)
+
 dev.off()
+
 
 # 1e. bark types 2 ####
 # split records by categorical variable. 
