@@ -5,6 +5,7 @@ library(sf)
 library(rgdal)
 library(tmap)
 
+# check for crs ####
 # get codes
 codes = make_EPSG()
 
@@ -47,3 +48,22 @@ r_check = r_check[grep("datum=WGS84", r_check$prj4),]
 # check out the aridity data
 arid = raster('data/ai_et0/ai_et0.tif')
 # same as above
+
+# examining collinearity ####
+# load datasets
+r2.5 = getData('worldclim', var = 'bio', res = 2.5, path = "data/")
+veg = raster("data/fuels_reproj.tif")
+arid = raster("data/aridity_reproj.tif")
+nsw = st_read("data/NSW_sans_islands.shp")
+
+# clean WorldClim data
+nsw1 = nsw %>% 
+  st_transform(crs = st_crs(r2.5))
+r2.5.1 = crop(r2.5, extent(nsw1))
+r2.5.2 = projectRaster(r2.5.1, crs = crs(veg))
+
+# stack datasets
+stck = raster::stack(veg, r2.5.2, arid)
+
+# create pairs plots
+pairs(stck[[c(4, 6:7, 9, 10, 16, 19)]])
