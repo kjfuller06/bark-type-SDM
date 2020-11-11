@@ -4,7 +4,7 @@ library(sf)
 library(reshape2)
 
 # read records in again for plotting
-records = st_read("data/Horsey_sampleV.3.shp") %>% 
+records = st_read("data/Horsey_sampleV.4.shp") %>% 
   dplyr::select('spp_shr',
                 'bark1',
                 'bark2',
