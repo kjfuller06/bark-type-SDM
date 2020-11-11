@@ -4,6 +4,7 @@
 # 3) resample rasters to crs and res of veg layer
 #       - method = biliear for continuous data; weighted average of the four nearest cells
 #       - method = ngb for categorical data; value of the nearest cell
+# 4) write rasters to disk
 
 library(raster)
 library(sf)
@@ -21,22 +22,35 @@ nsw = st_read("data/NSW_sans_islands.shp")
 
 # 2) ####
 # veg layer doesn't need cropping because its extent is already equal to NSW
+# veg layer is 30m2 res
 
-# WorldClim data
+# WorldClim data - 4km2 res
 nsw1 = nsw %>% 
   st_transform(crs = st_crs(r2.5))
 r2.5.1 = crop(r2.5, extent(nsw1))
 
-# aridity
+# aridity - 800m res
 nsw1 = nsw %>% 
   st_transform(crs = st_crs(arid))
 arid1 = crop(arid, extent(nsw1))
 
 # 3) ####
-# aridity layer is continuous; method = 'bilinear'
-arid2 = projectRaster(arid1, crs = crs(veg))
-arid2 = projectRaster(arid2, veg, method = 'bilinear')
-
-# WorldClim layers
+# WorldClim layers are the reference dataset; just change the crs
 r2.5.2 = projectRaster(r2.5.1, crs = crs(veg))
-r2.5.2 = projectRaster(r2.5.2, veg, method = 'bilinear')
+
+# veg layer is categorical; method is 'ngb'
+veg2 = projectRaster(veg, r2.5.2, method = 'ngb')
+
+# aridity layer is continuous; method = 'bilinear'
+arid2 = projectRaster(arid1, r2.5.2, method = 'bilinear')
+
+# 4) ####
+# WorldClim data
+# stackSave(r2.5.2, "data/worldclim_reproj.stk")
+# ^ doesn't work because the new layers aren't saved in disk; no solution- will need to re-download and change the crs again in the working script each time
+
+# veg data
+writeRaster(veg2, "data/fuels_reproj.tif")
+
+# aridity data
+writeRaster(arid2, "data/aridity_reproj.tif")
