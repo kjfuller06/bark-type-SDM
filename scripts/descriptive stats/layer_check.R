@@ -69,4 +69,4 @@ stck = raster::stack(veg, r2.5.2, arid)
 # pairs(stck[[c(4, 6:7, 9, 10, 16, 19)]])
 
 # select orthogonal variables
-stck = stck[[c(4, 6:7, 9, 10, 16, 19)]]
+stck = stck[[c(1, 4, 6:7, 9, 10, 16, 19)]]
