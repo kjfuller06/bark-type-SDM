@@ -69,8 +69,12 @@ tm_shape(precip) + tm_raster(palette = sequential_hcl(20, palette = "Teal"))
 
 # testing random forest ####
 # stck is from layer_check.R
-stck = stck[[c(4, 6:7, 9, 10, 16, 19)]]
 stck
 records = st_read("data/spp_selection_forLDA.shp") %>% 
   st_transform(crs = st_crs(stck))
 records = cbind(records, raster::extract(stck, st_coordinates(records), methods = 'simple'))
+
+# remove wetlands, grasslands, alpine habitat, urban, etc.
+types = c(42:46, 52:74)
+records = records %>% 
+  filter(!(fuels_reproj %in% types))
