@@ -66,4 +66,7 @@ r2.5.2 = projectRaster(r2.5.1, crs = crs(veg))
 stck = raster::stack(veg, r2.5.2, arid)
 
 # create pairs plots
-pairs(stck[[c(4, 6:7, 9, 10, 16, 19)]])
+# pairs(stck[[c(4, 6:7, 9, 10, 16, 19)]])
+
+# select orthogonal variables
+stck = stck[[c(4, 6:7, 9, 10, 16, 19)]]
