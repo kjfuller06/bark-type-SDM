@@ -5,33 +5,10 @@ library(reshape2)
 
 # read records in again for plotting
 records = read.csv("data/BioNet_allfloralsurvey_cleaned2.csv") %>% 
-  dplyr::select(-X, -DateFirst, -DateLast) %>% 
-  st_as_sf(coords = c("Longitude_GDA94", "Latitude_GDA94"), crs = 4326)
+  dplyr::select(-X, -DateFirst, -DateLast)
+names(records)[3:4] = c("lat", "lon")
 spp = read.csv("data/Horsey_candidate_speciesV.4.csv")
 
-# combine the points that are within 100m of each other by 2) creating buffers around all points, 3) combining buffers, 4) checking area, so that the polygons aren't gigantic, 5) generating a centroid for each polygon, 6) assigning this as a column in the df for records that occur within each polygon, 7) doing another dcast() to generate presence-absence data
-buffers = st_buffer(records, dist = 100)
-samplearea = st_union(buffers) %>% 
-  st_cast(to = "POLYGON") %>% 
-  st_as_sf()
-samplearea$ID = c(1:nrow(samplearea))
-records = st_join(samplearea, records)
-st_geometry(records) = st_centroid(records$x)
-records = records %>% 
-  st_transform(4326)
-
-# write a column for every unique species in the dataset and populate the columns with presence and absence observations represented as 1 and 0, respectively
-df = records
-df$lon = st_coordinates(df)[,1]
-df$lat = st_coordinates(df)[,2]
-df <- st_set_geometry(df, NULL)
-df = df %>% 
-  dplyr::select('spp_shr',
-                'bark1',
-                'bark2',
-                'ribbons',
-                'lon',
-                'lat')
 # fill species columns with number of occurrences per unique combination of lon + lat
 df2 = dcast(df, lon + lat ~ spp_shr, fill = 0, value.var = "spp_shr")
 # replace non-zero observations with "1"
