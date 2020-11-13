@@ -1,4 +1,4 @@
-## need to examine res/extent of data layers before extraction
+## need to update script to use reprojected rasters
 library(raster)
 library(tidyverse)
 library(sf)
@@ -8,10 +8,10 @@ library(RColorBrewer)
 
 # Extract environmental data for species records ####
 ## load dataset
-records = st_read("data/spp_selection_forLDA.shp")
+records = st_read("data/spp_selection_P-A.shp")
 
 # load map of fuel types
-fuels = raster("data/FuelTypeV2_FuelLUT1.tif")
+fuels = raster("data/fuels_reproj.tif")
 # reproject records to fuels crs
 records = records %>% 
   st_transform(crs = 3308)
