@@ -4,7 +4,9 @@ library(sf)
 library(reshape2)
 
 # read records in again for plotting
-records = read.csv("data/BioNet_allfloralsurvey_cleaned2.csv")
+records = read.csv("data/BioNet_allfloralsurvey_cleaned2.csv") %>% 
+  dplyr::select(-X, -DateFirst, -DateLast) %>% 
+  st_as_sf(coords = c("Longitude_GDA94", "Latitude_GDA94"), crs = 4326)
 spp = read.csv("data/Horsey_candidate_speciesV.4.csv")
 
 # combine the points that are within 100m of each other by 2) creating buffers around all points, 3) combining buffers, 4) checking area, so that the polygons aren't gigantic, 5) generating a centroid for each polygon, 6) assigning this as a column in the df for records that occur within each polygon, 7) doing another dcast() to generate presence-absence data
