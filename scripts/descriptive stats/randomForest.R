@@ -6,6 +6,8 @@ library(tmap)
 library(randomForest)
 
 # testing random forest ####
-records = st_read("data/spp_selection_P-A.shp")
+veg = raster("data/fuels_reproj.tif")
+records = st_read("data/spp_selection_P-A.shp") %>% 
+  st_as_sf(crs = st_crs(veg))
 
 
