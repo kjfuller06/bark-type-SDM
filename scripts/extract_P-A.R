@@ -14,7 +14,7 @@ veg = raster("data/fuels_reproj.tif")
 
 # transform records to same crs as veg layer and extract veg types
 records = records %>% 
-  st_as_sf(coords = c("Longitude_GDA94", "Latitude_GDA94"), crs = 4326) %>%
+  st_as_sf(coords = c("Longitude_GDA94", "Latitude_GDA94"), crs = 4326) %>% 
   st_transform(crs = st_crs(veg))
 records = cbind(records, fuels_reproj = raster::extract(veg, st_coordinates(records), methods = 'simple'))
 
@@ -22,6 +22,7 @@ records = cbind(records, fuels_reproj = raster::extract(veg, st_coordinates(reco
 types = c(42:46, 52:74)
 records = records %>% 
   filter(!(fuels_reproj %in% types))
+records = drop_na(records)
 
 # fill species columns with number of occurrences per unique combination of lon + lat
 # remove geometry again
