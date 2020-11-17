@@ -14,14 +14,7 @@ nsw = st_read("data/NSW_sans_islands.shp") %>%
   st_set_crs(4326)
 
 # read records in again for plotting
-records_sf = st_read("data/HorseyV.4_extracted_dataV.3.shp")
-# combine categories "smooth with stocking" and "smooth with short stocking"
-rec2 = records_sf %>% 
-  filter(bark1 == "smooth - stocking" | bark1 == "smooth - short stocking") %>% 
-  mutate(bark1 = "smooth with stocking")
-records_sf = records_sf %>%  
-  filter(bark1 != "smooth - stocking", bark1 != "smooth - short stocking")
-records_sf = rbind(records_sf, rec2)
+records_sf = st_read("data/HorseyV.4_extracted_dataV.4.shp")
 
 # create df with no geometry column
 records = records_sf
