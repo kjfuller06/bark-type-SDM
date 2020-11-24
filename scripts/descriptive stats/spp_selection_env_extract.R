@@ -1,4 +1,3 @@
-## will need to create extraction for absence records too
 library(raster)
 library(tidyverse)
 library(sf)
@@ -6,7 +5,7 @@ library(rnaturalearth)
 library(ggplot2)
 library(RColorBrewer)
 
-# Extract environmental data for species records ####
+# Extract environmental data for species occurrence only ####
 ## load dataset
 records = st_read("data/spp_selection_P-A.shp") %>% 
   filter(value == "1")
@@ -46,3 +45,37 @@ dev.off()
 
 # write shapefile to disk and convert sf to df, only because I'm so bad at this with sf's
 st_write(records, "data/HorseyV.4_extracted_dataV.4.shp", delete_layer = TRUE)
+
+# Extract environmental data for species presence/absence both ####
+## load dataset
+veg = raster("data/fuels_reproj.tif")
+records = read.csv("data/spp_selection_P-A.csv") %>% 
+  st_as_sf(coords = c(lon = "lon", lat = "lat"), crs = st_crs(veg))
+
+# load datasets
+r2.5 = getData('worldclim', var = 'bio', res = 2.5, path = "data/")
+arid = raster("data/aridity_reproj.tif")
+nsw = st_read("data/NSW_sans_islands.shp")
+
+# clean WorldClim data
+nsw1 = nsw %>% 
+  st_transform(crs = st_crs(r2.5))
+r2.5.1 = crop(r2.5, extent(nsw1))
+r2.5.2 = projectRaster(r2.5.1, crs = crs(veg))
+
+# extract fuel types
+records = cbind(records, fueltype = raster::extract(veg, st_coordinates(records), methods = 'simple'))
+
+# extract WorldClim values at species occurrence locations and cbind to records df
+records = cbind(records, raster::extract(r2.5.2, st_coordinates(records), methods = 'simple'))
+
+# extract aridity values at species occurrence locations and cbind to records df
+records = cbind(records, aridity = raster::extract(arid, st_coordinates(records), methods = 'simple'))
+
+# write shapefile to disk
+st_write(records, "data/HorseyV.4_extracted_dataV.4_P-A.shp", delete_layer = TRUE)
+# convert to df and write to disk
+records$lon = st_coordinates(records)[1]
+records$lat = st_coordinates(records)[2]
+st_geometry(records) = NULL
+write.csv(records, "data/HorseyV.4_extracted_dataV.4_P-A.csv", row.names = FALSE)
