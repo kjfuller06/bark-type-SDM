@@ -1,4 +1,5 @@
 # script for extracting presence/absence data from species selection records
+# right now, all vegetation types are included. May want to filter out just agg and urban lands- maybe also ecosystems that shouldn't have the species present so that any errors that weren't found before can be removed
 library(tidyverse)
 library(sf)
 library(reshape2)
@@ -19,10 +20,10 @@ records = records %>%
 records = cbind(records, fuels_reproj = raster::extract(veg, st_coordinates(records), methods = 'simple'))
 
 # remove wetlands, grasslands, alpine habitat, urban, etc.
-types = c(42:46, 52:74)
-records = records %>% 
-  filter(!(fuels_reproj %in% types))
-records = drop_na(records)
+# types = c(42:46, 52:74)
+# records = records %>% 
+#   filter(!(fuels_reproj %in% types))
+# records = drop_na(records)
 
 # fill species columns with number of occurrences per unique combination of lon + lat
 # remove geometry again
@@ -60,6 +61,6 @@ longf_shp = longf %>%
   st_as_sf(coords = c(lon = "lon", lat = "lat"), crs = st_crs(veg))
 
 # write to disk
-write.csv(PA, "data/spp_selection_P-A.csv", row.names = FALSE)
-write.csv(longf, "data/spp_selection_P-A_coordinates.csv", row.names = FALSE)
-write_sf(longf_shp, "data/spp_selection_P-A.shp")
+write.csv(PA, "data/spp_selection_P-A_allenv.csv", row.names = FALSE)
+write.csv(longf, "data/spp_selection_P-A_coordinates_allenv.csv", row.names = FALSE)
+write_sf(longf_shp, "data/spp_selection_P-A_allenv.shp")
