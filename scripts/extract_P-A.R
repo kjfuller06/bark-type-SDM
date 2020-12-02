@@ -1,5 +1,5 @@
 # script for extracting presence/absence data from species selection records
-# right now, all vegetation types are included. May want to filter out just agg and urban lands- maybe also ecosystems that shouldn't have the species present so that any errors that weren't found before can be removed
+# right now, all vegetation types are included. May want to filter out just agg and urban lands- maybe also ecosystems that shouldn't have the species present so that any errors that weren't found before can be removed. Also some categories need to removed and some combined because randomForest can't handle categorical predictors with >53 categories
 library(tidyverse)
 library(sf)
 library(reshape2)
