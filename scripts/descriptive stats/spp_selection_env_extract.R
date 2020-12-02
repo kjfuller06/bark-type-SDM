@@ -49,7 +49,7 @@ st_write(records, "data/HorseyV.4_extracted_dataV.4.shp", delete_layer = TRUE)
 # Extract environmental data for species presence/absence both ####
 ## load dataset
 veg = raster("data/fuels_reproj.tif")
-records = read.csv("data/spp_selection_P-A.csv") %>% 
+records = read.csv("data/spp_selection_P-A_allenv.csv") %>% 
   st_as_sf(coords = c(lon = "lon", lat = "lat"), crs = st_crs(veg))
 
 # load datasets
@@ -73,9 +73,10 @@ records = cbind(records, raster::extract(r2.5.2, st_coordinates(records), method
 records = cbind(records, aridity = raster::extract(arid, st_coordinates(records), methods = 'simple'))
 
 # write shapefile to disk
-st_write(records, "data/HorseyV.4_extracted_dataV.4_P-A.shp", delete_layer = TRUE)
+# st_write(records, "data/HorseyV.4_extracted_dataV.4_P-A_allenv.shp", delete_layer = TRUE)
+### can't write to disk for some reason
 # convert to df and write to disk
 records$lon = st_coordinates(records)[1]
 records$lat = st_coordinates(records)[2]
 st_geometry(records) = NULL
-write.csv(records, "data/HorseyV.4_extracted_dataV.4_P-A.csv", row.names = FALSE)
+write.csv(records, "data/HorseyV.4_extracted_dataV.4_P-A_allenv.csv", row.names = FALSE)
