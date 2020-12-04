@@ -70,3 +70,98 @@ stck = raster::stack(veg, r2.5.2, arid)
 
 # select orthogonal variables
 stck = stck[[c(1, 4, 6:7, 9, 10, 16, 19)]]
+
+# create fire history layer ####
+r1919 = raster("data/fireyeartifs/fireyear1919.tif")
+r1925 = raster("data/fireyeartifs/fireyear1925.tif")
+r_add = r1919 + r1925
+
+#pattern = "*.tif$" - filters for main raster files only and skips any associated files (e.g. world files)
+grids <- list.files("./data/fireyeartifs" , pattern = "*.tif$")
+
+#create a raster stack from the input raster files 
+r_all <- raster::stack(paste0("./data/fireyeartifs/", grids))
+
+# replace all non-NA values with 1
+r_all[is.na(r_all) == FALSE] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[2]][values(r_all[[1]]) > 1] = 1
+# r_all[[3]][values(r_all[[1]]) > 1] = 1
+# r_all[[4]][values(r_all[[1]]) > 1] = 1
+# r_all[[5]][values(r_all[[1]]) > 1] = 1
+# r_all[[6]][values(r_all[[1]]) > 1] = 1
+# r_all[[7]][values(r_all[[1]]) > 1] = 1
+# r_all[[8]][values(r_all[[1]]) > 1] = 1
+# r_all[[9]][values(r_all[[1]]) > 1] = 1
+# r_all[[10]][values(r_all[[1]]) > 1] = 1
+# r_all[[11]][values(r_all[[1]]) > 1] = 1
+# r_all[[12]][values(r_all[[1]]) > 1] = 1
+# r_all[[13]][values(r_all[[1]]) > 1] = 1
+# r_all[[14]][values(r_all[[1]]) > 1] = 1
+# r_all[[15]][values(r_all[[1]]) > 1] = 1
+# r_all[[16]][values(r_all[[1]]) > 1] = 1
+# r_all[[17]][values(r_all[[1]]) > 1] = 1
+# r_all[[18]][values(r_all[[1]]) > 1] = 1
+# r_all[[19]][values(r_all[[1]]) > 1] = 1
+# r_all[[20]][values(r_all[[1]]) > 1] = 1
+# r_all[[21]][values(r_all[[1]]) > 1] = 1
+# r_all[[22]][values(r_all[[1]]) > 1] = 1
+# r_all[[23]][values(r_all[[1]]) > 1] = 1
+# r_all[[24]][values(r_all[[1]]) > 1] = 1
+# r_all[[25]][values(r_all[[1]]) > 1] = 1
+# r_all[[26]][values(r_all[[1]]) > 1] = 1
+# r_all[[27]][values(r_all[[1]]) > 1] = 1
+# r_all[[28]][values(r_all[[1]]) > 1] = 1
+# r_all[[29]][values(r_all[[1]]) > 1] = 1
+# r_all[[30]][values(r_all[[1]]) > 1] = 1
+# r_all[[31]][values(r_all[[1]]) > 1] = 1
+# r_all[[32]][values(r_all[[1]]) > 1] = 1
+# r_all[[33]][values(r_all[[1]]) > 1] = 1
+# r_all[[34]][values(r_all[[1]]) > 1] = 1
+# r_all[[35]][values(r_all[[1]]) > 1] = 1
+# r_all[[36]][values(r_all[[1]]) > 1] = 1
+# r_all[[37]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
+# r_all[[1]][values(r_all[[1]]) > 1] = 1
