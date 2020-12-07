@@ -91,7 +91,7 @@ writeRaster(firehist, "data/firehistory.tif")
 library(gdalUtils)
 library(XML)
 
-# bulk density
+# bulk density ####
 voi = "bdod" # variable of interest
 depth = "0-5cm"
 quantile = "mean"
@@ -101,3 +101,384 @@ voi_layer = paste(voi,depth,quantile, sep="_") # layer of interest
 wcs_path = paste0("https://maps.isric.org/mapserv?map=/map/",voi,".map") # Path to the WCS. See maps.isric.org
 wcs_service = "SERVICE=WCS"
 wcs_version = "VERSION=2.0.1" # This works for gdal >=2.3; "VERSION=1.1.1" works with gdal < 2.3.
+
+bb=c(15676000,-3134000,16918000,-4176000) # bounding box (homolosine)
+igh='+proj=igh +lat_0=0 +lon_0=0 +datum=WGS84 +units=m +no_defs' # proj string for Homolosine projection
+
+wcs = paste(wcs_path,wcs_service,wcs_version,sep="&") # This works for gdal >= 2.3
+
+l1 <- newXMLNode("WCS_GDAL")
+l1.s <- newXMLNode("ServiceURL", wcs, parent=l1)
+l1.l <- newXMLNode("CoverageName", "bdod_0-5cm_mean", parent=l1)
+
+# Save to local disk
+xml.out = "./data/sg.xml"
+saveXML(l1, file = xml.out)
+
+# Download raster as GeoTIFF (Warning: it can be large!)
+file.out <- './data/bulkdensity.tif'
+
+gdal_translate(xml.out, file.out,
+               tr=c(250,250), projwin=bb,
+               projwin_srs =igh, co=c("TILED=YES","COMPRESS=DEFLATE","PREDICTOR=2","BIGTIFF=YES"),
+               verbose=TRUE
+)
+
+bdod = raster("data/bulkdensity.tif")
+nsw = st_read("data/NSW_sans_islands.shp") %>% 
+  st_transform(crs = crs(bdod))
+
+# CEC ####
+voi = "cec" # variable of interest
+depth = "0-5cm"
+quantile = "mean"
+
+voi_layer = paste(voi,depth,quantile, sep="_") # layer of interest 
+
+wcs_path = paste0("https://maps.isric.org/mapserv?map=/map/",voi,".map") # Path to the WCS. See maps.isric.org
+wcs_service = "SERVICE=WCS"
+wcs_version = "VERSION=2.0.1" # This works for gdal >=2.3; "VERSION=1.1.1" works with gdal < 2.3.
+
+bb=c(15676000,-3134000,16918000,-4176000) # Example bounding box (homolosine)
+igh='+proj=igh +lat_0=0 +lon_0=0 +datum=WGS84 +units=m +no_defs' # proj string for Homolosine projection
+
+wcs = paste(wcs_path,wcs_service,wcs_version,sep="&") # This works for gdal >= 2.3
+
+l1 <- newXMLNode("WCS_GDAL")
+l1.s <- newXMLNode("ServiceURL", wcs, parent=l1)
+l1.l <- newXMLNode("CoverageName", "cec_0-5cm_mean", parent=l1)
+
+# Save to local disk
+xml.out = "./data/sg.xml"
+saveXML(l1, file = xml.out)
+
+# Download raster as GeoTIFF (Warning: it can be large!)
+file.out <- './data/cec.tif'
+
+gdal_translate(xml.out, file.out,
+               tr=c(250,250), projwin=bb,
+               projwin_srs =igh, co=c("TILED=YES","COMPRESS=DEFLATE","PREDICTOR=2","BIGTIFF=YES"),
+               verbose=TRUE
+)
+
+cec = raster("data/cec.tif")
+
+# coarse fragments ####
+voi = "cfvo" # variable of interest
+depth = "0-5cm"
+quantile = "mean"
+
+voi_layer = paste(voi,depth,quantile, sep="_") # layer of interest 
+
+wcs_path = paste0("https://maps.isric.org/mapserv?map=/map/",voi,".map") # Path to the WCS. See maps.isric.org
+wcs_service = "SERVICE=WCS"
+wcs_version = "VERSION=2.0.1" # This works for gdal >=2.3; "VERSION=1.1.1" works with gdal < 2.3.
+
+bb=c(15676000,-3134000,16918000,-4176000) # Example bounding box (homolosine)
+igh='+proj=igh +lat_0=0 +lon_0=0 +datum=WGS84 +units=m +no_defs' # proj string for Homolosine projection
+
+wcs = paste(wcs_path,wcs_service,wcs_version,sep="&") # This works for gdal >= 2.3
+
+l1 <- newXMLNode("WCS_GDAL")
+l1.s <- newXMLNode("ServiceURL", wcs, parent=l1)
+l1.l <- newXMLNode("CoverageName", "cfvo_0-5cm_mean", parent=l1)
+
+# Save to local disk
+xml.out = "./data/sg.xml"
+saveXML(l1, file = xml.out)
+
+# Download raster as GeoTIFF (Warning: it can be large!)
+file.out <- './data/coarsefragments.tif'
+
+gdal_translate(xml.out, file.out,
+               tr=c(250,250), projwin=bb,
+               projwin_srs =igh, co=c("TILED=YES","COMPRESS=DEFLATE","PREDICTOR=2","BIGTIFF=YES"),
+               verbose=TRUE
+)
+
+cfvo = raster("data/coarsefragments.tif")
+
+# sand fraction ####
+voi = "sand" # variable of interest
+depth = "0-5cm"
+quantile = "mean"
+
+voi_layer = paste(voi,depth,quantile, sep="_") # layer of interest 
+
+wcs_path = paste0("https://maps.isric.org/mapserv?map=/map/",voi,".map") # Path to the WCS. See maps.isric.org
+wcs_service = "SERVICE=WCS"
+wcs_version = "VERSION=2.0.1" # This works for gdal >=2.3; "VERSION=1.1.1" works with gdal < 2.3.
+
+bb=c(15676000,-3134000,16918000,-4176000) # Example bounding box (homolosine)
+igh='+proj=igh +lat_0=0 +lon_0=0 +datum=WGS84 +units=m +no_defs' # proj string for Homolosine projection
+
+wcs = paste(wcs_path,wcs_service,wcs_version,sep="&") # This works for gdal >= 2.3
+
+l1 <- newXMLNode("WCS_GDAL")
+l1.s <- newXMLNode("ServiceURL", wcs, parent=l1)
+l1.l <- newXMLNode("CoverageName", "sand_0-5cm_mean", parent=l1)
+
+# Save to local disk
+xml.out = "./data/sg.xml"
+saveXML(l1, file = xml.out)
+
+# Download raster as GeoTIFF (Warning: it can be large!)
+file.out <- './data/sand.tif'
+
+gdal_translate(xml.out, file.out,
+               tr=c(250,250), projwin=bb,
+               projwin_srs =igh, co=c("TILED=YES","COMPRESS=DEFLATE","PREDICTOR=2","BIGTIFF=YES"),
+               verbose=TRUE
+)
+
+sand = raster("data/sand.tif")
+# silt fraction ####
+voi = "silt" # variable of interest
+depth = "0-5cm"
+quantile = "mean"
+
+voi_layer = paste(voi,depth,quantile, sep="_") # layer of interest 
+
+wcs_path = paste0("https://maps.isric.org/mapserv?map=/map/",voi,".map") # Path to the WCS. See maps.isric.org
+wcs_service = "SERVICE=WCS"
+wcs_version = "VERSION=2.0.1" # This works for gdal >=2.3; "VERSION=1.1.1" works with gdal < 2.3.
+
+bb=c(15676000,-3134000,16918000,-4176000) # Example bounding box (homolosine)
+igh='+proj=igh +lat_0=0 +lon_0=0 +datum=WGS84 +units=m +no_defs' # proj string for Homolosine projection
+
+wcs = paste(wcs_path,wcs_service,wcs_version,sep="&") # This works for gdal >= 2.3
+
+l1 <- newXMLNode("WCS_GDAL")
+l1.s <- newXMLNode("ServiceURL", wcs, parent=l1)
+l1.l <- newXMLNode("CoverageName", "silt_0-5cm_mean", parent=l1)
+
+# Save to local disk
+xml.out = "./data/sg.xml"
+saveXML(l1, file = xml.out)
+
+# Download raster as GeoTIFF (Warning: it can be large!)
+file.out <- './data/silt.tif'
+
+gdal_translate(xml.out, file.out,
+               tr=c(250,250), projwin=bb,
+               projwin_srs =igh, co=c("TILED=YES","COMPRESS=DEFLATE","PREDICTOR=2","BIGTIFF=YES"),
+               verbose=TRUE
+)
+
+silt = raster("data/silt.tif")
+
+
+# clay fraction ####
+voi = "clay" # variable of interest
+depth = "0-5cm"
+quantile = "mean"
+
+voi_layer = paste(voi,depth,quantile, sep="_") # layer of interest 
+
+wcs_path = paste0("https://maps.isric.org/mapserv?map=/map/",voi,".map") # Path to the WCS. See maps.isric.org
+wcs_service = "SERVICE=WCS"
+wcs_version = "VERSION=2.0.1" # This works for gdal >=2.3; "VERSION=1.1.1" works with gdal < 2.3.
+
+bb=c(15676000,-3134000,16918000,-4176000) # Example bounding box (homolosine)
+igh='+proj=igh +lat_0=0 +lon_0=0 +datum=WGS84 +units=m +no_defs' # proj string for Homolosine projection
+
+wcs = paste(wcs_path,wcs_service,wcs_version,sep="&") # This works for gdal >= 2.3
+
+l1 <- newXMLNode("WCS_GDAL")
+l1.s <- newXMLNode("ServiceURL", wcs, parent=l1)
+l1.l <- newXMLNode("CoverageName", "clay_0-5cm_mean", parent=l1)
+
+# Save to local disk
+xml.out = "./data/sg.xml"
+saveXML(l1, file = xml.out)
+
+# Download raster as GeoTIFF (Warning: it can be large!)
+file.out <- './data/clay.tif'
+
+gdal_translate(xml.out, file.out,
+               tr=c(250,250), projwin=bb,
+               projwin_srs =igh, co=c("TILED=YES","COMPRESS=DEFLATE","PREDICTOR=2","BIGTIFF=YES"),
+               verbose=TRUE
+)
+
+clay = raster("data/clay.tif")
+
+
+# nitrogen ####
+voi = "nitrogen" # variable of interest
+depth = "0-5cm"
+quantile = "mean"
+
+voi_layer = paste(voi,depth,quantile, sep="_") # layer of interest 
+
+wcs_path = paste0("https://maps.isric.org/mapserv?map=/map/",voi,".map") # Path to the WCS. See maps.isric.org
+wcs_service = "SERVICE=WCS"
+wcs_version = "VERSION=2.0.1" # This works for gdal >=2.3; "VERSION=1.1.1" works with gdal < 2.3.
+
+bb=c(15676000,-3134000,16918000,-4176000) # Example bounding box (homolosine)
+igh='+proj=igh +lat_0=0 +lon_0=0 +datum=WGS84 +units=m +no_defs' # proj string for Homolosine projection
+
+wcs = paste(wcs_path,wcs_service,wcs_version,sep="&") # This works for gdal >= 2.3
+
+l1 <- newXMLNode("WCS_GDAL")
+l1.s <- newXMLNode("ServiceURL", wcs, parent=l1)
+l1.l <- newXMLNode("CoverageName", "nitrogen_0-5cm_mean", parent=l1)
+
+# Save to local disk
+xml.out = "./data/sg.xml"
+saveXML(l1, file = xml.out)
+
+# Download raster as GeoTIFF (Warning: it can be large!)
+file.out <- './data/nitrogen.tif'
+
+gdal_translate(xml.out, file.out,
+               tr=c(250,250), projwin=bb,
+               projwin_srs =igh, co=c("TILED=YES","COMPRESS=DEFLATE","PREDICTOR=2","BIGTIFF=YES"),
+               verbose=TRUE
+)
+
+nitrogen = raster("data/nitrogen.tif")
+# pH ####
+voi = "phh2o" # variable of interest
+depth = "0-5cm"
+quantile = "mean"
+
+voi_layer = paste(voi,depth,quantile, sep="_") # layer of interest 
+
+wcs_path = paste0("https://maps.isric.org/mapserv?map=/map/",voi,".map") # Path to the WCS. See maps.isric.org
+wcs_service = "SERVICE=WCS"
+wcs_version = "VERSION=2.0.1" # This works for gdal >=2.3; "VERSION=1.1.1" works with gdal < 2.3.
+
+bb=c(15676000,-3134000,16918000,-4176000) # Example bounding box (homolosine)
+igh='+proj=igh +lat_0=0 +lon_0=0 +datum=WGS84 +units=m +no_defs' # proj string for Homolosine projection
+
+wcs = paste(wcs_path,wcs_service,wcs_version,sep="&") # This works for gdal >= 2.3
+
+l1 <- newXMLNode("WCS_GDAL")
+l1.s <- newXMLNode("ServiceURL", wcs, parent=l1)
+l1.l <- newXMLNode("CoverageName", "phh2o_0-5cm_mean", parent=l1)
+
+# Save to local disk
+xml.out = "./data/sg.xml"
+saveXML(l1, file = xml.out)
+
+# Download raster as GeoTIFF (Warning: it can be large!)
+file.out <- './data/pH.tif'
+
+gdal_translate(xml.out, file.out,
+               tr=c(250,250), projwin=bb,
+               projwin_srs =igh, co=c("TILED=YES","COMPRESS=DEFLATE","PREDICTOR=2","BIGTIFF=YES"),
+               verbose=TRUE
+)
+
+ph = raster("data/pH.tif")
+
+
+# soil organic carbon ####
+voi = "soc" # variable of interest
+depth = "0-5cm"
+quantile = "mean"
+
+voi_layer = paste(voi,depth,quantile, sep="_") # layer of interest 
+
+wcs_path = paste0("https://maps.isric.org/mapserv?map=/map/",voi,".map") # Path to the WCS. See maps.isric.org
+wcs_service = "SERVICE=WCS"
+wcs_version = "VERSION=2.0.1" # This works for gdal >=2.3; "VERSION=1.1.1" works with gdal < 2.3.
+
+bb=c(15676000,-3134000,16918000,-4176000) # Example bounding box (homolosine)
+igh='+proj=igh +lat_0=0 +lon_0=0 +datum=WGS84 +units=m +no_defs' # proj string for Homolosine projection
+
+wcs = paste(wcs_path,wcs_service,wcs_version,sep="&") # This works for gdal >= 2.3
+
+l1 <- newXMLNode("WCS_GDAL")
+l1.s <- newXMLNode("ServiceURL", wcs, parent=l1)
+l1.l <- newXMLNode("CoverageName", "soc_0-5cm_mean", parent=l1)
+
+# Save to local disk
+xml.out = "./data/sg.xml"
+saveXML(l1, file = xml.out)
+
+# Download raster as GeoTIFF (Warning: it can be large!)
+file.out <- './data/soc.tif'
+
+gdal_translate(xml.out, file.out,
+               tr=c(250,250), projwin=bb,
+               projwin_srs =igh, co=c("TILED=YES","COMPRESS=DEFLATE","PREDICTOR=2","BIGTIFF=YES"),
+               verbose=TRUE
+)
+
+soc = raster("data/soc.tif")
+
+
+# organic carbon density ####
+voi = "ocd" # variable of interest
+depth = "0-5cm"
+quantile = "mean"
+
+voi_layer = paste(voi,depth,quantile, sep="_") # layer of interest 
+
+wcs_path = paste0("https://maps.isric.org/mapserv?map=/map/",voi,".map") # Path to the WCS. See maps.isric.org
+wcs_service = "SERVICE=WCS"
+wcs_version = "VERSION=2.0.1" # This works for gdal >=2.3; "VERSION=1.1.1" works with gdal < 2.3.
+
+bb=c(15676000,-3134000,16918000,-4176000) # Example bounding box (homolosine)
+igh='+proj=igh +lat_0=0 +lon_0=0 +datum=WGS84 +units=m +no_defs' # proj string for Homolosine projection
+
+wcs = paste(wcs_path,wcs_service,wcs_version,sep="&") # This works for gdal >= 2.3
+
+l1 <- newXMLNode("WCS_GDAL")
+l1.s <- newXMLNode("ServiceURL", wcs, parent=l1)
+l1.l <- newXMLNode("CoverageName", "ocd_0-5cm_mean", parent=l1)
+
+# Save to local disk
+xml.out = "./data/sg.xml"
+saveXML(l1, file = xml.out)
+
+# Download raster as GeoTIFF (Warning: it can be large!)
+file.out <- './data/ocd.tif'
+
+gdal_translate(xml.out, file.out,
+               tr=c(250,250), projwin=bb,
+               projwin_srs =igh, co=c("TILED=YES","COMPRESS=DEFLATE","PREDICTOR=2","BIGTIFF=YES"),
+               verbose=TRUE
+)
+
+ocd = raster("data/ocd.tif")
+
+
+# organic carbon stocks- errors ####
+voi = "ocs" # variable of interest
+depth = "0-5cm"
+quantile = "mean"
+
+voi_layer = paste(voi,depth,quantile, sep="_") # layer of interest 
+
+wcs_path = paste0("https://maps.isric.org/mapserv?map=/map/",voi,".map") # Path to the WCS. See maps.isric.org
+wcs_service = "SERVICE=WCS"
+wcs_version = "VERSION=2.0.1" # This works for gdal >=2.3; "VERSION=1.1.1" works with gdal < 2.3.
+
+bb=c(15676000,-3134000,16918000,-4176000) # Example bounding box (homolosine)
+igh='+proj=igh +lat_0=0 +lon_0=0 +datum=WGS84 +units=m +no_defs' # proj string for Homolosine projection
+
+wcs = paste(wcs_path,wcs_service,wcs_version,sep="&") # This works for gdal >= 2.3
+
+l1 <- newXMLNode("WCS_GDAL")
+l1.s <- newXMLNode("ServiceURL", wcs, parent=l1)
+l1.l <- newXMLNode("CoverageName", "ocs_0-5cm_mean", parent=l1)
+
+# Save to local disk
+xml.out = "./data/sg.xml"
+saveXML(l1, file = xml.out)
+
+# Download raster as GeoTIFF (Warning: it can be large!)
+file.out <- './data/ocs.tif'
+
+gdal_translate(xml.out, file.out,
+               tr=c(250,250), projwin=bb,
+               projwin_srs =igh, co=c("TILED=YES","COMPRESS=DEFLATE","PREDICTOR=2","BIGTIFF=YES"),
+               verbose=TRUE
+)
+
+ocs = raster("data/ocs.tif")
+
+
