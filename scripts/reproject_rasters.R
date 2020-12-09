@@ -19,6 +19,19 @@ r2.5 = getData('worldclim', var = 'bio', res = 2.5, path = "data/")
 arid = raster('data/ai_et0/ai_et0.tif')
 # NSW boundary
 nsw = st_read("data/NSW_sans_islands.shp")
+# fire history
+fire = raster("data/firehistory.tif")
+# soil layers
+bdod = raster("data/bulkdensity.tif")
+cec = raster("data/cec.tif")
+cfvo = raster("data/coarsefragments.tif")
+sand = raster("data/sand.tif")
+silt = raster("data/silt.tif")
+clay = raster("data/clay.tif")
+nitrogen = raster("data/nitrogen.tif")
+ph = raster("data/pH.tif")
+soc = raster("data/soc.tif")
+ocd = raster("data/ocd.tif")
 
 # 2) ####
 # veg layer doesn't need cropping because its extent is already equal to NSW
