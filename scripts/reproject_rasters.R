@@ -34,8 +34,10 @@ soc = raster("data/soc.tif")
 ocd = raster("data/ocd.tif")
 
 # 2) ####
-# veg layer doesn't need cropping because its extent is already equal to NSW
+# veg layer, fire layer and soil layers don't need cropping because the extent is already equal to NSW
 # veg layer is 30m2 res
+# fire layer is ~80m res (I think)
+# soil layers are 250m res
 
 # WorldClim data - 4km2 res
 nsw1 = nsw %>% 
@@ -57,6 +59,31 @@ veg2 = projectRaster(veg, r2.5.2, method = 'ngb')
 # aridity layer is continuous; method = 'bilinear'
 arid2 = projectRaster(arid1, r2.5.2, method = 'bilinear')
 
+# fire layer is categorical (kind of; data are integers); method = 'ngb'
+fire2 = projectRaster(fire, r2.5.2, method = 'ngb')
+
+# soils layers are all continuous; method = 'bilinear'
+bdod2 = projectRaster(bdod, r2.5.2, method = 'bilinear')
+bdod2 = bdod2/100
+cec2 = projectRaster(cec, r2.5.2, method = 'bilinear')
+cec2 = cec2/10
+cfvo2 = projectRaster(cfvo, r2.5.2, method = 'bilinear')
+cfvo2 = cfvo2/10
+sand2 = projectRaster(sand, r2.5.2, method = 'bilinear')
+sand2 = sand2/10
+silt2 = projectRaster(silt, r2.5.2, method = 'bilinear')
+silt2 = silt2/10
+clay2 = projectRaster(clay, r2.5.2, method = 'bilinear')
+clay2 = clay2/10
+nit2 = projectRaster(nitrogen, r2.5.2, method = 'bilinear')
+nit2 = nit2/100
+ph2 = projectRaster(ph, r2.5.2, method = 'bilinear')
+ph2 = ph2/10
+soc2 = projectRaster(soc, r2.5.2, method = 'bilinear')
+soc2 = soc2/10
+ocd2 = projectRaster(ocd, r2.5.2, method = 'bilinear')
+ocd2 = ocd2/10
+
 # 4) ####
 # WorldClim data
 # stackSave(r2.5.2, "data/worldclim_reproj.stk")
@@ -67,3 +94,19 @@ writeRaster(veg2, "data/fuels_reproj.tif")
 
 # aridity data
 writeRaster(arid2, "data/aridity_reproj.tif")
+
+# fire data
+writeRaster(fire2, "data/fire_reproj.tif", overwrite = TRUE)
+
+# soil data
+writeRaster(bdod2, "data/bdod_reproj.tif", overwrite = TRUE)
+writeRaster(cec2, "data/cec_reproj.tif", overwrite = TRUE)
+writeRaster(cfvo2, "data/cfvo_reproj.tif", overwrite = TRUE)
+writeRaster(sand2, "data/sand_reproj.tif", overwrite = TRUE)
+writeRaster(silt2, "data/silt_reproj.tif", overwrite = TRUE)
+writeRaster(clay2, "data/clay_reproj.tif", overwrite = TRUE)
+writeRaster(nit2, "data/nitrogen_reproj.tif", overwrite = TRUE)
+writeRaster(ph2, "data/ph_reproj.tif", overwrite = TRUE)
+writeRaster(soc2, "data/soc_reproj.tif", overwrite = TRUE)
+writeRaster(ocd2, "data/ocd_reproj.tif", overwrite = TRUE)
+
