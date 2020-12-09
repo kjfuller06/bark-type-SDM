@@ -99,7 +99,7 @@ records = cbind(records, raster::extract(soils, st_coordinates(records), methods
 # st_write(records, "data/HorseyV.4_extracted_dataV.4_P-A_allenv.shp", delete_layer = TRUE)
 ### can't write to disk for some reason
 # convert to df and write to disk
-records$lon = st_coordinates(records)[1]
-records$lat = st_coordinates(records)[2]
+records$lon = st_coordinates(records)[,1]
+records$lat = st_coordinates(records)[,2]
 st_geometry(records) = NULL
-write.csv(records, "data/HorseyV.4_extracted_dataV.4_P-A_allenv.csv", row.names = FALSE)
+write.csv(records, "data/HorseyV.4_extracted_dataV.5_P-A_allenv.csv", row.names = FALSE)
