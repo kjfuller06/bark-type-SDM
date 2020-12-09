@@ -1,4 +1,5 @@
 # this script is for reprojecting rasters to all be the same EPSG for modeling
+## Need to download higher resolution BioClim data and reproject again
 # 1) load datasets
 # 2) reproject NSW shapefile to each of the raster layers' EPSG and clip to make reprojection faster
 # 3) resample rasters to crs and res of veg layer

@@ -1,3 +1,4 @@
+# Need to add fire and soil data from disk and extract. Need to correct temperature units in bioclim data from C*10 to C and extract.
 library(raster)
 library(tidyverse)
 library(sf)
