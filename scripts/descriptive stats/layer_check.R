@@ -1,9 +1,12 @@
-# this script is for examining fuel complexes of NSW 
+# this script is for collecting and examining data layers for analysis
+## errors occurred when trying to download the organic carbon stocks for NSW from ISRIC
 library(raster)
 library(tidyverse)
 library(sf)
 library(rgdal)
 library(tmap)
+library(gdalUtils)
+library(XML)
 
 # check for crs ####
 # get codes
@@ -87,10 +90,7 @@ firehist = sum(!is.na(r_all))
 
 writeRaster(firehist, "data/firehistory.tif")
 
-# get soil data ####
-library(gdalUtils)
-library(XML)
-
+## get soil data ####
 # bulk density ####
 voi = "bdod" # variable of interest
 depth = "0-5cm"
