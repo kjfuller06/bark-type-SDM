@@ -14,12 +14,23 @@ library(tmap)
 # 1) ####
 # fuel layer
 veg = raster("data/FuelTypeV2_FuelLUT1.tif")
-# WorldClim datasets
-r2.5 = getData('worldclim', var = 'bio', res = 2.5, path = "data/")
-# aridity data from CGIARCS
-arid = raster('data/ai_et0/ai_et0.tif')
 # NSW boundary
 nsw = st_read("data/NSW_sans_islands.shp")
+# WorldClim datasets
+r0.5_410 = getData('worldclim', var = 'bio', res = 0.5, lon = 148, lat = -30, path = "data/")
+r0.5_411 = getData('worldclim', var = 'bio', res = 0.5, lon = 150, lat = -30, path = "data/")
+r0.5_310 = getData('worldclim', var = 'bio', res = 0.5, lon = 147, lat = -25, path = "data/")
+r0.5_311 = getData('worldclim', var = 'bio', res = 0.5, lon = 150, lat = -25, path = "data/")
+
+# mosaic the tiles together
+r0.5 = mosaic(r0.5_410, r0.5_411, fun = mean)
+r0.5 = mosaic(r0.5, r0.5_310, r0.5_311, fun = mean)
+
+save = r0.5
+
+
+# aridity data from CGIARCS
+arid = raster('data/ai_et0/ai_et0.tif')
 # fire history
 fire = raster("data/firehistory.tif")
 # soil layers
@@ -42,8 +53,8 @@ ocd = raster("data/ocd.tif")
 
 # WorldClim data - 4km2 res
 nsw1 = nsw %>% 
-  st_transform(crs = st_crs(r2.5))
-r2.5.1 = crop(r2.5, extent(nsw1))
+  st_transform(crs = st_crs(r0.5))
+r2.5.1 = crop(r0.5, extent(nsw1))
 
 # aridity - 800m res
 nsw1 = nsw %>% 
