@@ -27,7 +27,7 @@ r0.5 = mosaic(r0.5_410, r0.5_411, fun = mean)
 r0.5 = mosaic(r0.5, r0.5_310, r0.5_311, fun = mean)
 
 save = r0.5
-
+#^ does not use the latest source of BioClim data. Used a download link instead. Need to redo
 
 # aridity data from CGIARCS
 arid = raster('data/ai_et0/ai_et0.tif')
