@@ -486,3 +486,10 @@ ocs = raster("data/ocs.tif")
 # check out some fire history polygons from RFS ####
 fires2 = st_read("data/NSWRFS_FireHistory_shapefiles_20200326/PFH_20200326.shp")
 tm_shape(fires2)+tm_borders()
+
+# and some other datasets I got from SEED ####
+## polygons of prescribed and wild fires
+fires3 = st_read("data/firenpwsfirehistory/NPWSFireHistory_17122020.shp")
+## this is fire severity for the 2019-2020 fire season
+fires4 = raster("data/fesm20200420/cvmsre_NSW_20200420_ag7l0.tif")
+
