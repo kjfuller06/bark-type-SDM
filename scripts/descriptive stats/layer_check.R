@@ -75,6 +75,7 @@ stck = raster::stack(veg, r2.5.2, arid)
 stck = stck[[c(1, 4, 6:7, 9, 10, 16, 19)]]
 
 # create fire history layer ####
+## I actually don't know where these originated. They were uploaded to the Hub's CloudStor by Trent Penman
 r1919 = raster("data/fireyeartifs/fireyear1919.tif")
 r1925 = raster("data/fireyeartifs/fireyear1925.tif")
 r_add = r1919 + r1925
@@ -482,3 +483,6 @@ gdal_translate(xml.out, file.out,
 ocs = raster("data/ocs.tif")
 
 
+# check out some fire history polygons from RFS ####
+fires2 = st_read("data/NSWRFS_FireHistory_shapefiles_20200326/PFH_20200326.shp")
+tm_shape(fires2)+tm_borders()
