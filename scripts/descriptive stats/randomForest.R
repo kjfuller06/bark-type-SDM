@@ -6,6 +6,7 @@ library(rnaturalearth)
 library(tmap)
 library(randomForest)
 library(alookr)
+library(themis)
 
 # testing random forest ####
 records = read.csv("data/HorseyV.4_extracted_dataV.5_P-A_allenv.csv")
@@ -54,15 +55,24 @@ over %>% count(.[,1])
 smote = sb %>% 
   sampling_target(method = "ubSMOTE", seed = 1234L, perc.under = 150)
 smote %>% count(.[,1])
-test = smote %>% 
-  extract_set(set = "test")
+# test = smote %>% 
+#   extract_set(set = "test")
+# ^doesn't work. I think because doing a SMOTE resampling generates just the training dataset, not the test dataset. That is still from "sb", extracted above and called "test"
+
+# combine training set (smote) with testing set (test)
+test$Eucalyptus.beyeriana = as.factor(test$Eucalyptus.beyeriana)
+split_obj = bind_rows(smote, test)
+prop = nrow(smote) / (nrow(smote) + nrow(test))
+split_obj <- initial_time_split(split_obj, prop = prop)
 
 # model recipe
 mod_rec = recipe(Eucalyptus.beyeriana ~ ., data = smote)
 
 # tune for the model specifications
 tune_spec = rand_forest(
-  trees = 1000
+  mtry = tune(),
+  trees = 1000,
+  min_n = tune()
 ) %>% 
   set_mode("classification") %>% 
   set_engine("ranger")
@@ -76,7 +86,7 @@ tune_wf = workflow() %>%
 set.seed(234)
 trees_fold = vfold_cv(smote)
 
-# tune the hyperparameters
+# tune the hyperparameters for how many predictors to sample at each split (mtry) and how many observations needed to keep splitting nodes (min_n)
 doParallel::registerDoParallel()
 
 set.seed(345)
@@ -85,19 +95,75 @@ tune_res = tune_grid(
   resamples = trees_fold,
   grid = 20
 )
-##^this doesn't fucking work
+tune_res
+# plot results
+tune_res %>%
+  collect_metrics() %>%
+  filter(.metric == "roc_auc") %>%
+  select(mean, min_n, mtry) %>%
+  pivot_longer(min_n:mtry,
+               values_to = "value",
+               names_to = "parameter"
+  ) %>%
+  ggplot(aes(value, mean, color = parameter)) +
+  geom_point(show.legend = FALSE) +
+  facet_wrap(~parameter, scales = "free_x") +
+  labs(x = NULL, y = "AUC")
+# more detailed look at the best value ranges
+rf_grid <- grid_regular(
+  mtry(range = c(2, 16)),
+  min_n(range = c(2, 12)),
+  levels = 8
+)
+rf_grid
+# tune parameters again, this time with a more targeted range of hyperparameters
+set.seed(456)
+regular_res <- tune_grid(
+  tune_wf,
+  resamples = trees_fold,
+  grid = rf_grid
+)
+regular_res
+# plot new results
+regular_res %>%
+  collect_metrics() %>%
+  filter(.metric == "roc_auc") %>%
+  mutate(min_n = factor(min_n)) %>%
+  ggplot(aes(mtry, mean, color = min_n)) +
+  geom_line(alpha = 0.5, size = 1.5) +
+  geom_point() +
+  labs(y = "AUC")
 
-# run random forest for a selected species
-rf_sp1 = randomForest(x = smote[,1], y = smote[,c(2:32)], ntree=1000, nodesize=10, importance =T)
-rf_sp1
-# check importance of variables
-importance(rf_sp1)
+# select the best values for hyperparameters for final model specs
+best_auc <- select_best(regular_res, "roc_auc")
 
-df = data.frame(sp = seq(1:116), "correct0" = seq(1:116), "false1" = seq(1:116), "false0" = seq(1:116), "correct1" = seq(1:116), class.error0 = seq(1:116), class.error1 = seq(1:116))
+final_rf <- finalize_model(
+  tune_spec,
+  best_auc
+)
 
-df = data.frame(sp = names(records[52]), "correct0" = rf_sp1$confusion[1, 1], "false1" = rf_sp1$confusion[1, 2], "false0" = rf_sp1$confusion[2, 1], "correct1" = rf_sp1$confusion[2, 2], class.error0 = rf_sp1$confusion[1, 3], class.error1 = rf_sp1$confusion[2, 3])
+final_rf
 
-write.csv(df, "outputs/randomForest_HorseyV.4_extracted_dataV.5_P-!_allenv.csv", row.names = FALSE)
+# now lets run the model and test it on the test dataset
+final_wf <- workflow() %>%
+  add_recipe(mod_rec) %>%
+  add_model(final_rf)
+
+final_res <- final_wf %>%
+  last_fit(split_obj)
+
+# calculate true positives and negatives and error rates
+final_res %>%
+  collect_metrics()
+sum_1 = final_res %>% 
+  collect_predictions()
+stats = data.frame(pred_acc = c(
+  pred0.0 = mean(sum_1$.pred_0[sum_1$Eucalyptus.beyeriana == 0]),
+  pred0.1 = mean(sum_1$.pred_1[sum_1$Eucalyptus.beyeriana == 0]),
+  pred1.0 = mean(sum_1$.pred_0[sum_1$Eucalyptus.beyeriana == 1]),
+  pred1.1 = mean(sum_1$.pred_1[sum_1$Eucalyptus.beyeriana == 1])
+))
+stats
 
 # let's look at a bark type
 # add all observations of the following species to create the stringybark category
