@@ -71,38 +71,42 @@ nsw1 = nsw %>%
 arid1 = crop(arid, extent(nsw1))
 
 # 3) ####
-# WorldClim layers are the reference dataset; just change the crs
-bioclim3 = projectRaster(bioclim2, crs = crs(veg))
+# the veg layer is the crs reference dataset and will only be used for subsetting. No change made
+# the fire layer is the res reference dataset; just change the crs
+fire2 = projectRaster(fire, crs = crs(veg), method = 'ngb')
+
+# WorldClim data are continuous; method is 'bilinear'
+bioclim3 = projectRaster(bioclim2, fire2, method = 'bilinear')
+## ^didn't work, ran out of storage
 
 # veg layer is categorical; method is 'ngb'
-veg2 = projectRaster(veg, r2.5.2, method = 'ngb')
+veg2 = projectRaster(veg, fire2, method = 'ngb')
 
 # aridity layer is continuous; method = 'bilinear'
-arid2 = projectRaster(arid1, r2.5.2, method = 'bilinear')
+arid2 = projectRaster(arid1, fire2, method = 'bilinear')
 
 # fire layer is categorical (kind of; data are integers); method = 'ngb'
-fire2 = projectRaster(fire, r2.5.2, method = 'ngb')
 
 # soils layers are all continuous; method = 'bilinear'
-bdod2 = projectRaster(bdod, r2.5.2, method = 'bilinear')
+bdod2 = projectRaster(bdod, fire2, method = 'bilinear')
 bdod2 = bdod2/100
-cec2 = projectRaster(cec, r2.5.2, method = 'bilinear')
+cec2 = projectRaster(cec, fire2, method = 'bilinear')
 cec2 = cec2/10
-cfvo2 = projectRaster(cfvo, r2.5.2, method = 'bilinear')
+cfvo2 = projectRaster(cfvo, fire2, method = 'bilinear')
 cfvo2 = cfvo2/10
-sand2 = projectRaster(sand, r2.5.2, method = 'bilinear')
+sand2 = projectRaster(sand, fire2, method = 'bilinear')
 sand2 = sand2/10
-silt2 = projectRaster(silt, r2.5.2, method = 'bilinear')
+silt2 = projectRaster(silt, fire2, method = 'bilinear')
 silt2 = silt2/10
-clay2 = projectRaster(clay, r2.5.2, method = 'bilinear')
+clay2 = projectRaster(clay, fire2, method = 'bilinear')
 clay2 = clay2/10
-nit2 = projectRaster(nitrogen, r2.5.2, method = 'bilinear')
+nit2 = projectRaster(nitrogen, fire2, method = 'bilinear')
 nit2 = nit2/100
-ph2 = projectRaster(ph, r2.5.2, method = 'bilinear')
+ph2 = projectRaster(ph, fire2, method = 'bilinear')
 ph2 = ph2/10
-soc2 = projectRaster(soc, r2.5.2, method = 'bilinear')
+soc2 = projectRaster(soc, fire2, method = 'bilinear')
 soc2 = soc2/10
-ocd2 = projectRaster(ocd, r2.5.2, method = 'bilinear')
+ocd2 = projectRaster(ocd, fire2, method = 'bilinear')
 ocd2 = ocd2/10
 
 # 4) ####
