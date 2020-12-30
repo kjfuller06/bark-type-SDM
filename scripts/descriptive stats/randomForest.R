@@ -1,4 +1,5 @@
 # to do: include lat/lon coords as variabes in the RF, then plot correct and incorrect prediction on a map and explore attributes (following Julia Silge tutorial)
+# also, I need to start exporting model inputs and their prediction error values
 
 library(raster)
 library(tidymodels)
