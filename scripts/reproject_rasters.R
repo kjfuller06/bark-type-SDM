@@ -17,17 +17,26 @@ veg = raster("data/FuelTypeV2_FuelLUT1.tif")
 # NSW boundary
 nsw = st_read("data/NSW_sans_islands.shp")
 # WorldClim datasets
-r0.5_410 = getData('worldclim', var = 'bio', res = 0.5, lon = 148, lat = -30, path = "data/")
-r0.5_411 = getData('worldclim', var = 'bio', res = 0.5, lon = 150, lat = -30, path = "data/")
-r0.5_310 = getData('worldclim', var = 'bio', res = 0.5, lon = 147, lat = -25, path = "data/")
-r0.5_311 = getData('worldclim', var = 'bio', res = 0.5, lon = 150, lat = -25, path = "data/")
-
-# mosaic the tiles together
-r0.5 = mosaic(r0.5_410, r0.5_411, fun = mean)
-r0.5 = mosaic(r0.5, r0.5_310, r0.5_311, fun = mean)
-
-save = r0.5
-#^ does not use the latest source of BioClim data. Used a download link instead. Need to redo
+bio1 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_1.tif')
+bio2 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_2.tif')
+bio3 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_3.tif')
+bio4 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_4.tif')
+bio5 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_5.tif')
+bio6 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_6.tif')
+bio7 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_7.tif')
+bio8 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_8.tif')
+bio9 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_9.tif')
+bio10 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_10.tif')
+bio11 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_11.tif')
+bio12 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_12.tif')
+bio13 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_13.tif')
+bio14 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_14.tif')
+bio15 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_15.tif')
+bio16 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_16.tif')
+bio17 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_17.tif')
+bio18 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_18.tif')
+bio19 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_19.tif')
+bioclim = raster::stack(bio1, bio2, bio3, bio4, bio5, bio6, bio7, bio8, bio9, bio10, bio11, bio12, bio13, bio14, bio15, bio16, bio17, bio18, bio19)
 
 # aridity data from CGIARCS
 arid = raster('data/ai_et0/ai_et0.tif')
@@ -48,13 +57,13 @@ ocd = raster("data/ocd.tif")
 # 2) ####
 # veg layer, fire layer and soil layers don't need cropping because the extent is already equal to NSW
 # veg layer is 30m2 res
-# fire layer is ~80m res (I think)
+# fire layer is ~80m res
 # soil layers are 250m res
 
-# WorldClim data - 4km2 res
+# WorldClim data - ~800m res
 nsw1 = nsw %>% 
-  st_transform(crs = st_crs(r0.5))
-r2.5.1 = crop(r0.5, extent(nsw1))
+  st_transform(crs = st_crs(bioclim))
+bioclim2 = crop(bioclim, extent(nsw1))
 
 # aridity - 800m res
 nsw1 = nsw %>% 
@@ -63,7 +72,7 @@ arid1 = crop(arid, extent(nsw1))
 
 # 3) ####
 # WorldClim layers are the reference dataset; just change the crs
-r2.5.2 = projectRaster(r2.5.1, crs = crs(veg))
+bioclim3 = projectRaster(bioclim2, crs = crs(veg))
 
 # veg layer is categorical; method is 'ngb'
 veg2 = projectRaster(veg, r2.5.2, method = 'ngb')
