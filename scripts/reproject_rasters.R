@@ -63,51 +63,51 @@ ocd = raster("data/ocd.tif")
 # WorldClim data - ~800m res
 nsw1 = nsw %>% 
   st_transform(crs = st_crs(bioclim))
-bioclim2 = crop(bioclim, extent(nsw1))
+bioclim = crop(bioclim, extent(nsw1))
 
 # aridity - 800m res
 nsw1 = nsw %>% 
   st_transform(crs = st_crs(arid))
-arid1 = crop(arid, extent(nsw1))
+arid = crop(arid, extent(nsw1))
 
 # 3) ####
 # the veg layer is the crs reference dataset and will only be used for subsetting. No change made
 # the fire layer is the res reference dataset; just change the crs
-fire2 = projectRaster(fire, crs = crs(veg), method = 'ngb')
+fire = projectRaster(fire, crs = crs(veg), method = 'ngb')
 
 # WorldClim data are continuous; method is 'bilinear'
-bioclim3 = projectRaster(bioclim2, fire2, method = 'bilinear')
+bioclim = projectRaster(bioclim, fire, method = 'bilinear')
 ## ^didn't work, ran out of storage
 
 # veg layer is categorical; method is 'ngb'
-veg2 = projectRaster(veg, fire2, method = 'ngb')
+veg = projectRaster(veg, fire, method = 'ngb')
 
 # aridity layer is continuous; method = 'bilinear'
-arid2 = projectRaster(arid1, fire2, method = 'bilinear')
+arid = projectRaster(arid, fire, method = 'bilinear')
 
 # fire layer is categorical (kind of; data are integers); method = 'ngb'
 
 # soils layers are all continuous; method = 'bilinear'
-bdod2 = projectRaster(bdod, fire2, method = 'bilinear')
-bdod2 = bdod2/100
-cec2 = projectRaster(cec, fire2, method = 'bilinear')
-cec2 = cec2/10
-cfvo2 = projectRaster(cfvo, fire2, method = 'bilinear')
-cfvo2 = cfvo2/10
-sand2 = projectRaster(sand, fire2, method = 'bilinear')
-sand2 = sand2/10
-silt2 = projectRaster(silt, fire2, method = 'bilinear')
-silt2 = silt2/10
-clay2 = projectRaster(clay, fire2, method = 'bilinear')
-clay2 = clay2/10
-nit2 = projectRaster(nitrogen, fire2, method = 'bilinear')
-nit2 = nit2/100
-ph2 = projectRaster(ph, fire2, method = 'bilinear')
-ph2 = ph2/10
-soc2 = projectRaster(soc, fire2, method = 'bilinear')
-soc2 = soc2/10
-ocd2 = projectRaster(ocd, fire2, method = 'bilinear')
-ocd2 = ocd2/10
+bdod = projectRaster(bdod, fire, method = 'bilinear')
+bdod = bdod/100
+cec = projectRaster(cec, fire, method = 'bilinear')
+cec = cec/10
+cfvo = projectRaster(cfvo, fire, method = 'bilinear')
+cfvo = cfvo/10
+sand = projectRaster(sand, fire, method = 'bilinear')
+sand = sand/10
+silt = projectRaster(silt, fire, method = 'bilinear')
+silt = silt/10
+clay = projectRaster(clay, fire, method = 'bilinear')
+clay = clay/10
+nit = projectRaster(nitrogen, fire, method = 'bilinear')
+nit = nit/100
+ph = projectRaster(ph, fire, method = 'bilinear')
+ph = ph/10
+soc = projectRaster(soc, fire, method = 'bilinear')
+soc = soc/10
+ocd = projectRaster(ocd, fire, method = 'bilinear')
+ocd = ocd/10
 
 # 4) ####
 # WorldClim data
@@ -115,23 +115,23 @@ ocd2 = ocd2/10
 # ^ doesn't work because the new layers aren't saved in disk; no solution- will need to re-download and change the crs again in the working script each time
 
 # veg data
-writeRaster(veg2, "data/fuels_reproj.tif")
+writeRaster(veg, "data/fuels_reproj.tif")
 
 # aridity data
-writeRaster(arid2, "data/aridity_reproj.tif")
+writeRaster(arid, "data/aridity_reproj.tif")
 
 # fire data
-writeRaster(fire2, "data/fire_reproj.tif", overwrite = TRUE)
+writeRaster(fire, "data/fire_reproj.tif", overwrite = TRUE)
 
 # soil data
-writeRaster(bdod2, "data/bdod_reproj.tif", overwrite = TRUE)
-writeRaster(cec2, "data/cec_reproj.tif", overwrite = TRUE)
-writeRaster(cfvo2, "data/cfvo_reproj.tif", overwrite = TRUE)
-writeRaster(sand2, "data/sand_reproj.tif", overwrite = TRUE)
-writeRaster(silt2, "data/silt_reproj.tif", overwrite = TRUE)
-writeRaster(clay2, "data/clay_reproj.tif", overwrite = TRUE)
-writeRaster(nit2, "data/nitrogen_reproj.tif", overwrite = TRUE)
-writeRaster(ph2, "data/ph_reproj.tif", overwrite = TRUE)
-writeRaster(soc2, "data/soc_reproj.tif", overwrite = TRUE)
-writeRaster(ocd2, "data/ocd_reproj.tif", overwrite = TRUE)
+writeRaster(bdod, "data/bdod_reproj.tif", overwrite = TRUE)
+writeRaster(cec, "data/cec_reproj.tif", overwrite = TRUE)
+writeRaster(cfvo, "data/cfvo_reproj.tif", overwrite = TRUE)
+writeRaster(sand, "data/sand_reproj.tif", overwrite = TRUE)
+writeRaster(silt, "data/silt_reproj.tif", overwrite = TRUE)
+writeRaster(clay, "data/clay_reproj.tif", overwrite = TRUE)
+writeRaster(nit, "data/nitrogen_reproj.tif", overwrite = TRUE)
+writeRaster(ph, "data/ph_reproj.tif", overwrite = TRUE)
+writeRaster(soc, "data/soc_reproj.tif", overwrite = TRUE)
+writeRaster(ocd, "data/ocd_reproj.tif", overwrite = TRUE)
 
