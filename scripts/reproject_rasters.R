@@ -2,10 +2,9 @@
 ## Need to download higher resolution BioClim data and reproject again
 # 1) load datasets
 # 2) reproject NSW shapefile to each of the raster layers' EPSG and clip to make reprojection faster
-# 3) resample rasters to crs and res of veg layer
+# 3) resample rasters to crs and res of veg layer, write to disk and remove from memory storage
 #       - method = biliear for continuous data; weighted average of the four nearest cells
 #       - method = ngb for categorical data; value of the nearest cell
-# 4) write rasters to disk
 
 library(raster)
 library(sf)
@@ -74,64 +73,34 @@ arid = crop(arid, extent(nsw1))
 # the veg layer is the crs reference dataset and will only be used for subsetting. No change made
 # the fire layer is the res reference dataset; just change the crs
 fire = projectRaster(fire, crs = crs(veg), method = 'ngb')
+writeRaster(fire, "data/fire_reproj_80m.tif", overwrite = TRUE)
 
 # WorldClim data are continuous; method is 'bilinear'
 bioclim = projectRaster(bioclim, fire, method = 'bilinear')
-## ^didn't work, ran out of storage
+writeRaster(bioclim, "data/fire_bioclim_80m.grd", format = "raster", overwrite = TRUE)
+rm(bioclim)
 
 # veg layer is categorical; method is 'ngb'
 veg = projectRaster(veg, fire, method = 'ngb')
+writeRaster(veg, "data/fuels_reproj_80m.tif")
+rm(veg)
 
 # aridity layer is continuous; method = 'bilinear'
 arid = projectRaster(arid, fire, method = 'bilinear')
-
-# fire layer is categorical (kind of; data are integers); method = 'ngb'
+writeRaster(arid, "data/aridity_reproj_80m.tif")
+rm(arid)
 
 # soils layers are all continuous; method = 'bilinear'
 bdod = projectRaster(bdod, fire, method = 'bilinear')
-bdod = bdod/100
 cec = projectRaster(cec, fire, method = 'bilinear')
-cec = cec/10
 cfvo = projectRaster(cfvo, fire, method = 'bilinear')
-cfvo = cfvo/10
 sand = projectRaster(sand, fire, method = 'bilinear')
-sand = sand/10
 silt = projectRaster(silt, fire, method = 'bilinear')
-silt = silt/10
 clay = projectRaster(clay, fire, method = 'bilinear')
-clay = clay/10
 nit = projectRaster(nitrogen, fire, method = 'bilinear')
-nit = nit/100
 ph = projectRaster(ph, fire, method = 'bilinear')
-ph = ph/10
 soc = projectRaster(soc, fire, method = 'bilinear')
-soc = soc/10
 ocd = projectRaster(ocd, fire, method = 'bilinear')
-ocd = ocd/10
-
-# 4) ####
-# WorldClim data
-# stackSave(r2.5.2, "data/worldclim_reproj.stk")
-# ^ doesn't work because the new layers aren't saved in disk; no solution- will need to re-download and change the crs again in the working script each time
-
-# veg data
-writeRaster(veg, "data/fuels_reproj.tif")
-
-# aridity data
-writeRaster(arid, "data/aridity_reproj.tif")
-
-# fire data
-writeRaster(fire, "data/fire_reproj.tif", overwrite = TRUE)
-
-# soil data
-writeRaster(bdod, "data/bdod_reproj.tif", overwrite = TRUE)
-writeRaster(cec, "data/cec_reproj.tif", overwrite = TRUE)
-writeRaster(cfvo, "data/cfvo_reproj.tif", overwrite = TRUE)
-writeRaster(sand, "data/sand_reproj.tif", overwrite = TRUE)
-writeRaster(silt, "data/silt_reproj.tif", overwrite = TRUE)
-writeRaster(clay, "data/clay_reproj.tif", overwrite = TRUE)
-writeRaster(nit, "data/nitrogen_reproj.tif", overwrite = TRUE)
-writeRaster(ph, "data/ph_reproj.tif", overwrite = TRUE)
-writeRaster(soc, "data/soc_reproj.tif", overwrite = TRUE)
-writeRaster(ocd, "data/ocd_reproj.tif", overwrite = TRUE)
-
+soils = raster::stack(bdod, cec, cfvo, sand, silt, clay, nit, ph, soc, ocd)
+rm(bdod, cec, cfvo, sand, silt, clay, nit, ph, soc, ocd)
+writeRaster(soils, "data/soils_80m.grd", format = "raster", overwrite = TRUE)
