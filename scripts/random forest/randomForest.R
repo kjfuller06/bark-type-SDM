@@ -1,5 +1,7 @@
 # to do: include lat/lon coords as variabes in the RF, then plot correct and incorrect prediction on a map and explore attributes (following Julia Silge tutorial)
 # also, I need to start exporting model inputs and their prediction error values
+# create loop for all species and bark types
+# create exporting method- best would be markdown but CSV would be fine
 
 library(raster)
 library(tidymodels)
@@ -23,6 +25,7 @@ nonwoody = c(56:74)
 records = records %>% 
   filter(!(fueltype %in% nonwoody))
 
+# Species-level Random Forests ####
 # select only the vegetation types where the species is found to be present
 rec1 = records[,c(1, 117:148)]
 sp1 = colnames(rec1)[1]
@@ -32,10 +35,12 @@ fuels = rec1 %>%
   unique()
 rec1 = rec1[rec1$fueltype %in% fuels$fueltype,] %>% 
   dplyr::select(-fueltype)
+# rename species for easier looping
+names(rec1)[1] = "species1"
 
 # create training and test samples
 sb = rec1 %>%
-  split_by(paste(sp1), seed = 6534)
+  split_by(species1, seed = 6534)
 attributes(sb)
 summary(sb)
 test = sb %>% 
@@ -58,18 +63,16 @@ over %>% count(.[,1])
 smote = sb %>% 
   sampling_target(method = "ubSMOTE", seed = 1234L, perc.under = 150)
 smote %>% count(.[,1])
-# test = smote %>% 
-#   extract_set(set = "test")
-# ^doesn't work. I think because doing a SMOTE resampling generates just the training dataset, not the test dataset. That is still from "sb", extracted above and called "test"
+## NOTE: SMOTE resampling generates just the training dataset, not the test dataset. That is still from "sb", extracted above and called "test"
 
 # combine training set (smote) with testing set (test)
-test$Eucalyptus.beyeriana = as.factor(test$Eucalyptus.beyeriana)
+test$species1 = as.factor(test$species1)
 split_obj = bind_rows(smote, test)
 prop = nrow(smote) / (nrow(smote) + nrow(test))
 split_obj <- initial_time_split(split_obj, prop = prop)
 
 # model recipe
-mod_rec = recipe(Eucalyptus.beyeriana ~ ., data = smote)
+mod_rec = recipe(species1 ~ ., data = smote)
 
 # tune for the model specifications
 tune_spec = rand_forest(
@@ -144,8 +147,17 @@ final_rf <- finalize_model(
   tune_spec,
   best_auc
 )
-
+# examine parameters
 final_rf
+# grab parameters for labeling outputs
+label = paste("mtry",
+              as.character(final_rf$args$mtry)[2], 
+              "trees",
+              as.character(final_rf$args$trees)[2],
+              "min_n",
+              as.character(final_rf$args$min_n)[2],
+              sep = "_")
+
 
 # now lets run the model and test it on the test dataset
 final_wf <- workflow() %>%
@@ -156,37 +168,49 @@ final_res <- final_wf %>%
   last_fit(split_obj)
 
 # calculate true positives and negatives and error rates
-final_res %>%
+metrics = final_res %>%
   collect_metrics()
+metrics
 sum_1 = final_res %>% 
   collect_predictions()
-stats = data.frame(pred_acc = c(
-  pred0.0 = mean(sum_1$.pred_0[sum_1$Eucalyptus.beyeriana == 0]),
-  pred0.1 = mean(sum_1$.pred_1[sum_1$Eucalyptus.beyeriana == 0]),
-  pred1.0 = mean(sum_1$.pred_0[sum_1$Eucalyptus.beyeriana == 1]),
-  pred1.1 = mean(sum_1$.pred_1[sum_1$Eucalyptus.beyeriana == 1])
+stats_species = data.frame(species = sp1,
+                           parameters = label, 
+                   attribute = c("pred0.0",
+                                 "pred0.1",
+                                 "pred1.0",
+                                 "pred1.1",
+                                 "accuracy",
+                                 "roc_auc",
+                                 "resolution"),
+                   values = c(mean(sum_1$.pred_0[sum_1$species1 == 0]),
+                                   mean(sum_1$.pred_1[sum_1$species1 == 0]),
+                                   mean(sum_1$.pred_0[sum_1$species1 == 1]),
+                                   mean(sum_1$.pred_1[sum_1$species1 == 1]),
+                                   metrics$.estimate[1],
+                                   metrics$.estimate[2],
+                                   resolution = "~4km"
 ))
-stats
+stats_species
 
 # stringybarks ####
 # add all observations of the following species to create the stringybark category
+type = "stringybark"
 barks = read.csv("data/Horsey_candidate_speciesV.4_colnames.csv")
-stringies = barks %>% 
-  filter(bark1 == "stringybark")
+b1 = barks %>% 
+  filter(bark1 == type)
 
-stringybarks = records %>% 
-  select(stringies$col_names,
+subset_b1 = records %>% 
+  select(b1$col_names,
          names(records[c(117:148)])) %>% 
-  mutate(group_PA = rowSums(records %>% select(stringies$col_names)))
+  mutate(group_PA = rowSums(records %>% select(b1$col_names)))
 
 # replace non-zero observations with 1
-stringybarks$group_PA[stringybarks$group_PA != 0] = 1
+subset_b1$group_PA[subset_b1$group_PA != 0] = 1
 
 # select only the vegetation types where the species group is found to be present
-rec1 = stringybarks[,c(22:54)]
-b1 = "group_PA"
+rec1 = subset_b1[,c(22:54)]
 fuels = rec1 %>% 
-  filter(rec1[b1] == 1) %>% 
+  filter(rec1$group_PA == 1) %>% 
   dplyr::select(fueltype) %>% 
   unique()
 rec1 = rec1[rec1$fueltype %in% fuels$fueltype,] %>% 
@@ -194,7 +218,7 @@ rec1 = rec1[rec1$fueltype %in% fuels$fueltype,] %>%
 
 # create training and test samples
 sb = rec1 %>%
-  split_by(paste(b1), seed = 6534)
+  split_by(group_PA, seed = 6534)
 attributes(sb)
 summary(sb)
 test = sb %>% 
@@ -202,14 +226,12 @@ test = sb %>%
 train = sb %>% 
   extract_set(set = "train")
 
-# SMOTE? "Synthetic Minority Over-sampling TEchnique"
+# SMOTE = "Synthetic Minority Over-sampling TEchnique"
 # SMOTE with percent under-sampling of 150? This yields equal counts of both classes, with 3x the original number in the minority class (actually it doesn't do that this time. This time the minority class goes from 1377 with regular sampling to 2772 with SMOTE)
 smote = sb %>% 
   sampling_target(method = "ubSMOTE", seed = 1234L, perc.under = 150)
 smote %>% count(.[,length(smote)])
-# test = smote %>% 
-#   extract_set(set = "test")
-# ^doesn't work. I think because doing a SMOTE resampling generates just the training dataset, not the test dataset. That is still from "sb", extracted above and called "test"
+## NOTE: SMOTE resampling generates just the training dataset, not the test dataset. That is still from "sb", extracted above and called "test"
 
 # combine training set (smote) with testing set (test)
 test$group_PA = as.factor(test$group_PA)
@@ -294,7 +316,17 @@ final_rf <- finalize_model(
   best_auc
 )
 
+# examine parameters
 final_rf
+# grab parameters for labeling outputs
+label = paste("stringbarks",
+              "mtry",
+              as.character(final_rf$args$mtry)[2], 
+              "trees",
+              as.character(final_rf$args$trees)[2],
+              "min_n",
+              as.character(final_rf$args$min_n)[2],
+              sep = "_")
 
 # now lets run the model and test it on the test dataset
 final_wf <- workflow() %>%
@@ -309,11 +341,20 @@ final_res %>%
   collect_metrics()
 sum_1 = final_res %>% 
   collect_predictions()
-stats = data.frame(pred_acc = c(
-  pred0.0 = mean(sum_1$.pred_0[sum_1$group_PA == 0]),
-  pred0.1 = mean(sum_1$.pred_1[sum_1$group_PA == 0]),
-  pred1.0 = mean(sum_1$.pred_0[sum_1$group_PA == 1]),
-  pred1.1 = mean(sum_1$.pred_1[sum_1$group_PA == 1])
-))
-stats
+stats_b1 = data.frame(model = rep(paste(label), 7), 
+                   attribute = c("pred0.0",
+                                 "pred0.1",
+                                 "pred1.0",
+                                 "pred1.1",
+                                 "accuracy",
+                                 "roc_auc",
+                                 "resolution"),
+                   values = c(mean(sum_1$.pred_0[sum_1$Eucalyptus.beyeriana == 0]),
+                              mean(sum_1$.pred_1[sum_1$Eucalyptus.beyeriana == 0]),
+                              mean(sum_1$.pred_0[sum_1$Eucalyptus.beyeriana == 1]),
+                              mean(sum_1$.pred_1[sum_1$Eucalyptus.beyeriana == 1]),
+                              metrics$.estimate[1],
+                              metrics$.estimate[2],
+                              resolution = "~4km"
+                   ))
 
