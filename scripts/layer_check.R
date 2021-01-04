@@ -493,3 +493,16 @@ fires3 = st_read("data/firenpwsfirehistory/NPWSFireHistory_17122020.shp")
 ## this is fire severity for the 2019-2020 fire season
 fires4 = raster("data/fesm20200420/cvmsre_NSW_20200420_ag7l0.tif")
 
+
+# DEM-H ####
+dem = raster("data/DEM/71498/a05f7893-0050-7506-e044-00144fdd4fa6/hdr.adf")
+dem
+
+# crop DEM with NSW extent shapefile
+# reproject shapefile
+nsw = nsw %>% 
+  st_transform(crs = st_crs(dem))
+dem = crop(dem, nsw)
+tm_shape(dem)+tm_raster()+tm_shape(nsw)+tm_borders()
+
+writeRaster(dem, "data/DEM_nsw.tif")
