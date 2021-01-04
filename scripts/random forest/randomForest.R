@@ -2,6 +2,7 @@
 # also, I need to start exporting model inputs and their prediction error values
 # create loop for all species and bark types
 # create exporting method- best would be markdown but CSV would be fine
+# separate model recipe and all standard code to another script and use source()?
 
 library(raster)
 library(tidymodels)
