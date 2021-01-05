@@ -10,7 +10,7 @@ library(rgdal)
 library(snowfall)
 
 # load DEM-H
-dem = raster("data/DEM_nsw.tif")
+dem = system.file("data/DEM_nsw.tif", package = "rgdal")
 
 # calculate slope and aspect
 dem_slope = terrain(dem, opt = c('slope', 'aspect', 'TPI', 'TRI', 'roughness'), unit = 'degrees')
@@ -18,7 +18,7 @@ dem_slope = terrain(dem, opt = c('slope', 'aspect', 'TPI', 'TRI', 'roughness'), 
 writeRaster(dem_slope, "data/dem_slope.aspect_30m.grd", format = "raster", overwrite = TRUE)
 
 # break raster into tiles for processing
-obj <- GDALinfo("data/DEM_nsw.tif")
+obj <- GDALinfo(dem)
 tile.tbl = GSIF::getSpatialTiles(obj, block.x = 0.1, overlap.percent = 5, return.SpatialPolygons = FALSE)
 tile.tbl$ID = as.character(1:nrow(tile.tbl))
 
