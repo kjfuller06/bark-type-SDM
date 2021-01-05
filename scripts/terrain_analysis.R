@@ -1,4 +1,5 @@
 # script for generating terrain variables from DEM-H
+# need to go back and re-crop the DEM so that it doesn't stop directly at the bbox of NSW. As is, the edges won't compute slop accurately because they are missing neighbour cells.
 library(raster)
 library(sf)
 library(tmap)
@@ -24,6 +25,7 @@ writeRaster(dem_slope, "data/dem_slope.aspect_30m.grd", format = "raster", optio
 # '-ot \"Float32\" -co \"BIGTIFF=YES\"',
 # '-wm 2000 -co \"COMPRESS=DEFLATE\" -overwrite -multi',
 # '-wo \"NUM_THREADS=ALL_CPUS\"'))
+## ^this just spits out a number (127), nothing else happens
 
 # break raster into tiles for processing
 # obj <- GDALinfo(dem)
