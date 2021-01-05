@@ -13,7 +13,7 @@ library(snowfall)
 dem = raster("data/DEM_nsw.tif")
 
 # calculate slope and aspect
-dem_slope = terrain(dem, opt = c('slope', 'aspect'), unit = 'degrees')
+dem_slope = terrain(dem, opt = c('slope', 'aspect', 'TPI', 'TRI', 'roughness'), unit = 'degrees')
 # write to disk
 writeRaster(dem_slope, "data/dem_slope.aspect_30m.grd", format = "raster", overwrite = TRUE)
 
@@ -32,7 +32,7 @@ slope_function <- function(i, tile.tbl, dem, dem_path = "./data/DEM_nsw.tif", ou
                         silent = TRUE)
     names(newdata) <- "altitude"
     newdata = raster(newdata)
-    dem_slopes <- terrain(newdata, opt = c('slope', 'aspect'), unit = 'degrees')
+    dem_slopes <- raster(slope(cgrad(newdata), degree = TRUE), crs = projection(newdata))
     extent(dem_slopes) = extent(newdata)
     writeGDAL(dem_slopes, out.tif, drivername = "GTiff", type = "Int16", 
               options="COMPRESS=DEFLATE", copy_drivername = "GTiff")
