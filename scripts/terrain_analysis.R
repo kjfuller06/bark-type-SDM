@@ -11,12 +11,23 @@ library(rgdal)
 library(snowfall)
 
 # load DEM-H
-dem = system.file("data/DEM_nsw.tif", package = "rgdal")
+dem = raster("data/DEM_nsw.tif")
 
 # calculate slope and aspect
 dem_slopes = terrain(dem, opt = c('slope', 'aspect'), unit = 'degrees')
 # write to disk
-writeRaster(dem_slope, "data/dem_slope.aspect_30m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+writeRaster(dem_slopes, "data/dem_slope.aspect_30m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+
+# calculate Topographic Position Index and Terrain Ruggedness Index
+dem_terrains = terrain(dem, opt = c('TPI', 'TRI'), unit = 'degrees')
+# write to disk
+writeRaster(dem_terrains, "data/dem_TPI.TRI_30m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+
+# calculate terrain roughness
+dem_roughness = terrain(dem, opt = c('roughness'), unit = 'degrees')
+# write to disk
+writeRaster(dem_roughness, "data/dem_roughness_30m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+
 # writeGDAL(dem_slope, "data/dem_slope.aspect_30m.grd", drivername = "GTiff", type = "Int16", 
 #           options="COMPRESS=DEFLATE", copy_drivername = "GTiff")
 # system(paste0('gdalwarp',
