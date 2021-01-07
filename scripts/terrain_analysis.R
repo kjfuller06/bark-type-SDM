@@ -8,16 +8,29 @@ library(insol)
 library(meteo)
 library(GSIF)
 library(rgdal)
+library(gdalUtils)
 library(snowfall)
+library(RSAGA)
 
 # load DEM-H
 dem = raster("data/DEM_nsw.tif")
+gda2020 = st_crs(7856)$proj4string
+old = st_crs(dem)$proj4string
+gdalwarp("data/DEM_nsw.tif", 
+         dstfile = "data/DEM_nsw.sgrd",
+         t_srs = gda2020,
+         output_Raster = FALSE,
+         overwrite = TRUE, verbose = TRUE)
+# dem = projectRaster(dem, crs = gda2020)
+# writeRaster(dem, "data/DEM_nsw.sgrd")
+# write.sgrd(dem, "data/DEM_nsw.sgrd")
 
 # calculate slope and aspect
 dem_slopes = terrain(dem, opt = c('slope', 'aspect'), unit = 'degrees')
 # write to disk
 writeRaster(dem_slopes, "data/dem_slope.aspect_30m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 
+# continue here
 # calculate Topographic Position Index and Terrain Ruggedness Index
 dem_terrains = terrain(dem, opt = c('TPI', 'TRI'), unit = 'degrees')
 # write to disk
@@ -69,3 +82,22 @@ writeRaster(dem_roughness, "data/dem_roughness_30m.grd", format = "raster", opti
 # out.lst <- sfClusterApplyLB(1:nrow(tile.tbl), 
 #                              function(x){ slope_function(x, tile.tbl, dem) })
 # sfStop()
+
+# calculate insolation
+RSAGA::rsaga.geoprocessor(lib = "ta_lighting",
+                          module = 2,
+                          param = list("data/DEM_nsw.sgrd",
+                                       GRD_DIRECT = "data/insol_dir_30m.sgrd",
+                                       GRD_DIFFUS = "data/insol_dif_30m.sgrd",
+                                       GRD_TOTAL = "data/insol_tot_30m.sgrd",
+                                       LOCATION = 1,
+                                       HOUR_STEP = 1,
+                                       DAYS_STEP = 10,
+                                       PERIOD = 2,
+                                       SHADOW = 0,
+                                       METHOD = 2,
+                                       DAY = "2011-11-01",
+                                       DAY_STOP = "2011-11-01"),
+                          intern = FALSE,
+                          cores = 25)
+
