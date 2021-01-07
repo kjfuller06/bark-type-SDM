@@ -503,6 +503,8 @@ dem
 nsw = nsw %>% 
   st_transform(crs = st_crs(dem))
 bb = extent(nsw)
+
+# add ~11km of space around the NSW extent so slopes can be calculated accurately
 bb[1] = bb[1] - 0.1
 bb[2] = bb[2] + 0.1
 bb[3] = bb[3] - 0.1
@@ -510,4 +512,5 @@ bb[4] = bb[4] + 0.1
 dem = crop(dem, bb)
 tm_shape(dem)+tm_raster()+tm_shape(nsw)+tm_borders()
 
-writeRaster(dem, "data/DEM_nsw.tif")
+# write to disk
+writeRaster(dem, "data/DEM_nsw.tif", overwrite = TRUE)
