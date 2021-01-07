@@ -502,7 +502,12 @@ dem
 # reproject shapefile
 nsw = nsw %>% 
   st_transform(crs = st_crs(dem))
-dem = crop(dem, nsw)
+bb = extent(nsw)
+bb[1] = bb[1] - 0.1
+bb[2] = bb[2] + 0.1
+bb[3] = bb[3] - 0.1
+bb[4] = bb[4] + 0.1
+dem = crop(dem, bb)
 tm_shape(dem)+tm_raster()+tm_shape(nsw)+tm_borders()
 
 writeRaster(dem, "data/DEM_nsw.tif")
