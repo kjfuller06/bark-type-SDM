@@ -77,12 +77,12 @@ sp_RF = function(x){
   )
 }
 
-# bark1-level random forests ####
-b1_RF = function(x){
+# bark-level random forests ####
+bark_RF = function(x, category){
   barks = read.csv("data/Horsey_candidate_speciesV.4_colnames.csv")
-  type = unique(barks$bark1)[x]
+  type = unique(barks[,colnames(barks) == category])[x]
   b1 = barks %>% 
-    filter(bark1 == type)
+    filter(type %in% category)
   
   subset_b1 = records %>% 
     select(b1$col_names,
