@@ -16,26 +16,19 @@ veg = raster("data/FuelTypeV2_FuelLUT1.tif")
 # NSW boundary
 nsw = st_read("data/NSW_sans_islands.shp")
 # WorldClim datasets
-bio1 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_1.tif')
-bio2 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_2.tif')
-bio3 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_3.tif')
-bio4 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_4.tif')
-bio5 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_5.tif')
-bio6 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_6.tif')
-bio7 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_7.tif')
-bio8 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_8.tif')
-bio9 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_9.tif')
-bio10 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_10.tif')
-bio11 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_11.tif')
-bio12 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_12.tif')
-bio13 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_13.tif')
-bio14 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_14.tif')
-bio15 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_15.tif')
-bio16 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_16.tif')
-bio17 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_17.tif')
-bio18 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_18.tif')
-bio19 = raster('data/wc2.1_30s_bio/wc2.1_30s_bio_19.tif')
-bioclim = raster::stack(bio1, bio2, bio3, bio4, bio5, bio6, bio7, bio8, bio9, bio10, bio11, bio12, bio13, bio14, bio15, bio16, bio17, bio18, bio19)
+bioclim = mosaic(raster("data/wc0.5/bio1_310.bil"),
+                 raster("data/wc0.5/bio1_311.bil"),
+                 raster("data/wc0.5/bio1_410.bil"),
+                 raster("data/wc0.5/bio1_411.bil"), fun = mean)
+names(bioclim)[1] = "bio1"
+for(i in c(2:19)){
+  x = mosaic(raster(paste("data/wc0.5/bio", i, "_310.bil", sep = "")),
+             raster(paste("data/wc0.5/bio", i, "_311.bil", sep = "")),
+             raster(paste("data/wc0.5/bio", i, "_410.bil", sep = "")),
+             raster(paste("data/wc0.5/bio", i, "_411.bil", sep = "")), fun = mean)
+  bioclim = raster::stack(bioclim, x)
+  names(bioclim)[i] = paste0("bio", i, sep = "")
+}
 
 # aridity data from CGIARCS
 arid = raster('data/ai_et0/ai_et0.tif')
@@ -68,6 +61,7 @@ rm(slope, aspect, TPI, TRI, roughness)
 # terrain layers are 30m2 res
 # fire layer is ~80m res
 # soil layers are 250m res
+# WorldClim layers are 800m res
 
 # terrain layers - ~30m res
 nsw1 = nsw %>% 
