@@ -1,9 +1,12 @@
+## need to check consistency of datasets. too many NAs in the results here. bioclim shows white lines across the raster layers- could just be a plotting glitch but the tiles didn't look like they lined up perfectly when I downloaded them.
+
 library(raster)
 library(tidyverse)
 library(sf)
 library(rnaturalearth)
 library(ggplot2)
 library(RColorBrewer)
+library(tmap)
 
 # Extract environmental data for species presence/absence both ####
 ## load dataset
