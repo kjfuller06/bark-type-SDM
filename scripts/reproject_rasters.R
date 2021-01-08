@@ -97,13 +97,13 @@ rm(terrain)
 
 # WorldClim data are continuous; method is 'bilinear'
 bioclim = projectRaster(bioclim, fire, method = 'bilinear')
+# correct temperature for bioclim temp-based variables
+temps = bioclim[[c('bio1', 'bio2', 'bio5', 'bio6', 'bio7', 'bio8', 'bio9', 'bio10', 'bio11')]]/10
+bio_other = bioclim[[c('bio3', 'bio4', 'bio12', 'bio13', 'bio14', 'bio15', 'bio16', 'bio17', 'bio18', 'bio19')]]
+bioclim = raster::stack(temps, bio_other)
+# write to disk and remove from memory
 writeRaster(bioclim, "data/fire_bioclim_80m.grd", format = "raster", overwrite = TRUE)
 rm(bioclim)
-
-# veg layer is categorical; method is 'ngb'
-veg = projectRaster(veg, fire, method = 'ngb')
-writeRaster(veg, "data/fuels_reproj_80m.tif")
-rm(veg)
 
 # aridity layer is continuous; method = 'bilinear'
 arid = projectRaster(arid, fire, method = 'bilinear')
