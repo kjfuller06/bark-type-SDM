@@ -94,6 +94,6 @@ RSAGA::rsaga.geoprocessor(lib = "ta_lighting",
                           intern = FALSE,
                           cores = 25)
 raster("data/insol_dir_30m.sgrd")
-## ^run out of memory
+## ^run out of memory- maybe use the memory limit function in the commented code above?
 # "Error: grid: memory allocation failed [-1192.16mb]
 # Error: grid: memory allocation failed [-1192.16mb]"
