@@ -88,11 +88,11 @@ arid = crop(arid, extent(nsw1))
 # the veg layer is the crs reference dataset and will only be used for subsetting. No change made
 # the fire layer is the res reference dataset; just change the crs
 fire = projectRaster(fire, crs = crs(veg), method = 'ngb')
-writeRaster(fire, "data/fire_reproj_80m.tif", overwrite = TRUE)
+writeRaster(fire, "data/fire_reproj_80m.tif", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 
 # the terrain layers are continuous; method is 'bilinear'
 terrain = projectRaster(terrain, fire, method = 'bilinear')
-writeRaster(terrain, "data/terrain1_80m.grd", format = "raster", overwrite = TRUE)
+writeRaster(terrain, "data/terrain1_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 rm(terrain)
 
 # WorldClim data are continuous; method is 'bilinear'
@@ -102,12 +102,12 @@ temps = bioclim[[c('bio1', 'bio2', 'bio5', 'bio6', 'bio7', 'bio8', 'bio9', 'bio1
 bio_other = bioclim[[c('bio3', 'bio4', 'bio12', 'bio13', 'bio14', 'bio15', 'bio16', 'bio17', 'bio18', 'bio19')]]
 bioclim = raster::stack(temps, bio_other)
 # write to disk and remove from memory
-writeRaster(bioclim, "data/bioclim_80m.grd", format = "raster", overwrite = TRUE)
+writeRaster(bioclim, "data/bioclim_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 rm(bioclim)
 
 # aridity layer is continuous; method = 'bilinear'
 arid = projectRaster(arid, fire, method = 'bilinear')
-writeRaster(arid, "data/aridity_reproj_80m.tif")
+writeRaster(arid, "data/aridity_80m.tif", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 rm(arid)
 
 # soils layers are all continuous; method = 'bilinear'
@@ -123,4 +123,4 @@ soc = projectRaster(soc, fire, method = 'bilinear')
 ocd = projectRaster(ocd, fire, method = 'bilinear')
 soils = raster::stack(bdod, cec, cfvo, sand, silt, clay, nit, ph, soc, ocd)
 rm(bdod, cec, cfvo, sand, silt, clay, nit, ph, soc, ocd)
-writeRaster(soils, "data/soils_80m.grd", format = "raster", overwrite = TRUE)
+writeRaster(soils, "data/soils_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
