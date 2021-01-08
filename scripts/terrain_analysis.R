@@ -14,42 +14,24 @@ library(RSAGA)
 
 # load DEM-H
 dem = raster("data/DEM_nsw.tif")
-gda2020 = st_crs(7856)$proj4string
-old = st_crs(dem)$proj4string
-gdalwarp("data/DEM_nsw.tif", 
-         dstfile = "data/DEM_nsw.sgrd",
-         t_srs = gda2020,
-         output_Raster = FALSE,
-         overwrite = TRUE, verbose = TRUE)
-# dem = projectRaster(dem, crs = gda2020)
-# writeRaster(dem, "data/DEM_nsw.sgrd")
-# write.sgrd(dem, "data/DEM_nsw.sgrd")
 
 # calculate slope and aspect
 dem_slopes = terrain(dem, opt = c('slope', 'aspect'), unit = 'degrees')
 # write to disk
-writeRaster(dem_slopes, "data/dem_slope.aspect_30m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+writeRaster(dem_slopes[[1]], "data/dem_slope_30m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+writeRaster(dem_slopes[[2]], "data/dem_aspect_30m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 
 # continue here
 # calculate Topographic Position Index and Terrain Ruggedness Index
 dem_terrains = terrain(dem, opt = c('TPI', 'TRI'), unit = 'degrees')
 # write to disk
-writeRaster(dem_terrains, "data/dem_TPI.TRI_30m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+writeRaster(dem_terrains[[1]], "data/dem_TPI_30m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+writeRaster(dem_terrains[[2]], "data/dem_TRI_30m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 
 # calculate terrain roughness
 dem_roughness = terrain(dem, opt = c('roughness'), unit = 'degrees')
 # write to disk
 writeRaster(dem_roughness, "data/dem_roughness_30m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
-
-# writeGDAL(dem_slope, "data/dem_slope.aspect_30m.grd", drivername = "GTiff", type = "Int16", 
-#           options="COMPRESS=DEFLATE", copy_drivername = "GTiff")
-# system(paste0('gdalwarp',
-# dem_slope[[1]],
-# '\"./data/dem_slope_30m.tif\"',
-# '-ot \"Float32\" -co \"BIGTIFF=YES\"',
-# '-wm 2000 -co \"COMPRESS=DEFLATE\" -overwrite -multi',
-# '-wo \"NUM_THREADS=ALL_CPUS\"'))
-## ^this just spits out a number (127), nothing else happens
 
 # break raster into tiles for processing
 # obj <- GDALinfo(dem)
@@ -82,11 +64,22 @@ writeRaster(dem_roughness, "data/dem_roughness_30m.grd", format = "raster", opti
 # out.lst <- sfClusterApplyLB(1:nrow(tile.tbl), 
 #                              function(x){ slope_function(x, tile.tbl, dem) })
 # sfStop()
+## ^runs out of memory
 
 # calculate insolation
+# convert DEM raster to projected EPSG and into the SAGA file format
+gda2020 = st_crs(7856)$proj4string
+old = st_crs(dem)$proj4string
+gdalwarp("data/DEM_nsw.tif", 
+         dstfile = "data/DEM_nsw.sgrd",
+         t_srs = gda2020,
+         output_Raster = FALSE,
+         overwrite = TRUE, verbose = TRUE)
+
+# run SAGA function
 RSAGA::rsaga.geoprocessor(lib = "ta_lighting",
                           module = 2,
-                          param = list("data/DEM_nsw.sgrd",
+                          param = list(GRD_DEM = "data/DEM_nsw.sgrd",
                                        GRD_DIRECT = "data/insol_dir_30m.sgrd",
                                        GRD_DIFFUS = "data/insol_dif_30m.sgrd",
                                        GRD_TOTAL = "data/insol_tot_30m.sgrd",
@@ -100,4 +93,7 @@ RSAGA::rsaga.geoprocessor(lib = "ta_lighting",
                                        DAY_STOP = "2011-11-01"),
                           intern = FALSE,
                           cores = 25)
-
+raster("data/insol_dir_30m.sgrd")
+## ^run out of memory
+# "Error: grid: memory allocation failed [-1192.16mb]
+# Error: grid: memory allocation failed [-1192.16mb]"
