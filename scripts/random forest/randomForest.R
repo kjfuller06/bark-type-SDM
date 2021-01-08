@@ -15,7 +15,7 @@ library(alookr)
 library(themis)
 
 # testing random forest ####
-records = read.csv("data/HorseyV.4_extracted_dataV.5_P-A_allenv.csv")
+records = read.csv("data/HorseyV.4_extractedV.6_data_allenv_80m.csv")
 
 records = drop_na(records)
 # records$fueltype = as.factor(records$fueltype)
@@ -28,7 +28,7 @@ records = records %>%
 
 # Species-level Random Forests ####
 # select only the vegetation types where the species is found to be present
-rec1 = records[,c(1, 117:148)]
+rec1 = records[,c(1, 117:(ncol(records)))]
 sp1 = colnames(rec1)[1]
 fuels = rec1 %>% 
   filter(rec1[sp1] == 1) %>% 
@@ -59,7 +59,7 @@ over = sb %>%
   sampling_target(seed = 1234L, method = "ubOver", k = 73)
 over %>% count(.[,1])
 
-# SMOTE? "Synthetic Minority Over-sampling TEchnique"
+# SMOTE = "Synthetic Minority Over-sampling TEchnique"
 # SMOTE with percent under-sampling of 150? This yields equal counts of both classes, with 3x the original number in the minority class
 smote = sb %>% 
   sampling_target(method = "ubSMOTE", seed = 1234L, perc.under = 150)
@@ -175,22 +175,22 @@ metrics
 sum_1 = final_res %>% 
   collect_predictions()
 stats_species = data.frame(species = sp1,
-                           parameters = label, 
-                   attribute = c("pred0.0",
-                                 "pred0.1",
-                                 "pred1.0",
-                                 "pred1.1",
-                                 "accuracy",
-                                 "roc_auc",
-                                 "resolution"),
-                   values = c(mean(sum_1$.pred_0[sum_1$species1 == 0]),
-                                   mean(sum_1$.pred_1[sum_1$species1 == 0]),
-                                   mean(sum_1$.pred_0[sum_1$species1 == 1]),
-                                   mean(sum_1$.pred_1[sum_1$species1 == 1]),
-                                   metrics$.estimate[1],
-                                   metrics$.estimate[2],
-                                   resolution = "~4km"
-))
+                           sampling = "smote",
+                           model = paste(label),  
+                           attribute = c("pred0.0",
+                                         "pred0.1",
+                                         "pred1.0",
+                                         "pred1.1",
+                                         "accuracy",
+                                         "roc_auc",
+                                         "resolution"),
+                           values = c(mean(sum_1$.pred_0[sum_1$species1 == 0]),
+                                      mean(sum_1$.pred_1[sum_1$species1 == 0]),
+                                      mean(sum_1$.pred_0[sum_1$species1 == 1]),
+                                      mean(sum_1$.pred_1[sum_1$species1 == 1]),
+                                      metrics$.estimate[1],
+                                      metrics$.estimate[2],
+                                      resolution = "~80m"))
 stats_species
 
 # stringybarks ####
@@ -202,7 +202,7 @@ b1 = barks %>%
 
 subset_b1 = records %>% 
   select(b1$col_names,
-         names(records[c(117:148)])) %>% 
+         names(records[c(117:ncol(records))])) %>% 
   mutate(group_PA = rowSums(records %>% select(b1$col_names)))
 
 # replace non-zero observations with 1
@@ -320,8 +320,7 @@ final_rf <- finalize_model(
 # examine parameters
 final_rf
 # grab parameters for labeling outputs
-label = paste("stringbarks",
-              "mtry",
+label = paste("mtry",
               as.character(final_rf$args$mtry)[2], 
               "trees",
               as.character(final_rf$args$trees)[2],
@@ -342,20 +341,22 @@ final_res %>%
   collect_metrics()
 sum_1 = final_res %>% 
   collect_predictions()
-stats_b1 = data.frame(model = rep(paste(label), 7), 
-                   attribute = c("pred0.0",
-                                 "pred0.1",
-                                 "pred1.0",
-                                 "pred1.1",
-                                 "accuracy",
-                                 "roc_auc",
-                                 "resolution"),
-                   values = c(mean(sum_1$.pred_0[sum_1$Eucalyptus.beyeriana == 0]),
-                              mean(sum_1$.pred_1[sum_1$Eucalyptus.beyeriana == 0]),
-                              mean(sum_1$.pred_0[sum_1$Eucalyptus.beyeriana == 1]),
-                              mean(sum_1$.pred_1[sum_1$Eucalyptus.beyeriana == 1]),
-                              metrics$.estimate[1],
-                              metrics$.estimate[2],
-                              resolution = "~4km"
-                   ))
-
+stats_b1 = data.frame(barktype = type,
+                      sampling = "smote",
+                      model = paste(label), 
+                      attribute = c("pred0.0",
+                                    "pred0.1",
+                                    "pred1.0",
+                                    "pred1.1",
+                                    "accuracy",
+                                    "roc_auc",
+                                    "resolution"),
+                      values = c(mean(sum_1$.pred_0[sum_1$group_PA == 0]),
+                                 mean(sum_1$.pred_1[sum_1$group_PA == 0]),
+                                 mean(sum_1$.pred_0[sum_1$group_PA == 1]),
+                                 mean(sum_1$.pred_1[sum_1$group_PA == 1]),
+                                 metrics$.estimate[1],
+                                 metrics$.estimate[2],
+                                 resolution = "~80m"))
+stats_b1
+write.csv(stats_b1, "outputs/dataV4.6_model_stats_80m.csv")
