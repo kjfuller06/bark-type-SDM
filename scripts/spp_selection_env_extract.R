@@ -15,10 +15,10 @@ records = read.csv("data/spp_selection_P-A_allenv.csv") %>%
 nsw = st_read("data/NSW_sans_islands.shp")
 veg = raster("data/FuelTypeV2_FuelLUT1.tif")
 fire = raster("data/fire_reproj_80m.tif")
-bioclim = raster("data/fire_bioclim_80m.grd")
+bioclim = brick("data/fire_bioclim_80m.grd")
 arid = raster("data/aridity_reproj_80m.tif")
-soils = raster("data/soils_80m.grd")
-terrain1 = raster("data/terrain1_80m.grd")
+soils = brick("data/soils_80m.grd")
+terrain1 = brick("data/terrain1_80m.grd")
 
 # extract values and cbind to records df
 records = cbind(records, 
