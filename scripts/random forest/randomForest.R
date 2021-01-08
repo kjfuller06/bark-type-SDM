@@ -120,8 +120,8 @@ stats_species = data.frame(species = sp1,
                                       resolution = "~80m"))
 stats_species
 
-# bark1-level random forests ####
-b1_RF(1)
+# bark-level random forests ####
+bark_RF(1, "bark1")
 
 tune_res
 # plot results
