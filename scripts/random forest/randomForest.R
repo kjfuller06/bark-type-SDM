@@ -1,6 +1,7 @@
 # to do: include lat/lon coords as variabes in the RF, then plot correct and incorrect prediction on a map and explore attributes (following Julia Silge tutorial)
 # also, I need to start exporting model inputs and their prediction error values
 # create loop for all species and bark types
+#     -may not work because of needing to tune the hyperparameters
 # create exporting method- best would be markdown but CSV would be fine
 # separate model recipe and all standard code to another script and use source()?
 
@@ -14,12 +15,9 @@ library(randomForest)
 library(alookr)
 library(themis)
 
-# testing random forest ####
+# load and filter dataset for RF ####
 records = read.csv("data/HorseyV.4_extractedV.6_data_allenv_80m.csv")
-
 records = drop_na(records)
-# records$fueltype = as.factor(records$fueltype)
-### can't use fuel type yet because it has too many categories for a categorical variable
 
 # remove non-wooded vegetation types and anthropogenic vegetation types
 nonwoody = c(56:74)
