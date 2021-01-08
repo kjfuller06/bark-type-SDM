@@ -16,7 +16,7 @@ library(alookr)
 library(themis)
 
 # load and filter dataset for RF ####
-records = read.csv("data/HorseyV.4_extractedV.6_data_allenv_80m.csv")
+records = read.csv("data/data_Sp4V6_allenv_80m.csv")
 records = drop_na(records)
 
 # remove non-wooded vegetation types and anthropogenic vegetation types
