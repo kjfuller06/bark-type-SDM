@@ -24,8 +24,7 @@ terrain1 = stack("data/terrain1_80m.grd")
 records = cbind(records, 
                 fueltype = raster::extract(veg, st_coordinates(records), methods = 'simple'),
                 firehistory = raster::extract(fire, st_coordinates(records), methods = 'simple'),
-                raster::extract(temps, st_coordinates(records), methods = 'simple'),
-                raster::extract(bio_other, st_coordinates(records), methods = 'simple'),
+                raster::extract(bioclim, st_coordinates(records), methods = 'simple'),
                 aridity = raster::extract(arid, st_coordinates(records), methods = 'simple'),
                 raster::extract(soils, st_coordinates(records), methods = 'simple'),
                 raster::extract(terrain1, st_coordinates(records), methods = 'simple'))
@@ -34,7 +33,7 @@ records = cbind(records,
 records$lon = st_coordinates(records)[,1]
 records$lat = st_coordinates(records)[,2]
 st_geometry(records) = NULL
-write.csv(records, "data/HorseyV.4_extractedV.6_data_allenv_80m.csv", row.names = FALSE)
+write.csv(records, "data/data_Sp4V6_allenv_80m.csv", row.names = FALSE)
 
 # Plot environmental axes for each species ####
 tiff(file = "outputs/frequency_HorseyV.4_records_by_speciesV.2.tiff", width =2200, height = 750, units = "px", res = 200)
