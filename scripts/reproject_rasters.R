@@ -102,7 +102,7 @@ temps = bioclim[[c('bio1', 'bio2', 'bio5', 'bio6', 'bio7', 'bio8', 'bio9', 'bio1
 bio_other = bioclim[[c('bio3', 'bio4', 'bio12', 'bio13', 'bio14', 'bio15', 'bio16', 'bio17', 'bio18', 'bio19')]]
 bioclim = raster::stack(temps, bio_other)
 # write to disk and remove from memory
-writeRaster(bioclim, "data/fire_bioclim_80m.grd", format = "raster", overwrite = TRUE)
+writeRaster(bioclim, "data/bioclim_80m.grd", format = "raster", overwrite = TRUE)
 rm(bioclim)
 
 # aridity layer is continuous; method = 'bilinear'
