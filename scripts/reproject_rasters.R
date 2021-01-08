@@ -29,6 +29,8 @@ for(i in c(2:19)){
   bioclim = raster::stack(bioclim, x)
   names(bioclim)[i] = paste0("bio", i, sep = "")
 }
+crs(bioclim) = st_crs(4326)$proj4string
+## ^check bioclim's crs online. I'm on the plane. I used some notes from the layer_check script to assign this.
 
 # aridity data from CGIARCS
 arid = raster('data/ai_et0/ai_et0.tif')
