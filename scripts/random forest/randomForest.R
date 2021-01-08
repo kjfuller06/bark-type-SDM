@@ -1,9 +1,7 @@
-# to do: include lat/lon coords as variabes in the RF, then plot correct and incorrect prediction on a map and explore attributes (following Julia Silge tutorial)
+# to do: 
+# test RF_functions.R- all of this was written while R worked on other things and I didn't have internet
+# include lat/lon coords as variabes in the RF, then plot correct and incorrect prediction on a map and explore attributes (following Julia Silge tutorial)
 # also, I need to start exporting model inputs and their prediction error values
-# create loop for all species and bark types
-#     -may not work because of needing to tune the hyperparameters
-# create exporting method- best would be markdown but CSV would be fine
-# separate model recipe and all standard code to another script and use source()?
 
 library(raster)
 library(tidymodels)
