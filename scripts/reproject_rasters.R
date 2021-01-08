@@ -53,11 +53,26 @@ ph = raster("data/pH.tif")
 soc = raster("data/soc.tif")
 ocd = raster("data/ocd.tif")
 
+# terrain layers
+slope = raster("data/dem_slope_30m.grd")
+aspect = raster("data/dem_aspect_30m.grd")
+TPI = raster("data/dem_TPI_30m.grd")
+TRI = raster("data/dem_TRI_30m.grd")
+roughness = raster("data/dem_roughness_30m.grd")
+terrain = raster::stack(slope, aspect, TPI, TRI, roughness)
+rm(slope, aspect, TPI, TRI, roughness)
+
 # 2) ####
 # veg layer, fire layer and soil layers don't need cropping because the extent is already equal to NSW
 # veg layer is 30m2 res
+# terrain layers are 30m2 res
 # fire layer is ~80m res
 # soil layers are 250m res
+
+# terrain layers - ~30m res
+nsw1 = nsw %>% 
+  st_transform(crs = st_crs(terrain))
+terrain = crop(terrain, extent(nsw1))
 
 # WorldClim data - ~800m res
 nsw1 = nsw %>% 
@@ -74,6 +89,11 @@ arid = crop(arid, extent(nsw1))
 # the fire layer is the res reference dataset; just change the crs
 fire = projectRaster(fire, crs = crs(veg), method = 'ngb')
 writeRaster(fire, "data/fire_reproj_80m.tif", overwrite = TRUE)
+
+# the terrain layers are continuous; method is 'bilinear'
+terrain = projectRaster(terrain, fire, method = 'bilinear')
+writeRaster(terrain, "data/terrain1_80m.grd", format = "raster", overwrite = TRUE)
+rm(terrain)
 
 # WorldClim data are continuous; method is 'bilinear'
 bioclim = projectRaster(bioclim, fire, method = 'bilinear')
