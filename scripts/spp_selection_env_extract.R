@@ -34,7 +34,7 @@ records = cbind(records,
 records$lon = st_coordinates(records)[,1]
 records$lat = st_coordinates(records)[,2]
 st_geometry(records) = NULL
-write.csv(records, "data/HorseyV.4_extracted_dataV.5_P-A_allenv.csv", row.names = FALSE)
+write.csv(records, "data/HorseyV.4_extractedV.6_data_allenv_80m.csv", row.names = FALSE)
 
 # Plot environmental axes for each species ####
 tiff(file = "outputs/frequency_HorseyV.4_records_by_speciesV.2.tiff", width =2200, height = 750, units = "px", res = 200)
