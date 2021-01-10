@@ -25,27 +25,14 @@ records = records %>%
 source("scripts/random forest/RF_functions.R")
 
 # species-level random forests####
-sp_RF(1)
-tune_res
+first = sp_RF(1)
+first
 
-# plot results
-tune_res %>%
-  collect_metrics() %>%
-  filter(.metric == "roc_auc") %>%
-  select(mean, min_n, mtry) %>%
-  pivot_longer(min_n:mtry,
-               values_to = "value",
-               names_to = "parameter"
-  ) %>%
-  ggplot(aes(value, mean, color = parameter)) +
-  geom_point(show.legend = FALSE) +
-  facet_wrap(~parameter, scales = "free_x") +
-  labs(x = NULL, y = "AUC")
 # more detailed look at the best value ranges
 rf_grid <- grid_regular(
-  mtry(range = c(2, 16)),
-  min_n(range = c(2, 12)),
-  levels = 8
+  mtry(range = c(1, 10)),
+  min_n(range = c(1, 10)),
+  levels = 10
 )
 rf_grid
 # tune parameters again, this time with a more targeted range of hyperparameters
