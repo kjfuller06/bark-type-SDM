@@ -109,15 +109,25 @@ rm(arid)
 
 # soils layers are all continuous; method = 'bilinear'
 bdod = projectRaster(bdod, fire, method = 'bilinear')
+bdod = bdod/100
 cec = projectRaster(cec, fire, method = 'bilinear')
+cec = cec/10
 cfvo = projectRaster(cfvo, fire, method = 'bilinear')
+cfvo = cfvo/10
 sand = projectRaster(sand, fire, method = 'bilinear')
+sand = sand/10
 silt = projectRaster(silt, fire, method = 'bilinear')
+silt = silt/10
 clay = projectRaster(clay, fire, method = 'bilinear')
+clay = clay/10
 nit = projectRaster(nitrogen, fire, method = 'bilinear')
+nit = nit/100
 ph = projectRaster(ph, fire, method = 'bilinear')
+ph = ph/10
 soc = projectRaster(soc, fire, method = 'bilinear')
+soc = soc/10
 ocd = projectRaster(ocd, fire, method = 'bilinear')
+ocd = ocd/10
 soils = raster::stack(bdod, cec, cfvo, sand, silt, clay, nit, ph, soc, ocd)
 rm(bdod, cec, cfvo, sand, silt, clay, nit, ph, soc, ocd)
 writeRaster(soils, "data/soils_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
