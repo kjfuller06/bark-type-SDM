@@ -131,3 +131,6 @@ ocd = ocd/10
 soils = raster::stack(bdod, cec, cfvo, sand, silt, clay, nit, ph, soc, ocd)
 rm(bdod, cec, cfvo, sand, silt, clay, nit, ph, soc, ocd)
 writeRaster(soils, "data/soils_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+
+## pH is acting weird
+writeRaster(ph, "data/soils_pHonly_80m.tif", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
