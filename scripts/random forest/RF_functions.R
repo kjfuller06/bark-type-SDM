@@ -3,7 +3,7 @@
 # species-level random forests ####
 # select only the vegetation types where the species is found to be present
 sp_RF = function(x){
-  rec1 = records[,c(x, 117:(ncol(records)))]
+  rec1 = records[,c(x, 118:(ncol(records)))]
   sp1 = colnames(rec1)[1]
   fuels = rec1 %>% 
     filter(rec1[sp1] == 1) %>% 

@@ -22,7 +22,7 @@ nonwoody = c(56:74)
 records = records %>% 
   filter(!(fueltype %in% nonwoody))
 
-Source("scripts/random forest/RF_functions.R")
+source("scripts/random forest/RF_functions.R")
 
 # species-level random forests####
 sp_RF(1)
