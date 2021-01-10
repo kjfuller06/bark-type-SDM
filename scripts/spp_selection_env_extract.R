@@ -28,6 +28,7 @@ rm(fire, bioclim, arid, soils, ph, terrain1)
 
 # extract values and cbind to records df
 records = cbind(records, 
+                fueltype = raster::extract(veg, st_coordinates(records), methods = 'simple'),
                 raster::extract(all, st_coordinates(records), methods = 'simple'))
 
 # convert to df and write to disk
