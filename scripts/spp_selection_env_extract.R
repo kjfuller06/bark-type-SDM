@@ -1,6 +1,3 @@
-## need to check consistency of datasets. too many NAs in the results here. bioclim shows white lines across the raster layers- could just be a plotting glitch but the tiles didn't look like they lined up perfectly when I downloaded them.
-## ^the soils layer for pH is the issue. Not sure why it's not extracting properly. The layer extent should be correct- it stacks with all the other layers just fine...
-
 library(raster)
 library(tidyverse)
 library(sf)
@@ -21,16 +18,18 @@ veg = raster("data/FuelTypeV2_FuelLUT1.tif")
 fire = raster("data/fire_reproj_80m.tif")
 bioclim = stack("data/fire_bioclim_80m.grd")
 arid = raster("data/aridity_reproj_80m.tif")
+# fix the soils dataset
 soils = stack("data/soils_80m.grd")
+ph = raster("data/soils_pHonly_80m.grd")/10
+soils[[8]] = ph
 terrain1 = stack("data/terrain1_80m.grd")
 all = raster::stack(fire, bioclim, arid, soils, terrain1)
-rm(fire, bioclim, arid, soils, terrain1)
+rm(fire, bioclim, arid, soils, ph, terrain1)
 
 # extract values and cbind to records df
 records = cbind(records, 
                 raster::extract(all, st_coordinates(records), methods = 'simple'))
 
-backup = records
 # convert to df and write to disk
 records$lon = st_coordinates(records)[,1]
 records$lat = st_coordinates(records)[,2]
