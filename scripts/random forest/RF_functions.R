@@ -1,5 +1,3 @@
-## functions untested
-
 # species-level random forests ####
 # select only the vegetation types where the species is found to be present
 sp_RF = function(num){
@@ -95,9 +93,10 @@ sp_RF = function(num){
 # bark-level random forests ####
 bark_RF = function(num, category){
   barks = read.csv("data/Horsey_candidate_speciesV.4_colnames.csv")
-  type <<- unique(barks[,colnames(barks) == paste(category)])[as.numeric(num)]
+  colnum = which(names(barks) == (category))
+  type <<- unique(barks[,paste(category)])[as.numeric(num)]
   b1 = barks %>% 
-    filter(type %in% paste(category))
+    filter(barks[,colnum] %in% paste(type))
   
   subset_b1 = records %>% 
     select(b1$col_names,
@@ -108,7 +107,7 @@ bark_RF = function(num, category){
   subset_b1$group_PA[subset_b1$group_PA != 0] = 1
   
   # select only the vegetation types where the species group is found to be present
-  rec1 = subset_b1[,c(22:54)]
+  rec1 = subset_b1
   fuels = rec1 %>% 
     filter(rec1$group_PA == 1) %>% 
     dplyr::select(fueltype) %>% 
