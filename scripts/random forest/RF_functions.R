@@ -95,7 +95,7 @@ sp_RF = function(num){
 # bark-level random forests ####
 bark_RF = function(num, category){
   barks = read.csv("data/Horsey_candidate_speciesV.4_colnames.csv")
-  type = unique(barks[,colnames(barks) == paste(category)])[as.numeric(num)]
+  type <<- unique(barks[,colnames(barks) == paste(category)])[as.numeric(num)]
   b1 = barks %>% 
     filter(type %in% paste(category))
   
@@ -137,13 +137,13 @@ bark_RF = function(num, category){
   test$group_PA = as.factor(test$group_PA)
   split_obj = bind_rows(smote, test)
   prop = nrow(smote) / (nrow(smote) + nrow(test))
-  split_obj <- initial_time_split(split_obj, prop = prop)
+  split_obj <<- initial_time_split(split_obj, prop = prop)
   
   # model recipe
-  mod_rec = recipe(group_PA ~ ., data = smote)
+  mod_rec <<- recipe(group_PA ~ ., data = smote)
   
   # tune for the model specifications
-  tune_spec = rand_forest(
+  tune_spec <<- rand_forest(
     mtry = tune(),
     trees = 1000,
     min_n = tune()
@@ -152,21 +152,34 @@ bark_RF = function(num, category){
     set_engine("ranger")
   
   # put specs into a workflow
-  tune_wf = workflow() %>% 
+  tune_wf <<- workflow() %>% 
     add_recipe(mod_rec) %>% 
     add_model(tune_spec)
   
   # create cross-validation resamples to use for tuning
   set.seed(234)
-  trees_fold = vfold_cv(smote)
+  trees_fold <<- vfold_cv(smote)
   
   # tune the hyperparameters for how many predictors to sample at each split (mtry) and how many observations needed to keep splitting nodes (min_n)
   doParallel::registerDoParallel()
   
   set.seed(345)
-  tune_res = tune_grid(
+  tune_res <<- tune_grid(
     tune_wf,
     resamples = trees_fold,
-    grid = 20
-  )
+    grid = 20)
+  
+  # plot results
+  tune_res %>%
+    collect_metrics() %>%
+    filter(.metric == "roc_auc") %>%
+    select(mean, min_n, mtry) %>%
+    pivot_longer(min_n:mtry,
+                 values_to = "value",
+                 names_to = "parameter"
+    ) %>%
+    ggplot(aes(value, mean, color = parameter)) +
+    geom_point(show.legend = FALSE) +
+    facet_wrap(~parameter, scales = "free_x") +
+    labs(x = NULL, y = "AUC")
 }
