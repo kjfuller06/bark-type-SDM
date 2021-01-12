@@ -25,12 +25,12 @@ records = records %>%
 source("scripts/random forest/RF_functions.R")
 
 # species-level random forests####
-first = sp_RF(1)
+first = sp_RF(2)
 first
 
 # more detailed look at the best value ranges
 rf_grid <- grid_regular(
-  mtry(range = c(1, 10)),
+  mtry(range = c(5, 15)),
   min_n(range = c(1, 10)),
   levels = 10
 )
@@ -104,24 +104,12 @@ stats_species = data.frame(species = sp1,
                                       metrics$.estimate[2],
                                       resolution = "~80m"))
 stats_species
+stats_all = rbind(stats_all, stats_species)
 
 # bark-level random forests ####
-bark_RF(1, "bark1")
+second = bark_RF(1, "bark1")
+second
 
-tune_res
-# plot results
-tune_res %>%
-  collect_metrics() %>%
-  filter(.metric == "roc_auc") %>%
-  select(mean, min_n, mtry) %>%
-  pivot_longer(min_n:mtry,
-               values_to = "value",
-               names_to = "parameter"
-  ) %>%
-  ggplot(aes(value, mean, color = parameter)) +
-  geom_point(show.legend = FALSE) +
-  facet_wrap(~parameter, scales = "free_x") +
-  labs(x = NULL, y = "AUC")
 # more detailed look at the best value ranges
 rf_grid <- grid_regular(
   mtry(range = c(1, 10)),
