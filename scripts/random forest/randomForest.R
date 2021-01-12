@@ -1,5 +1,6 @@
 # to do: 
 # include lat/lon coords as variabes in the RF, then plot correct and incorrect prediction on a map and explore attributes (following Julia Silge tutorial)
+# include importance factors for variables in model outputs
 
 library(raster)
 library(tidymodels)
@@ -29,7 +30,7 @@ first
 # more detailed look at the best value ranges
 rf_grid <- grid_regular(
   mtry(range = c(11, 20)),
-  min_n(range = c(1, 10)),
+  min_n(range = c(2, 20)),
   levels = 10
 )
 rf_grid
