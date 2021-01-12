@@ -1,7 +1,5 @@
 # to do: 
-# test RF_functions.R- all of this was written while R worked on other things and I didn't have internet
 # include lat/lon coords as variabes in the RF, then plot correct and incorrect prediction on a map and explore attributes (following Julia Silge tutorial)
-# also, I need to start exporting model inputs and their prediction error values
 
 library(raster)
 library(tidymodels)
@@ -30,7 +28,7 @@ first
 
 # more detailed look at the best value ranges
 rf_grid <- grid_regular(
-  mtry(range = c(5, 15)),
+  mtry(range = c(11, 20)),
   min_n(range = c(1, 10)),
   levels = 10
 )
@@ -104,7 +102,9 @@ stats_species = data.frame(species = sp1,
                                       metrics$.estimate[2],
                                       resolution = "~80m"))
 stats_species
+stats_all = read.csv("outputs/model_stats_V.1.csv")
 stats_all = rbind(stats_all, stats_species)
+write.csv(stats_all, "outputs/model_stats_V.1.csv", row.names = FALSE)
 
 # bark-level random forests ####
 second = bark_RF(1, "bark1")
