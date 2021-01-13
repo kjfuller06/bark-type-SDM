@@ -109,9 +109,9 @@ bark_RF = function(num, category){
     select(b1$col_names,
            names(records[c(117:ncol(records))])) %>% 
     mutate(group_PA = rowSums(records %>% select(b1$col_names)))
-sp_list = unique(b1$col_names)
-subset_b1 = subset_b1 %>% 
-  select(-all_of(sp_list))
+  sp_list = unique(b1$col_names)
+  subset_b1 = subset_b1 %>% 
+    select(-all_of(sp_list))
 
   # replace non-zero observations with 1
   subset_b1$group_PA[subset_b1$group_PA != 0] = 1
