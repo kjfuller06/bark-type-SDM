@@ -119,7 +119,10 @@ rf_grid <- grid_regular(
 )
 rf_grid
 # tune parameters again, this time with a more targeted range of hyperparameters
-set.seed(456)
+doParallel::registerDoParallel()
+
+set.seed(345)
+
 regular_res <- tune_grid(
   tune_wf,
   resamples = trees_fold,
