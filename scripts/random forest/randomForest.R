@@ -108,7 +108,7 @@ stats_all = rbind(stats_all, stats_species)
 write.csv(stats_all, "outputs/model_stats_V.1.csv", row.names = FALSE)
 
 # bark-level random forests ####
-second = bark_RF(1, "bark1")
+second = bark_RF(2, "bark1")
 second
 
 # more detailed look at the best value ranges
