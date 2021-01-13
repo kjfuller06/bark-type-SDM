@@ -114,7 +114,7 @@ second
 # more detailed look at the best value ranges
 rf_grid <- grid_regular(
   mtry(range = c(1, 10)),
-  min_n(range = c(2, 15)),
+  min_n(range = c(16, 25)),
   levels = 10
 )
 rf_grid
@@ -164,7 +164,7 @@ final_res <- final_wf %>%
   last_fit(split_obj)
 
 # calculate true positives and negatives and error rates
-final_res %>%
+metrics = final_res %>%
   collect_metrics()
 sum_1 = final_res %>% 
   collect_predictions()
@@ -186,4 +186,6 @@ stats_b1 = data.frame(barktype = type,
                                  metrics$.estimate[2],
                                  resolution = "~80m"))
 stats_b1
-write.csv(stats_b1, "outputs/dataV4.6_model_stats_80m.csv")
+stats_allb = read.csv("outputs/dataV4.6_model_stats_80m.csv")
+stats_allb = rbind(stats_allb, stats_b1)
+write.csv(stats_b1, "outputs/dataV4.6_model_stats_80m.csv", row.names = FALSE)
