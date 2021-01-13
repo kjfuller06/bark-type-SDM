@@ -103,9 +103,9 @@ stats_species = data.frame(species = sp1,
                                       metrics$.estimate[2],
                                       resolution = "~80m"))
 stats_species
-stats_all = read.csv("outputs/model_stats_V.1.csv")
+stats_all = read.csv("outputs/modelstats_spp._dataV4.6_80m.csv")
 stats_all = rbind(stats_all, stats_species)
-write.csv(stats_all, "outputs/model_stats_V.1.csv", row.names = FALSE)
+write.csv(stats_all, "outputs/modelstats_spp._dataV4.6_80m.csv", row.names = FALSE)
 
 # bark-level random forests ####
 second = bark_RF(2, "bark1")
@@ -186,6 +186,6 @@ stats_b1 = data.frame(barktype = type,
                                  metrics$.estimate[2],
                                  resolution = "~80m"))
 stats_b1
-stats_allb = read.csv("outputs/dataV4.6_model_stats_80m.csv")
+stats_allb = read.csv("outputs/modelstats_barks_dataV4.6_80m.csv")
 stats_allb = rbind(stats_allb, stats_b1)
-write.csv(stats_b1, "outputs/dataV4.6_model_stats_80m.csv", row.names = FALSE)
+write.csv(stats_allb, "outputs/modelstats_barks_dataV4.6_80m.csv", row.names = FALSE)
