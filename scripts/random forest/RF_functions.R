@@ -92,6 +92,8 @@ sp_RF = function(num){
 
 # bark-level random forests ####
 bark_RF = function(num, category){
+  num = 2
+  category = "bark1"
   barks = read.csv("data/Horsey_candidate_speciesV.4_colnamesV.2.csv") %>% 
     filter(col_names != "Angophora.leiocarpa",
            col_names != "Eucalyptus.codonocarpa",
