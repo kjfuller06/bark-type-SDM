@@ -2,6 +2,8 @@ library(raster)
 library(tmap)
 library(slga)
 library(sf)
+library(snowfall)
+library(parallel)
 options(stringsAsFactors = FALSE)
 
 # load extent shapefile
@@ -10,11 +12,14 @@ nsw = st_read("data/NSW_sans_islands.shp") %>%
 
 # soil bulk density- whole earth ####
 doParallel::registerDoParallel()
+
+# download datasets
 bdw <- lapply(seq.int(6), function(d) {
   get_soils_data(product = 'NAT', attribute = 'BDW', component = 'VAL',
                  depth = d, aoi = extent(nsw), write_out = FALSE)
 })
 
+# change names of layers
 names(bdw[[1]]) = "BDW depth 0-5cm"
 names(bdw[[2]]) = "BDW depth 5-15cm"
 names(bdw[[3]]) = "BDW depth 15-30cm"
@@ -22,7 +27,14 @@ names(bdw[[4]]) = "BDW depth 30-60cm"
 names(bdw[[5]]) = "BDW depth 60-100cm"
 names(bdw[[6]]) = "BDW depth 100-200cm"
 
+# stack for saving
+bdw = raster::stack(bdw)
+
+# save to disk
 writeRaster(bdw, "data/soilbdw_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+
+# remove from working memory
+rm(bdw)
 
 # soil organic carbon ####
 doParallel::registerDoParallel()
@@ -38,8 +50,10 @@ names(soc[[4]]) = "SOC depth 30-60cm"
 names(soc[[5]]) = "SOC depth 60-100cm"
 names(soc[[6]]) = "SOC depth 100-200cm"
 
+soc = raster::stack(soc)
+
 writeRaster(soc, "data/soilsoc_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
-rm(soc)
+# rm(soc)
 
 # soil bulk density- fine earth ####
 doParallel::registerDoParallel()
@@ -54,6 +68,8 @@ names(bdf[[3]]) = "BDF depth 15-30cm"
 names(bdf[[4]]) = "BDF depth 30-60cm"
 names(bdf[[5]]) = "BDF depth 60-100cm"
 names(bdf[[6]]) = "BDF depth 100-200cm"
+
+bdf = raster::stack(bdf)
 
 writeRaster(bdf, "data/soilbdf_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 
@@ -71,6 +87,8 @@ names(cly[[4]]) = "CLY depth 30-60cm"
 names(cly[[5]]) = "CLY depth 60-100cm"
 names(cly[[6]]) = "CLY depth 100-200cm"
 
+cly = raster::stack(cly)
+
 writeRaster(cly, "data/soilclay_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 # silt content ####
 doParallel::registerDoParallel()
@@ -85,6 +103,8 @@ names(slt[[3]]) = "SLT depth 15-30cm"
 names(slt[[4]]) = "SLT depth 30-60cm"
 names(slt[[5]]) = "SLT depth 60-100cm"
 names(slt[[6]]) = "SLT depth 100-200cm"
+
+slt = raster::stack(slt)
 
 writeRaster(slt, "data/soilsilt_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 # sand content ####
@@ -101,6 +121,8 @@ names(snd[[4]]) = "SND depth 30-60cm"
 names(snd[[5]]) = "SND depth 60-100cm"
 names(snd[[6]]) = "SND depth 100-200cm"
 
+snd = raster::stack(snd)
+
 writeRaster(snd, "data/soilsand_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 # pH based on CaCl2 extraction ####
 doParallel::registerDoParallel()
@@ -115,6 +137,8 @@ names(phc[[3]]) = "PHC depth 15-30cm"
 names(phc[[4]]) = "PHC depth 30-60cm"
 names(phc[[5]]) = "PHC depth 60-100cm"
 names(phc[[6]]) = "PHC depth 100-200cm"
+
+phc = raster::stack(phc)
 
 writeRaster(phc, "data/soilpHCaCl2_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 # available water capacity ####
@@ -131,6 +155,8 @@ names(awc[[4]]) = "AWC depth 30-60cm"
 names(awc[[5]]) = "AWC depth 60-100cm"
 names(awc[[6]]) = "AWC depth 100-200cm"
 
+awc = raster::stack(awc)
+
 writeRaster(awc, "data/soilAWC_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 # total nitrogen ####
 doParallel::registerDoParallel()
@@ -145,6 +171,8 @@ names(nit[[3]]) = "NTO depth 15-30cm"
 names(nit[[4]]) = "NTO depth 30-60cm"
 names(nit[[5]]) = "NTO depth 60-100cm"
 names(nit[[6]]) = "NTO depth 100-200cm"
+
+nit = raster::stack(nit)
 
 writeRaster(nit, "data/soilnto_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 # total phosphorus ####
@@ -161,6 +189,8 @@ names(pho[[4]]) = "PTO depth 30-60cm"
 names(pho[[5]]) = "PTO depth 60-100cm"
 names(pho[[6]]) = "PTO depth 100-200cm"
 
+pho = raster::stack(pho)
+
 writeRaster(pho, "data/soilntp_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 # electrical conductivity in 1:5 water-soil solution ####
 doParallel::registerDoParallel()
@@ -176,22 +206,9 @@ names(ecd[[4]]) = "ECD depth 30-60cm"
 names(ecd[[5]]) = "ECD depth 60-100cm"
 names(ecd[[6]]) = "ECD depth 100-200cm"
 
+ecd = raster::stack(ecd)
+
 writeRaster(ecd, "data/soilecd_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
-# CEC ####
-doParallel::registerDoParallel()
-cec <- lapply(seq.int(6), function(d) {
-  get_soils_data(product = 'NAT', attribute = 'CEC', component = 'VAL',
-                 depth = d, aoi = extent(nsw), write_out = FALSE)
-})
-
-names(cec[[1]]) = "CEC depth 0-5cm"
-names(cec[[2]]) = "CEC depth 5-15cm"
-names(cec[[3]]) = "CEC depth 15-30cm"
-names(cec[[4]]) = "CEC depth 30-60cm"
-names(cec[[5]]) = "CEC depth 60-100cm"
-names(cec[[6]]) = "CEC depth 100-200cm"
-
-writeRaster(cec, "data/soilcec_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 
 # ECEC ####
 doParallel::registerDoParallel()
@@ -207,18 +224,13 @@ names(ece[[4]]) = "ECEC depth 30-60cm"
 names(ece[[5]]) = "ECEC depth 60-100cm"
 names(ece[[6]]) = "ECEC depth 100-200cm"
 
+ece = raster::stack(ece)
+
 writeRaster(ece, "data/soilecec_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 # depth to hard rock ####
 doParallel::registerDoParallel()
 der <- get_soils_data(product = 'NAT', attribute = 'DER', component = 'VAL',
                  depth = 1, aoi = extent(nsw), write_out = FALSE)
-
-names(der[[1]]) = "DER depth 0-5cm"
-names(der[[2]]) = "DER depth 5-15cm"
-names(der[[3]]) = "DER depth 15-30cm"
-names(der[[4]]) = "DER depth 30-60cm"
-names(der[[5]]) = "DER depth 60-100cm"
-names(der[[6]]) = "DER depth 100-200cm"
 
 writeRaster(der, "data/soilder_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 
@@ -227,26 +239,12 @@ doParallel::registerDoParallel()
 des <- get_soils_data(product = 'NAT', attribute = 'DES', component = 'VAL',
                       depth = 1, aoi = extent(nsw), write_out = FALSE)
 
-names(des[[1]]) = "DES depth 0-5cm"
-names(des[[2]]) = "DES depth 5-15cm"
-names(des[[3]]) = "DES depth 15-30cm"
-names(des[[4]]) = "DES depth 30-60cm"
-names(des[[5]]) = "DES depth 60-100cm"
-names(des[[6]]) = "DES depth 100-200cm"
-
 writeRaster(des, "data/soildes_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 
 # plant exploitable (effective) depth ####
 doParallel::registerDoParallel()
 dpe <- get_soils_data(product = 'NAT', attribute = 'DPE', component = 'VAL',
                       depth = 1, aoi = extent(nsw), write_out = FALSE)
-
-names(dpe[[1]]) = "DPE depth 0-5cm"
-names(dpe[[2]]) = "DPE depth 5-15cm"
-names(dpe[[3]]) = "DPE depth 15-30cm"
-names(dpe[[4]]) = "DPE depth 30-60cm"
-names(dpe[[5]]) = "DPE depth 60-100cm"
-names(dpe[[6]]) = "DPE depth 100-200cm"
 
 writeRaster(dpe, "data/soildpe_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 
@@ -263,5 +261,7 @@ names(cfg[[3]]) = "CFG depth 15-30cm"
 names(cfg[[4]]) = "CFG depth 30-60cm"
 names(cfg[[5]]) = "CFG depth 60-100cm"
 names(cfg[[6]]) = "CFG depth 100-200cm"
+
+cfg = raster::stack(cfg)
 
 writeRaster(cfg, "data/soilcfg_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
