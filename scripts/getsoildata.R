@@ -37,6 +37,8 @@ writeRaster(bdw, "data/soilbdw_all_80m.grd", format = "raster", options = "COMPR
 rm(bdw)
 
 # soil organic carbon ####
+system.time({
+
 doParallel::registerDoParallel()
 soc <- lapply(seq.int(6), function(d) {
   get_soils_data(product = 'NAT', attribute = 'SOC', component = 'VAL',
@@ -54,6 +56,7 @@ soc = raster::stack(soc)
 
 writeRaster(soc, "data/soilsoc_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 # rm(soc)
+})[[3]]
 
 # soil bulk density- fine earth ####
 doParallel::registerDoParallel()
