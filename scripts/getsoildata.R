@@ -58,26 +58,12 @@ writeRaster(soc, "data/soilsoc_all_80m.grd", format = "raster", options = "COMPR
 # rm(soc)
 })[[3]]
 
-# soil bulk density- fine earth ####
-doParallel::registerDoParallel()
-bdf <- lapply(seq.int(6), function(d) {
-  get_soils_data(product = 'NAT', attribute = 'BDF', component = 'VAL',
-                 depth = d, aoi = extent(nsw), write_out = FALSE)
-})
-
-names(bdf[[1]]) = "BDF depth 0-5cm"
-names(bdf[[2]]) = "BDF depth 5-15cm"
-names(bdf[[3]]) = "BDF depth 15-30cm"
-names(bdf[[4]]) = "BDF depth 30-60cm"
-names(bdf[[5]]) = "BDF depth 60-100cm"
-names(bdf[[6]]) = "BDF depth 100-200cm"
-
-bdf = raster::stack(bdf)
-
-writeRaster(bdf, "data/soilbdf_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
-
 # clay content ####
-doParallel::registerDoParallel()
+sfInit(parallel = TRUE, cpus = 6)
+sfExport("nsw")
+
+system.time({
+# doParallel::registerDoParallel()
 cly <- lapply(seq.int(6), function(d) {
   get_soils_data(product = 'NAT', attribute = 'CLY', component = 'VAL',
                  depth = d, aoi = extent(nsw), write_out = FALSE)
@@ -93,6 +79,10 @@ names(cly[[6]]) = "CLY depth 100-200cm"
 cly = raster::stack(cly)
 
 writeRaster(cly, "data/soilclay_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+})[[3]]
+
+sfStop()
+
 # silt content ####
 doParallel::registerDoParallel()
 slt <- lapply(seq.int(6), function(d) {
@@ -195,24 +185,6 @@ names(pho[[6]]) = "PTO depth 100-200cm"
 pho = raster::stack(pho)
 
 writeRaster(pho, "data/soilntp_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
-# electrical conductivity in 1:5 water-soil solution ####
-doParallel::registerDoParallel()
-ecd <- lapply(seq.int(6), function(d) {
-  get_soils_data(product = 'NAT', attribute = 'ECD', component = 'VAL',
-                 depth = d, aoi = extent(nsw), write_out = FALSE)
-})
-
-names(ecd[[1]]) = "ECD depth 0-5cm"
-names(ecd[[2]]) = "ECD depth 5-15cm"
-names(ecd[[3]]) = "ECD depth 15-30cm"
-names(ecd[[4]]) = "ECD depth 30-60cm"
-names(ecd[[5]]) = "ECD depth 60-100cm"
-names(ecd[[6]]) = "ECD depth 100-200cm"
-
-ecd = raster::stack(ecd)
-
-writeRaster(ecd, "data/soilecd_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
-
 # ECEC ####
 doParallel::registerDoParallel()
 ece <- lapply(seq.int(6), function(d) {
@@ -243,13 +215,6 @@ des <- get_soils_data(product = 'NAT', attribute = 'DES', component = 'VAL',
                       depth = 1, aoi = extent(nsw), write_out = FALSE)
 
 writeRaster(des, "data/soildes_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
-
-# plant exploitable (effective) depth ####
-doParallel::registerDoParallel()
-dpe <- get_soils_data(product = 'NAT', attribute = 'DPE', component = 'VAL',
-                      depth = 1, aoi = extent(nsw), write_out = FALSE)
-
-writeRaster(dpe, "data/soildpe_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 
 # coarse fragments ####
 doParallel::registerDoParallel()
