@@ -37,26 +37,33 @@ writeRaster(bdw, "data/soilbdw_all_80m.grd", format = "raster", options = "COMPR
 rm(bdw)
 
 # soil organic carbon ####
-system.time({
-
-doParallel::registerDoParallel()
-soc <- lapply(seq.int(6), function(d) {
+socfun <- function(d) {
   get_soils_data(product = 'NAT', attribute = 'SOC', component = 'VAL',
                  depth = d, aoi = extent(nsw), write_out = FALSE)
-})
+}
 
-names(soc[[1]]) = "SOC depth 0-5cm"
-names(soc[[2]]) = "SOC depth 5-15cm"
-names(soc[[3]]) = "SOC depth 15-30cm"
-names(soc[[4]]) = "SOC depth 30-60cm"
-names(soc[[5]]) = "SOC depth 60-100cm"
-names(soc[[6]]) = "SOC depth 100-200cm"
+sfInit(parallel = TRUE, cpus = detectCores())
+sfExport("nsw", "socfun")
+sfLibrary(slga)
+sfLibrary(raster)
 
-soc = raster::stack(soc)
-
-writeRaster(soc, "data/soilsoc_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
-# rm(soc)
+system.time({
+  
+  soc = sfLapply(seq.int(6), socfun)
+  
+  names(soc[[1]]) = "SOC depth 0-5cm"
+  names(soc[[2]]) = "SOC depth 5-15cm"
+  names(soc[[3]]) = "SOC depth 15-30cm"
+  names(soc[[4]]) = "SOC depth 30-60cm"
+  names(soc[[5]]) = "SOC depth 60-100cm"
+  names(soc[[6]]) = "SOC depth 100-200cm"
+  
+  soc = raster::stack(soc)
+  
+  writeRaster(soc, "data/CSIRO_soils/soilsoc_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 })[[3]]
+
+sfStop()
 
 # clay content ####
 clyfun <- function(d) {
@@ -82,7 +89,7 @@ names(cly[[6]]) = "CLY depth 100-200cm"
 
 cly = raster::stack(cly)
 
-writeRaster(cly, "data/soilclay_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+writeRaster(cly, "data/CSIRO_soils/soilclay_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 })[[3]]
 
 sfStop()
@@ -111,22 +118,34 @@ writeRaster(slt, "data/soilsilt_all_80m.grd", format = "raster", options = "COMP
 # 10945.51secs
 
 # sand content ####
-doParallel::registerDoParallel()
-snd <- lapply(seq.int(6), function(d) {
+sndfun <- function(d) {
   get_soils_data(product = 'NAT', attribute = 'SND', component = 'VAL',
                  depth = d, aoi = extent(nsw), write_out = FALSE)
-})
+}
 
-names(snd[[1]]) = "SND depth 0-5cm"
-names(snd[[2]]) = "SND depth 5-15cm"
-names(snd[[3]]) = "SND depth 15-30cm"
-names(snd[[4]]) = "SND depth 30-60cm"
-names(snd[[5]]) = "SND depth 60-100cm"
-names(snd[[6]]) = "SND depth 100-200cm"
+sfInit(parallel = TRUE, cpus = detectCores())
+sfExport("nsw", "sndfun")
+sfLibrary(slga)
+sfLibrary(raster)
 
-snd = raster::stack(snd)
+system.time({
+  
+  snd = sfLapply(seq.int(6), sndfun)
+  
+  names(snd[[1]]) = "SND depth 0-5cm"
+  names(snd[[2]]) = "SND depth 5-15cm"
+  names(snd[[3]]) = "SND depth 15-30cm"
+  names(snd[[4]]) = "SND depth 30-60cm"
+  names(snd[[5]]) = "SND depth 60-100cm"
+  names(snd[[6]]) = "SND depth 100-200cm"
+  
+  snd = raster::stack(snd)
+  
+  writeRaster(snd, "data/CSIRO_soils/soilsand_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+})[[3]]
 
-writeRaster(snd, "data/soilsand_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+sfStop()
+
 # pH based on CaCl2 extraction ####
 doParallel::registerDoParallel()
 phc <- lapply(seq.int(6), function(d) {
