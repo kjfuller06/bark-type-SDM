@@ -59,15 +59,19 @@ writeRaster(soc, "data/soilsoc_all_80m.grd", format = "raster", options = "COMPR
 })[[3]]
 
 # clay content ####
-sfInit(parallel = TRUE, cpus = 6)
-sfExport("nsw")
-
-system.time({
-# doParallel::registerDoParallel()
-cly <- lapply(seq.int(6), function(d) {
+clyfun <- function(d) {
   get_soils_data(product = 'NAT', attribute = 'CLY', component = 'VAL',
                  depth = d, aoi = extent(nsw), write_out = FALSE)
-})
+}
+
+sfInit(parallel = TRUE, cpus = detectCores())
+sfExport("nsw", "clyfun")
+sfLibrary(slga)
+sfLibrary(raster)
+
+system.time({
+
+  cly = sfLapply(seq.int(6), clyfun)
 
 names(cly[[1]]) = "CLY depth 0-5cm"
 names(cly[[2]]) = "CLY depth 5-15cm"
@@ -82,8 +86,10 @@ writeRaster(cly, "data/soilclay_all_80m.grd", format = "raster", options = "COMP
 })[[3]]
 
 sfStop()
+# 4075.87secs
 
 # silt content ####
+system.time({
 doParallel::registerDoParallel()
 slt <- lapply(seq.int(6), function(d) {
   get_soils_data(product = 'NAT', attribute = 'SLT', component = 'VAL',
@@ -100,6 +106,10 @@ names(slt[[6]]) = "SLT depth 100-200cm"
 slt = raster::stack(slt)
 
 writeRaster(slt, "data/soilsilt_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+})[[3]]
+
+# 10945.51secs
+
 # sand content ####
 doParallel::registerDoParallel()
 snd <- lapply(seq.int(6), function(d) {
