@@ -147,118 +147,188 @@ system.time({
 sfStop()
 
 # pH based on CaCl2 extraction ####
-doParallel::registerDoParallel()
-phc <- lapply(seq.int(6), function(d) {
+phcfun <- function(d) {
   get_soils_data(product = 'NAT', attribute = 'PHC', component = 'VAL',
                  depth = d, aoi = extent(nsw), write_out = FALSE)
-})
+}
 
-names(phc[[1]]) = "PHC depth 0-5cm"
-names(phc[[2]]) = "PHC depth 5-15cm"
-names(phc[[3]]) = "PHC depth 15-30cm"
-names(phc[[4]]) = "PHC depth 30-60cm"
-names(phc[[5]]) = "PHC depth 60-100cm"
-names(phc[[6]]) = "PHC depth 100-200cm"
+sfInit(parallel = TRUE, cpus = detectCores())
+sfExport("nsw", "phcfun")
+sfLibrary(slga)
+sfLibrary(raster)
 
-phc = raster::stack(phc)
+system.time({
+  
+  phc = sfLapply(seq.int(6), phcfun)
+  
+  names(phc[[1]]) = "PHC depth 0-5cm"
+  names(phc[[2]]) = "PHC depth 5-15cm"
+  names(phc[[3]]) = "PHC depth 15-30cm"
+  names(phc[[4]]) = "PHC depth 30-60cm"
+  names(phc[[5]]) = "PHC depth 60-100cm"
+  names(phc[[6]]) = "PHC depth 100-200cm"
+  
+  phc = raster::stack(phc)
+  
+  writeRaster(phc, "data/CSIRO_soils/soilphc_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+})[[3]]
 
-writeRaster(phc, "data/soilpHCaCl2_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+sfStop()
+
 # available water capacity ####
-doParallel::registerDoParallel()
-awc <- lapply(seq.int(6), function(d) {
+awcfun <- function(d) {
   get_soils_data(product = 'NAT', attribute = 'AWC', component = 'VAL',
                  depth = d, aoi = extent(nsw), write_out = FALSE)
-})
+}
 
-names(awc[[1]]) = "AWC depth 0-5cm"
-names(awc[[2]]) = "AWC depth 5-15cm"
-names(awc[[3]]) = "AWC depth 15-30cm"
-names(awc[[4]]) = "AWC depth 30-60cm"
-names(awc[[5]]) = "AWC depth 60-100cm"
-names(awc[[6]]) = "AWC depth 100-200cm"
+sfInit(parallel = TRUE, cpus = detectCores())
+sfExport("nsw", "awcfun")
+sfLibrary(slga)
+sfLibrary(raster)
 
-awc = raster::stack(awc)
+system.time({
+  
+  awc = sfLapply(seq.int(6), awcfun)
+  
+  names(awc[[1]]) = "AWC depth 0-5cm"
+  names(awc[[2]]) = "AWC depth 5-15cm"
+  names(awc[[3]]) = "AWC depth 15-30cm"
+  names(awc[[4]]) = "AWC depth 30-60cm"
+  names(awc[[5]]) = "AWC depth 60-100cm"
+  names(awc[[6]]) = "AWC depth 100-200cm"
+  
+  awc = raster::stack(awc)
+  
+  writeRaster(awc, "data/CSIRO_soils/soilawc_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+})[[3]]
 
-writeRaster(awc, "data/soilAWC_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+sfStop()
+
 # total nitrogen ####
-doParallel::registerDoParallel()
-nit <- lapply(seq.int(6), function(d) {
+ntofun <- function(d) {
   get_soils_data(product = 'NAT', attribute = 'NTO', component = 'VAL',
                  depth = d, aoi = extent(nsw), write_out = FALSE)
-})
+}
 
-names(nit[[1]]) = "NTO depth 0-5cm"
-names(nit[[2]]) = "NTO depth 5-15cm"
-names(nit[[3]]) = "NTO depth 15-30cm"
-names(nit[[4]]) = "NTO depth 30-60cm"
-names(nit[[5]]) = "NTO depth 60-100cm"
-names(nit[[6]]) = "NTO depth 100-200cm"
+sfInit(parallel = TRUE, cpus = detectCores())
+sfExport("nsw", "ntofun")
+sfLibrary(slga)
+sfLibrary(raster)
 
-nit = raster::stack(nit)
+system.time({
+  
+  nto = sfLapply(seq.int(6), ntofun)
+  
+  names(nto[[1]]) = "NTO depth 0-5cm"
+  names(nto[[2]]) = "NTO depth 5-15cm"
+  names(nto[[3]]) = "NTO depth 15-30cm"
+  names(nto[[4]]) = "NTO depth 30-60cm"
+  names(nto[[5]]) = "NTO depth 60-100cm"
+  names(nto[[6]]) = "NTO depth 100-200cm"
+  
+  nto = raster::stack(nto)
+  
+  writeRaster(nto, "data/CSIRO_soils/soilnto_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+})[[3]]
 
-writeRaster(nit, "data/soilnto_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+sfStop()
+
 # total phosphorus ####
-doParallel::registerDoParallel()
-pho <- lapply(seq.int(6), function(d) {
+ptofun <- function(d) {
   get_soils_data(product = 'NAT', attribute = 'PTO', component = 'VAL',
                  depth = d, aoi = extent(nsw), write_out = FALSE)
-})
+}
 
-names(pho[[1]]) = "PTO depth 0-5cm"
-names(pho[[2]]) = "PTO depth 5-15cm"
-names(pho[[3]]) = "PTO depth 15-30cm"
-names(pho[[4]]) = "PTO depth 30-60cm"
-names(pho[[5]]) = "PTO depth 60-100cm"
-names(pho[[6]]) = "PTO depth 100-200cm"
+sfInit(parallel = TRUE, cpus = detectCores())
+sfExport("nsw", "ptofun")
+sfLibrary(slga)
+sfLibrary(raster)
 
-pho = raster::stack(pho)
+system.time({
+  
+  pto = sfLapply(seq.int(6), ptofun)
+  
+  names(pto[[1]]) = "PTO depth 0-5cm"
+  names(pto[[2]]) = "PTO depth 5-15cm"
+  names(pto[[3]]) = "PTO depth 15-30cm"
+  names(pto[[4]]) = "PTO depth 30-60cm"
+  names(pto[[5]]) = "PTO depth 60-100cm"
+  names(pto[[6]]) = "PTO depth 100-200cm"
+  
+  pto = raster::stack(pto)
+  
+  writeRaster(pto, "data/CSIRO_soils/soilpto_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+})[[3]]
 
-writeRaster(pho, "data/soilntp_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+sfStop()
+
 # ECEC ####
-doParallel::registerDoParallel()
-ece <- lapply(seq.int(6), function(d) {
-  get_soils_data(product = 'NAT', attribute = 'ECEC', component = 'VAL',
+ecefun <- function(d) {
+  get_soils_data(product = 'NAT', attribute = 'ECE', component = 'VAL',
                  depth = d, aoi = extent(nsw), write_out = FALSE)
-})
+}
 
-names(ece[[1]]) = "ECEC depth 0-5cm"
-names(ece[[2]]) = "ECEC depth 5-15cm"
-names(ece[[3]]) = "ECEC depth 15-30cm"
-names(ece[[4]]) = "ECEC depth 30-60cm"
-names(ece[[5]]) = "ECEC depth 60-100cm"
-names(ece[[6]]) = "ECEC depth 100-200cm"
+sfInit(parallel = TRUE, cpus = detectCores())
+sfExport("nsw", "ecefun")
+sfLibrary(slga)
+sfLibrary(raster)
 
-ece = raster::stack(ece)
+system.time({
+  
+  ece = sfLapply(seq.int(6), ecefun)
+  
+  names(ece[[1]]) = "ECE depth 0-5cm"
+  names(ece[[2]]) = "ECE depth 5-15cm"
+  names(ece[[3]]) = "ECE depth 15-30cm"
+  names(ece[[4]]) = "ECE depth 30-60cm"
+  names(ece[[5]]) = "ECE depth 60-100cm"
+  names(ece[[6]]) = "ECE depth 100-200cm"
+  
+  ece = raster::stack(ece)
+  
+  writeRaster(ece, "data/CSIRO_soils/soilece_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+})[[3]]
 
-writeRaster(ece, "data/soilecec_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
-# depth to hard rock ####
-doParallel::registerDoParallel()
-der <- get_soils_data(product = 'NAT', attribute = 'DER', component = 'VAL',
-                 depth = 1, aoi = extent(nsw), write_out = FALSE)
+sfStop()
 
-writeRaster(der, "data/soilder_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+# depth to hard rock- test ####
+## need to test
+derfun <- function(d) {
+  get_soils_data(product = 'NAT', attribute = 'DER', component = 'VAL',
+                 depth = d, aoi = extent(nsw), write_out = FALSE)
+}
+
+sfInit(parallel = TRUE, cpus = detectCores())
+sfExport("nsw", "derfun")
+sfLibrary(slga)
+sfLibrary(raster)
+
+system.time({
+  
+  der = derfun(1)
+  
+  writeRaster(der, "data/CSIRO_soils/soilder_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+})[[3]]
+
+sfStop()
+# 1033.82
 
 # depth of soil A and B horizons ####
-doParallel::registerDoParallel()
-des <- get_soils_data(product = 'NAT', attribute = 'DES', component = 'VAL',
-                      depth = 1, aoi = extent(nsw), write_out = FALSE)
-
-writeRaster(des, "data/soildes_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
-
-# coarse fragments ####
-doParallel::registerDoParallel()
-cfg <- lapply(seq.int(6), function(d) {
-  get_soils_data(product = 'NAT', attribute = 'CFG', component = 'VAL',
+desfun <- function(d) {
+  get_soils_data(product = 'NAT', attribute = 'DES', component = 'VAL',
                  depth = d, aoi = extent(nsw), write_out = FALSE)
-})
+}
 
-names(cfg[[1]]) = "CFG depth 0-5cm"
-names(cfg[[2]]) = "CFG depth 5-15cm"
-names(cfg[[3]]) = "CFG depth 15-30cm"
-names(cfg[[4]]) = "CFG depth 30-60cm"
-names(cfg[[5]]) = "CFG depth 60-100cm"
-names(cfg[[6]]) = "CFG depth 100-200cm"
+sfInit(parallel = TRUE, cpus = detectCores())
+sfExport("nsw", "desfun")
+sfLibrary(slga)
+sfLibrary(raster)
 
-cfg = raster::stack(cfg)
+system.time({
+  
+  des = desfun(1)
+  
+  writeRaster(des, "data/CSIRO_soils/soildes_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+})[[3]]
 
-writeRaster(cfg, "data/soilcfg_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+sfStop()
