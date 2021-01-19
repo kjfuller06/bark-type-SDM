@@ -43,11 +43,12 @@ silt = raster::stack("data/CSIRO_soils/soilsilt_all_80m.grd")
 sand = raster::stack("data/CSIRO_soils/soilsand_all_80m.grd")
 ph = raster::stack("data/CSIRO_soils/soilphc_all_80m.grd")
 awc = raster::stack("data/CSIRO_soils/soilawc_all_80m.grd")
-nit = raster::stack("data/CSIRO_soils/soilnto_all_80.grd")
-pho = raster::stack("data/CSIRO_soils/soilpto_all_80.grd")
-ece = raster::stack("data/CSIRO_soils/soilece_all_80.grd")
+nit = raster::stack("data/CSIRO_soils/soilnto_all_80m.grd")
+pho = raster::stack("data/CSIRO_soils/soilpto_all_80m.grd")
+ece = raster::stack("data/CSIRO_soils/soilece_all_80m.grd")
 der = raster("data/CSIRO_soils/soilder_80m.grd")
 des = raster("data/CSIRO_soils/soildes_80m.grd")
+
 
 # terrain layers
 slope = raster("data/dem_slope_30m.grd")
