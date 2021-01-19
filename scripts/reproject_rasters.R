@@ -30,23 +30,24 @@ for(i in c(2:19)){
   names(bioclim)[i] = paste0("bio", i, sep = "")
 }
 crs(bioclim) = st_crs(4326)$proj4string
-## ^check bioclim's crs online. I'm on the plane. I used some notes from the layer_check script to assign this.
 
 # aridity data from CGIARCS
 arid = raster('data/ai_et0/ai_et0.tif')
 # fire history
 fire = raster("data/firehistory.tif")
 # soil layers
-bdod = raster("data/bulkdensity.tif")
-cec = raster("data/cec.tif")
-cfvo = raster("data/coarsefragments.tif")
-sand = raster("data/sand.tif")
-silt = raster("data/silt.tif")
-clay = raster("data/clay.tif")
-nitrogen = raster("data/nitrogen.tif")
-ph = raster("data/pH.tif")
-soc = raster("data/soc.tif")
-ocd = raster("data/ocd.tif")
+bdw = raster::stack("data/CSIRO_soils/soilbdw_all_80m.grd")
+soc = raster::stack("data/CSIRO_soils/soilsoc_all_80m.grd")
+clay = raster::stack("data/CSIRO_soils/soilclay_all_80m.grd")
+silt = raster::stack("data/CSIRO_soils/soilsilt_all_80m.grd")
+sand = raster::stack("data/CSIRO_soils/soilsand_all_80m.grd")
+ph = raster::stack("data/CSIRO_soils/soilphc_all_80m.grd")
+awc = raster::stack("data/CSIRO_soils/soilawc_all_80m.grd")
+nit = raster::stack("data/CSIRO_soils/soilnto_all_80.grd")
+pho = raster::stack("data/CSIRO_soils/soilpto_all_80.grd")
+ece = raster::stack("data/CSIRO_soils/soilece_all_80.grd")
+der = raster("data/CSIRO_soils/soilder_80m.grd")
+des = raster("data/CSIRO_soils/soildes_80m.grd")
 
 # terrain layers
 slope = raster("data/dem_slope_30m.grd")
@@ -62,7 +63,7 @@ rm(slope, aspect, TPI, TRI, roughness)
 # veg layer is 30m2 res
 # terrain layers are 30m2 res
 # fire layer is ~80m res
-# soil layers are 250m res
+# soil layers are ~80m res
 # WorldClim layers are 800m res
 
 # terrain layers - ~30m res
