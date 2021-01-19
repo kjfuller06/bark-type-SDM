@@ -31,7 +31,7 @@ names(bdw[[6]]) = "BDW depth 100-200cm"
 bdw = raster::stack(bdw)
 
 # save to disk
-writeRaster(bdw, "data/soilbdw_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+writeRaster(bdw, "data/CSIRO_soils/soilbdw_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 
 # remove from working memory
 rm(bdw)
@@ -112,7 +112,7 @@ names(slt[[6]]) = "SLT depth 100-200cm"
 
 slt = raster::stack(slt)
 
-writeRaster(slt, "data/soilsilt_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+writeRaster(slt, "data/CSIRO_soils/soilsilt_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 })[[3]]
 
 # 10945.51secs
@@ -307,7 +307,7 @@ system.time({
   
   der = derfun(1)
   
-  writeRaster(der, "data/CSIRO_soils/soilder_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+  writeRaster(der, "data/CSIRO_soils/soilder_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 })[[3]]
 
 sfStop()
@@ -328,7 +328,7 @@ system.time({
   
   des = desfun(1)
   
-  writeRaster(des, "data/CSIRO_soils/soildes_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+  writeRaster(des, "data/CSIRO_soils/soildes_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 })[[3]]
 
 sfStop()
