@@ -119,11 +119,13 @@ sfLibrary(gdalUtils)
 
 system.time({
   
-  sfLapply(seq.int(12), soilfun)
+  # sfLapply(seq.int(1), soilfun)
+  soilfun(1)
   
 })[[3]]
 
 sfStop()
+## 6839.88sec
 
 # WorldClim data - ~800m res
 nsw1 = nsw %>% 
