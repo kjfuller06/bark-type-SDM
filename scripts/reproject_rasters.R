@@ -10,56 +10,58 @@ library(raster)
 library(sf)
 library(tmap)
 library(gdalUtils)
+library(snowfall)
+library(parallel)
 
 # 1) ####
 # fuel layer
 veg = raster("data/FuelTypeV2_FuelLUT1.tif")
 # NSW boundary
 nsw = st_read("data/NSW_sans_islands.shp")
-# WorldClim datasets
-bioclim = mosaic(raster("data/wc0.5/bio1_310.bil"),
-                 raster("data/wc0.5/bio1_311.bil"),
-                 raster("data/wc0.5/bio1_410.bil"),
-                 raster("data/wc0.5/bio1_411.bil"), fun = mean)
-names(bioclim)[1] = "bio1"
-for(i in c(2:19)){
-  x = mosaic(raster(paste("data/wc0.5/bio", i, "_310.bil", sep = "")),
-             raster(paste("data/wc0.5/bio", i, "_311.bil", sep = "")),
-             raster(paste("data/wc0.5/bio", i, "_410.bil", sep = "")),
-             raster(paste("data/wc0.5/bio", i, "_411.bil", sep = "")), fun = mean)
-  bioclim = raster::stack(bioclim, x)
-  names(bioclim)[i] = paste0("bio", i, sep = "")
-}
-crs(bioclim) = st_crs(4326)$proj4string
-
-# aridity data from CGIARCS
-arid = raster('data/ai_et0/ai_et0.tif')
-# fire history
-fire = raster("data/firehistory.tif")
-# soil layers
-bdw = raster::stack("data/CSIRO_soils/soilbdw_all_80m.grd")
-soc = raster::stack("data/CSIRO_soils/soilsoc_all_80m.grd")
-clay = raster::stack("data/CSIRO_soils/soilclay_all_80m.grd")
-silt = raster::stack("data/CSIRO_soils/soilsilt_all_80m.grd")
-sand = raster::stack("data/CSIRO_soils/soilsand_all_80m.grd")
-ph = raster::stack("data/CSIRO_soils/soilphc_all_80m.grd")
-awc = raster::stack("data/CSIRO_soils/soilawc_all_80m.grd")
-nit = raster::stack("data/CSIRO_soils/soilnto_all_80m.grd")
-pho = raster::stack("data/CSIRO_soils/soilpto_all_80m.grd")
-ece = raster::stack("data/CSIRO_soils/soilece_all_80m.grd")
-der = raster("data/CSIRO_soils/soilder_80m.grd")
-des = raster("data/CSIRO_soils/soildes_80m.grd")
-soils = raster::stack(bdw, soc, clay, silt, sand, ph, awc, nit, pho, ece, der, des)
-rm(bdw, soc, clay, silt, sand, ph, awc, nit, pho, ece, der, des)
-
+# # WorldClim datasets
+# bioclim = mosaic(raster("data/wc0.5/bio1_310.bil"),
+#                  raster("data/wc0.5/bio1_311.bil"),
+#                  raster("data/wc0.5/bio1_410.bil"),
+#                  raster("data/wc0.5/bio1_411.bil"), fun = mean)
+# names(bioclim)[1] = "bio1"
+# for(i in c(2:19)){
+#   x = mosaic(raster(paste("data/wc0.5/bio", i, "_310.bil", sep = "")),
+#              raster(paste("data/wc0.5/bio", i, "_311.bil", sep = "")),
+#              raster(paste("data/wc0.5/bio", i, "_410.bil", sep = "")),
+#              raster(paste("data/wc0.5/bio", i, "_411.bil", sep = "")), fun = mean)
+#   bioclim = raster::stack(bioclim, x)
+#   names(bioclim)[i] = paste0("bio", i, sep = "")
+# }
+# crs(bioclim) = st_crs(4326)$proj4string
+# 
+# # aridity data from CGIARCS
+# arid = raster('data/ai_et0/ai_et0.tif')
+# # fire history
+# fire = raster("data/firehistory.tif")
+# # soil layers
+# bdw = raster::stack("data/CSIRO_soils/soilbdw_all_80m.grd")
+# soc = raster::stack("data/CSIRO_soils/soilsoc_all_80m.grd")
+# clay = raster::stack("data/CSIRO_soils/soilclay_all_80m.grd")
+# silt = raster::stack("data/CSIRO_soils/soilsilt_all_80m.grd")
+# sand = raster::stack("data/CSIRO_soils/soilsand_all_80m.grd")
+# ph = raster::stack("data/CSIRO_soils/soilphc_all_80m.grd")
+# awc = raster::stack("data/CSIRO_soils/soilawc_all_80m.grd")
+# nit = raster::stack("data/CSIRO_soils/soilnto_all_80m.grd")
+# pho = raster::stack("data/CSIRO_soils/soilpto_all_80m.grd")
+# ece = raster::stack("data/CSIRO_soils/soilece_all_80m.grd")
+# der = raster("data/CSIRO_soils/soilder_80m.grd")
+# des = raster("data/CSIRO_soils/soildes_80m.grd")
+# soils = raster::stack(bdw, soc, clay, silt, sand, ph, awc, nit, pho, ece, der, des)
+# rm(bdw, soc, clay, silt, sand, ph, awc, nit, pho, ece, der, des)
+# 
 # terrain layers
 slope = raster("data/DEM-H_terrainvars/dem_slope_30m.grd")
-aspect = raster("data/DEM-H_terrainvars/dem_aspect_30m.grd")
-TPI = raster("data/DEM-H_terrainvars/dem_TPI_30m.grd")
-TRI = raster("data/DEM-H_terrainvars/dem_TRI_30m.grd")
-roughness = raster("data/DEM-H_terrainvars/dem_roughness_30m.grd")
-terrain = raster::stack(slope, aspect, TPI, TRI, roughness)
-rm(slope, aspect, TPI, TRI, roughness)
+# aspect = raster("data/DEM-H_terrainvars/dem_aspect_30m.grd")
+# TPI = raster("data/DEM-H_terrainvars/dem_TPI_30m.grd")
+# TRI = raster("data/DEM-H_terrainvars/dem_TRI_30m.grd")
+# roughness = raster("data/DEM-H_terrainvars/dem_roughness_30m.grd")
+# terrain = raster::stack(slope, aspect, TPI, TRI, roughness)
+# rm(slope, aspect, TPI, TRI, roughness)
 
 # 2) ####
 # veg layer, fire layer and soil layers don't need cropping because the extent is already equal to NSW
@@ -72,7 +74,8 @@ rm(slope, aspect, TPI, TRI, roughness)
 
 # terrain layers - ~30m res
 nsw1 = nsw %>% 
-  st_transform(crs = st_crs(terrain))
+  st_transform(crs = st_crs(slope))
+rm(slope)
 
 terrain.lst = list.files("./data/DEM-H_terrainvars", pattern=".grd", full.names=TRUE)
 terrain.out = gsub("30m", "30m_crop", terrain.lst)
@@ -82,7 +85,7 @@ terrainfun <- function(d) {
 }
 
 sfInit(parallel = TRUE, cpus = detectCores())
-sfExport("nsw1", "terrainfun")
+sfExport("nsw1", "terrainfun", "terrain.lst", "terrain.out")
 sfLibrary(raster)
 sfLibrary(sf)
 sfLibrary(gdalUtils)

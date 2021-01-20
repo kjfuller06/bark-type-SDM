@@ -13,7 +13,7 @@ library(snowfall)
 library(RSAGA)
 
 # load DEM-H
-dem = raster("data/DEM_nsw.tif")
+dem = raster("data/DEM_nsw.sgrd")
 
 # calculate slope and aspect
 dem_slopes = terrain(dem, opt = c('slope', 'aspect'), unit = 'degrees')
