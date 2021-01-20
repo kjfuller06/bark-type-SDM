@@ -98,10 +98,32 @@ system.time({
 
 sfStop()
 
-# soils laters - ~80m res
+# soils layers - ~80m res
+bdw = raster::stack("data/CSIRO_soils/soilbdw_all_80m.grd")
 nsw1 = nsw %>% 
-  st_transform(crs = st_crs(soils))
-soils = crop(soils, extent(nsw1))
+  st_transform(crs = st_crs(bdw))
+rm(bdw)
+
+soil.lst = list.files("./data/CSIRO_soils", pattern=".grd", full.names=TRUE)
+soil.out = gsub("80m", "80m_reproj", soil.lst)
+
+soilfun <- function(d) {
+  gdalwarp(soil.lst[d], dstfile = soil.out[d], cl = extent(nsw1), crop_to_cutline = TRUE, output_Raster = TRUE, overwrite = TRUE, verbose = TRUE, multi = TRUE, co = c("BIGTIFF=TRUE", "COMPRESS=DEFLATE"), wo = "NUM_THREADS=ALL_CPUS", tr = res(veg), t_srs = crs(veg), r = 'bilinear')
+}
+
+sfInit(parallel = TRUE, cpus = detectCores())
+sfExport("nsw1", "soilfun", "soil.lst", "soil.out", "veg")
+sfLibrary(raster)
+sfLibrary(sf)
+sfLibrary(gdalUtils)
+
+system.time({
+  
+  sfLapply(seq.int(12), soilfun)
+  
+})[[3]]
+
+sfStop()
 
 # WorldClim data - ~800m res
 nsw1 = nsw %>% 
