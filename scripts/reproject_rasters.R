@@ -9,6 +9,7 @@
 library(raster)
 library(sf)
 library(tmap)
+library(gdalUtils)
 
 # 1) ####
 # fuel layer
@@ -48,29 +49,56 @@ pho = raster::stack("data/CSIRO_soils/soilpto_all_80m.grd")
 ece = raster::stack("data/CSIRO_soils/soilece_all_80m.grd")
 der = raster("data/CSIRO_soils/soilder_80m.grd")
 des = raster("data/CSIRO_soils/soildes_80m.grd")
-
+soils = raster::stack(bdw, soc, clay, silt, sand, ph, awc, nit, pho, ece, der, des)
+rm(bdw, soc, clay, silt, sand, ph, awc, nit, pho, ece, der, des)
 
 # terrain layers
-slope = raster("data/dem_slope_30m.grd")
-aspect = raster("data/dem_aspect_30m.grd")
-TPI = raster("data/dem_TPI_30m.grd")
-TRI = raster("data/dem_TRI_30m.grd")
-roughness = raster("data/dem_roughness_30m.grd")
+slope = raster("data/DEM-H_terrainvars/dem_slope_30m.grd")
+aspect = raster("data/DEM-H_terrainvars/dem_aspect_30m.grd")
+TPI = raster("data/DEM-H_terrainvars/dem_TPI_30m.grd")
+TRI = raster("data/DEM-H_terrainvars/dem_TRI_30m.grd")
+roughness = raster("data/DEM-H_terrainvars/dem_roughness_30m.grd")
 terrain = raster::stack(slope, aspect, TPI, TRI, roughness)
 rm(slope, aspect, TPI, TRI, roughness)
 
 # 2) ####
 # veg layer, fire layer and soil layers don't need cropping because the extent is already equal to NSW
-# veg layer is 30m2 res
-# terrain layers are 30m2 res
-# fire layer is ~80m res
-# soil layers are ~80m res
-# WorldClim layers are 800m res
+# veg layer is ~30m res
+# terrain layers are ~30m res (0.00028, 0.00028)
+# fire layer is ~80m res (0.00083, 0.00083)
+# soil layers are ~80m res (0.00083, 0.00083)
+# WorldClim layers are ~800m res (0.0083, 0.0083)
+# aridity layer is ~800m res (0.0083, 0.0083)
 
 # terrain layers - ~30m res
 nsw1 = nsw %>% 
   st_transform(crs = st_crs(terrain))
-terrain = crop(terrain, extent(nsw1))
+
+terrain.lst = list.files("./data/DEM-H_terrainvars", pattern=".grd", full.names=TRUE)
+terrain.out = gsub("30m", "30m_crop", terrain.lst)
+
+terrainfun <- function(d) {
+  gdalwarp(terrain.lst[d], dstfile = terrain.out[d], cl = extent(nsw1), crop_to_cutline = TRUE, output_Raster = TRUE, overwrite = TRUE, verbose = TRUE, multi = TRUE, co = c("BIGTIFF=TRUE", "COMPRESS=DEFLATE"), wo = "NUM_THREADS=ALL_CPUS")
+}
+
+sfInit(parallel = TRUE, cpus = detectCores())
+sfExport("nsw1", "terrainfun")
+sfLibrary(raster)
+sfLibrary(sf)
+sfLibrary(gdalUtils)
+
+system.time({
+  
+  sfLapply(seq.int(5), terrainfun)
+
+})[[3]]
+
+sfStop()
+
+# soils laters - ~80m res
+nsw1 = nsw %>% 
+  st_transform(crs = st_crs(soils))
+soils = crop(soils, extent(nsw1))
 
 # WorldClim data - ~800m res
 nsw1 = nsw %>% 
@@ -81,6 +109,8 @@ bioclim = crop(bioclim, extent(nsw1))
 nsw1 = nsw %>% 
   st_transform(crs = st_crs(arid))
 arid = crop(arid, extent(nsw1))
+
+stopImplicitCluster()
 
 # 3) ####
 # the veg layer is the crs reference dataset and will only be used for subsetting. No change made
