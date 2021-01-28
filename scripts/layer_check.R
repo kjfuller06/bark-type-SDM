@@ -91,8 +91,8 @@ firehist = sum(!is.na(r_all))
 
 writeRaster(firehist, "data/firehistory.tif")
 
-## get soil data ####
-# bulk density ####
+# get ISRIC soil data ####
+# bulk density ###
 voi = "bdod" # variable of interest
 depth = "0-5cm"
 quantile = "mean"
@@ -129,7 +129,7 @@ bdod = raster("data/bulkdensity.tif")
 nsw = st_read("data/NSW_sans_islands.shp") %>% 
   st_transform(crs = crs(bdod))
 
-# CEC ####
+# CEC ###
 voi = "cec" # variable of interest
 depth = "0-5cm"
 quantile = "mean"
@@ -164,7 +164,7 @@ gdal_translate(xml.out, file.out,
 
 cec = raster("data/cec.tif")
 
-# coarse fragments ####
+# coarse fragments ###
 voi = "cfvo" # variable of interest
 depth = "0-5cm"
 quantile = "mean"
@@ -199,7 +199,7 @@ gdal_translate(xml.out, file.out,
 
 cfvo = raster("data/coarsefragments.tif")
 
-# sand fraction ####
+# sand fraction ###
 voi = "sand" # variable of interest
 depth = "0-5cm"
 quantile = "mean"
@@ -233,7 +233,7 @@ gdal_translate(xml.out, file.out,
 )
 
 sand = raster("data/sand.tif")
-# silt fraction ####
+# silt fraction ###
 voi = "silt" # variable of interest
 depth = "0-5cm"
 quantile = "mean"
@@ -269,7 +269,7 @@ gdal_translate(xml.out, file.out,
 silt = raster("data/silt.tif")
 
 
-# clay fraction ####
+# clay fraction ###
 voi = "clay" # variable of interest
 depth = "0-5cm"
 quantile = "mean"
@@ -305,7 +305,7 @@ gdal_translate(xml.out, file.out,
 clay = raster("data/clay.tif")
 
 
-# nitrogen ####
+# nitrogen ###
 voi = "nitrogen" # variable of interest
 depth = "0-5cm"
 quantile = "mean"
@@ -339,7 +339,7 @@ gdal_translate(xml.out, file.out,
 )
 
 nitrogen = raster("data/nitrogen.tif")
-# pH ####
+# pH ###
 voi = "phh2o" # variable of interest
 depth = "0-5cm"
 quantile = "mean"
@@ -375,7 +375,7 @@ gdal_translate(xml.out, file.out,
 ph = raster("data/pH.tif")
 
 
-# soil organic carbon ####
+# soil organic carbon ###
 voi = "soc" # variable of interest
 depth = "0-5cm"
 quantile = "mean"
@@ -411,7 +411,7 @@ gdal_translate(xml.out, file.out,
 soc = raster("data/soc.tif")
 
 
-# organic carbon density ####
+# organic carbon density ###
 voi = "ocd" # variable of interest
 depth = "0-5cm"
 quantile = "mean"
@@ -447,7 +447,7 @@ gdal_translate(xml.out, file.out,
 ocd = raster("data/ocd.tif")
 
 
-# organic carbon stocks- errors ####
+# organic carbon stocks- errors ###
 voi = "ocs" # variable of interest
 depth = "0-5cm"
 quantile = "mean"
