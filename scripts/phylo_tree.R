@@ -11,35 +11,132 @@ ggtree(x, layout = 'circular')
 
 x = read.csv("data/Nicolle classification_forphylotree.csv", stringsAsFactors = FALSE)
 
-x[is.na(x$SUBSERIES) == FALSE,]$FullName = paste0(x[is.na(x$SUBSERIES) == FALSE,]$FullName, ":1")
-test = aggregate(cbind(values = FullName) ~ SUBSERIES + SERIES + SECTION + SUBGENUS + GENUS, b, paste, collapse=",")
-b = x %>% 
-  filter(is.na(SUBSERIES) == TRUE)
-
-
-data(taxo.eg)
-tax = as.taxo(taxo.eg[[1]])
-tax.phy = taxo2phylog(as.taxo(taxo.eg[[1]]))
-ggtree(tax.phy) + geom_tiplab() + geom_nodelab(geom='label')
-
-tax2 = read.csv("data/Nicolle classification V4.csv", stringsAsFactors = TRUE)
-rownames(tax2) = tax2$FullName
-tax2 = tax2 %>% 
-  dplyr::select(-FullName,
+## concatenate to species
+# select subspecies and add branch length
+s_1 = x[is.na(x$SUBSPECIES) == FALSE,]
+s_1$SUBSPECIES = paste0(s_1$SUBSPECIES, ":0.5")
+# concatenate entries per species
+s_0 = aggregate(cbind(values = SUBSPECIES) ~ SPECIES + GENUS, s_1, paste, collapse=", ")
+# add punctuation
+s_0$values = paste0("(", s_0$values, ")")
+# remove unnecessary columns and combine datasets
+x = x %>% 
+  dplyr::select(-SUBSPECIES,
                 -ORDER)
-# tax2 = as.taxo(tax2)
-as.taxo3 <-                                                             
-  function (df) {
-    fac <- as.character(df[, nc])
-    for (i in (nc - 1):1) fac <- paste(fac,as.character(df[, i]),sep=":")
-    df <- df[order(fac), ]
-    class(df) <- c("data.frame", "taxo")
-    return(df)
-  }
-tax2 = as.taxo3(tax2)
+x = unique(x)
+x = x %>%  
+  left_join(s_0, by = c("SPECIES", "GENUS"))
+x[is.na(x$values) == FALSE,]$SPECIES = x[is.na(x$values) == FALSE,]$values
+x = x %>% 
+  dplyr::select(-values)
 
-tax.phy = taxo2phylog(tax2)
+# assign branch lengths to species
+x[is.na(x$SUBSERIES) == FALSE,]$SPECIES = paste0(x[is.na(x$SUBSERIES) == FALSE,]$SPECIES, ":1")
+x[is.na(x$SUBSERIES) == TRUE & is.na(x$SERIES) == FALSE,]$SPECIES = paste0(x[is.na(x$SUBSERIES) == TRUE & is.na(x$SERIES) == FALSE,]$SPECIES, ":2")
+x[is.na(x$SUBSERIES) == TRUE & is.na(x$SERIES) == TRUE & is.na(x$SECTION) == FALSE,]$SPECIES = paste0(x[is.na(x$SUBSERIES) == TRUE & is.na(x$SERIES) == TRUE & is.na(x$SECTION) == FALSE,]$SPECIES, ":3")
+x[is.na(x$SUBSERIES) == TRUE & is.na(x$SERIES) == TRUE & is.na(x$SECTION) == TRUE & is.na(x$SUBGENUS) == FALSE,]$SPECIES = paste0(x[is.na(x$SUBSERIES) == TRUE & is.na(x$SERIES) == TRUE & is.na(x$SECTION) == TRUE & is.na(x$SUBGENUS) == FALSE,]$SPECIES, ":4")
 
+## concatenate to subseries
+s1 = x[is.na(x$SUBSERIES) == FALSE,]
+# concatenate entries per subseries
+s1 = aggregate(cbind(final = SPECIES) ~ SUBSERIES + GENUS, s1, paste, collapse=", ")
+# add punctuation and branch label
+s1$final = paste0("(", s1$final, ")", s1$SUBSERIES)
+# add back taxonomic info
+pair = x %>% 
+  dplyr::select(-SPECIES) %>% 
+  unique()
+s1 = s1 %>% 
+  left_join(pair, by = c("SUBSERIES", "GENUS"))
+s1$SUBSERIES = NA
+# assign branch lengths to species
+s1[is.na(s1$SERIES) == FALSE,]$final = 
+  paste0(s1[is.na(s1$SERIES) == FALSE,]$final, ":1")
+# cleaning up
+x$final = x$SPECIES
+x = x %>% 
+  dplyr::select(-SPECIES)
+x = rbind(x[is.na(x$SUBSERIES) == TRUE,], s1) %>% 
+  dplyr::select(-SUBSERIES)
+
+# concatenate to series
+s1 = x[is.na(x$SERIES) == FALSE,]
+s1 = aggregate(cbind(final = final) ~ SERIES + GENUS, s1, paste, collapse=", ")
+# add punctuation and branch label
+s1$final = paste0("(", s1$final, ")", s1$SERIES)
+# add back taxonomic info
+pair = x %>% 
+  dplyr::select(-final) %>% 
+  unique()
+s1 = s1 %>% 
+  left_join(pair, by = c("SERIES", "GENUS"))
+s1$SERIES = NA
+# assign branch lengths to species
+s1[is.na(s1$SECTION) == FALSE,]$final = 
+  paste0(s1[is.na(s1$SECTION) == FALSE,]$final, ":1")
+s1[is.na(s1$SECTION) == TRUE & is.na(s1$SUBGENUS) == TRUE & is.na(s1$GENUS) == FALSE,]$final = 
+  paste0(s1[is.na(s1$SECTION) == TRUE & is.na(s1$SUBGENUS) == TRUE & is.na(s1$GENUS) == FALSE,]$final, ":3")
+# cleaning up
+x = rbind(x[is.na(x$SERIES) == TRUE,], s1) %>% 
+  dplyr::select(-SERIES)
+
+
+## concatenate to section
+s1 = x[is.na(x$SECTION) == FALSE,]
+s1 = aggregate(cbind(final = final) ~ SECTION + GENUS, s1, paste, collapse=", ")
+# add punctuation and branch label
+s1$final = paste0("(", s1$final, ")", s1$SECTION)
+# add back taxonomic info
+pair = x %>% 
+  dplyr::select(-final) %>% 
+  unique()
+s1 = s1 %>% 
+  left_join(pair, by = c("SECTION", "GENUS"))
+s1$SECTION = NA
+# assign branch lengths to species
+s1[is.na(s1$SUBGENUS) == FALSE,]$final = 
+  paste0(s1[is.na(s1$SUBGENUS) == FALSE,]$final, ":1")
+# cleaning up
+x = rbind(x[is.na(x$SECTION) == TRUE,], s1) %>% 
+  dplyr::select(-SECTION)
+
+## concatenate to subgenus
+s1 = x[is.na(x$SUBGENUS) == FALSE,]
+s1 = aggregate(cbind(final = final) ~ SUBGENUS + GENUS, s1, paste, collapse=", ")
+# add punctuation and branch label
+s1$final = paste0("(", s1$final, ")", s1$SUBGENUS)
+s1$SUBGENUS = NA
+# assign branch lengths to species
+s1$final = paste0(s1$final, ":1")
+# cleaning up
+x = rbind(x[is.na(x$SUBGENUS) == TRUE,], s1) %>% 
+  dplyr::select(-SUBGENUS)
+
+backup = x
+## concatenate to genus
+x = aggregate(cbind(final = final) ~ GENUS, x, paste, collapse=", ")
+# add punctuation and branch label
+x$final = paste0("(", x$final, ")", x$GENUS)
+# assign branch lengths to species
+x$final = paste0(x$final, ":1")
+
+backup = x
+# final concatenation
+x$all = "Eucalypts"
+final = aggregate(cbind(final = final) ~ all, x, paste, collapse=", ")
+final = paste0("(", final$final, ")Eucalypts;")
+
+# write to disk
+write.csv(final, "data/firstphylo.csv")
+open = file("data/firstphylo.txt")
+writeLines(final, open)
+close(open)
+
+tree = read.tree("data/firstphylo.txt")
+ggtree(tree, layout = 'circular')
+write.tree(tree, file = "firstphylo.nwd")
+
+# junk ####
 url <- paste0("https://raw.githubusercontent.com/TreeViz/",
              "metastyle/master/design/viz_targets_exercise/")
 
