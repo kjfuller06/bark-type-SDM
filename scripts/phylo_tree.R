@@ -5,10 +5,13 @@ library("ggtree")
 library(treemap)
 library(ade4)
 library(tidyverse)
+library(phytools)
 
+# manually written tree
 x = read.tree("data/tree.txt")
 ggtree(x, layout = 'circular')
 
+# generate full phylogeny ####
 x = read.csv("data/Nicolle classification_forphylotree.csv", stringsAsFactors = FALSE)
 
 ## concatenate to species
@@ -132,11 +135,29 @@ open = file("data/firstphylo.txt")
 writeLines(final, open)
 close(open)
 
+# colours and options ####
 tree = read.tree("data/firstphylo.txt")
-ggtree(tree, layout = 'circular')
-write.tree(tree, file = "firstphylo.nwd")
+g = ggtree(tree, layout = 'circular', branch.length = "none")
+write.tree(tree, file = "firstphylo.nwk")
+
+# colour by genus
+tree$node.label
+# findMRCA(tree, tips = c(123:1004), type = "node")
+# tree = groupClade(tree, .node = c(1006, 1013, 1042), group_name = c("Angophora"))
+tree[[6]] = c(rep("Angophora", 13), rep("Corymbia", 109), rep("Eucalyptus", 882))
+names(tree)[6] = "group"
+groupInfo = split(tree$tip.label, tree$group)
+tree2 = groupOTU(tree, groupInfo)
+ggtree(tree2, aes(color = group), layout = 'circular', branch.length = "none") +
+  labs(color = "Genus") +
+  geom_tiplab(size = 1, aes(angle = angle))
 
 # junk ####
+data(chiroptera, package="ape")
+groupInfo <- split(chiroptera$tip.label, gsub("_\\w+", "", chiroptera$tip.label))
+chiroptera <- groupOTU(chiroptera, groupInfo)
+ggtree(chiroptera, aes(color=group), layout='circular') + geom_tiplab(size=1, aes(angle=angle))
+
 url <- paste0("https://raw.githubusercontent.com/TreeViz/",
              "metastyle/master/design/viz_targets_exercise/")
 
