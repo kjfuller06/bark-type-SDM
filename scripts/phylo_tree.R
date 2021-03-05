@@ -140,12 +140,9 @@ close(open)
 tree = read.tree("data/firstphylo.txt")
 traits = read.csv("data/Nicolle classification_forphylotree_traits.csv")
 g = ggtree(tree, layout = 'circular', branch.length = "none")
+g
 
 # colour by genus
-tree$node.label
-tree$tip.label
-# findMRCA(tree, tips = c(123:1004), type = "node")
-# tree = groupClade(tree, .node = c(1006, 1013, 1042), group_name = c("Angophora"))
 tree[[6]] = c(rep("Angophora", 13), rep("Corymbia", 109), rep("Eucalyptus", 882))
 names(tree)[6] = "group"
 groupInfo = split(tree$tip.label, tree$group)
@@ -160,14 +157,15 @@ traits = read.csv("data/Nicolle classification_forphylotree_traits.csv")
 traits = data.frame(bark = traits$Horseybark1_final, tip.labs = traits$SPECIES)
 tree_df = data.frame(tip.labs = tree$tip.label, count = c(1:length(tree$tip.label)))
 traits = left_join(tree_df, traits)
-
 g = ggtree(tree, layout = 'circular', branch.length = "none")
+g
 
 # colour by bark type
 tree[[6]] = traits$bark
 names(tree)[6] = "group"
 groupInfo = split(tree$tip.label, tree$group)
 tree2 = groupOTU(tree, groupInfo)
+tiff(file = "outputs/Allspecies_phylotree_bybarktype.tiff", width =1200, height = 1200, units = "px", res = 120)
 ggtree(tree2, aes(color = group), layout = 'circular', branch.length = "none") +
   scale_colour_manual(breaks = c("not sampled",
                                  "smooth",
@@ -184,6 +182,7 @@ ggtree(tree2, aes(color = group), layout = 'circular', branch.length = "none") +
                                  hue_pal(direction = -1)(10)))+
   labs(color = "Bark type") +
   geom_tiplab(size = 1, aes(angle = angle))
+dev.off()
 
 # Angophora phylogeny by bark type ####
 tree3 = drop.tip(tree2, 14:1004, trim.internal = TRUE)
@@ -280,7 +279,7 @@ tree4 = drop.tip(tree, nonsampled, trim.internal = TRUE)
 
 # colour by genus
 tiff(file = "outputs/NSW_phylotree_bygenus.tiff", width =1200, height = 1200, units = "px", res = 120)
-tree4[[6]] = c(rep("Angophora", 13), rep("Corymbia", 11), rep("Eucalyptus", 283))
+tree4[[6]] = c(rep("Angophora", 13), rep("Corymbia", 13), rep("Eucalyptus", 286))
 names(tree4)[6] = "group"
 groupInfo = split(tree4$tip.label, tree4$group)
 tree5 = groupOTU(tree4, groupInfo)
@@ -320,8 +319,8 @@ dev.off()
 
 # NSW Angophora phylogeny by bark type same as full Angophora phylogeny ####
 # NSW Corymbia phylogeny by bark type ####
-tree5 = drop.tip(tree4, c(1:13, 25:307), trim.internal = TRUE)
-traits5 = traits[c(14:24),]
+tree5 = drop.tip(tree4, c(1:13, 27:312), trim.internal = TRUE)
+traits5 = traits[c(14:26),]
 tree5[[6]] = traits5$bark
 names(tree5)[6] = "group"
 groupInfo = split(tree5$tip.label, tree5$group)
@@ -346,8 +345,8 @@ ggtree(tree5, aes(color = group), layout = 'circular', branch.length = "none") +
 dev.off()
 
 # NSW Eucalyptus phylogeny by bark type ####
-tree5 = drop.tip(tree4, c(1:24), trim.internal = TRUE)
-traits5 = traits[c(25:307),]
+tree5 = drop.tip(tree4, c(1:26), trim.internal = TRUE)
+traits5 = traits[c(27:312),]
 tree5[[6]] = traits5$bark
 names(tree5)[6] = "group"
 groupInfo = split(tree5$tip.label, tree5$group)
