@@ -136,7 +136,7 @@ open = file("data/firstphylo.txt")
 writeLines(final, open)
 close(open)
 
-# colours and options ####
+# full phylogeny by genus ####
 tree = read.tree("data/firstphylo.txt")
 traits = read.csv("data/Nicolle classification_forphylotree_traits.csv")
 g = ggtree(tree, layout = 'circular', branch.length = "none")
@@ -154,131 +154,7 @@ ggtree(tree2, aes(color = group), layout = 'circular', branch.length = "none") +
   labs(color = "Genus") +
   geom_tiplab(size = 1, aes(angle = angle))
 
-# generate phylogeny of bark traits for NSW ####
-x = read.csv("data/Nicolle classification_forphylotree.csv", stringsAsFactors = FALSE)
-
-## concatenate to species
-# select subspecies and add branch length
-s_1 = x[is.na(x$SUBSPECIES) == FALSE,]
-s_1$SUBSPECIES = paste0(s_1$SUBSPECIES, ":0.5")
-# concatenate entries per species
-s_0 = aggregate(cbind(values = SUBSPECIES) ~ SPECIES + GENUS, s_1, paste, collapse=", ")
-# add punctuation
-s_0$values = paste0("(", s_0$values, ")")
-# remove unnecessary columns and combine datasets
-x = x %>% 
-  dplyr::select(-SUBSPECIES,
-                -ORDER)
-x = unique(x)
-x = x %>%  
-  left_join(s_0, by = c("SPECIES", "GENUS"))
-x[is.na(x$values) == FALSE,]$SPECIES = x[is.na(x$values) == FALSE,]$values
-x = x %>% 
-  dplyr::select(-values)
-
-# assign branch lengths to species
-x[is.na(x$SUBSERIES) == FALSE,]$SPECIES = paste0(x[is.na(x$SUBSERIES) == FALSE,]$SPECIES, ":1")
-x[is.na(x$SUBSERIES) == TRUE & is.na(x$SERIES) == FALSE,]$SPECIES = paste0(x[is.na(x$SUBSERIES) == TRUE & is.na(x$SERIES) == FALSE,]$SPECIES, ":2")
-x[is.na(x$SUBSERIES) == TRUE & is.na(x$SERIES) == TRUE & is.na(x$SECTION) == FALSE,]$SPECIES = paste0(x[is.na(x$SUBSERIES) == TRUE & is.na(x$SERIES) == TRUE & is.na(x$SECTION) == FALSE,]$SPECIES, ":3")
-x[is.na(x$SUBSERIES) == TRUE & is.na(x$SERIES) == TRUE & is.na(x$SECTION) == TRUE & is.na(x$SUBGENUS) == FALSE,]$SPECIES = paste0(x[is.na(x$SUBSERIES) == TRUE & is.na(x$SERIES) == TRUE & is.na(x$SECTION) == TRUE & is.na(x$SUBGENUS) == FALSE,]$SPECIES, ":4")
-
-## concatenate to subseries
-s1 = x[is.na(x$SUBSERIES) == FALSE,]
-# concatenate entries per subseries
-s1 = aggregate(cbind(final = SPECIES) ~ SUBSERIES + GENUS, s1, paste, collapse=", ")
-# add punctuation and branch label
-s1$final = paste0("(", s1$final, ")", s1$SUBSERIES)
-# add back taxonomic info
-pair = x %>% 
-  dplyr::select(-SPECIES) %>% 
-  unique()
-s1 = s1 %>% 
-  left_join(pair, by = c("SUBSERIES", "GENUS"))
-s1$SUBSERIES = NA
-# assign branch lengths to species
-s1[is.na(s1$SERIES) == FALSE,]$final = 
-  paste0(s1[is.na(s1$SERIES) == FALSE,]$final, ":1")
-# cleaning up
-x$final = x$SPECIES
-x = x %>% 
-  dplyr::select(-SPECIES)
-x = rbind(x[is.na(x$SUBSERIES) == TRUE,], s1) %>% 
-  dplyr::select(-SUBSERIES)
-
-# concatenate to series
-s1 = x[is.na(x$SERIES) == FALSE,]
-s1 = aggregate(cbind(final = final) ~ SERIES + GENUS, s1, paste, collapse=", ")
-# add punctuation and branch label
-s1$final = paste0("(", s1$final, ")", s1$SERIES)
-# add back taxonomic info
-pair = x %>% 
-  dplyr::select(-final) %>% 
-  unique()
-s1 = s1 %>% 
-  left_join(pair, by = c("SERIES", "GENUS"))
-s1$SERIES = NA
-# assign branch lengths to species
-s1[is.na(s1$SECTION) == FALSE,]$final = 
-  paste0(s1[is.na(s1$SECTION) == FALSE,]$final, ":1")
-s1[is.na(s1$SECTION) == TRUE & is.na(s1$SUBGENUS) == TRUE & is.na(s1$GENUS) == FALSE,]$final = 
-  paste0(s1[is.na(s1$SECTION) == TRUE & is.na(s1$SUBGENUS) == TRUE & is.na(s1$GENUS) == FALSE,]$final, ":3")
-# cleaning up
-x = rbind(x[is.na(x$SERIES) == TRUE,], s1) %>% 
-  dplyr::select(-SERIES)
-
-
-## concatenate to section
-s1 = x[is.na(x$SECTION) == FALSE,]
-s1 = aggregate(cbind(final = final) ~ SECTION + GENUS, s1, paste, collapse=", ")
-# add punctuation and branch label
-s1$final = paste0("(", s1$final, ")", s1$SECTION)
-# add back taxonomic info
-pair = x %>% 
-  dplyr::select(-final) %>% 
-  unique()
-s1 = s1 %>% 
-  left_join(pair, by = c("SECTION", "GENUS"))
-s1$SECTION = NA
-# assign branch lengths to species
-s1[is.na(s1$SUBGENUS) == FALSE,]$final = 
-  paste0(s1[is.na(s1$SUBGENUS) == FALSE,]$final, ":1")
-# cleaning up
-x = rbind(x[is.na(x$SECTION) == TRUE,], s1) %>% 
-  dplyr::select(-SECTION)
-
-## concatenate to subgenus
-s1 = x[is.na(x$SUBGENUS) == FALSE,]
-s1 = aggregate(cbind(final = final) ~ SUBGENUS + GENUS, s1, paste, collapse=", ")
-# add punctuation and branch label
-s1$final = paste0("(", s1$final, ")", s1$SUBGENUS)
-s1$SUBGENUS = NA
-# assign branch lengths to species
-s1$final = paste0(s1$final, ":1")
-# cleaning up
-x = rbind(x[is.na(x$SUBGENUS) == TRUE,], s1) %>% 
-  dplyr::select(-SUBGENUS)
-
-backup = x
-## concatenate to genus
-x = aggregate(cbind(final = final) ~ GENUS, x, paste, collapse=", ")
-# add punctuation and branch label
-x$final = paste0("(", x$final, ")", x$GENUS)
-# assign branch lengths to species
-x$final = paste0(x$final, ":1")
-
-backup = x
-# final concatenation
-x$all = "Eucalypts"
-final = aggregate(cbind(final = final) ~ all, x, paste, collapse=", ")
-final = paste0("(", final$final, ")Eucalypts;")
-
-# write to disk
-write.csv(final, "data/firstphylo.csv")
-open = file("data/firstphylo.txt")
-writeLines(final, open)
-close(open)
-
-# colours and options ####
+# full phylogeny by bark type ####
 tree = read.tree("data/firstphylo.txt")
 traits = read.csv("data/Nicolle classification_forphylotree_traits.csv")
 traits = data.frame(bark = traits$Horseybark1_final, tip.labs = traits$SPECIES)
@@ -309,6 +185,191 @@ ggtree(tree2, aes(color = group), layout = 'circular', branch.length = "none") +
   labs(color = "Bark type") +
   geom_tiplab(size = 1, aes(angle = angle))
 
+# Angophora phylogeny by bark type ####
+tree3 = drop.tip(tree2, 14:1004, trim.internal = TRUE)
+traits3 = traits[c(1:13),]
+tree3[[6]] = traits3$bark
+names(tree3)[6] = "group"
+groupInfo = split(tree3$tip.label, tree3$group)
+tree3 = groupOTU(tree3, groupInfo)
+tiff(file = "outputs/Angophora_barks_phylotree.tiff", width =1200, height = 1200, units = "px", res = 120)
+ggtree(tree3, aes(color = group), layout = 'circular', branch.length = "none") +
+  scale_colour_manual(breaks = c("not sampled",
+                                 "smooth",
+                                 "smooth with stocking",
+                                 "halfbark",
+                                 "ironbark",
+                                 "subfibrous - box",
+                                 "subfibrous - tessellated",
+                                 "subfibrous - rough",
+                                 "subfibrous - peppermint",
+                                 "subfibrous - stringy",
+                                 "stringybark"),
+                      values = c("grey90",
+                                 hue_pal(direction = -1)(10)))+
+  labs(color = "Bark type") +
+  geom_tiplab(size = 3, aes(angle = angle))
+dev.off()
+
+# Corymbia phylogeny by bark type ####
+tree3 = drop.tip(tree2, c(1:13,123:1004), trim.internal = TRUE)
+traits3 = traits[c(14:122),]
+tree3[[6]] = traits3$bark
+names(tree3)[6] = "group"
+groupInfo = split(tree3$tip.label, tree3$group)
+tree3 = groupOTU(tree3, groupInfo)
+tiff(file = "outputs/Corymbia_barks_phylotree.tiff", width =1200, height = 1200, units = "px", res = 120)
+ggtree(tree3, aes(color = group), layout = 'circular', branch.length = "none") +
+  scale_colour_manual(breaks = c("not sampled",
+                                 "smooth",
+                                 "smooth with stocking",
+                                 "halfbark",
+                                 "ironbark",
+                                 "subfibrous - box",
+                                 "subfibrous - tessellated",
+                                 "subfibrous - rough",
+                                 "subfibrous - peppermint",
+                                 "subfibrous - stringy",
+                                 "stringybark"),
+                      values = c("grey90",
+                                 hue_pal(direction = -1)(10)))+
+  labs(color = "Bark type") +
+  geom_tiplab(size = 3, aes(angle = angle))
+dev.off()
+
+# Eucalyptus phylogeny by bark type ####
+tree3 = drop.tip(tree2, c(1:122), trim.internal = TRUE)
+traits3 = traits[c(123:1004),]
+tree3[[6]] = traits3$bark
+names(tree3)[6] = "group"
+groupInfo = split(tree3$tip.label, tree3$group)
+tree3 = groupOTU(tree3, groupInfo)
+tiff(file = "outputs/Eucalyptus_barks_phylotree.tiff", width =1200, height = 1200, units = "px", res = 120)
+ggtree(tree3, aes(color = group), layout = 'circular', branch.length = "none") +
+  scale_colour_manual(breaks = c("not sampled",
+                                 "smooth",
+                                 "smooth with stocking",
+                                 "halfbark",
+                                 "ironbark",
+                                 "subfibrous - box",
+                                 "subfibrous - tessellated",
+                                 "subfibrous - rough",
+                                 "subfibrous - peppermint",
+                                 "subfibrous - stringy",
+                                 "stringybark"),
+                      values = c("grey90",
+                                 hue_pal(direction = -1)(10)))+
+  labs(color = "Bark type") +
+  geom_tiplab(size = 1, aes(angle = angle))
+dev.off()
+
+
+# NSW phylogeny by genus ####
+tree = read.tree("data/firstphylo.txt")
+traits = read.csv("data/Nicolle classification_forphylotree_traits.csv")
+traits = data.frame(bark = traits$Horseybark1_final, tip.labs = traits$SPECIES)
+tree_df = data.frame(tip.labs = tree$tip.label, count = c(1:length(tree$tip.label)))
+traits = left_join(tree_df, traits)
+ggtree(tree, layout = 'circular', branch.length = "none")
+
+# remove all non-sampled species/subspecies
+tree[[6]] = traits$bark
+names(tree)[6] = "group"
+nonsampled = tree$tip.label[tree$group == "not sampled"]
+tree4 = drop.tip(tree, nonsampled, trim.internal = TRUE)
+
+# colour by genus
+tiff(file = "outputs/NSW_phylotree_bygenus.tiff", width =1200, height = 1200, units = "px", res = 120)
+tree4[[6]] = c(rep("Angophora", 13), rep("Corymbia", 11), rep("Eucalyptus", 283))
+names(tree4)[6] = "group"
+groupInfo = split(tree4$tip.label, tree4$group)
+tree5 = groupOTU(tree4, groupInfo)
+ggtree(tree5, aes(color = group), layout = 'circular', branch.length = "none") +
+  labs(color = "Genus") +
+  geom_tiplab(size = 1, aes(angle = angle))
+dev.off()
+
+# NSW phylogeny by bark type ####
+tree_df = data.frame(tip.labs = tree4$tip.label, count = c(1:length(tree4$tip.label)))
+traits = traits %>% 
+  filter(bark != "not sampled") %>% 
+  dplyr::select(-count) %>% 
+  left_join(tree_df, by = "tip.labs")
+tree4[[6]] = traits$bark
+names(tree4)[6] = "group"
+groupInfo = split(tree4$tip.label, tree4$group)
+tree4 = groupOTU(tree4, groupInfo)
+tiff(file = "outputs/NSW_phylotree_bybarktype.tiff", width =1200, height = 1200, units = "px", res = 120)
+ggtree(tree4, aes(color = group), layout = 'circular', branch.length = "none") +
+  scale_colour_manual(breaks = c("not sampled",
+                                 "smooth",
+                                 "smooth with stocking",
+                                 "halfbark",
+                                 "ironbark",
+                                 "subfibrous - box",
+                                 "subfibrous - tessellated",
+                                 "subfibrous - rough",
+                                 "subfibrous - peppermint",
+                                 "subfibrous - stringy",
+                                 "stringybark"),
+                      values = c("grey90",
+                                 hue_pal(direction = -1)(10)))+
+  labs(color = "Bark type") +
+  geom_tiplab(size = 1, aes(angle = angle))
+dev.off()
+
+# NSW Angophora phylogeny by bark type same as full Angophora phylogeny ####
+# NSW Corymbia phylogeny by bark type ####
+tree5 = drop.tip(tree4, c(1:13, 25:307), trim.internal = TRUE)
+traits5 = traits[c(14:24),]
+tree5[[6]] = traits5$bark
+names(tree5)[6] = "group"
+groupInfo = split(tree5$tip.label, tree5$group)
+tree5 = groupOTU(tree5, groupInfo)
+tiff(file = "outputs/NSW_Corymbia_phylotree_bybarktype.tiff", width =1200, height = 1200, units = "px", res = 120)
+ggtree(tree5, aes(color = group), layout = 'circular', branch.length = "none") +
+  scale_colour_manual(breaks = c("not sampled",
+                                 "smooth",
+                                 "smooth with stocking",
+                                 "halfbark",
+                                 "ironbark",
+                                 "subfibrous - box",
+                                 "subfibrous - tessellated",
+                                 "subfibrous - rough",
+                                 "subfibrous - peppermint",
+                                 "subfibrous - stringy",
+                                 "stringybark"),
+                      values = c("grey90",
+                                 hue_pal(direction = -1)(10)))+
+  labs(color = "Bark type") +
+  geom_tiplab(size = 3, aes(angle = angle))
+dev.off()
+
+# NSW Eucalyptus phylogeny by bark type ####
+tree5 = drop.tip(tree4, c(1:24), trim.internal = TRUE)
+traits5 = traits[c(25:307),]
+tree5[[6]] = traits5$bark
+names(tree5)[6] = "group"
+groupInfo = split(tree5$tip.label, tree5$group)
+tree5 = groupOTU(tree5, groupInfo)
+tiff(file = "outputs/NSW_Eucalyptus_phylotree_bybarktype.tiff", width =1200, height = 1200, units = "px", res = 120)
+ggtree(tree5, aes(color = group), layout = 'circular', branch.length = "none") +
+  scale_colour_manual(breaks = c("not sampled",
+                                 "smooth",
+                                 "smooth with stocking",
+                                 "halfbark",
+                                 "ironbark",
+                                 "subfibrous - box",
+                                 "subfibrous - tessellated",
+                                 "subfibrous - rough",
+                                 "subfibrous - peppermint",
+                                 "subfibrous - stringy",
+                                 "stringybark"),
+                      values = c("grey90",
+                                 hue_pal(direction = -1)(10)))+
+  labs(color = "Bark type") +
+  geom_tiplab(size = 1, aes(angle = angle))
+dev.off()
 
 # junk ####
 data(chiroptera, package="ape")
