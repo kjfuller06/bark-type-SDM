@@ -15,10 +15,7 @@ nomen = read.csv("data/Candidate_speciesV.1.csv") %>%
   dplyr::select(-BioNet) %>% 
   unique()
 names(nomen) = c("Assgn_ScientificName", "NicolleName")
-tree = read.csv("data/tree_species_traitsV.1.csv")
-names(tree) = c("NicolleName", "bark1", "bark2", "ribbons", "mallee")
-mallee = read.csv("data/mallee_species_traitsV.1.csv")
-names(mallee) = c("NicolleName", "bark1", "bark2", "ribbons", "mallee")
+traits = read.csv("data/Allspecies_traitsV.1.csv") ## should try to use species_sampleV.1.shp instead, which has site-specific trait details 
 
 # rename BioNet species
 records = records %>% 
