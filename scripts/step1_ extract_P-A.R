@@ -1,4 +1,7 @@
 # script for extracting presence/absence data from species selection records
+## need to incorporate site-specific bark traits in species_sampleV.1.shp
+#     -create distinct names for the same species with tree form and mallee form
+#     -generate datasets for each bark type- including the different growth forms of such species
 
 library(tidyverse)
 library(sf)
@@ -12,8 +15,10 @@ nomen = read.csv("data/Candidate_speciesV.1.csv") %>%
   dplyr::select(-BioNet) %>% 
   unique()
 names(nomen) = c("Assgn_ScientificName", "NicolleName")
-spp = read.csv("data/Allspecies_traitsV.1.csv")
-names(spp) = c("NicolleName", "bark1", "bark2", "ribbons", "mallee")
+tree = read.csv("data/tree_species_traitsV.1.csv")
+names(tree) = c("NicolleName", "bark1", "bark2", "ribbons", "mallee")
+mallee = read.csv("data/mallee_species_traitsV.1.csv")
+names(mallee) = c("NicolleName", "bark1", "bark2", "ribbons", "mallee")
 
 # rename BioNet species
 records = records %>% 
@@ -75,8 +80,8 @@ longf = melt(PA, id.vars = c("lon", "lat"))
 
 # add bark traits back to long form df
 longf = longf %>% 
-  left_join(info, by = c("variable" = "NicolleName")) %>% 
-  dplyr::select(-variable)
+  left_join(info, by = c("variable" = "NicolleName"))
+  # dplyr::select(-variable)
 
 # write to disk
 write.csv(PA, "data/species_sampleV.1_P-A_wide.csv", row.names = FALSE)
