@@ -54,7 +54,7 @@ records$lat = st_coordinates(records)[,2]
 st_geometry(records) = NULL
 records = records %>% 
   left_join(traits)
-## this takes the data fram from nrow() = 457,486 to nrow() = 458,591, so some sites have both the tree and mallee forms of either/both E. goniocalyx and/or E. socialis
+## this takes the data frame from nrow() = 457,486 to nrow() = 458,587, so some sites have both the tree and mallee forms of either/both E. goniocalyx and/or E. socialis
 for(i in c(1:nrow(records))){
   if(is.na(records$Ncll19N[i]) == FALSE){
     records$Assgn_ScientificName[i] = records$Ncll19N[i]
@@ -66,15 +66,15 @@ records = records[,c(1:4)]
 records = records %>% 
   st_as_sf(coords = c("lon", "lat"), crs = st_crs(veg))
 records = cbind(records, fuel = raster::extract(veg, st_coordinates(records), methods = 'simple'))
-## 458,591 records
+## 458,587 records
 
 # remove wetlands, grasslands, alpine habitat, urban, etc.
 types = c(42:46, 52:74)
 records = records %>%
   filter(!(fuel %in% types))
-## 270,805 records
+## 270,803 records
 records = drop_na(records)
-## 264,151 records
+## 264,149 records
 ## dropped records lie outside the veg type boundary- sometimes these were still within the state where the veg layer was inaccurately clipped
 backup = records
 
@@ -87,14 +87,14 @@ st_geometry(records) = NULL
 # generate stats
 PA = dcast(records, lon + lat ~ Assgn_ScientificName, fill = 0, value.var = "Assgn_ScientificName")
 ## 8,053 rows = sampling locations
-## 4,948 columns = species/subspecies
+## 4,947 columns = species/subspecies
 
 # select only species from Horsey selection
 selection = match(unique(traits$Ncll19N), colnames(PA))
 selection = selection[is.na(selection) == FALSE]
 PA = PA[,c(1, 2, selection)]
 ## 8,053 rows = sampling locations
-## 180 columns = species/subspecies
+## 178 columns = species/subspecies
 
 # replace non-zero observations with "1"
 PA[,c(3:ncol(PA))] = PA[,c(3:ncol(PA))] %>% 
@@ -102,9 +102,9 @@ PA[,c(3:ncol(PA))] = PA[,c(3:ncol(PA))] %>%
 
 # melt to long form
 longf = melt(PA, id.vars = c("lon", "lat"))
-## 1,433,434 observations
-## 1,419,962 as 0's
-## 13,472 as 1's
+## 1,417,328 observations
+## 1,403,862 as 0's
+## 13,466 as 1's
 ### mallee form addition added just two observations of "1" to the dataset
 
 # add bark traits back to long form df
