@@ -2,9 +2,13 @@
 ## errors occurred when trying to download the organic carbon stocks for NSW from ISRIC
 library(raster)
 library(tidyverse)
+library(tidync)
 library(sf)
 library(rgdal)
 library(tmap)
+library(ncdf4)
+library(RNetCDF)
+library(stars)
 library(gdalUtils)
 library(XML)
 
@@ -514,3 +518,131 @@ tm_shape(dem)+tm_raster()+tm_shape(nsw)+tm_borders()
 
 # write to disk
 writeRaster(dem, "data/DEM_nsw.tif", overwrite = TRUE)
+
+# post-transfer-through-FileZilla layer check ####
+setwd("D:/PhD data")
+
+# CSIRO soils ####
+# no good, plus the script for downloading them is already written for parallel computing so can go ahead and submit that- just modify it to run all soil data at once on all cores
+
+# CGIARCSI PET and aridity ####
+# stil in original extent and crs
+setwd("D:/PhD data")
+
+arid_annual = raster("CGIARCSI/ai_et0/ai_et0.tif")
+# tmap_mode("view")
+tm_shape(arid_annual)+tm_raster()
+res(arid_annual)
+crs(arid_annual)
+
+PET_annual = raster("CGIARCSI/et0_yr/et0_yr.tif")
+# tmap_mode("view")
+tm_shape(PET_annual)+tm_raster()
+res(PET_annual)
+crs(PET_annual)
+
+PET_mo = raster("CGIARCSI/et0_mo/et0_12.tif")
+# tmap_mode("view")
+tm_shape(PET_mo)+tm_raster()
+res(PET_mo)
+crs(PET_mo)
+
+# DEM-H ####
+# variables invalid
+# dem = raster("DEM-H/DEM_nsw.sgrd")
+# dem = raster("DEM-H/71498/a05f7893-0050-7506-e044-00144fdd4fa6/hdr.adf")
+# DEM-H broken, downloading DEM-S
+
+# DEM-S ####
+dem = raster("DEM-S/DEM-S/hdr.adf")
+# tmap_mode("view")
+# tm_shape(dem)+tm_raster()
+writeRaster(dem, "DEM-S/DEM_S.tif")
+
+# crop DEM with NSW extent shapefile
+nsw = st_read("NSW_sans_islands.shp")
+nsw = nsw %>% 
+  st_transform(crs = st_crs(dem))
+bb = extent(dem)
+plot(dem, xlim = c(bb[1], bb[2]), ylim = c(bb[3], bb[4]))
+
+# add ~11km of space around the NSW extent so slopes can be calculated accurately
+bb[1] = bb[1] + 1
+# bb[2] = bb[2]
+bb[3] = bb[3] + 1
+bb[4] = bb[4] - 1
+dem = crop(dem, bb)
+dem
+tm_shape(dem)+tm_raster()+tm_shape(nsw)+tm_borders()
+
+# write to disk
+writeRaster(dem, "data/DEM_nsw.tif", overwrite = TRUE)
+
+# fuel types ####
+fuels = raster("RFS Fuel Type/fuels_30m.tif")
+tm_shape(fuels)+tm_raster()
+for_fuels = raster("RFS Fuel Type/for_fuels_30m.tif")
+# tmap_mode("view")
+tm_shape(for_fuels)+tm_raster()
+
+# land tenure ####
+## check overlap with forest fuels layer
+tenure = st_read("landnswlanduse2013/Land_NSW_Landuse_2013/Data/Shapefile/NSW_Landuse_2013.shp")
+# 1043185 features
+tm_shape(tenure)+tm_borders()
+extent(tenure)
+extent(nsw)
+tenure$SecondaryA = as.numeric(tenure$SecondaryA)
+natural = tenure %>% 
+  filter(SecondaryA < 210)
+# 103934 features
+plot(natural["geometry"])
+rast_natural = natural %>% 
+  dplyr::select(geometry) %>% 
+  st_union()
+backup = rast_natural
+# create dummy raster
+ex_ext = extent(fuels)
+ex_ext[1] = extent(fuels)[1] + (extent(fuels)[2]-extent(fuels)[1])/2.5
+ex_ext[2] = extent(fuels)[2] - (extent(fuels)[2]-extent(fuels)[1])/2.5
+ex_ext[3] = extent(fuels)[3] + (extent(fuels)[4]-extent(fuels)[3])/2.5
+ex_ext[4] = extent(fuels)[4] - (extent(fuels)[4]-extent(fuels)[3])/2.5
+# crop and reproject ideal dataset to get desired res for land tenure layer
+example = crop(fuels, ex_ext)
+example = projectRaster(example, crs = crs(rast_natural))
+
+example = raster(ex_ext, resolution = res(example), crs = crs(rast_natural), method = 'ngb')
+rast_natural = rasterize(rast_natural, fuels)
+
+# fire history ####
+fires = raster("fireyeartifs/firehistory.tif")
+tm_shape(fires)+tm_raster()
+fires80 = raster("fireyeartifs/fire_reproj_80m.tif")
+tm_shape(fires80)+tm_raster()
+
+# WorldClim vars ####
+bioclim = mosaic(raster("wc0.5/bio1_310.bil"),
+                 raster("wc0.5/bio1_311.bil"),
+                 raster("wc0.5/bio1_410.bil"),
+                 raster("wc0.5/bio1_411.bil"), fun = mean)
+names(bioclim)[1] = "bio1"
+for(i in c(2:19)){
+  x = mosaic(raster(paste("wc0.5/bio", i, "_310.bil", sep = "")),
+             raster(paste("wc0.5/bio", i, "_311.bil", sep = "")),
+             raster(paste("wc0.5/bio", i, "_410.bil", sep = "")),
+             raster(paste("wc0.5/bio", i, "_411.bil", sep = "")), fun = mean)
+  bioclim = raster::stack(bioclim, x)
+  names(bioclim)[i] = paste0("bio", i, sep = "")
+}
+crs(bioclim) = st_crs(4326)$proj4string
+nsw = st_read("NSW_sans_islands.shp")
+nsw = nsw %>% 
+  st_transform(crs = st_crs(bioclim))
+bb = extent(nsw)
+bioclim2 = crop(bioclim, bb)
+writeRaster(bioclim2, "wc0.5/bioclim_cropped.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+
+# NDVI ####
+ndvi = RNetCDF::create.nc("C-bawap.D1-20120101.D2-20120131.I-P1M.V-ndvi-1km-1month.P-raw.DC-20120201T000915.DM-20120604T004651.nc")
+ndvi
+RNetCDF::var.get.nc(ndvi)
