@@ -52,6 +52,7 @@ records = records %>%
 records$lon = st_coordinates(records)[,1]
 records$lat = st_coordinates(records)[,2]
 st_geometry(records) = NULL
+## 457,486 records
 records = records %>% 
   left_join(traits)
 ## this takes the data frame from nrow() = 457,486 to nrow() = 458,587, so some sites have both the tree and mallee forms of either/both E. goniocalyx and/or E. socialis
@@ -69,12 +70,12 @@ records = cbind(records, fuel = raster::extract(veg, st_coordinates(records), me
 ## 458,587 records
 
 # remove wetlands, grasslands, alpine habitat, urban, etc.
-types = c(42:46, 52:74)
+types = c(52:74)
 records = records %>%
   filter(!(fuel %in% types))
-## 270,803 records
+## 277,295 records
 records = drop_na(records)
-## 264,149 records
+## 270,641 records
 ## dropped records lie outside the veg type boundary- sometimes these were still within the state where the veg layer was inaccurately clipped
 backup = records
 
@@ -86,15 +87,15 @@ records$lat = st_coordinates(records)[,2]
 st_geometry(records) = NULL
 # generate stats
 PA = dcast(records, lon + lat ~ Assgn_ScientificName, fill = 0, value.var = "Assgn_ScientificName")
-## 8,053 rows = sampling locations
-## 4,947 columns = species/subspecies
+## 8,326 rows = sampling locations
+## 5,101 columns = species/subspecies
 
 # select only species from Horsey selection
 selection = match(unique(traits$Ncll19N), colnames(PA))
 selection = selection[is.na(selection) == FALSE]
 PA = PA[,c(1, 2, selection)]
-## 8,053 rows = sampling locations
-## 178 columns = species/subspecies
+## 8,326 rows = sampling locations
+## 181 columns = species/subspecies
 
 # replace non-zero observations with "1"
 PA[,c(3:ncol(PA))] = PA[,c(3:ncol(PA))] %>% 
@@ -102,10 +103,10 @@ PA[,c(3:ncol(PA))] = PA[,c(3:ncol(PA))] %>%
 
 # melt to long form
 longf = melt(PA, id.vars = c("lon", "lat"))
-## 1,417,328 observations
-## 1,403,862 as 0's
-## 13,466 as 1's
-### mallee form addition added just two observations of "1" to the dataset
+## 1,490,354 observations
+## 1,476,729 as 0's
+## 13,625 as 1's
+### mallee form addition added just 6 observations of "1" to the dataset
 
 # add bark traits back to long form df
 longf = longf %>% 
