@@ -10,6 +10,7 @@ library(ncdf4)
 library(RNetCDF)
 library(stars)
 library(gdalUtils)
+library(ncdf)
 library(XML)
 
 # check for crs ####
@@ -634,6 +635,120 @@ bioclim2 = crop(bioclim, bb)
 writeRaster(bioclim2, "wc0.5/bioclim_cropped.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 
 # NDVI ####
-ndvi = RNetCDF::create.nc("C-bawap.D1-20120101.D2-20120131.I-P1M.V-ndvi-1km-1month.P-raw.DC-20120201T000915.DM-20120604T004651.nc")
-ndvi
-RNetCDF::var.get.nc(ndvi)
+## all file extents set to:
+#     North = -27
+#     South = -38
+#     West = 139
+#     East = 154
+## error in the dataset- May repeated, no December file; added Dec, 2011 to complete the year
+
+files = list.files("./NDVI" , pattern = "*.nc$", full.names = TRUE)
+name = "ndvi-1km-1month"
+
+ndvi = nc_open(files[1])
+
+# extract lon, lat and time data
+lon = ncvar_get(ndvi, "longitude")
+lat = ncvar_get(ndvi, "latitude")
+
+# extract ndvi values and attributes
+var_array = ncvar_get(ndvi, name)
+var_nans = ncatt_get(ndvi, name, "_FillValue")
+
+nc_close(ndvi)
+
+# replace fill values with NANs
+var_array[var_array == var_nans$value] = NA
+
+# create df
+lonlat = as.matrix(expand.grid(lon, lat))
+var_vec = as.vector(var_array)
+var_df = data.frame(cbind(lonlat, var_vec))
+names(var_df) <- c(paste("lon", as.character(1), sep = "_"),
+                   paste("lat", as.character(1), sep = "_"),
+                   paste(name,as.character(1), sep="_"))
+
+for(i in c(2:length(files))){
+  ndvi = nc_open(files[i])
+  
+  # extract lon, lat and time data
+  lon = ncvar_get(ndvi, "longitude")
+  lat = ncvar_get(ndvi, "latitude")
+  
+  # extract ndvi values and attributes
+  var_array = ncvar_get(ndvi, name)
+  var_nans = ncatt_get(ndvi, name, "_FillValue")
+  
+  nc_close(ndvi)
+  
+  # replace fill values with NANs
+  var_array[var_array == var_nans$value] = NA
+  
+  # create df
+  lonlat = as.matrix(expand.grid(lon, lat))
+  var_vec = as.vector(var_array)
+  var_df2 = data.frame(cbind(lonlat, var_vec))
+  var_df = cbind(var_df, var_df2)
+  names(var_df)[c(1:3)+(i-1)*3] <- c(paste("lon", as.character(i), sep = "_"),
+                                 paste("lat", as.character(i), sep = "_"),
+                                 paste(name,as.character(i), sep="_"))
+}
+
+# for(i in c(1:12)){
+#   print(any(var_df[,c(1+(i-1)*3)] != var_df[,c(1+(i-1)*3+3)]))
+# }
+# for(i in c(1:12)){
+#   print(any(var_df[,c(2+(i-1)*3)] != var_df[,c(5+(i-1)*3)]))
+# }
+# print(any(var_df[,c(1+(13-1)*3)] != var_df[,c(1)]))
+# print(any(var_df[,c(2+(13-1)*3)] != var_df[,c(2)]))
+## all lon/lat data equal for NDVI files
+names(var_df)
+var_df = var_df[,c(1, 2, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39)]
+names(var_df) = c("lon", "lat", "Dec11", "Jan12", "Feb12", "Mar12", "Apr12", "May12", "May12.2", "Jun12", "Jul12", "Aug12", "Sep12", "Oct12", "Nov12")
+
+# check out file 6- dates listed same as file 5
+ndvi = nc_open(files[6])
+print(ndvi)
+t5 <- ncvar_get(ndvi,"time")
+ndvi = nc_open(files[7])
+t6 <- ncvar_get(ndvi,"time")
+## times are equal
+## values are equal
+
+
+# ndvi_min = data.frame(lon = var_df$lon, lat = var_df$lat, var_min = apply(var_df[,c(3:7,9:15)], 1, FUN = min, na.rm = FALSE))
+# 
+# code = codes[codes$code == 3112,]$prj4
+# ndvi_min_r = raster(ndvi_min$var_min, xmn = min(lon), xmx = max(lon), ymn = min(lat), ymx = max(lat), crs = CRS(code))
+# 
+# coordinates(ndvi_min) = ~ lon + lat
+# gridded(ndvi_min) = TRUE
+
+## doesn't work. Need to go directly from netCDF to raster to avoid issues with coordinates
+
+files = list.files("./NDVI" , pattern = "*.nc$", full.names = TRUE)
+files = files[c(1:7, 9:13)]
+name = "ndvi-1km-1month"
+ndvi = raster(files[1])
+names(ndvi)[1] = paste0("mo",1)
+
+for(i in c(2:12)){
+  x = raster(files[i])
+  names(x) = paste0("mo",i)
+  ndvi = stack(ndvi, x)
+}
+
+ndvi_min = stackApply(ndvi, indices = 1, fun = min, na.rm = TRUE)
+names(ndvi_min) = "min"
+ndvi_max = stackApply(ndvi, indices = 1, fun = max, na.rm = TRUE)
+names(ndvi_max) = "max"
+ndvi_mean = stackApply(ndvi, indices = 1, fun = mean, na.rm = TRUE)
+names(ndvi_mean) = "mean"
+ndvi = stack(ndvi_min, ndvi_mean, ndvi_max)
+
+nsw1 = nsw %>% 
+  st_transform(crs = crs(ndvi))
+ndvi_final = crop(ndvi, nsw1)
+
+writeRaster(ndvi_final, "NDVI/NDVI_cropped.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
