@@ -588,29 +588,41 @@ natural = tenure %>%
   filter(SecondaryA < 210)
 # 103934 features
 # plot(natural["geometry"])
-rast_natural = natural %>% 
-  group_by(SecondaryA) %>% 
-  summarise(landtype = mean(SecondaryA), do_union = TRUE)
-backup = rast_natural
-# create dummy raster
-ex_ext = extent(fuels)
-ex_ext[1] = extent(fuels)[1] + (extent(fuels)[2]-extent(fuels)[1])/2.0001
-ex_ext[2] = extent(fuels)[2] - (extent(fuels)[2]-extent(fuels)[1])/2.0001
-ex_ext[3] = extent(fuels)[3] + (extent(fuels)[4]-extent(fuels)[3])/2.0001
-ex_ext[4] = extent(fuels)[4] - (extent(fuels)[4]-extent(fuels)[3])/2.0001
-# crop and reproject ideal dataset to get desired res for land tenure layer
-example = crop(fuels, ex_ext)
-example = projectRaster(example, crs = crs(bioclim2), method = 'ngb')
+# rast_natural = natural %>% 
+#   group_by(SecondaryA) %>% 
+#   st_union()
+# backup = rast_natural
+# # create dummy raster
+# ex_ext = extent(fuels)
+# ex_ext[1] = extent(fuels)[1] + (extent(fuels)[2]-extent(fuels)[1])/2.0001
+# ex_ext[2] = extent(fuels)[2] - (extent(fuels)[2]-extent(fuels)[1])/2.0001
+# ex_ext[3] = extent(fuels)[3] + (extent(fuels)[4]-extent(fuels)[3])/2.0001
+# ex_ext[4] = extent(fuels)[4] - (extent(fuels)[4]-extent(fuels)[3])/2.0001
+# # crop and reproject ideal dataset to get desired res for land tenure layer
+# example = crop(fuels, ex_ext)
+# example = projectRaster(example, crs = "+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs", method = 'ngb')
+# 
+# st_bbox(rast_natural)
+# example2 = raster(extent(rast_natural), resolution = res(example), crs = crs(rast_natural))
+# rast_natural = rasterize(rast_natural, example)
+# 
+# gdal_rasterize(src_datasource = "landnswlanduse2013/Land_NSW_Landuse_2013/Data/Shapefile/NSW_Landuse_2013.shp", 
+#          dst_filename = "landnswlanduse2013/tenure_raster.tif",
+#          b = c(120, 130, 140),
+#          burn = c(1, 2, 3),
+#          te = st_bbox(natural),
+#          tr = res(example))
+# 
+# # fire history ####
+# fires = raster("fireyeartifs/firehistory.tif")
+# tm_shape(fires)+tm_raster()
+# fires80 = raster("fireyeartifs/fire_reproj_80m.tif")
+# tm_shape(fires80)+tm_raster()
+## doesn't work. rasterizing takes too long
 
-st_bbox(rast_natural)
-example = raster(extent(rast_natural), resolution = res(example), crs = crs(rast_natural))
-rast_natural = rasterize(rast_natural, example)
-
-# fire history ####
-fires = raster("fireyeartifs/firehistory.tif")
-tm_shape(fires)+tm_raster()
-fires80 = raster("fireyeartifs/fire_reproj_80m.tif")
-tm_shape(fires80)+tm_raster()
+tmap_mode("view")
+tm_shape(fuels)+tm_raster()+tm_shape(natural)+tm_borders()
+## timed out
 
 # WorldClim vars ####
 bioclim = mosaic(raster("wc0.5/bio1_310.bil"),
@@ -633,6 +645,7 @@ nsw = nsw %>%
 bb = extent(nsw)
 bioclim2 = crop(bioclim, bb)
 writeRaster(bioclim2, "wc0.5/bioclim_cropped.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+bioclim2 = stack("wc0.5/bioclim_cropped.grd")
 
 # NDVI ####
 ## all file extents set to:
