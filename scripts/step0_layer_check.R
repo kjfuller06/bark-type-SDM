@@ -521,6 +521,7 @@ writeRaster(dem, "data/DEM_nsw.tif", overwrite = TRUE)
 
 # post-transfer-through-FileZilla layer check ####
 setwd("D:/PhD data")
+nsw = st_read("NSW_sans_islands.shp")
 
 # CSIRO soils ####
 # no good, plus the script for downloading them is already written for parallel computing so can go ahead and submit that- just modify it to run all soil data at once on all cores
@@ -554,29 +555,18 @@ crs(PET_mo)
 # DEM-H broken, downloading DEM-S
 
 # DEM-S ####
-dem = raster("DEM-S/DEM-S/hdr.adf")
-# tmap_mode("view")
-# tm_shape(dem)+tm_raster()
-writeRaster(dem, "DEM-S/DEM_S.tif")
-
 # crop DEM with NSW extent shapefile
 nsw = st_read("NSW_sans_islands.shp")
 nsw = nsw %>% 
   st_transform(crs = st_crs(dem))
-bb = extent(dem)
-plot(dem, xlim = c(bb[1], bb[2]), ylim = c(bb[3], bb[4]))
+bb = extent(nsw)
 
 # add ~11km of space around the NSW extent so slopes can be calculated accurately
-bb[1] = bb[1] + 1
-# bb[2] = bb[2]
-bb[3] = bb[3] + 1
-bb[4] = bb[4] - 1
-dem = crop(dem, bb)
-dem
-tm_shape(dem)+tm_raster()+tm_shape(nsw)+tm_borders()
+gdalwarp(te = c(139.9995, -38.50506, 154.6387, -27.15702),
+         srcfile = "70715/aac46307-fce8-449d-e044-00144fdd4fa6/hdr.adf",
+         dstfile = "70715/dem_s.tif")
 
-# write to disk
-writeRaster(dem, "data/DEM_nsw.tif", overwrite = TRUE)
+dem = raster("70715/dem_s.tif")
 
 # fuel types ####
 fuels = raster("RFS Fuel Type/fuels_30m.tif")
@@ -589,30 +579,31 @@ tm_shape(for_fuels)+tm_raster()
 ## check overlap with forest fuels layer
 tenure = st_read("landnswlanduse2013/Land_NSW_Landuse_2013/Data/Shapefile/NSW_Landuse_2013.shp")
 # 1043185 features
-tm_shape(tenure)+tm_borders()
+# tm_shape(tenure)+tm_borders()
 extent(tenure)
 extent(nsw)
 tenure$SecondaryA = as.numeric(tenure$SecondaryA)
 natural = tenure %>% 
   filter(SecondaryA < 210)
 # 103934 features
-plot(natural["geometry"])
+# plot(natural["geometry"])
 rast_natural = natural %>% 
-  dplyr::select(geometry) %>% 
-  st_union()
+  group_by(SecondaryA) %>% 
+  summarise(landtype = mean(SecondaryA), do_union = TRUE)
 backup = rast_natural
 # create dummy raster
 ex_ext = extent(fuels)
-ex_ext[1] = extent(fuels)[1] + (extent(fuels)[2]-extent(fuels)[1])/2.5
-ex_ext[2] = extent(fuels)[2] - (extent(fuels)[2]-extent(fuels)[1])/2.5
-ex_ext[3] = extent(fuels)[3] + (extent(fuels)[4]-extent(fuels)[3])/2.5
-ex_ext[4] = extent(fuels)[4] - (extent(fuels)[4]-extent(fuels)[3])/2.5
+ex_ext[1] = extent(fuels)[1] + (extent(fuels)[2]-extent(fuels)[1])/2.0001
+ex_ext[2] = extent(fuels)[2] - (extent(fuels)[2]-extent(fuels)[1])/2.0001
+ex_ext[3] = extent(fuels)[3] + (extent(fuels)[4]-extent(fuels)[3])/2.0001
+ex_ext[4] = extent(fuels)[4] - (extent(fuels)[4]-extent(fuels)[3])/2.0001
 # crop and reproject ideal dataset to get desired res for land tenure layer
 example = crop(fuels, ex_ext)
-example = projectRaster(example, crs = crs(rast_natural))
+example = projectRaster(example, crs = crs(bioclim2), method = 'ngb')
 
-example = raster(ex_ext, resolution = res(example), crs = crs(rast_natural), method = 'ngb')
-rast_natural = rasterize(rast_natural, fuels)
+st_bbox(rast_natural)
+example = raster(extent(rast_natural), resolution = res(example), crs = crs(rast_natural))
+rast_natural = rasterize(rast_natural, example)
 
 # fire history ####
 fires = raster("fireyeartifs/firehistory.tif")
