@@ -8,8 +8,8 @@ library(parallel)
 library(tidyverse)
 
 # load datasets
-veg = raster("data/for_fuels_30m.tif")
-nsw = st_read("data/nsw_sans_islands.shp")
+veg = raster("RFS Fuel Type/fuels_30m.tif")
+nsw = st_read("NSW_fuelsproj.shp")
 bioclim = raster::stack("data/bioclim_cropped.grd")
 fire = raster("data/firehistory.tif")
 dems = raster("data/dem_s.tif")
@@ -28,10 +28,18 @@ ai.pet = crop(arid, extent(nsw1))
 ai.pet[[1]] = ai.pet[[1]]/10000
 
 # correct bioclim temperature units
-temps = bioclim[[c('bio1', 'bio2', 'bio5', 'bio6', 'bio7', 'bio8', 'bio9', 'bio10', 'bio11')]]/10
-bioclim = raster::stack(temps, bioclim[[c(names(bioclim)[c(3,4,12:19)])]])
+# temps = bioclim[[c('bio1', 'bio2', 'bio5', 'bio6', 'bio7', 'bio8', 'bio9', 'bio10', 'bio11')]]/10
+# bioclim = raster::stack(temps, bioclim[[c(names(bioclim)[c(3,4,12:19)])]])
 
-# reproject fire layer
-fire1 = projectRaster(fire, veg, method = 'ngb')
-writeRaster(fire, "data/fire_final.tif", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+# writeRaster(bioclim, "bioclim_cropped.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+## can't write to stack with changed values- not sure why
+writeRaster(ai.pet, "data/ai.pet.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+
+# reproject fire layer, resample using nearest neighbour
+gdaltindex("data/veg_extent.shp", "data/fuels_30m.tif")
+gdalwarp(srcfile = "data/firehistory.tif", dstfile = "data/fire_final.tif", t_srs = crs(veg), tr = res(veg), r = "near", cl = "data/veg_extent.shp", crop_to_cutline = TRUE, multi = TRUE, co = c("BIGTIFF=TRUE", "COMPRESS=DEFLATE"), wo = "NUM_THREADS=ALL_CPUS", overwrite = TRUE)
 rm(fire, fire1)
+
+#--------------- complete to here ----------------
+
+# mask all layers to nsw boundary
