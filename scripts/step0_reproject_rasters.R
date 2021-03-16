@@ -142,6 +142,7 @@ stopImplicitCluster()
 # 3) ####
 # the veg layer is the crs reference dataset and will only be used for subsetting. No change made
 # the fire layer is the res reference dataset; just change the crs
+# number of fires is categorical, method is 'ngb'
 fire = projectRaster(fire, crs = crs(veg), method = 'ngb')
 writeRaster(fire, "data/fire_reproj_80m.tif", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 
