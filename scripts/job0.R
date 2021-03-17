@@ -1,4 +1,4 @@
-# record of code run on Cheyenne
+# first batch code attempt
 library(raster)
 library(sf)
 library(tmap)
