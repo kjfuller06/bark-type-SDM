@@ -625,16 +625,16 @@ tm_shape(fuels)+tm_raster()+tm_shape(natural)+tm_borders()
 ## timed out
 
 # WorldClim vars ####
-bioclim = mosaic(raster("wc0.5/bio1_310.bil"),
-                 raster("wc0.5/bio1_311.bil"),
-                 raster("wc0.5/bio1_410.bil"),
-                 raster("wc0.5/bio1_411.bil"), fun = mean)
+bioclim = mosaic(raster("wc0.5/bio_310/bio1_310.bil"),
+                 raster("wc0.5/bio_311/bio1_311.bil"),
+                 raster("wc0.5/bio_410/bio1_410.bil"),
+                 raster("wc0.5/bio_411/bio1_411.bil"), fun = mean)
 names(bioclim)[1] = "bio1"
 for(i in c(2:19)){
-  x = mosaic(raster(paste("wc0.5/bio", i, "_310.bil", sep = "")),
-             raster(paste("wc0.5/bio", i, "_311.bil", sep = "")),
-             raster(paste("wc0.5/bio", i, "_410.bil", sep = "")),
-             raster(paste("wc0.5/bio", i, "_411.bil", sep = "")), fun = mean)
+  x = mosaic(raster(paste("wc0.5/bio_310/bio", i, "_310.bil", sep = "")),
+             raster(paste("wc0.5/bio_311/bio", i, "_311.bil", sep = "")),
+             raster(paste("wc0.5/bio_410/bio", i, "_410.bil", sep = "")),
+             raster(paste("wc0.5/bio_411/bio", i, "_411.bil", sep = "")), fun = mean)
   bioclim = raster::stack(bioclim, x)
   names(bioclim)[i] = paste0("bio", i, sep = "")
 }
