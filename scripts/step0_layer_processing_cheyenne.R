@@ -41,11 +41,53 @@ gdalwarp(srcfile = "data/firehistory.tif", dstfile = "data/fire_final.tif", t_sr
 rm(fire, fire1)
 
 #--------------- complete to here ----------------
+## job in Casper
 options(stringsAsFactors = FALSE)
 
 # load extent shapefile
 nsw = st_read("data/NSW_sans_islands.shp") %>% 
   st_transform(crs = 4283)
+
+# depth to hard rock ####
+depthfun <- function(x) {
+  get_soils_data(product = 'NAT', attribute = x, component = 'VAL',
+                 depth = 1, aoi = extent(nsw), write_out = FALSE)
+}
+
+sfInit(parallel = TRUE, cpus = detectCores())
+sfExport("nsw", "depthfun")
+sfLibrary(slga)
+sfLibrary(raster)
+
+depth = sfLapply(list("DER", "DES"), depthfun)
+  
+sfStop()
+
+names(depth[[1]]) = "DER"
+names(depth[[2]]) = "DES"
+
+writeRaster(depth[[1]], "data/soilder_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+writeRaster(depth[[2]], "data/soildes_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+
+# depth of soil A and B horizons ####
+desfun <- function(d) {
+  get_soils_data(product = 'NAT', attribute = 'DES', component = 'VAL',
+                 depth = d, aoi = extent(nsw), write_out = FALSE)
+}
+
+sfInit(parallel = TRUE, cpus = detectCores())
+sfExport("nsw", "desfun")
+sfLibrary(slga)
+sfLibrary(raster)
+
+system.time({
+  
+  des = desfun(1)
+  
+  writeRaster(des, "data/CSIRO_soils/soildes_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+})[[3]]
+
+sfStop()
 
 # bulk density ####
 bdwfun <- function(d) {
