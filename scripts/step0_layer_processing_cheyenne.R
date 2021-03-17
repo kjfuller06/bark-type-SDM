@@ -41,5 +41,39 @@ gdalwarp(srcfile = "data/firehistory.tif", dstfile = "data/fire_final.tif", t_sr
 rm(fire, fire1)
 
 #--------------- complete to here ----------------
+options(stringsAsFactors = FALSE)
+
+# load extent shapefile
+nsw = st_read("data/NSW_sans_islands.shp") %>% 
+  st_transform(crs = 4283)
+
+# bulk density ####
+bdwfun <- function(d) {
+  get_soils_data(product = 'NAT', attribute = 'BDW', component = 'VAL',
+                 depth = d, aoi = extent(nsw), write_out = FALSE)
+}
+
+sfInit(parallel = TRUE, cpus = 6)
+sfExport("nsw", "bdwfun")
+sfLibrary(slga)
+sfLibrary(raster)
+  
+bdw = sfLapply(seq.int(6), bdwfun)
+
+names(bdw[[1]]) = "BDW depth 0-5cm"
+names(bdw[[2]]) = "BDW depth 5-15cm"
+names(bdw[[3]]) = "BDW depth 15-30cm"
+names(bdw[[4]]) = "BDW depth 30-60cm"
+names(bdw[[5]]) = "BDW depth 60-100cm"
+names(bdw[[6]]) = "BDW depth 100-200cm"
+
+bdw = raster::stack(bdw)
+
+writeRaster(bdw, "data/CSIRO_soils/soilbdw_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
+
+sfStop()
+
+
+
 
 # mask all layers to nsw boundary
