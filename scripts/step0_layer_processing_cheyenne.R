@@ -60,8 +60,6 @@ sfLibrary(slga)
 sfLibrary(raster)
 
 depth = sfLapply(list("DER", "DES"), depthfun)
-  
-sfStop()
 
 names(depth[[1]]) = "DER"
 names(depth[[2]]) = "DES"
@@ -69,53 +67,6 @@ names(depth[[2]]) = "DES"
 writeRaster(depth[[1]], "data/soilder_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 writeRaster(depth[[2]], "data/soildes_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 
-# depth of soil A and B horizons ####
-desfun <- function(d) {
-  get_soils_data(product = 'NAT', attribute = 'DES', component = 'VAL',
-                 depth = d, aoi = extent(nsw), write_out = FALSE)
-}
-
-sfInit(parallel = TRUE, cpus = detectCores())
-sfExport("nsw", "desfun")
-sfLibrary(slga)
-sfLibrary(raster)
-
-system.time({
-  
-  des = desfun(1)
-  
-  writeRaster(des, "data/CSIRO_soils/soildes_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
-})[[3]]
-
 sfStop()
-
-# bulk density ####
-bdwfun <- function(d) {
-  get_soils_data(product = 'NAT', attribute = 'BDW', component = 'VAL',
-                 depth = d, aoi = extent(nsw), write_out = FALSE)
-}
-
-sfInit(parallel = TRUE, cpus = 6)
-sfExport("nsw", "bdwfun")
-sfLibrary(slga)
-sfLibrary(raster)
-  
-bdw = sfLapply(seq.int(6), bdwfun)
-
-names(bdw[[1]]) = "BDW depth 0-5cm"
-names(bdw[[2]]) = "BDW depth 5-15cm"
-names(bdw[[3]]) = "BDW depth 15-30cm"
-names(bdw[[4]]) = "BDW depth 30-60cm"
-names(bdw[[5]]) = "BDW depth 60-100cm"
-names(bdw[[6]]) = "BDW depth 100-200cm"
-
-bdw = raster::stack(bdw)
-
-writeRaster(bdw, "data/CSIRO_soils/soilbdw_all_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
-
-sfStop()
-
-
-
 
 # mask all layers to nsw boundary
