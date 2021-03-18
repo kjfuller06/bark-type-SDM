@@ -19,7 +19,7 @@ process = function(x){
   } else {
     b = "bilinear"
   }
-  gdalwarp(srcfile = x, dstfile = paste0("final", x), t_srs = crs(veg), tr = res(veg), r = b, cl = "data/NSW_fuelsproj.shp", crop_to_cutline = TRUE, multi = TRUE, co = c("BIGTIFF=TRUE", "COMPRESS=DEFLATE"), wo = "NUM_THREADS=ALL_CPUS", overwrite = TRUE)
+  gdalwarp(srcfile = x, dstfile = paste0("final", x), t_srs = crs(veg), tr = res(veg), r = b, cl = "NSW_fuelsproj.shp", crop_to_cutline = TRUE, multi = TRUE, co = c("BIGTIFF=TRUE", "COMPRESS=DEFLATE"), wo = "NUM_THREADS=ALL_CPUS", overwrite = TRUE)
 }
 
 vars = c("ai.pet.grd", "bioclim_cropped.grd", "dem_s.tif", "firehistory.tif", "NDVI_cropped.grd")
