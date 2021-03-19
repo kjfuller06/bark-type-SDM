@@ -40,7 +40,7 @@ gdaltindex("data/veg_extent.shp", "data/fuels_30m.tif")
 gdalwarp(srcfile = "data/firehistory.tif", dstfile = "data/fire_final.tif", t_srs = crs(veg), tr = res(veg), r = "near", cl = "data/veg_extent.shp", crop_to_cutline = TRUE, multi = TRUE, co = c("BIGTIFF=TRUE", "COMPRESS=DEFLATE"), wo = "NUM_THREADS=ALL_CPUS", overwrite = TRUE)
 rm(fire, fire1)
 
-#--------------- complete to here ----------------
+#--------------- first soils download----------------
 ## job in Casper
 options(stringsAsFactors = FALSE)
 
@@ -68,5 +68,59 @@ writeRaster(depth[[1]], "data/soilder_80m.grd", format = "raster", options = "CO
 writeRaster(depth[[2]], "data/soildes_80m.grd", format = "raster", options = "COMPRESS=DEFLATE", overwrite = TRUE)
 
 sfStop()
+
+#---------------- BDW -------------------
+library(raster)
+library(rgdal)
+library(slga)
+library(sf)
+library(snowfall)
+library(parallel)
+options(stringsAsFactors = FALSE)
+
+nsw = st_read("data/NSW_sans_islands.shp") %>% st_transform(crs = 4283)
+
+vars = c("BDW", "SOC", "CLY", "SLT", "SND", "PHC", "AWC", "NTO", "PTO", "ECE")
+
+a = 1
+
+sfun = function(x){
+  s = get_soils_data(product = 'NAT', attribute = vars[a], component = 'VAL', depth = x, aoi = extent(nsw), write_out = FALSE)
+  names(s) = paste0(vars[a], "D", x)
+  writeRaster(s, paste0("data/soil", vars[a], "_D", x, "_80m.tif"), format = "GTiff", overwrite = TRUE)
+}
+
+sfInit(parallel = TRUE, cpus = 6)
+sfExport("nsw", "sfun", "a", "vars")
+sfLibrary(slga)
+sfLibrary(raster)
+sfLibrary(sf)
+sfLibrary(rgdal)
+
+soils = sfLapply(seq.int(6), sfun)
+
+sfStop()
+
+## batch script
+# #!/bin/bash -l
+# #SBATCH --job-name=downBDW
+# #SBATCH --account=UWSY0001
+# #SBATCH --ntasks=6
+# #SBATCH --cpus-per-task=1
+# #SBATCH --mem=100G
+# #SBATCH --time=06:00:00
+# #SBATCH --partition=dav
+# 
+# ### Temp data to scratch
+# export TMPDIR=/glade/scratch/kjfuller/temp
+# 
+# ### Load R
+# module load R/4.0.2
+# 
+# ### Run analysis script
+# R CMD BATCH /glade/scratch/kjfuller/scripts/downBDW.R
+# 
+# ### Store job stats in log file
+# scontrol show job $SLURM_JOBID
 
 # mask all layers to nsw boundary
