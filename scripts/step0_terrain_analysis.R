@@ -22,3 +22,16 @@ sfLibrary(raster)
 sfLapply(vars, terr)
 
 sfStop()
+
+
+#----------------- next run ---------------------
+library(raster)
+library(tidyverse)
+library(RSAGA)
+library(rgdal)
+library(gdalUtils)
+
+gdalwarp("dem_s.tif", 
+         dstfile = "dem_s.sgrd",
+         output_Raster = FALSE,
+         overwrite = TRUE, verbose = TRUE)
