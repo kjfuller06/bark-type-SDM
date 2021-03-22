@@ -521,7 +521,7 @@ tm_shape(dem)+tm_raster()+tm_shape(nsw)+tm_borders()
 writeRaster(dem, "data/DEM_nsw.tif", overwrite = TRUE)
 
 # post-transfer-through-FileZilla layer check ####
-setwd("D:/PhD data")
+setwd("D:/chapter1")
 nsw = st_read("NSW_sans_islands.shp")
 
 # CSIRO soils ####

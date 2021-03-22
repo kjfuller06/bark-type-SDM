@@ -78,7 +78,8 @@ library(snowfall)
 library(parallel)
 options(stringsAsFactors = FALSE)
 
-nsw = st_read("data/NSW_sans_islands.shp") %>% st_transform(crs = 4283)
+nsw = st_read("data/NSW_sans_islands.shp") %>% 
+  st_transform(crs = 4283)
 
 vars = c("BDW", "SOC", "CLY", "SLT", "SND", "PHC", "AWC", "NTO", "PTO", "ECE")
 
@@ -97,7 +98,7 @@ sfLibrary(raster)
 sfLibrary(sf)
 sfLibrary(rgdal)
 
-soils = sfLapply(seq.int(6), sfun)
+sfLapply(seq.int(6), sfun)
 
 sfStop()
 
@@ -114,13 +115,61 @@ sfStop()
 # ### Temp data to scratch
 # export TMPDIR=/glade/scratch/kjfuller/temp
 # 
-# ### Load R
+# ### Load modules
 # module load R/4.0.2
+# module unload netcdf
+# module load gdal
 # 
 # ### Run analysis script
 # R CMD BATCH /glade/scratch/kjfuller/scripts/downBDW.R
 # 
 # ### Store job stats in log file
 # scontrol show job $SLURM_JOBID
+
+#------------------ run on laptop --------------------------
+library(raster)
+library(rgdal)
+library(slga)
+library(sf)
+library(snowfall)
+library(parallel)
+options(stringsAsFactors = FALSE)
+
+nsw = st_read("data/NSW_sans_islands.shp") %>% 
+  st_transform(crs = 4283)
+
+vars = c("PHC", "AWC", "NTO", "PTO", "ECE")
+
+sfun = function(x){
+  s = get_soils_data(product = 'NAT', attribute = vars[a], component = 'VAL', depth = x, aoi = extent(nsw), write_out = FALSE)
+  writeRaster(s, paste0("soil", vars[a], "_D", x, "_80m.tif"), format = "GTiff", overwrite = TRUE)
+  rm(s)
+}
+
+sfInit(parallel = TRUE, cpus = 6)
+sfExport("nsw", "sfun", "vars")
+sfLibrary(slga)
+sfLibrary(raster)
+sfLibrary(sf)
+sfLibrary(rgdal)
+
+a = 1
+sfExport("a")
+sfLapply(c(2, 4, 5, 6), sfun)
+a = 2
+sfExport("a")
+sfLapply(c(1,3), sfun)
+a = 3
+sfExport("a")
+sfLapply(c(2, 5), sfun)
+a = 4
+sfExport("a")
+sfLapply(c(1, 4, 6), sfun)
+a = 5
+sfExport("a")
+sfLapply(c(2), sfun)
+
+sfStop()
+
 
 # mask all layers to nsw boundary
