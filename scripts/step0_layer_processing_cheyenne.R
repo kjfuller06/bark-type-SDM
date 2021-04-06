@@ -7,6 +7,7 @@ library(snowfall)
 library(parallel)
 library(tidyverse)
 
+# dataset cropping ####
 # load datasets
 veg = raster("RFS Fuel Type/fuels_30m.tif")
 nsw = st_read("NSW_fuelsproj.shp")
@@ -433,7 +434,7 @@ library(parallel)
 setwd("/glade/scratch/kjfuller")
 veg = raster("data/fuels_30m.tif")
 
-# terrain data
+# terrain data -> changed to remove already-resampled data layers
 dems = list.files("./data", pattern = "^dem", recursive = FALSE, full.names = TRUE)
 dems = soils[!grepl("gri", dems)]
 
