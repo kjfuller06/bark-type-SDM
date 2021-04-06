@@ -14,22 +14,12 @@ nsw = st_read("data/NSW_sans_islands.shp") %>%
   st_set_crs(4326)
 
 # read records in again for plotting
-records_sf = st_read("data/HorseyV.4_extracted_dataV.3.shp")
-# combine categories "smooth with stocking" and "smooth with short stocking"
-rec2 = records_sf %>% 
-  filter(bark1 == "smooth - stocking" | bark1 == "smooth - short stocking") %>% 
-  mutate(bark1 = "smooth with stocking")
-records_sf = records_sf %>%  
-  filter(bark1 != "smooth - stocking", bark1 != "smooth - short stocking")
-records_sf = rbind(records_sf, rec2)
+records_sf = st_read("data/HorseyV.4_extracted_dataV.4.shp")
 
 # create df with no geometry column
 records = records_sf
 st_geometry(records) = NULL
 records = drop_na(records)
-# remove outlier species
-# records = records %>% 
-#   filter(spp_shr != "E.populneasubsp.bimbil" & spp_shr != "E.largiflorens")
 
 # visualisations ####
 #   1) proportion of points occurring along an environmental gradient (as in, the proportion of temp observations that occur at each temperature), coloured and shaded by group- these could be curves for single variables and hexbins for two variables
@@ -160,18 +150,18 @@ map_b1 = tm_shape(nsw) +
                                "subfibrous - box" = colours[6],        
                                "subfibrous - peppermint" = colours[7],
                                "subfibrous - rough" = colours[8],     
-                               "subfibrous - stingy" = colours[9],
+                               "subfibrous - stringy" = colours[9],
                                "subfibrous - tessellated" = colours[10]),
           legend.show = FALSE, size = 0.25) +
   tm_layout(legend.position = c("right", "bottom"))
 # save image to file
-tmap_save(map_b1, filename = "outputs/b1V.1.png")
+tmap_save(map_b1, filename = "outputs/b1V.2.png")
 # load image back and create plot
 # load back the image as an R object with the "PNG" package
-my_image <- readPNG("outputs/b1V.1.png")
+my_image <- readPNG("outputs/b1V.2.png")
 
 # write to disk
-tiff(file = "outputs/bark1.V.5.tiff", width =2200, height = 1100, units = "px", res = 200)
+tiff(file = "outputs/bark1.V.6.tiff", width =2200, height = 1100, units = "px", res = 200)
 layout.matrix = matrix(c(1, 1, 2, 3, 4, 5, 6,
                          1, 1, 7, 8, 9, 10, 11,
                          12, 13, 14, 15, 16, 17, 18,
@@ -198,14 +188,14 @@ par(mar = c(0, 0, 0, 0))
 legend("center", legend = levels(as.factor(records$bark1)), col = c(colours[1:length(df)]), lty = 1, lwd = 5, cex = 0.9)
 
 par(mar = c(4, 0, 0.5, 0))
-withlabels(8)
-withoutlabels(c(9:11))
-withlabels(12)
-withoutlabels(13:16)
-withlabels(17)
-withoutlabels(18:23)
-withlabels(24)
-withoutlabels(25:28)
+withlabels(9)
+withoutlabels(c(10:12))
+withlabels(13)
+withoutlabels(14:17)
+withlabels(18)
+withoutlabels(19:24)
+withlabels(25)
+withoutlabels(26:29)
 
 dev.off()
 

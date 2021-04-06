@@ -5,7 +5,10 @@ library(sf)
 library(rnaturalearth)
 library(ggplot2)
 library(RColorBrewer)
+# library(rJava)
 library(tmap)
+library(tmaptools)
+# library(OpenStreetMap)
 library(jpeg)
 library(png)
 library(colorspace)
@@ -78,3 +81,19 @@ records = cbind(records, raster::extract(stck, st_coordinates(records), methods 
 types = c(42:46, 52:74)
 records = records %>% 
   filter(!(fuels_reproj %in% types))
+
+# map for AGU poster ####
+veg = raster("data/fuels_reproj.tif")
+labels = read.csv("data/fuels_AGU_legend.csv")
+names(labels)[1] = "FuelType"
+veg = subs(veg, labels, by = 1, which = 2)
+labs = unique(labels$FuelGroupName)
+types = c(rev(brewer.pal(5, name = "Blues")), rev(brewer.pal(7, name = "YlGn")), brewer.pal(3, "YlOrRd"), brewer.pal(5, name = "Purples"))
+types = types[c(1:3, 6:15, 16, 18, 20)]
+
+tmap_mode('view')
+
+# read_osm(veg, ext = 1.1)
+map = tm_shape(veg)+tm_raster(palette = types, style = "cat", labels = labs)+tm_scale_bar()+tm_layout(legend.title.size = 1, legend.text.size = 0.5)
+
+                                                                                          
