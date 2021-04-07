@@ -428,34 +428,25 @@ library(raster)
 library(sf)
 library(rgdal)
 library(gdalUtils)
-library(snowfall)
-library(parallel)
 
+print("should be SRADRat_11, demsing14")
 setwd("/glade/scratch/kjfuller")
 veg = raster("data/fuels_30m.tif")
 
 # terrain data -> changed to remove already-resampled data layers
-dems = list.files("./data", pattern = "^dem", recursive = FALSE, full.names = TRUE)
+dems = list.files("./data", pattern = "^dem_plan", recursive = FALSE, full.names = TRUE)
+dems[2] = list.files("./data", pattern = "^dem_profile", recursive = FALSE, full.names = TRUE)
+dems[3] = list.files("./data", pattern = "^dem_TWI", recursive = FALSE, full.names = TRUE)
+dems[4:27] = list.files("./data", pattern = "^dem_SRAD", recursive = FALSE, full.names = TRUE)
 dems = soils[!grepl("gri", dems)]
 
-demsfun = function(x){
-  k = substr(dems[x], 8, nchar(dems[x])-7)
-  d = raster(dems[x])
-  d = projectRaster(d, veg, method = 'bilinear')
-  writeRaster(d, paste0("data/proj_", k, "30m.tif"), overwrite = TRUE)
-}
-
-sfInit(parallel = TRUE, cpus = 28)
-sfExport("veg", "dems", "demsfun")
-sfLibrary(slga)
-sfLibrary(raster)
-sfLibrary(sf)
-sfLibrary(rgdal)
-sfLibrary(gdalUtils)
-
-sfLapply(c(1:28), demsfun)
-
-sfStop()
+# done already: plan, profile, TWI, SRADRat_01-10 (1-13)
+# running now: SRADRat_12 (15)
+x = 14
+k = substr(dems[x], 8, nchar(dems[x])-7)
+d = raster(dems[x])
+d = projectRaster(d, veg, method = 'bilinear')
+writeRaster(d, paste0("data/proj_", k, "30m.tif"), overwrite = TRUE)
 
 #--------------------- remaining layers ---------------------------
 library(raster)
