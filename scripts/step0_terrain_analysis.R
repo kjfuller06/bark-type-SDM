@@ -36,7 +36,7 @@ demcrs = codes %>%
   filter(code = 7859) %>% 
   dplyr::select(prj4)
 dem = raster("data/dem_s.tif")
-gdalwarp(srcfile = "data/dem_s.tif", dstfile = "data/dem_crs7859.tif", t_srs = paste(demcrs), output_Raster = TRUE, overwrite = TRUE, verbose = TRUE, multi = TRUE, co = c("BIGTIFF=TRUE", "COMPRESS=DEFLATE"), wo = "NUM_THREADS=ALL_CPUS", r = 'bilinear')
+gdalwarp(srcfile = "data/dem_s.tif", dstfile = "data/dem_crs7859.tif", t_srs = paste(demcrs), output_Raster = TRUE, overwrite = TRUE, verbose = TRUE, multi = TRUE, co = c("BIGTIFF=YES", "COMPRESS=DEFLATE"), wo = "NUM_THREADS=ALL_CPUS", r = 'bilinear')
 ## this probably work fine. I just thought it was producing errors because head(dem) returned all NANs but that's accurate in the new projection
 
 #-------- ran this instead ----------
