@@ -497,3 +497,43 @@ PA_env = full_join(env, PA)
 ## 17355 rows
 PA_env = drop_na(PA_env)
 ## 219 rows
+
+#------------- rasterPCA of all layers -------------------
+library(RStoolbox)
+library(raster)
+library(sf)
+library(tidyverse)
+
+setwd("/glade/scratch/kjfuller")
+proj = list.files("./data", pattern = "proj", recursive = FALSE, full.names = TRUE)
+
+p = raster(proj[1])
+for(i in c(2:130)){
+  x = raster(proj[i])
+  p = raster::stack(p, x)
+}
+
+set.seed(225)
+pca = rasterPCA(p, nComp = 20, spca = TRUE, maskCheck = TRUE)
+capture.output(pca, file = "pca_output.txt")
+
+r = pca$map
+writeRaster(r, "PCA.grd", overwrite = TRUE)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
