@@ -482,7 +482,6 @@ sfLapply(c(1:2), allfun)
 
 sfStop()
 
-# mask all layers to nsw boundary
 #-------------------- joining bark traits and environmental data ----------------------
 library(tidyverse)
 
