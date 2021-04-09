@@ -483,3 +483,17 @@ sfLapply(c(1:2), allfun)
 sfStop()
 
 # mask all layers to nsw boundary
+#-------------------- joining bark traits and environmental data ----------------------
+library(tidyverse)
+
+setwd("/glade/scratch/kjfuller/data")
+# load environmental data
+env = read.csv("dataextract_allsites_30m.csv")
+# load bark observations
+PA = read.csv("site-specific_P-A_wide_barks.csv")
+
+# join dataframes, retaining all data
+PA_env = full_join(env, PA)
+## 17355 rows
+PA_env = drop_na(PA_env)
+## 219 rows
