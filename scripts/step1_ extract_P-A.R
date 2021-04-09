@@ -17,7 +17,7 @@ nomen = read.csv("data/Candidate_speciesV.1.csv") %>%
   unique()
 names(nomen) = c("Assgn_ScientificName", "NicolleName")
 traits = read_sf("data/species_sampleV.1.shp")
-veg = raster("data/FuelTypeV2_FuelLUT1.tif")
+veg = raster("data/fuels_30m.tif")
 
 # modify traits to include alternative names for species with more than one growth form
 traits = traits %>% 
