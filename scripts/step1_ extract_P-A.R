@@ -113,7 +113,17 @@ longf = longf %>%
   left_join(unique(traits[,c(5:9),]), by = c("variable" = "Ncll19N"))
   # dplyr::select(-variable)
 
+# select unique bark observations only from site trait observations
+traits2 = traits %>% 
+  dplyr::select(Hrsyb1_,
+                Hrsyb2_,
+                lon,
+                lat) %>% 
+  unique()
+names(traits2) = c("b1", "b2", "lon", "lat")
+
 # write to disk
 write.csv(PA, "data/species_sampleV.1_P-A_wide.csv", row.names = FALSE)
 write.csv(longf, "data/species_sampleV.1_P-A_long.csv", row.names = FALSE)
 write.csv(traits, "data/alltraits_site-specific.csv", row.names = FALSE)
+write.csv(traits2, "data/alltraits_site-specific_barks.csv", row.names = FALSE)
