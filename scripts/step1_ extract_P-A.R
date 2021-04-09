@@ -118,12 +118,28 @@ traits2 = traits %>%
   dplyr::select(Hrsyb1_,
                 Hrsyb2_,
                 lon,
-                lat) %>% 
-  unique()
+                lat)
 names(traits2) = c("b1", "b2", "lon", "lat")
+
+# generate stats for bark traits
+PA2 = dcast(traits2, lon + lat ~ b1, fill = 0, value.var = "b1")
+PA2[,c(3:ncol(PA2))] = PA2[,c(3:ncol(PA2))] %>% 
+  mutate_if(is.numeric, ~1 * (. != 0))
+names(PA2) = c("lon",
+               "lat",
+               "halfbark",
+               "ironbark",
+               "smooth",
+               "smooth_stocking",
+               "stringybark",
+               "s_box",
+               "s_peppermint",
+               "s_rough",
+               "s_stringy",
+               "s_tessellated")
 
 # write to disk
 write.csv(PA, "data/species_sampleV.1_P-A_wide.csv", row.names = FALSE)
 write.csv(longf, "data/species_sampleV.1_P-A_long.csv", row.names = FALSE)
 write.csv(traits, "data/alltraits_site-specific.csv", row.names = FALSE)
-write.csv(traits2, "data/alltraits_site-specific_barks.csv", row.names = FALSE)
+write.csv(PA2, "data/site-specific_P-A_wide_barks.csv", row.names = FALSE)
