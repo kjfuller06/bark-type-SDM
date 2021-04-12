@@ -496,6 +496,18 @@ PA_env = full_join(env, PA)
 ## 17355 rows
 PA_env = drop_na(PA_env)
 ## 219 rows
+write.csv(PA_env, "joined_gonewrong.csv", row.names = FALSE)
+## won't be used anyway because it uses actual variable values
+
+#------------------ mask one environmental data layer by forest veg types --------------
+library(raster)
+
+setwd("/glade/scratch/kjfuller/data")
+env = raster("proj_ai.pet_10.tif")
+veg = raster("for_fuels_30m.tif")
+
+env = raster::mask(env, veg)
+writeRaster(env, "proj_ai.pet_10_mask.tif")
 
 #------------- rasterPCA of all layers -------------------
 library(RStoolbox)
@@ -519,7 +531,7 @@ capture.output(pca, file = "pca_output.txt")
 r = pca$map
 writeRaster(r, "PCA.grd", overwrite = TRUE)
 
-
+writeRaster(pca$map, "PCA.tif", bylayer = TRUE, overwrite = TRUE)
 
 
 
