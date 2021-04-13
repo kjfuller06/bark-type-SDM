@@ -509,6 +509,20 @@ veg = raster("for_fuels_30m.tif")
 env = raster::mask(env, veg)
 writeRaster(env, "proj_ai.pet_10_mask.tif")
 
+#---------------- mask all environmental data layers -------------------------------
+library(raster)
+
+setwd("/glade/scratch/kjfuller")
+veg = raster("data/for_fuels_30m.tif")
+env = list.files("./data", pattern = "^proj", recursive = FALSE, full.names = TRUE)
+env2 = list.files("./data", pattern = "^proj", recursive = FALSE, full.names = FALSE)
+
+for(i in c(1:length(env))){
+  x = raster(env[i])
+  x = raster::mask(x, veg)
+  writeRaster(x, paste0("data/mask_", env2[i]))
+}
+
 #------------- rasterPCA of all layers -------------------
 library(RStoolbox)
 library(raster)
