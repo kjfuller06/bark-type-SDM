@@ -9,17 +9,44 @@ library(tmap)
 library(jpeg)
 library(png)
 
-# load nsw border for maps
+# load base maps
 nsw = st_read("data/NSW_sans_islands.shp") %>% 
   st_set_crs(4326)
+veg = raster("data/fuels_30m.tif")
 
 # read records in again for plotting
-records_sf = st_read("data/HorseyV.4_extracted_dataV.4.shp")
-
-# create df with no geometry column
-records = records_sf
-st_geometry(records) = NULL
-records = drop_na(records)
+records = read.csv("data/dataextract_allsites_30m.csv") %>% 
+  dplyr::select(fueltype,
+                proj_ai.pet_1,
+                proj_ai.pet_2,
+                proj_bioclim_1_30m,
+                proj_bioclim_5_30m,
+                proj_bioclim_6_30m,
+                proj_bioclim_12_30m,
+                proj_bioclim_13_30m,
+                proj_bioclim_14_30m,
+                proj_dem_TWI_30m,
+                proj_fire_final_30m,
+                proj_NDVI_30m,
+                proj_soilAWC_D1_30m,
+                proj_soilBDW_D1_30m,
+                proj_soilSND_D1_30m,
+                proj_soildes_30m,
+                proj_soilNTO_D1_30m,
+                proj_soilPTO_D1_30m,
+                proj_soilPHC_D1_30m,
+                proj_soilSOC_D1_30m,
+                lon,
+                lat)
+traits = read.csv("data/alltraits_site-specific.csv") %>% 
+  dplyr::select(Hrsyb1_,
+                lon,
+                lat)
+records = full_join(records, traits) %>% 
+  drop_na()
+names(records)[ncol(records)] = "bark1"
+records_sf = records %>% 
+  st_as_sf(coords = c("lon", "lat"), crs = st_crs(veg))
 
 # visualisations ####
 #   1) proportion of points occurring along an environmental gradient (as in, the proportion of temp observations that occur at each temperature), coloured and shaded by group- these could be curves for single variables and hexbins for two variables
@@ -28,8 +55,9 @@ records = drop_na(records)
 # 1a. functions ####
 # write a loop to plot all three df's in rib. Then loop this through all variables
 # create labels for plots
-nom = read.csv("data/env_variable_labels.csv")
-nom = c(paste(nom$labels, nom$labels2, sep = "\n"))
+nom = read.csv("data/env_variable_labels2.csv") %>% 
+  filter(variable %in% names(records))
+nom = c(paste(nom$label1, nom$label2, sep = "\n"))
 numberofrecordscol = length(names(records)) - length(nom)
 
 # function for plots with yaxt
@@ -43,7 +71,7 @@ withlabels = function(frst){
   xmin = min(mins)
   xmax = max(maxs)
   par(mar = c(4, 2, 0.5, 0))
-  plot(1, type="n", xlab= nom[frst - numberofrecordscol], ylab="", xlim=c(xmin, xmax), ylim=c(0, 0.015))
+  plot(1, type="n", xlab= nom[frst], ylab="", xlim=c(xmin, xmax), ylim=c(0, 0.015))
   for(i in c(1:length(df))){
     a = density(df[[i]][,frst])
     a$y = a$y/sum(a$y)
@@ -66,7 +94,7 @@ withoutlabels = function(allothers){
     xmin = min(mins)
     xmax = max(maxs)
     par(mar = c(4, 0, 0.5, 0))
-    plot(1, type="n", xlab= nom[k - numberofrecordscol], ylab="", yaxt = 'n', xlim=c(xmin, xmax), ylim=c(0, 0.015))
+    plot(1, type="n", xlab= nom[k], ylab="", yaxt = 'n', xlim=c(xmin, xmax), ylim=c(0, 0.015))
     for(i in c(1:length(df))){
       a = density(df[[i]][,k])
       a$y = a$y/sum(a$y)
@@ -142,7 +170,7 @@ colours <- rainbow(length(df))
 map_b1 = tm_shape(nsw) + 
   tm_borders() + 
   tm_shape(records_sf) + 
-  tm_dots("bark1", palette = c("half bark" = colours[1],
+  tm_dots("bark1", palette = c("halfbark" = colours[1],
                                "ironbark" = colours[2], 
                                "smooth" = colours[3],
                                "smooth with stocking" = colours[4],    
@@ -155,19 +183,19 @@ map_b1 = tm_shape(nsw) +
           legend.show = FALSE, size = 0.25) +
   tm_layout(legend.position = c("right", "bottom"))
 # save image to file
-tmap_save(map_b1, filename = "outputs/b1V.2.png")
+tmap_save(map_b1, filename = "outputs/b1V.3.png")
 # load image back and create plot
 # load back the image as an R object with the "PNG" package
-my_image <- readPNG("outputs/b1V.2.png")
+my_image <- readPNG("outputs/b1V.3.png")
 
 # write to disk
-tiff(file = "outputs/bark1.V.6.tiff", width =2200, height = 1100, units = "px", res = 200)
-layout.matrix = matrix(c(1, 1, 2, 3, 4, 5, 6,
-                         1, 1, 7, 8, 9, 10, 11,
-                         12, 13, 14, 15, 16, 17, 18,
-                         19, 20, 21, 22, 23, 24, 25
+tiff(file = "outputs/bark1.V.7.tiff", width =4400, height = 2200, units = "px", res = 400)
+layout.matrix = matrix(c(1, 1, 2, 3, 4, 5,
+                         1, 1, 6, 7, 8, 9,
+                         10, 11, 12, 13, 14, 15,
+                         16, 17, 18, 19, 20, 21
 ),
-nrow = 4, ncol = 7,
+nrow = 4, ncol = 6,
 byrow = TRUE)
 layout(mat = layout.matrix,
        heights = 1,
@@ -188,14 +216,14 @@ par(mar = c(0, 0, 0, 0))
 legend("center", legend = levels(as.factor(records$bark1)), col = c(colours[1:length(df)]), lty = 1, lwd = 5, cex = 0.9)
 
 par(mar = c(4, 0, 0.5, 0))
+withlabels(2)
+withoutlabels(c(3:4))
+withlabels(5)
+withoutlabels(6:8)
 withlabels(9)
-withoutlabels(c(10:12))
-withlabels(13)
-withoutlabels(14:17)
-withlabels(18)
-withoutlabels(19:24)
-withlabels(25)
-withoutlabels(26:29)
+withoutlabels(10:14)
+withlabels(15)
+withoutlabels(16:20)
 
 dev.off()
 
