@@ -523,6 +523,20 @@ for(i in c(1:length(env))){
   writeRaster(x, paste0("data/mask_", env2[i]))
 }
 
+#----------------- additional masking script ---------------------------------
+library(raster)
+
+setwd("/glade/scratch/kjfuller")
+veg = raster("data/for_fuels_30m.tif")
+env = list.files("./data", pattern = "^proj", recursive = FALSE, full.names = TRUE)
+env2 = list.files("./data", pattern = "^proj", recursive = FALSE, full.names = FALSE)
+
+for(i in c(length(env):1)){
+  x = raster(env[i])
+  x = raster::mask(x, veg)
+  writeRaster(x, paste0("data/mask_", env2[i]))
+}
+
 #------------- rasterPCA of all layers -------------------
 library(RStoolbox)
 library(raster)
