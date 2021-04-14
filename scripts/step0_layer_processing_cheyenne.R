@@ -578,6 +578,9 @@ lay5ncomp3_check = system.time({
 })[[3]]
 
 #------------- rasterPCA of all layers -------------------
+n = 20
+layers = 130
+label = paste0("data/PCA_N", n, "L", layers, "_")
 library(RStoolbox)
 library(raster)
 library(sf)
@@ -587,36 +590,32 @@ setwd("/glade/scratch/kjfuller")
 mask = list.files("./data", pattern = "^mask", recursive = FALSE, full.names = TRUE)
 
 p = raster(mask[1])
-for(i in c(2:130)){
+for(i in c(2:layers)){
   x = raster(mask[i])
   p = raster::stack(p, x)
 }
 
 set.seed(225)
-pca = rasterPCA(p, nComp = 20, spca = TRUE, maskCheck = TRUE)
+pca = rasterPCA(p, nComp = n, spca = TRUE, maskCheck = TRUE)
 
 # save text output of princomp
-capture.output(pca, file = "data/PCA_textoutput.txt")
-capture.output(summary(rpc$model), file = "data/PCA_textoutput2.txt")
+capture.output(pca, file = paste0(label, "textoutput.txt"))
+capture.output(summary(rpc$model), file = paste0(label, "textoutput2.txt"))
 
 # save pc values as grid layers
 r = pca$map
-writeRaster(r, "data/PCA.grd", overwrite = TRUE)
-writeRaster(pca$map, "data/PCA.tif", bylayer = TRUE, overwrite = TRUE)
-
-# save loadings as csv
-df = as.data.frame(pca$model$loadings[,1:20])
-write.csv(df, "data/PCAloadings.csv", row.names = FALSE)
+writeRaster(r, paste0(label, "PC.grd"), overwrite = TRUE)
+writeRaster(pca$map, paste0(label, "PC.tif"), bylayer = TRUE, overwrite = TRUE)
 
 # save all model components as csv's
 mod = summary(pca$model)
 moddata = data.frame(center = mod$center,
                      scale = mod$scale)
-loadings = as.data.frame(loadings(pca$model)[,1:20])
+loadings = as.data.frame(loadings(pca$model)[,1:n])
 loadings = rbind(loadings, mod$sdev)
-row.names(loadings)[131] = "sdev"
-write.csv(moddata, "data/PCA_layer_scaling.csv", row.names = TRUE)
-write.csv(loadings, "data/PCA_loadings_sdev.csv", row.names = TRUE)
+row.names(loadings)[layers+1] = "sdev"
+write.csv(moddata, paste0(label, "layer_scaling.csv"), row.names = TRUE)
+write.csv(loadings, paste0(label, "loadings_sdev.csv"), row.names = TRUE)
 
 
 
