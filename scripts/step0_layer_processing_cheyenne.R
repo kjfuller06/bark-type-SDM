@@ -543,6 +543,21 @@ library(raster)
 library(sf)
 library(tidyverse)
 
+# example with rlogo
+data(rlogo)
+ggRGB(rlogo, 1,2,3)
+
+## Run PCA
+set.seed(25)
+lay3ncomp3_check = system.time({
+  rpc <- rasterPCA(rlogo, nComp = 3, spca = TRUE, maskCheck = TRUE)
+})[[3]]
+rpc
+
+## Model parameters:
+summary(rpc$model)
+loadings(rpc$model)
+
 setwd("/glade/scratch/kjfuller")
 mask = list.files("./data", pattern = "^mask", recursive = FALSE, full.names = TRUE)
 
@@ -578,11 +593,11 @@ pca = rasterPCA(p, nComp = 20, spca = TRUE, maskCheck = TRUE)
 capture.output(pca, file = "pca_output.txt")
 
 r = pca$map
-writeRaster(r, "PCA.grd", overwrite = TRUE)
+writeRaster(r, "data/PCA.grd", overwrite = TRUE)
+writeRaster(pca$map, "data/PCA.tif", bylayer = TRUE, overwrite = TRUE)
 
-writeRaster(pca$map, "PCA.tif", bylayer = TRUE, overwrite = TRUE)
-
-
+df = as.data.frame(pca$model$loadings[,1:20])
+write.csv(df, "data/PCAloadings.csv", row.names = FALSE)
 
 
 
