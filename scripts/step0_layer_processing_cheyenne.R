@@ -537,6 +537,27 @@ for(i in c(length(env):1)){
   writeRaster(x, paste0("data/mask_", env2[i]))
 }
 
+#-------------- rasterPCA timing test -------------------
+library(RStoolbox)
+library(raster)
+library(sf)
+library(tidyverse)
+
+setwd("/glade/scratch/kjfuller")
+mask = list.files("./data", pattern = "^mask", recursive = FALSE, full.names = TRUE)
+
+m1 = raster(mask[1])
+m2 = raster(mask[20])
+m3 = raster(mask[40])
+m4 = raster(mask[60])
+m5 = raster(mask[80])
+r = raster::stack(m1, m2, m3, m4, m5)
+
+set.seed(225)
+lay5ncomp20_check = system.time({
+  pca = rasterPCA(r, nComp = 20, spca = TRUE, maskCheck = TRUE)
+})[[3]]
+
 #------------- rasterPCA of all layers -------------------
 library(RStoolbox)
 library(raster)
@@ -544,11 +565,11 @@ library(sf)
 library(tidyverse)
 
 setwd("/glade/scratch/kjfuller")
-proj = list.files("./data", pattern = "proj", recursive = FALSE, full.names = TRUE)
+mask = list.files("./data", pattern = "^mask", recursive = FALSE, full.names = TRUE)
 
-p = raster(proj[1])
+p = raster(mask[1])
 for(i in c(2:130)){
-  x = raster(proj[i])
+  x = raster(mask[i])
   p = raster::stack(p, x)
 }
 
