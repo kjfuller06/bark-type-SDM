@@ -554,8 +554,8 @@ m5 = raster(mask[80])
 r = raster::stack(m1, m2, m3, m4, m5)
 
 set.seed(225)
-lay5ncomp20_check = system.time({
-  pca = rasterPCA(r, nComp = 20, spca = TRUE, maskCheck = TRUE)
+lay5ncomp3_check = system.time({
+  pca = rasterPCA(r, nComp = 3, spca = TRUE, maskCheck = TRUE)
 })[[3]]
 
 #------------- rasterPCA of all layers -------------------
