@@ -597,6 +597,7 @@ pca = rasterPCA(p, nComp = 20, spca = TRUE, maskCheck = TRUE)
 
 # save text output of princomp
 capture.output(pca, file = "data/PCA_textoutput.txt")
+capture.output(summary(rpc$model), file = "data/PCA_textoutput2.txt")
 
 # save pc values as grid layers
 r = pca$map
@@ -608,7 +609,7 @@ df = as.data.frame(pca$model$loadings[,1:20])
 write.csv(df, "data/PCAloadings.csv", row.names = FALSE)
 
 # save all model components as csv's
-mod = summary(rpc$model)
+mod = summary(pca$model)
 moddata = data.frame(center = mod$center,
                      scale = mod$scale)
 loadings = as.data.frame(loadings(pca$model)[,1:20])
