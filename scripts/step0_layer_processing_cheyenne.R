@@ -555,8 +555,12 @@ lay3ncomp3_check = system.time({
 rpc
 
 ## Model parameters:
-summary(rpc$model)
-loadings(rpc$model)
+a = summary(rpc$model)
+moddata = data.frame(center = a$center,
+                     scale = a$scale)
+loadings = as.data.frame(loadings(rpc$model)[,1:3])
+loadings = rbind(loadings, a$sdev)
+row.names(loadings)[4] = "sdev"
 
 setwd("/glade/scratch/kjfuller")
 mask = list.files("./data", pattern = "^mask", recursive = FALSE, full.names = TRUE)
@@ -590,20 +594,28 @@ for(i in c(2:130)){
 
 set.seed(225)
 pca = rasterPCA(p, nComp = 20, spca = TRUE, maskCheck = TRUE)
-capture.output(pca, file = "pca_output.txt")
 
+# save text output of princomp
+capture.output(pca, file = "data/PCA_textoutput.txt")
+
+# save pc values as grid layers
 r = pca$map
 writeRaster(r, "data/PCA.grd", overwrite = TRUE)
 writeRaster(pca$map, "data/PCA.tif", bylayer = TRUE, overwrite = TRUE)
 
+# save loadings as csv
 df = as.data.frame(pca$model$loadings[,1:20])
 write.csv(df, "data/PCAloadings.csv", row.names = FALSE)
 
-
-
-
-
-
+# save all model components as csv's
+mod = summary(rpc$model)
+moddata = data.frame(center = mod$center,
+                     scale = mod$scale)
+loadings = as.data.frame(loadings(pca$model)[,1:20])
+loadings = rbind(loadings, mod$sdev)
+row.names(loadings)[131] = "sdev"
+write.csv(moddata, "data/PCA_layer_scaling.csv", row.names = TRUE)
+write.csv(loadings, "data/PCA_loadings_sdev.csv", row.names = TRUE)
 
 
 
