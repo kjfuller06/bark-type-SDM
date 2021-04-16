@@ -579,8 +579,9 @@ lay5ncomp3_check = system.time({
 
 #------------- rasterPCA of all layers -------------------
 n = 20
-layers = 130
-label = paste0("data/PCA_N", n, "L", layers, "_")
+layers = all
+check = "nocheck"
+label = paste0("data/PCA_N", n, "Lall", "s5000", check, "_")
 library(RStoolbox)
 library(raster)
 library(sf)
@@ -590,14 +591,19 @@ setwd("/glade/scratch/kjfuller")
 mask = list.files("./data", pattern = "^mask", recursive = FALSE, full.names = TRUE)
 
 p = raster(mask[1])
-for(i in c(2:layers)){
+for(i in c(2:length(mask))){
   x = raster(mask[i])
   p = raster::stack(p, x)
 }
 
 set.seed(225)
-pca = rasterPCA(p, nComp = n, spca = TRUE, maskCheck = TRUE)
+elapsed = system.time({
+  pca = rasterPCA(p, nComp = n, spca = TRUE, maskCheck = TRUE)
+})
+time = Sys.time()
 
+# save PCA time
+capture.output(time, elapsed, file = paste0(label, "timing.txt"))
 # save text output of princomp
 capture.output(pca, file = paste0(label, "textoutput.txt"))
 capture.output(summary(rpc$model), file = paste0(label, "textoutput2.txt"))
