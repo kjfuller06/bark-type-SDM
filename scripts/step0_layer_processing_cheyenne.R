@@ -668,3 +668,24 @@ t2 = system.time({
   pts2 = as.data.frame(s, xy = TRUE)
 })
 capture.output(t, file = "as.data.frame_time.txt")
+## ^much faster
+
+#--------------------- raster to df on Casper --------------------
+library(raster)
+library(sf)
+library(tidyverse)
+
+setwd("/glade/scratch/kjfuller/data")
+
+mask = list.files("./", pattern = "^mask", recursive = FALSE, full.names = TRUE)
+
+p = raster(mask[1])
+for(i in c(2:length(mask))){
+  x = raster(mask[i])
+  p = raster::stack(p, x)
+}
+
+pts = as.data.frame(p, xy = TRUE)
+pts = drop_na(pts)
+write.csv(pts, "all_values_forPCA.csv", row.names = FALSE)
+write.table(pts, "all_values_forPCA.txt", sep = ",", row.names = FALSE)
