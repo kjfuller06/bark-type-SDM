@@ -713,18 +713,33 @@ for(i in c(1:length(mask))){
 #--------------------- rasterToPoints() to as.data.frame() on Casper ----------------
 library(raster)
 library(sf)
-library(tidyverse)
+library(parallel)
+library(snowfall)
 
 setwd("/glade/scratch/kjfuller/data")
 
 mask = list.files("./", pattern = "^mask", recursive = FALSE, full.names = TRUE)
 
-for(i in c(1:length(mask))){
-  r = raster(mask[i])
+df_fun = function(x){
+  r = raster(mask[x])
   df = as.data.frame(rasterToPoints(r), xy = TRUE)
-  write.csv(df, paste0(i, "_values_forPCA.csv"), row.names = FALSE)
-  write.table(df, paste0(i, "_values_forPCA.txt"), sep = ",", row.names = FALSE)
+  write.csv(df, paste0(x, "_values_forPCA.csv"), row.names = FALSE)
+  write.table(df, paste0(x, "_values_forPCA.txt"), sep = ",", row.names = FALSE)
 }
-# 4:03pm start for one file
 
+sfInit(parallel = TRUE, cpus = 2)
+sfExport("mask", "df_fun")
+sfLibrary(raster)
+sfLibrary(sf)
+
+sfLapply(c(1:130), df_fun)
+
+sfStop()
+
+
+# 4:03 pm start for as.data.frame(rasterToPoints(r), xy = TRUE)
+# 4:13 pm end time
+# 4:14 pm start for as.data.frame(rasterToPoints(r))
+# 4:26 pm end time (or close)
+# 86.8 GB memory used to store 4 raster-derived dataframes
 
