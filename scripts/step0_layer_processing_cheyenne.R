@@ -689,3 +689,27 @@ pts = as.data.frame(p, xy = TRUE)
 pts = drop_na(pts)
 write.csv(pts, "all_values_forPCA.csv", row.names = FALSE)
 write.table(pts, "all_values_forPCA.txt", sep = ",", row.names = FALSE)
+
+## ^ ran out of memory
+
+#--------------------- raster to df one at a time on Casper ----------------
+library(raster)
+library(sf)
+library(tidyverse)
+
+setwd("/glade/scratch/kjfuller/data")
+
+mask = list.files("./", pattern = "^mask", recursive = FALSE, full.names = TRUE)
+
+for(i in c(1:length(mask))){
+  r = raster(mask[i])
+  df = as.data.frame(r, xy = TRUE)
+  df = drop_na(df)
+  write.csv(df, paste0(i, "_values_forPCA.csv"), row.names = FALSE)
+  write.table(df, paste0(i, "_values_forPCA.txt"), sep = ",", row.names = FALSE)
+}
+
+
+
+
+
