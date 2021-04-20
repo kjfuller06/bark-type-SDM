@@ -623,10 +623,48 @@ row.names(loadings)[layers+1] = "sdev"
 write.csv(moddata, paste0(label, "layer_scaling.csv"), row.names = TRUE)
 write.csv(loadings, paste0(label, "loadings_sdev.csv"), row.names = TRUE)
 
+## timed out with no result
 
+#----------------------- test and time rasterToPoints() --------------------
+library(raster)
+library(sf)
+library(tidyverse)
 
+setwd("D:/chapter1/other_data/Original/aridity/et0_mo")
 
+r1 = raster("et0_01.tif")
+r2 = raster("et0_02.tif")
+r3 = raster("et0_03.tif")
+s = raster::stack(r1, r2, r3)
 
+t = system.time({
+  pts = rasterToPoints(s)
+})[[3]]
+## ran out of memory
 
+t2 = system.time({
+  pts2 = as.data.frame(s, xy = TRUE)
+})[[3]]
+## ran out of memory
 
+#------------------- test and time rasterToPoints() on Cheyenne -----------------
+library(raster)
+library(sf)
+library(tidyverse)
 
+setwd("/glade/scratch/kjfuller/data")
+
+r1 = raster("mask_proj_ai.pet_10.tif")
+r2 = raster("mask_proj_ai.pet_11.tif")
+r3 = raster("mask_proj_ai.pet_12.tif")
+s = raster::stack(r1, r2, r3)
+
+t = system.time({
+  pts = rasterToPoints(s)
+})
+capture.output(t, file = "rasterToPoints_time.txt")
+
+t2 = system.time({
+  pts2 = as.data.frame(s, xy = TRUE)
+})
+capture.output(t, file = "as.data.frame_time.txt")
