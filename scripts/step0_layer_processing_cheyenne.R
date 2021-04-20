@@ -708,8 +708,23 @@ for(i in c(1:length(mask))){
   write.csv(df, paste0(i, "_values_forPCA.csv"), row.names = FALSE)
   write.table(df, paste0(i, "_values_forPCA.txt"), sep = ",", row.names = FALSE)
 }
+## generates an empty output
 
+#--------------------- rasterToPoints() to as.data.frame() on Casper ----------------
+library(raster)
+library(sf)
+library(tidyverse)
 
+setwd("/glade/scratch/kjfuller/data")
 
+mask = list.files("./", pattern = "^mask", recursive = FALSE, full.names = TRUE)
+
+for(i in c(1:length(mask))){
+  r = raster(mask[i])
+  df = as.data.frame(rasterToPoints(r), xy = TRUE)
+  write.csv(df, paste0(i, "_values_forPCA.csv"), row.names = FALSE)
+  write.table(df, paste0(i, "_values_forPCA.txt"), sep = ",", row.names = FALSE)
+}
+# 4:03pm start for one file
 
 
