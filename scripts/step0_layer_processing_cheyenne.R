@@ -719,15 +719,16 @@ library(snowfall)
 setwd("/glade/scratch/kjfuller/data")
 
 mask = list.files("./", pattern = "^mask", recursive = FALSE, full.names = TRUE)
+# first script run on mask[c(1:12, 34:46, 66:78, 98:110)]
 
 df_fun = function(x){
   r = raster(mask[x])
+  b = substr(mask[x], 14, nchar(mask[x])-4)
   df = as.data.frame(rasterToPoints(r), xy = TRUE)
-  write.csv(df, paste0(x, "_values_forPCA.csv"), row.names = FALSE)
-  write.table(df, paste0(x, "_values_forPCA.txt"), sep = ",", row.names = FALSE)
+  write.csv(df, paste0(b, "_forPCA.csv"), row.names = FALSE)
 }
 
-sfInit(parallel = TRUE, cpus = 2)
+sfInit(parallel = TRUE, cpus = 8)
 sfExport("mask", "df_fun")
 sfLibrary(raster)
 sfLibrary(sf)
@@ -742,4 +743,21 @@ sfStop()
 # 4:14 pm start for as.data.frame(rasterToPoints(r))
 # 4:26 pm end time (or close)
 # 86.8 GB memory used to store 4 raster-derived dataframes
+
+#--------------------- full_join of extracted data ----------------
+library(tidyverse)
+library(data.table)
+
+setwd("/glade/scratch/kjfuller/data")
+
+forpca = list.files("./", pattern = "forPCA.csv$")
+
+setDTthreads(8)
+pca1 = data.table::fread(forpca[1])
+for(i in c(2:length(forpca))){
+  x = data.table::fread(forpca[i])
+  pca1 = full_join(pca1, x)
+}
+
+data.table::fwrite(pca1, "allvalues_forPCA.csv")
 
