@@ -761,3 +761,52 @@ for(i in c(2:length(forpca))){
 
 data.table::fwrite(pca1, "allvalues_forPCA.csv")
 
+
+#--------------------- re-reproject SRADTot rasters -----------------------
+i = 1
+library(raster)
+library(sf)
+library(rgdal)
+library(gdalUtils)
+
+setwd("/glade/scratch/kjfuller/data")
+veg = raster("fuels_30m.tif")
+layers = list.files("./", "^dem_SRADTot", recursive = FALSE, full.names = FALSE)
+layers = layers[!grepl("forPCA", layers)]
+
+reproj = function(x){
+  gdalwarp(srcfile = paste0(layers[x]), 
+           dstfile = paste0("proj_", layers[x]), 
+           t_srs = paste(crs(veg)), 
+           tr = res(veg), 
+           cl = "veg_extent.shp", 
+           crop_to_cutline = TRUE, 
+           te = c(extent(veg)[1], extent(veg)[3], extent(veg)[2], extent(veg)[4]), 
+           output_Raster = TRUE, 
+           overwrite = TRUE, 
+           verbose = TRUE,
+           multi = TRUE, 
+           co = c("BIGTIFF=YES"), 
+           wo = "NUM_THREADS=ALL_CPUS", 
+           r = 'bilinear')
+}
+
+reproj(i)
+
+#----------------------- mask SRADTot layers ---------------------------
+i = 1
+library(raster)
+
+setwd("/glade/scratch/kjfuller/data")
+veg = raster("for_fuels_30m.tif")
+env = list.files("./", pattern = "^proj_dem_SRADTot", recursive = FALSE, full.names = FALSE)
+
+mask = function(x){
+  r = raster(env[x])
+  r = raster::mask(r, veg)
+  writeRaster(r, paste0("mask_", env[x]), overwrite = TRUE)
+}
+
+mask(i)
+
+
