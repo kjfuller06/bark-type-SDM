@@ -875,7 +875,7 @@ data.table::fwrite(iris3, "PCA1_subsample.csv")
 library(tidyverse)
 library(data.table)
 library(vegan)
-# library(factoextra)
+library(factoextra)
 
 setwd("/glade/scratch/kjfuller/data")
 
@@ -903,50 +903,50 @@ t2 = system.time({
 })
 rm(pca2)
 
-# # figures
-# tiff("PCA1_subsample_fig1.tiff", width = 500, height = 500, res = 100)
-# fviz_eig(mod)
-# dev.off()
-# tiff("PCA1_subsample_fig2.tiff", width = 500, height = 500, res = 100)
-# fviz_pca_var(mod,
-#              col.var = "contrib",
-#              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
-#              repel = TRUE
-# )
-# dev.off()
-# 
-# # stats
-# eigval = get_eigenvalue(mod)
-# write.csv(eigval, "PCA1_axesstats.csv")
-# res.var = get_pca_var(mod)
-# v1 = data.frame(res.var$coord)
-# v2 = data.frame(res.var$cor)
-# v3 = data.frame(res.var$cos2)
-# vars = cbind(v1, v2, v3)
-# nom = c("coords", "contrib", "rep")
-# for(a in c(1:3)){
-#   for(i in c(1:length(names(v1)))){
-#     names(vars)[i+length(names(v1))*(a-1)] = paste0(nom[a], i)
-#   }
-# }
-# write.csv(vars, "PCA1_stats.csv")
-# res.ind = get_pca_ind(mod)
-# i1 = data.frame(res.ind$contrib)
-# i2 = data.frame(res.ind$cos2)
-# inds = cbind(i1, i2)
-# nom = c("contrib", "rep")
-# for(a in c(1:2)){
-#   for(i in c(1:length(names(i1)))){
-#     names(inds)[i+length(names(i1))*(a-1)] = paste0(nom[a], i)
-#   }
-# }
+# figures
+tiff("PCA1_subsample_fig1.tiff", width = 500, height = 500, res = 100)
+fviz_eig(mod)
+dev.off()
+tiff("PCA1_subsample_fig2.tiff", width = 500, height = 500, res = 100)
+fviz_pca_var(mod,
+             col.var = "contrib",
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             repel = TRUE
+)
+dev.off()
+
+# stats
+eigval = get_eigenvalue(mod)
+write.csv(eigval, "PCA1_axesstats.csv")
+res.var = get_pca_var(mod)
+v1 = data.frame(res.var$coord)
+v2 = data.frame(res.var$cor)
+v3 = data.frame(res.var$cos2)
+vars = cbind(v1, v2, v3)
+nom = c("coords", "contrib", "rep")
+for(a in c(1:3)){
+  for(i in c(1:length(names(v1)))){
+    names(vars)[i+length(names(v1))*(a-1)] = paste0(nom[a], i)
+  }
+}
+write.csv(vars, "PCA1_stats.csv")
+res.ind = get_pca_ind(mod)
+i1 = data.frame(res.ind$contrib)
+i2 = data.frame(res.ind$cos2)
+inds = cbind(i1, i2)
+nom = c("contrib", "rep")
+for(a in c(1:2)){
+  for(i in c(1:length(names(i1)))){
+    names(inds)[i+length(names(i1))*(a-1)] = paste0(nom[a], i)
+  }
+}
 
 # store model outputs
 sco = data.frame(scores(mod))
 for(a in c(1:ncol(scores(mod)))){
   pca1 = cbind(pca1, data.frame(sco[a]))
 }
-# pca1 = cbind(pca1, inds)
+pca1 = cbind(pca1, inds)
 rm(sco)
 data.table::fwrite(iris3, "PCA1_subsample.csv")
 
@@ -959,5 +959,81 @@ capture.output(
   file = "stats_forPCA8.txt"
 )
 
-## Functions should work but package "factoextra" does not install on Casper. Submitted service request to fix the issue.
 
+#----------------------- PCA of all data --------------------
+library(tidyverse)
+library(data.table)
+library(vegan)
+library(factoextra)
+
+setwd("/glade/scratch/kjfuller/data")
+
+# select multithread; read in data
+setDTthreads(36)
+t1 = system.time({
+  df = data.table::fread("allvalues_forPCA8_na.omit.csv")
+  df = as.data.frame(df)
+})[[3]]
+
+# run PCA
+set.seed(225)
+t2 = system.time({
+  pca2 = decostand(df[, c(1, 2, 4:ncol(df))], method = "range")
+  mod = prcomp(pca2, scale = T)
+})
+rm(pca2)
+
+# figures
+tiff("PCA1_subsample_fig1.tiff", width = 500, height = 500, res = 100)
+fviz_eig(mod)
+dev.off()
+tiff("PCA1_subsample_fig2.tiff", width = 500, height = 500, res = 100)
+fviz_pca_var(mod,
+             col.var = "contrib",
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             repel = TRUE
+)
+dev.off()
+
+# stats
+eigval = get_eigenvalue(mod)
+write.csv(eigval, "PCA1_eigenstats.csv")
+res.var = get_pca_var(mod)
+v1 = data.frame(res.var$coord)
+v2 = data.frame(res.var$cor)
+v3 = data.frame(res.var$cos2)
+vars = cbind(v1, v2, v3)
+nom = c("coords", "contrib", "rep")
+for(a in c(1:3)){
+  for(i in c(1:length(names(v1)))){
+    names(vars)[i+length(names(v1))*(a-1)] = paste0(nom[a], i)
+  }
+}
+write.csv(vars, "PCA_varstats.csv")
+res.ind = get_pca_ind(mod)
+i1 = data.frame(res.ind$contrib)
+i2 = data.frame(res.ind$cos2)
+inds = cbind(i1, i2)
+nom = c("contrib", "rep")
+for(a in c(1:2)){
+  for(i in c(1:length(names(i1)))){
+    names(inds)[i+length(names(i1))*(a-1)] = paste0(nom[a], i)
+  }
+}
+
+# store model outputs
+sco = data.frame(scores(mod))
+df2 = df[,c(1:3)]
+for(a in c(1:ncol(scores(mod)))){
+  df2 = cbind(df2, data.frame(sco[a]))
+}
+df2 = cbind(df2, inds)
+rm(sco)
+data.table::fwrite(df2, "PCA_values.csv")
+
+# write metadata outputs to file; timing and nrow()
+capture.output(
+  paste0("time to read forPCA8.csv = ", t1),
+  paste0("time to transform and run a PCA on all rows = ", t2),
+  file = "PCA_metastats.txt"
+)
