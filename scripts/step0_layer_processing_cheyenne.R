@@ -841,9 +841,10 @@ res.var = get_pca_var(mod)
 v1 = data.frame(res.var$coord)
 v2 = data.frame(res.var$cor)
 v3 = data.frame(res.var$cos2)
-vars = cbind(v1, v2, v3)
-nom = c("coords", "contrib", "rep")
-for(a in c(1:3)){
+v4 = data.frame(res.var$contrib)
+vars = cbind(v1, v2, v3, v4)
+nom = c("coords", "corr", "cos2", "contrib")
+for(a in c(1:4)){
   for(i in c(1:length(names(v1)))){
     names(vars)[i+length(names(v1))*(a-1)] = paste0(nom[a], i)
   }
@@ -1030,6 +1031,52 @@ for(a in c(1:ncol(scores(mod)))){
 df2 = cbind(df2, inds)
 rm(sco)
 data.table::fwrite(df2, "PCA_values.csv")
+
+# write metadata outputs to file; timing and nrow()
+capture.output(
+  paste0("time to read forPCA8.csv = ", t1),
+  paste0("time to transform and run a PCA on all rows = ", t2),
+  file = "PCA_metastats.txt"
+)
+
+
+#-----------------------PCA redo2 ---------------------------
+library(tidyverse)
+library(data.table)
+library(vegan)
+library(factoextra)
+
+setwd("/glade/scratch/kjfuller/data")
+
+# select multithread; read in data
+setDTthreads(18)
+t1 = system.time({
+  df = data.table::fread("allvalues_forPCA8_na.omit.csv")
+  df = as.data.frame(df)
+})[[3]]
+
+# run PCA
+set.seed(225)
+t2 = system.time({
+  pca2 = decostand(df[, c(1, 2, 4:ncol(df))], method = "range")
+  mod = prcomp(pca2, scale = T)
+})
+rm(pca2)
+
+# stats
+res.var = get_pca_var(mod)
+v1 = data.frame(res.var$coord)
+v2 = data.frame(res.var$cor)
+v3 = data.frame(res.var$cos2)
+v4 = data.frame(res.var$contrib)
+vars = cbind(v1, v2, v3, v4)
+nom = c("coords", "corr", "cos2", "contrib")
+for(a in c(1:4)){
+  for(i in c(1:length(names(v1)))){
+    names(vars)[i+length(names(v1))*(a-1)] = paste0(nom[a], i)
+  }
+}
+write.csv(vars, "PCA_varstats.csv")
 
 # write metadata outputs to file; timing and nrow()
 capture.output(
