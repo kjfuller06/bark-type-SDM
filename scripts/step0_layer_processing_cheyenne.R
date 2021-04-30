@@ -1084,3 +1084,45 @@ capture.output(
   paste0("time to transform and run a PCA on all rows = ", t2),
   file = "PCA_metastats.txt"
 )
+
+#-------------------- extract PCA values for site data -------------------------
+library(tidyverse)
+library(data.table)
+
+setwd("/glade/scratch/kjfuller/data")
+
+# assign number of cores and read in data
+setDTthreads(18)
+t1 = system.time({
+  df = data.table::fread("PCA_values1-14.csv", select = c(1:17))
+  n1 = nrow(df)
+})[[3]]
+
+t2 = system.time({
+  df2 = data.table::fread("alltraits_site-specific.csv", select = c(1:2, 5:8, 10:11))
+  names(df2)[c(7:8)] = c("x", "y")
+  n2 = nrow(df2)
+})[[3]]
+
+# write metadata outputs to file
+capture.output(
+  paste0("time to read 14 columns of PCA_values1-14 = ", t1),
+  paste0("nrow() of PCA_values1-14 = ", n1),
+  paste0("time to read 8 columns of site traits = ", t2),
+  paste0("nrow() of site traits df = ", n2),
+  file = "PCA_extract_metastats.txt"
+)
+
+t3 = system.time({
+  traits_pca = left_join(df2, df)
+  n3 = nrow(traits_pca)
+  data.table::fwrite(traits_pca, "alltraits_site-specific_PCAs.csv")
+})[[3]]
+
+# write additional metadata outputs to file
+capture.output(
+  paste0("time to join dfs and write to file = ", t3),
+  paste0("nrow() of joined df = ", n3),
+  file = "PCA_extract_metastats.txt",
+  append = TRUE
+)
