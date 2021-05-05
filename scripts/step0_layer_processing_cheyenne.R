@@ -1126,3 +1126,43 @@ capture.output(
   file = "PCA_extract_metastats.txt",
   append = TRUE
 )
+
+## failed, coordinates do not match because coords for extracted raster falues are at cell centers
+
+#----------------------- PCA_redo3 -----------------
+library(tidyverse)
+library(data.table)
+library(vegan)
+library(factoextra)
+
+setwd("/glade/scratch/kjfuller/data")
+
+# select multithread; read in data
+setDTthreads(18)
+t1 = system.time({
+  df = data.table::fread("allvalues_forPCA8_na.omit.csv")
+  df = as.data.frame(df)
+})[[3]]
+
+# run PCA
+set.seed(225)
+t2 = system.time({
+  pca2 = decostand(df[, c(1, 2, 4:ncol(df))], method = "range")
+  mod = prcomp(pca2, scale = T)
+})
+rm(pca2)
+
+# stats
+v1 = data.frame(mod$center)
+v2 = data.frame(mod$scale)
+v3 = data.frame(mod$rotation)
+vars = cbind(v1, v2, v3)
+write.csv(vars, "PCA_predict.csv")
+
+# capture output in case of issues
+capture.output(
+  mod$center,
+  mod$scale,
+  mod$rotation,
+  file = "PCA_redo3.txt"
+)
