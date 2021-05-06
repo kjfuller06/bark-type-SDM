@@ -1166,3 +1166,37 @@ capture.output(
   mod$rotation,
   file = "PCA_redo3.txt"
 )
+
+#----------------------- extract variable values at site locations ---------------------
+library(raster)
+library(snow)
+library(parallel)
+library(sf)
+library(tidyverse)
+library(data.table)
+
+setwd("/glade/scratch/kjfuller/data")
+
+beginCluster(n = 36, type = "SOCK")
+# load datasets
+veg = raster("for_fuels_30m.tif")
+records = st_read("sitetraits.shp")
+mask = list.files("./vars", pattern = "^mask", recursive = FALSE, full.names = FALSE)
+m = raster(mask[1])
+for(i in c(2:length(mask))){
+  x = raster(mask[i])
+  m = raster::stack(m, x)
+}
+
+# extract values and cbind to records sf
+records = cbind(records, 
+                raster::extract(m, st_coordinates(records), methods = 'simple'))
+endCluster()
+
+# convert to df and write to disk
+records$lon = st_coordinates(records)[,1]
+records$lat = st_coordinates(records)[,2]
+st_geometry(records) = NULL
+data.table::fwrite(records, "allsites_30m.csv")
+
+
