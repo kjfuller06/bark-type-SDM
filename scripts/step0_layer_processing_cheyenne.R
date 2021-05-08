@@ -871,6 +871,126 @@ iris3 = cbind(iris3, inds)
 rm(sco, PC1, PC2)
 data.table::fwrite(iris3, "PCA1_subsample.csv")
 
+set.seed(225)
+# try prediction
+records = iris[,c(1:4)]
+scaled = scale(records,
+               center = mod$center,
+               scale = mod$scale)
+coord_fun = function(ind, loadings){
+  r = loadings*ind
+  apply(r, 2, sum)
+}
+pca.loadings = mod$rotation
+scaled.coord = t(apply(scaled, 1, coord_fun, pca.loadings))
+## ^this doesn't appear to work at all
+
+# try the predict() function
+records = iris[,c(1:4)]
+ind.sup = predict(mod, newdata = records)
+## ^same issue
+
+# try with example data from tutorial
+library("factoextra")
+data(decathlon2)
+decathlon2.active <- decathlon2[1:23, 1:10]
+head(decathlon2.active[, 1:6])
+
+res.pca <- prcomp(decathlon2.active, scale = TRUE)
+
+fviz_eig(res.pca)
+
+fviz_pca_ind(res.pca,
+             col.ind = "cos2", # Color by the quality of representation
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             repel = TRUE     # Avoid text overlapping
+)
+
+fviz_pca_var(res.pca,
+             col.var = "contrib", # Color by contributions to the PC
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             repel = TRUE     # Avoid text overlapping
+)
+
+fviz_pca_biplot(res.pca, repel = TRUE,
+                col.var = "#2E9FDF", # Variables color
+                col.ind = "#696969"  # Individuals color
+)
+
+eig.val <- get_eigenvalue(res.pca)
+res.var <- get_pca_var(res.pca)
+res.ind <- get_pca_ind(res.pca)
+
+ind.sup <- decathlon2[24:27, 1:10]
+ind.sup[, 1:6]
+ind.sup.coord <- predict(res.pca, newdata = decathlon2.active)
+ind.sup.coord[, 1:4]
+p <- fviz_pca_ind(res.pca, repel = TRUE)
+# Add supplementary individuals
+fviz_add(p, ind.sup.coord, color ="blue")
+## ^this works
+
+# try again
+set.seed(225)
+res.pca <- prcomp(records, scale = TRUE)
+
+fviz_eig(res.pca)
+
+fviz_pca_ind(res.pca,
+             col.ind = "cos2", # Color by the quality of representation
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             repel = TRUE     # Avoid text overlapping
+)
+
+fviz_pca_var(res.pca,
+             col.var = "contrib", # Color by contributions to the PC
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             repel = TRUE     # Avoid text overlapping
+)
+
+fviz_pca_biplot(res.pca, repel = TRUE,
+                col.var = "#2E9FDF", # Variables color
+                col.ind = "#696969"  # Individuals color
+)
+
+eig.val <- get_eigenvalue(res.pca)
+res.var <- get_pca_var(res.pca)
+res.ind <- get_pca_ind(res.pca)
+ind.sup.coord <- predict(res.pca, newdata = records)
+p <- fviz_pca_ind(res.pca, repel = TRUE)
+# Add supplementary individuals
+fviz_add(p, ind.sup.coord, color ="blue")
+## ^this works. Issue is with the earlier application of decostand()
+
+# decostand transformation code
+records = iris[,c(1:4)]
+tmp <- apply(records, 2, min)
+ran <- apply(records, 2, max)
+ran <- ran - tmp
+if (any(records < 0)) {
+  k <- min(records)
+  if (method %in% c("total", "frequency", "pa", "chi.square", "rank",
+                    "rrank")) {
+    warning("input data contains negative entries: result may be non-sense\n")
+  }
+} else {k <- .Machine$double.eps}
+k = .Machine$double.eps
+ran <- pmax(k, ran)
+records <- sweep(records, 2, tmp, "-")
+records <- sweep(records, 2, ran, "/")
+set.seed(225)
+# try prediction
+scaled = scale(records,
+               center = mod$center,
+               scale = mod$scale)
+coord_fun = function(ind, loadings){
+  r = loadings*ind
+  apply(r, 2, sum)
+}
+pca.loadings = mod$rotation
+scaled.coord = t(apply(scaled, 1, coord_fun, pca.loadings))
+head(scaled.coord)
+head(mod$x)
 
 #----------------------- PCA of subsample --------------------
 library(tidyverse)
@@ -1198,5 +1318,60 @@ records$lon = st_coordinates(records)[,1]
 records$lat = st_coordinates(records)[,2]
 st_geometry(records) = NULL
 data.table::fwrite(records, "allsites_30m.csv")
+
+
+
+#---------------------- convert vars to PCA -------------------------
+library(raster)
+library(snow)
+library(parallel)
+library(sf)
+library(tidyverse)
+library(data.table)
+
+setwd("/glade/scratch/kjfuller/data")
+
+records = read.csv("allsites_30m.csv")
+records = na.omit(records)
+all = data.table::fread("allvalues_forPCA8_na.omit.csv")
+tmp = apply(all, 2, min)
+ran = apply(all, 2, max)
+ran = ran - tmp
+k = min(all)
+rec2 = all[c(1:100),]
+rm(all)
+ran = pmax(k, ran)
+records = sweep(records, 2, tmp, "-")
+records = sweep(records, 2, ran, "/")
+
+mod = read.csv("PCA_predict.csv")
+
+scaled = scale(records,
+               center = mod$center,
+               scale = mod$scale)
+
+coord_fun = function(ind, loadings){
+  r = loadings*ind
+  apply(r, 2, sum)
+}
+
+pca.loadings = mod$rotation
+scaled.coord = t(apply(scaled, 1, coord_fun, pca.loadings))
+data.table::fwrite(scaled.coord, file = "allsites_PCA_30m.csv")
+
+rec2 = sweep(rec2, 2, tmp, "-")
+rec2 = sweep(rec2, 2, ran, "/")
+scaled = scale(rec2,
+               center = mod$center,
+               scale = mod$scale)
+
+coord_fun = function(ind, loadings){
+  r = loadings*ind
+  apply(r, 2, sum)
+}
+
+pca.loadings = mod$rotation
+scaled.coord = t(apply(scaled, 1, coord_fun, pca.loadings))
+data.table::fwrite(scaled.coord, file = "predict_test.csv")
 
 
