@@ -1331,47 +1331,81 @@ library(data.table)
 
 setwd("/glade/scratch/kjfuller/data")
 
+# read in data
 records = read.csv("allsites_30m.csv")
+# save file for non-numeric values
 records = na.omit(records)
+write.csv(records, "allsites_30m_na.omit.csv", row.names = FALSE)
+# remove non-numeric columns
+records = records[,c(7:ncol(records))]
 all = data.table::fread("allvalues_forPCA8_na.omit.csv")
+# remove fuels data
+all = as.data.frame(all[,c(1, 2, 4:ncol(all))])
+# calculate scaling filters
 tmp = apply(all, 2, min)
 ran = apply(all, 2, max)
 ran = ran - tmp
 k = min(all)
+# subsample original data for PCA conversion test
 rec2 = all[c(1:100),]
 rm(all)
 ran = pmax(k, ran)
+# scale data according to decostand function
 records = sweep(records, 2, tmp, "-")
 records = sweep(records, 2, ran, "/")
 
+# load PCA conversion values
 mod = read.csv("PCA_predict.csv")
 
-scaled = scale(records,
-               center = mod$center,
-               scale = mod$scale)
+# save stats
+capture.output(
+  paste0("number of rows of input df = ", nrow(records)),
+  file = "PCA_predict_monitoring.txt"
+)
 
+# scale data according to PCA scale
+scaled = scale(records,
+               center = mod$mod.center,
+               scale = mod$mod.scale)
+
+# save stats
+capture.output(
+  paste0("number of rows of input df after scaling = ", nrow(scaled)),
+  file = "PCA_predict_monitoring.txt",
+  append = TRUE
+)
+
+# convert to PCA values and save
 coord_fun = function(ind, loadings){
   r = loadings*ind
   apply(r, 2, sum)
 }
-
-pca.loadings = mod$rotation
+pca.loadings = mod[,c(4:ncol(mod))]
 scaled.coord = t(apply(scaled, 1, coord_fun, pca.loadings))
 data.table::fwrite(scaled.coord, file = "allsites_PCA_30m.csv")
 
+# save stats
+capture.output(
+  paste0("number of rows of output df = ", nrow(scaled.coord)),
+  file = "PCA_predict_monitoring.txt",
+  append = TRUE
+)
+
+# run same procedure for test data
 rec2 = sweep(rec2, 2, tmp, "-")
 rec2 = sweep(rec2, 2, ran, "/")
 scaled = scale(rec2,
-               center = mod$center,
-               scale = mod$scale)
-
+               center = mod$mod.center,
+               scale = mod$mod.scale)
 coord_fun = function(ind, loadings){
   r = loadings*ind
   apply(r, 2, sum)
 }
-
-pca.loadings = mod$rotation
+pca.loadings = mod[,c(4:ncol(mod))]
 scaled.coord = t(apply(scaled, 1, coord_fun, pca.loadings))
 data.table::fwrite(scaled.coord, file = "predict_test.csv")
+rm(list = ls())
 
-
+# load original PCA values for test comparison
+test = data.table::fread("PCA_values.csv", n = 100)
+data.table::fwrite(test, file = "predict_sample.csv")
