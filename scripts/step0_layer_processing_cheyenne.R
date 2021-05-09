@@ -1337,10 +1337,10 @@ records = read.csv("allsites_30m.csv")
 records = na.omit(records)
 write.csv(records, "allsites_30m_na.omit.csv", row.names = FALSE)
 # remove non-numeric columns
-records = records[,c(7:ncol(records))]
+records = as.matrix(records[,c(7:ncol(records))])
 all = data.table::fread("allvalues_forPCA8_na.omit.csv")
 # remove fuels data
-all = as.data.frame(all[,c(1, 2, 4:ncol(all))])
+all = as.matrix(all[,c(1, 2, 4:ncol(all))])
 # calculate scaling filters
 tmp = apply(all, 2, min)
 ran = apply(all, 2, max)
