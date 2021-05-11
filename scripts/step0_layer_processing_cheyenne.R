@@ -1319,13 +1319,7 @@ records$lat = st_coordinates(records)[,2]
 st_geometry(records) = NULL
 data.table::fwrite(records, "allsites_30m.csv")
 
-
-
 #---------------------- convert vars to PCA -------------------------
-library(raster)
-library(snow)
-library(parallel)
-library(sf)
 library(tidyverse)
 library(data.table)
 
@@ -1335,12 +1329,14 @@ setwd("/glade/scratch/kjfuller/data")
 records = read.csv("allsites_30m.csv")
 # save file for non-numeric values
 records = na.omit(records)
+names(records)[137:138] = c("x", "y")
 write.csv(records, "allsites_30m_na.omit.csv", row.names = FALSE)
 # remove non-numeric columns
-records = as.matrix(records[,c(7:ncol(records))])
+records = as.matrix(records[,c(137, 138, 7:136)])
 all = data.table::fread("allvalues_forPCA8_na.omit.csv")
 # remove fuels data
-all = as.matrix(all[,c(1, 2, 4:ncol(all))])
+all = as.data.frame(all[,c(1, 2, 4:133)])
+all = as.matrix(all)
 # calculate scaling filters
 tmp = apply(all, 2, min)
 ran = apply(all, 2, max)
@@ -1407,5 +1403,224 @@ data.table::fwrite(scaled.coord, file = "predict_test.csv")
 rm(list = ls())
 
 # load original PCA values for test comparison
-test = data.table::fread("PCA_values.csv", n = 100)
+test = data.table::fread("PCA_values.csv", nrow = 100)
 data.table::fwrite(test, file = "predict_sample.csv")
+
+#--------------------- PCA redo4_redo ------------------------
+#----------------------- PCA_redo3 -----------------
+library(tidyverse)
+library(data.table)
+library(vegan)
+library(factoextra)
+
+setwd("/glade/scratch/kjfuller/data")
+
+# assign number of cores and read in data
+setDTthreads(36)
+t1 = system.time({
+  df = data.table::fread("allvalues_forPCA8_na.omit.csv")
+  df = as.data.frame(df[,c(1, 2, 4:57, 124:132, 58:96, 133, 97:123)])
+  df2 = data.table::fread("allsites_30m_na.omit.csv")
+  df2 = as.data.frame(df2[,c(137, 138, 7:136)])
+  df = rbind(df, df2)
+  df$ID = c(1:nrow(df))
+})[[3]]
+
+# run PCA
+set.seed(225)
+t2 = system.time({
+  pca2 = decostand(df[,c(1:(ncol(df)-1))], method = "range")
+  mod = prcomp(pca2, scale = T)
+})[[3]]
+rm(pca2)
+
+## variable stats
+eigval = get_eigenvalue(mod)
+write.csv(eigval, "PCA4_eigenstats.csv")
+res.var = get_pca_var(mod)
+v1 = data.frame(res.var$coord)
+v2 = data.frame(res.var$cor)
+v3 = data.frame(res.var$cos2)
+v4 = data.frame(res.var$contrib)
+vars = cbind(v1, v2, v3, v4)
+nom = c("coords", "corr", "cos2", "contrib")
+for(a in c(1:4)){
+  for(i in c(1:length(names(v1)))){
+    names(vars)[i+length(names(v1))*(a-1)] = paste0(nom[a], i)
+  }
+}
+write.csv(vars, "PCA4_varstats.csv")
+
+# prediction stats
+v1 = data.frame(mod$center)
+v2 = data.frame(mod$scale)
+v3 = data.frame(mod$rotation)
+vars = cbind(v1, v2, v3)
+write.csv(vars, "PCA4_predict.csv")
+rm(v1, v2, v3, v4, vars)
+
+# sites
+res.ind = get_pca_ind(mod)
+i1 = data.frame(res.ind$contrib)
+i2 = data.frame(res.ind$cos2)
+ind = cbind(i1, i2)
+nom = c("contrib", "rep")
+for(a in c(1:2)){
+  for(i in c(1:length(names(i1)))){
+    names(ind)[i+length(names(i1))*(a-1)] = paste0(nom[a], i)
+  }
+}
+df2 = data.frame(ID = df[,c(1, 2, col(df))])
+ind = cbind(df2, ind)
+data.table::fwrite(ind, "PCA4_indstats.csv")
+rm(ind)
+
+# score model outputs
+sco = data.frame(scores(mod))
+for(a in c(1:ncol(scores(mod)))){
+  df2 = cbind(df2, data.frame(sco[a]))
+}
+rm(sco)
+data.table::fwrite(df2, "PCA4_values.csv")
+
+capture.output(
+  paste0("time to read and bind dfs = ", t1),
+  paste0("time to run PCA on values and sites = ", t2),
+  paste0("output rows = ", nrow(df2)),
+  file = "PCA4_monitoring.txt"
+)
+
+
+#---------------------- testing rasterToPoints() and back ----------------------
+library(raster)
+library(sf)
+library(tidyverse)
+library(tmap)
+
+r_precip <- raster("data/ASCIIgrid.txt")
+crs(r_precip) <- '+init=EPSG:4326' # WGS84
+r_precip 
+aus = getData("GADM", country = "AUS", level = 1)
+precip = mask(r_precip, aus)
+res(precip)
+precip = aggregate(precip, fact = 10)
+df = as.data.frame(rasterToPoints(precip), xy = TRUE)
+df = df %>% 
+  st_as_sf(coords = c("x", "y"), crs = st_crs(precip))
+
+tm_shape(df)+tm_dots()
+
+values(precip) = NA
+df = rasterize(df, precip, field = names(df)[1], fun = mean)
+tm_shape(df)+tm_raster()
+## ^ this works just fine
+
+
+
+#------------------- testing raster tiling method ---------------
+library(raster)
+library(sf)
+library(tidyverse)
+library(devtools)
+# install_github("https://github.com/cran/GSIF")
+library(GSIF)
+library(rgdal)
+library(gdalUtils)
+
+# load files
+veg = raster("data/fuels_30m.tif")
+
+# create test data
+r_precip <- raster("data/ASCIIgrid.txt")
+crs(r_precip) <- '+init=EPSG:4326' # WGS84
+r_precip = projectRaster(r_precip, crs = crs(veg))
+aus = getData("GADM", country = "AUS", level = 1) %>% 
+  st_as_sf() %>% 
+  st_transform(crs = st_crs(veg))
+precip = mask(r_precip, aus)
+res(precip)
+precip = aggregate(precip, fact = 10)
+writeRaster(precip, "data/testtif.tif", overwrite = TRUE)
+
+fn = raster("data/testtif.tif")
+obj = rgdal::GDALinfo("data/testtif.tif")
+## block.x seems to be based on the crs; number is the squared size of each tile in coordinates units
+tiles.pol = GSIF::getSpatialTiles(obj, block.x = 750000, return.SpatialPolygons = TRUE)
+n = length(tiles.pol)
+tiles = GSIF::getSpatialTiles(obj, block.x = 750000, return.SpatialPolygons = FALSE)
+tile.pol = SpatialPolygonsDataFrame(tiles.pol, tiles)
+plot(fn)
+lines(tile.pol)
+
+tilefun = function(x){
+  r = raster::crop(precip, tiles.pol[x])
+  tryCatch({
+    r = as(r, "SpatialPixelsDataFrame")
+    writeGDAL(r, paste0("test", x, ".tif"), drivername = "GTIFF", type = "Float32")
+  }, error = function(e){cat("ERROR :", conditionMessage(e), "\n")})
+}
+
+lapply(c(1:n), tilefun)
+
+df = data.table::fread("data/alltraits_site-specific.csv", select = c(1:2, 5:8, 10:11))
+names(df)[c(7:8)] = c("x", "y")
+df = st_as_sf(df, coords = c("x", "y"), crs = st_crs(veg))
+df = df[c(1:1000),]
+rastfun = function(x){
+  tryCatch({
+    r = raster(paste0("test", x, ".tif"))
+    df = rasterize(df, r, field = 1, fun = mean)
+    df = as(df, "SpatialPixelsDataFrame")
+    writeGDAL(df, paste0("PC", x, ".tif"), drivername = "GTIFF", type = "Float32")
+  }, error = function(e){cat("ERROR :", conditionMessage(e), "\n")})
+}
+
+lapply(c(1:n), rastfun)
+
+r = raster("PC13.tif")
+r2 = raster("PC20.tif")
+r3 = raster("PC21.tif")
+r4 = raster("PC28.tif")
+r = raster::mosaic(r, r2, r3, r4, fun = mean)
+plot(r)
+
+#---------- tile PCA data -------------
+library(raster)
+library(sf)
+library(tidyverse)
+library(devtools)
+# install_github("https://github.com/cran/GSIF")
+library(GSIF)
+library(rgdal)
+library(gdalUtils)
+
+# load files
+veg = raster("fuels_30m.tif")
+values(veg) = NA
+nsw = st_read("NSW_sans_islands.shp") %>% 
+  st_transform(crs = st_crs(veg))
+df = data.table::fread("PCA_values1-14.csv", select = c(1:2, 4))
+df = st_as_sf(df, coords = c("x", "y"), crs = st_crs(veg))
+
+obj = rgdal::GDALinfo("fuels_30m.tif")
+## block.x seems to be based on the crs; number is the squared size of each tile in coordinates units
+tiles.pol = GSIF::getSpatialTiles(obj, block.x = 150000, return.SpatialPolygons = TRUE)
+n = length(tiles.pol)
+tiles = GSIF::getSpatialTiles(obj, block.x = 150000, return.SpatialPolygons = FALSE)
+tile.pol = SpatialPolygonsDataFrame(tiles.pol, tiles)
+
+df2 = data.table::fread("alltraits_site-specific.csv", select = c(1:2, 5:8, 10:11))
+names(df2)[c(7:8)] = c("x", "y")
+df2 = st_as_sf(df2, coords = c("x", "y"), crs = st_crs(veg))
+# df = df[c(1:1000),]
+rastfun = function(x){
+  tryCatch({
+    r = raster(tile.pol[x,], res = res(veg), crs = crs(veg))
+    df3 = rasterize(df, r, field = names(df)[1], fun = mean)
+    writeRaster(df3, paste0("PC01_", x, ".tif"))
+  }, error = function(e){cat("ERROR :", conditionMessage(e), "\n")})
+}
+
+lapply(c(1:n), rastfun)
+
+
