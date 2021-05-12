@@ -1624,3 +1624,107 @@ rastfun = function(x){
 lapply(c(1:n), rastfun)
 
 
+
+#-------------------- PC values for RFs -------------------
+library(data.table)
+library(tidyverse)
+library(sf)
+library(raster)
+
+setwd("/glade/scratch/kjfuller/data")
+
+PC = data.table::fread("PCA4_values1.csv", select = c(1:17))
+nrow(PC)
+## 167235707
+data.table::fwrite(PC, "PCA4_values1-14.csv")
+PC = PC[c(167211707:167235707),]
+sites = read.csv("alltraits_site-specific.csv")
+nrow(sites)
+## 33376
+nrow(na.omit(sites))
+## 12659
+sites = sites[, c(1:2, 5:8, 10:11)]
+names(sites)[7:8] = c("x", "y")
+names(PC)[1:2] = c("x", "y")
+sites = left_join(sites, PC)
+nrow(sites)
+## 173,298
+sites = unique(sites)
+nrow(sites)
+## 91,113
+length(unique(sites$x, sites$y))
+## 9,462
+sites = sites %>% 
+  dplyr::select(-ID.ID)
+sites = unique(sites)
+nrow(sites)
+## 20,630
+sites = sites[complete.cases(sites$PC1)]
+nrow(sites)
+## 14,210
+length(unique(sites$x, sites$y))
+## 5949
+ssf = st_read("sitetraits.shp")
+nrow(ssf)
+## 33,376
+ssf = unique(ssf)
+nrow(ssf)
+## 20,630
+length(unique(ssf$geometry))
+## 9,462
+
+nrow(sites)
+## 14,210
+names(sites) = c("id", "date", "spp", "b1", "b2", "ribbons", "x", "y", "pc01":"pc14")
+any(is.na(sites))
+## FALSE
+
+data.table::fwrite(sites, "PCA4_sitesforRF.csv")
+
+length(unique(sites$spp))
+## 178
+spp = sites %>% 
+  group_by(spp) %>% 
+  tally() %>% 
+  as.data.frame()
+nrow(spp[spp$n > 5,])
+## 133
+nrow(spp[spp$n > 10,])
+## 112
+nrow(spp[spp$n > 15,])
+## 106
+nrow(spp[spp$n > 25,])
+## 90
+nrow(spp[spp$n > 100,])
+## 45
+data.table::fwrite(spp, "species_summary_forRF.csv")
+
+length(unique(sites$b1))
+## 10
+b1 = sites %>% 
+  group_by(b1) %>% 
+  tally() %>% 
+  as.data.frame()
+data.table::fwrite(b1, "bark1_summary_forRF.csv")
+
+length(unique(sites$b2))
+## 6
+b2 = sites %>% 
+  group_by(b2) %>% 
+  tally() %>% 
+  as.data.frame()
+data.table::fwrite(b2, "bark2_summary_forRF.csv")
+
+veg = raster("fuels_30m.tif")
+nsw = st_read("NSW_sans_islands.shp") %>% 
+  st_transform(crs = st_crs(veg))
+sites = sites %>% 
+  st_as_sf(coords = c("x", "y"), crs = st_crs(veg))
+
+tiff("spp_distribution_forRF.tiff", width = 500, height = 500, res = 100, units = "px")
+plot(st_geometry(nsw))
+plot(st_geometry(sites), add = TRUE)
+dev.off()
+
+st_write(sites, "sitetraits_forRF.shp")
+
