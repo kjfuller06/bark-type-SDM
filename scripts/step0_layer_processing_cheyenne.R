@@ -1604,10 +1604,15 @@ df = st_as_sf(df, coords = c("x", "y"), crs = st_crs(veg))
 
 obj = rgdal::GDALinfo("fuels_30m.tif")
 ## block.x seems to be based on the crs; number is the squared size of each tile in coordinates units
-tiles.pol = GSIF::getSpatialTiles(obj, block.x = 150000, return.SpatialPolygons = TRUE)
-n = length(tiles.pol)
-tiles = GSIF::getSpatialTiles(obj, block.x = 150000, return.SpatialPolygons = FALSE)
-tile.pol = SpatialPolygonsDataFrame(tiles.pol, tiles)
+t.spatial = GSIF::getSpatialTiles(obj, block.x = 150000, return.SpatialPolygons = TRUE)
+t.non = GSIF::getSpatialTiles(obj, block.x = 150000, return.SpatialPolygons = FALSE)
+tiles = SpatialPolygonsDataFrame(t.spatial, t.non)
+tiles$id = c(1:nrow(tiles))
+t.sf = st_as_sf(tiles)
+t.sf = t.sf[nsw,]
+tiles = tiles[tiles$id %in% t.sf$id,]
+n = nrow(tiles)
+rm(t.spatial, t.non, t.sf)
 
 df2 = data.table::fread("alltraits_site-specific.csv", select = c(1:2, 5:8, 10:11))
 names(df2)[c(7:8)] = c("x", "y")
@@ -1615,8 +1620,8 @@ df2 = st_as_sf(df2, coords = c("x", "y"), crs = st_crs(veg))
 # df = df[c(1:1000),]
 rastfun = function(x){
   tryCatch({
-    r = raster(tile.pol[x,], res = res(veg), crs = crs(veg))
-    df3 = rasterize(df, r, field = names(df)[1], fun = mean)
+    r = raster(tiles[x,], res = res(veg), crs = crs(veg))
+    df3 = rasterize(df, r, field = names(df)[1], fun = mean, update = TRUE)
     writeRaster(df3, paste0("PC01_", x, ".tif"))
   }, error = function(e){cat("ERROR :", conditionMessage(e), "\n")})
 }
@@ -1727,4 +1732,30 @@ plot(st_geometry(sites), add = TRUE)
 dev.off()
 
 st_write(sites, "sitetraits_forRF.shp")
+
+#------------------ generate P-As for RFs ---------------------
+library(tidyverse)
+
+setwd("/glade/scratch/kjfuller/data")
+
+sites = read.csv("PCA4_sitesforRF.csv")
+unique(sites$b1)
+## smooth, 
+## smooth with stocking, 
+## halfbark, 
+## ironbark, 
+## stringybark, 
+## subfibrous - rough, 
+## subfibrous - stringy, 
+## subfibrous - tessellated, 
+## subfibrous - peppermint, 
+## subfibrous - box
+
+i = "smooth"
+a = sites[sites$b1 == i,]
+a[i] = 1
+a = a %>% 
+  dplyr::select(x, y, paste(i))
+sites = left_join(sites, a)
+sites[i][is.na(sites[i])] = 0
 
