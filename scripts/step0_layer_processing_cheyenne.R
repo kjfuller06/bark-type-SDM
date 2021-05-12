@@ -1628,8 +1628,6 @@ rastfun = function(x){
 
 lapply(c(1:n), rastfun)
 
-
-
 #-------------------- PC values for RFs -------------------
 library(data.table)
 library(tidyverse)
@@ -1732,6 +1730,33 @@ plot(st_geometry(sites), add = TRUE)
 dev.off()
 
 st_write(sites, "sitetraits_forRF.shp")
+
+#----------------- selecting absence plots for RF -------------
+library(sf)
+library(raster)
+library(tidyverse)
+library(data.table)
+
+veg = raster("data/for_fuels_30m.tif")
+records = data.table::fread("data/BioNet_allfloralsurvey_cleaned2.csv")
+records = records %>% 
+  st_as_sf(coords = c("Longitude_GDA94", "Latitude_GDA94"), crs = 4326) %>% 
+  st_transform(crs = st_crs(veg))
+records = cbind(records, check = raster::extract(veg, st_coordinates(records), method = 'simple'))
+nrow(records)
+## 457,486
+records = na.omit(records)
+nrow(records)
+## 263399
+records = records %>% 
+  dplyr::select(geometry)
+records$lon = st_coordinates(records)[,1]
+records$lat = st_coordinates(records)[,2]
+st_geometry(records) = NULL
+records = unique(records)
+nrow(records)
+## 8053
+data.table::fwrite(records, "data/survey_locations_forRF.csv")
 
 #------------------ generate P-As for RFs ---------------------
 library(tidyverse)
