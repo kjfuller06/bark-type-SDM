@@ -1406,90 +1406,183 @@ rm(list = ls())
 test = data.table::fread("PCA_values.csv", nrow = 100)
 data.table::fwrite(test, file = "predict_sample.csv")
 
-#--------------------- PCA redo4_redo ------------------------
-#----------------------- PCA_redo3 -----------------
-library(tidyverse)
-library(data.table)
-library(vegan)
-library(factoextra)
-
-setwd("/glade/scratch/kjfuller/data")
-
-# assign number of cores and read in data
-setDTthreads(36)
-t1 = system.time({
-  df = data.table::fread("allvalues_forPCA8_na.omit.csv")
-  df = as.data.frame(df[,c(1, 2, 4:57, 124:132, 58:96, 133, 97:123)])
-  df2 = data.table::fread("allsites_30m_na.omit.csv")
-  df2 = as.data.frame(df2[,c(137, 138, 7:136)])
-  df = rbind(df, df2)
-  df$ID = c(1:nrow(df))
+#--------------------- PCA final ------------------------
+start = Sys.time()
+t0 = system.time({
+  library(tidyverse)
+  library(data.table)
+  library(vegan)
+  library(factoextra)
+  
+  setwd("/glade/scratch/kjfuller/data")
+  
+  # assign number of cores and read in data
+  setDTthreads(36)
+  input = data.table::fread("allvalues_forPCA_na.omit.csv")
+  input$ID = c(1:nrow(input))
+  xyd = input[,c(1, 2, ncol(input))]
 })[[3]]
+
+# input stats
+x1 = min(input$x)
+x2 = max(input$x)
+y1 = min(input$y)
+y2 = max(input$y)
+
+capture.output(
+  paste0("start of script = ", start),
+  paste0("setup time, including loading data = ", t0),
+  paste0("nrow(input) before scaling = ", nrow(input)),
+  paste0("input min(x) = ", x1),
+  paste0("input max(x) = ", x2),
+  paste0("input min(y) = ", y1),
+  paste0("input max(y) = ", y2),
+  file = "PCA_notes.txt"
+)
+
+# scale values and write to file
+set.seed(225)
+t1 = system.time({
+  scaled = decostand(input[,c(1:(ncol(input)-1))], method = "range")
+})[[3]]
+rm(input)
+index = list(1:14, 15:40, 41:65, 66:90, 91:115, 116:ncol(scaled))
+
+t2 = system.time({
+for(i in c(1:6)){
+  data.table::fwrite(scaled[,index[[i]]], paste0("PCA_scaledinputs", i, ".csv"))
+}
+})[[3]]
+
+# scaled input stats
+x1 = min(scaled$x)
+x2 = max(scaled$x)
+y1 = min(scaled$y)
+y2 = max(scaled$y)
+
+capture.output(
+  paste0("time to scale variables = ", t1),
+  paste0("nrow(input) after scaling = ", nrow(scaled)),
+  paste0("scaled input min(x) = ", x1),
+  paste0("scaled input max(x) = ", x2),
+  paste0("scaled input min(y) = ", y1),
+  paste0("scaled input max(y) = ", y2),
+  paste0("time to write scaled inputs = ", t2),
+  file = "PCA_notes.txt",
+  append = TRUE
+)
 
 # run PCA
 set.seed(225)
-t2 = system.time({
-  pca2 = decostand(df[,c(1:(ncol(df)-1))], method = "range")
-  mod = prcomp(pca2, scale = T)
+t3 = system.time({
+  mod = prcomp(scaled, scale = T)
 })[[3]]
-rm(pca2)
-
-## variable stats
-eigval = get_eigenvalue(mod)
-write.csv(eigval, "PCA4_eigenstats.csv")
-res.var = get_pca_var(mod)
-v1 = data.frame(res.var$coord)
-v2 = data.frame(res.var$cor)
-v3 = data.frame(res.var$cos2)
-v4 = data.frame(res.var$contrib)
-vars = cbind(v1, v2, v3, v4)
-nom = c("coords", "corr", "cos2", "contrib")
-for(a in c(1:4)){
-  for(i in c(1:length(names(v1)))){
-    names(vars)[i+length(names(v1))*(a-1)] = paste0(nom[a], i)
-  }
-}
-write.csv(vars, "PCA4_varstats.csv")
-
-# prediction stats
-v1 = data.frame(mod$center)
-v2 = data.frame(mod$scale)
-v3 = data.frame(mod$rotation)
-vars = cbind(v1, v2, v3)
-write.csv(vars, "PCA4_predict.csv")
-rm(v1, v2, v3, v4, vars)
-
-# sites
-res.ind = get_pca_ind(mod)
-i1 = data.frame(res.ind$contrib)
-i2 = data.frame(res.ind$cos2)
-ind = cbind(i1, i2)
-nom = c("contrib", "rep")
-for(a in c(1:2)){
-  for(i in c(1:length(names(i1)))){
-    names(ind)[i+length(names(i1))*(a-1)] = paste0(nom[a], i)
-  }
-}
-df2 = data.frame(ID = df[,c(1, 2, col(df))])
-ind = cbind(df2, ind)
-data.table::fwrite(ind, "PCA4_indstats.csv")
-rm(ind)
-
-# score model outputs
-sco = data.frame(scores(mod))
-for(a in c(1:ncol(scores(mod)))){
-  df2 = cbind(df2, data.frame(sco[a]))
-}
-rm(sco)
-data.table::fwrite(df2, "PCA4_values.csv")
+rm(scaled)
 
 capture.output(
-  paste0("time to read and bind dfs = ", t1),
-  paste0("time to run PCA on values and sites = ", t2),
-  paste0("output rows = ", nrow(df2)),
-  file = "PCA4_monitoring.txt"
+  paste0("time to run model = ", t3),
+  file = "PCA_notes.txt",
+  append = TRUE
 )
 
+# score outputs
+t4 = system.time({
+  sco = as.data.frame(scores(mod))
+  sco = cbind(xyd, sco)
+  for(i in c(1:6)){
+    data.table::fwrite(sco[,index[[i]]], paste0("PCA_values", i, ".csv"))
+  }
+})[[3]]
+rm(sco)
+
+capture.output(
+  paste0("time to extract and write scores = ", t4),
+  file = "PCA_notes.txt",
+  append = TRUE
+)
+
+# figures
+tiff("PCA_eigvalfig.tiff", width = 500, height = 500, res = 100)
+fviz_eig(mod)
+dev.off()
+tiff("PCA_sitecos2.tiff", width = 500, height = 500, res = 100)
+fviz_pca_ind(mod,
+             col.ind = "cos2", # Color by the quality of representation
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             repel = TRUE     # Avoid text overlapping
+)
+dev.off()
+tiff("PCA_varfig.tiff", width = 500, height = 500, res = 100)
+fviz_pca_var(mod,
+             col.var = "contrib",
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             repel = TRUE
+)
+dev.off()
+
+# site stats
+t5 = system.time({
+  res.ind = get_pca_ind(mod)
+  i1 = data.frame(res.ind$contrib)
+  i2 = data.frame(res.ind$cos2)
+  nom = c("contrib", "cos2")
+  for(i in c(1:length(names(i1)))){
+    names(i1)[i + length(names(i1))] = paste(nom[1], i)
+    names(i2)[i + length(names(i2))] = paste(nom[2], i)
+  }
+  i1 = cbind(xyd, i1)
+  i2 = cbind(xyd, i2)
+  for(i in c(1:6)){
+    data.table::fwrite(i1[,index[[i]]], paste0("PCA_sitecontrib", i, ".csv"))
+  }
+  for(i in c(1:6)){
+    data.table::fwrite(i2[,index[[i]]], paste0("PCA_sitecos2", i, ".csv"))
+  }
+})[[3]]
+rm(res.ind, i1, i2)
+
+capture.output(
+  paste0("time to extract and write site stats = ", t5),
+  file = "PCA_notes.txt",
+  append = TRUE
+)
+
+## variable stats
+t6 = system.time({
+  eigval = get_eigenvalue(mod)
+  write.csv(eigval, "PCA_eigenvalues.csv")
+  rm(eigval)
+  res.var = get_pca_var(mod)
+  v1 = data.frame(res.var$coord)
+  v2 = data.frame(res.var$cor)
+  v3 = data.frame(res.var$cos2)
+  v4 = data.frame(res.var$contrib)
+  vars = list(v1, v2, v3, v4)
+  nom = c("coords", "corr", "cos2", "contrib")
+  for(a in c(1:4)){
+    for(i in c(1:length(names(v1)))){
+      names(vars[[a]])[i] = paste0(nom[a], i)
+    }
+  }
+  for(a in c(1:4)){
+    data.table::fwrite(vars[[i]][,index[[1]]], paste0("PCA_var", nom[a], "1-14.csv"))
+    data.table::fwrite(vars[[i]][,15:ncol(vars[[i]])], "PCA_var", nom[a],"15-132.csv")
+  }
+  rm(res.var)
+  
+  # prediction stats
+  v1 = data.frame(mod$center)
+  v2 = data.frame(mod$scale)
+  v3 = data.frame(mod$rotation)
+  vars = cbind(v1, v2, v3)
+  write.csv(vars, "PCA_predict.csv")
+})[[3]]
+
+capture.output(
+  paste0("time to extract and write remaining stats = ", t6),
+  file = "PCA_notes.txt",
+  append = TRUE
+)
 
 #---------------------- testing rasterToPoints() and back ----------------------
 library(raster)
@@ -1542,36 +1635,36 @@ res(precip)
 precip = aggregate(precip, fact = 10)
 writeRaster(precip, "data/testtif.tif", overwrite = TRUE)
 
-fn = raster("data/testtif.tif")
+precip = raster("data/testtif.tif")
+df = as.data.frame(rasterToPoints(precip), xy = TRUE)
+df = st_as_sf(df, coords = c("x", "y"), crs = st_crs(veg))
+values(precip) = NA
 obj = rgdal::GDALinfo("data/testtif.tif")
 ## block.x seems to be based on the crs; number is the squared size of each tile in coordinates units
 tiles.pol = GSIF::getSpatialTiles(obj, block.x = 750000, return.SpatialPolygons = TRUE)
 n = length(tiles.pol)
 tiles = GSIF::getSpatialTiles(obj, block.x = 750000, return.SpatialPolygons = FALSE)
 tile.pol = SpatialPolygonsDataFrame(tiles.pol, tiles)
-plot(fn)
+plot(precip)
 lines(tile.pol)
 
 tilefun = function(x){
-  r = raster::crop(precip, tiles.pol[x])
+  r = raster::crop(precip, tiles.pol[21])
   tryCatch({
     r = as(r, "SpatialPixelsDataFrame")
-    writeGDAL(r, paste0("test", x, ".tif"), drivername = "GTIFF", type = "Float32")
+    writeGDAL(r, "test21.tif", drivername = "GTIFF", type = "Float32")
   }, error = function(e){cat("ERROR :", conditionMessage(e), "\n")})
 }
 
+lapply(21, tilefun)
 lapply(c(1:n), tilefun)
 
-df = data.table::fread("data/alltraits_site-specific.csv", select = c(1:2, 5:8, 10:11))
-names(df)[c(7:8)] = c("x", "y")
-df = st_as_sf(df, coords = c("x", "y"), crs = st_crs(veg))
-df = df[c(1:1000),]
 rastfun = function(x){
   tryCatch({
-    r = raster(paste0("test", x, ".tif"))
-    df = rasterize(df, r, field = 1, fun = mean)
-    df = as(df, "SpatialPixelsDataFrame")
-    writeGDAL(df, paste0("PC", x, ".tif"), drivername = "GTIFF", type = "Float32")
+    r = raster(tile.pol[6,], res = res(precip))
+    df3 = rasterize(df, r, field = "testtif", fun = mean)
+    df3 = as(df3, "SpatialPixelsDataFrame")
+    writeGDAL(df3, paste0("PC", 6, ".tif"), drivername = "GTIFF", type = "Float32")
   }, error = function(e){cat("ERROR :", conditionMessage(e), "\n")})
 }
 
@@ -1585,25 +1678,34 @@ r = raster::mosaic(r, r2, r3, r4, fun = mean)
 plot(r)
 
 #---------- tile PCA data -------------
+library(tidyverse)
+library(data.table)
 library(raster)
 library(sf)
-library(tidyverse)
-library(devtools)
-# install_github("https://github.com/cran/GSIF")
 library(GSIF)
 library(rgdal)
 library(gdalUtils)
 
-# load files
-veg = raster("fuels_30m.tif")
-values(veg) = NA
-nsw = st_read("NSW_sans_islands.shp") %>% 
+setwd("/glade/scratch/kjfuller/data")
+veg = raster("for_fuels_30m.tif")
+nsw = st_read("NSW_sans_islands.shp") %>%
   st_transform(crs = st_crs(veg))
-df = data.table::fread("PCA_values1-14.csv", select = c(1:2, 4))
-df = st_as_sf(df, coords = c("x", "y"), crs = st_crs(veg))
 
-obj = rgdal::GDALinfo("fuels_30m.tif")
-## block.x seems to be based on the crs; number is the squared size of each tile in coordinates units
+# assign number of cores and read in data
+setDTthreads(36)
+t1 = system.time({
+  df = data.table::fread("PCA_values1-14.csv", select = c(1:2, 4))
+  df = as.data.frame(df)
+  df = st_as_sf(df, coords = c("x", "y"), crs = st_crs(veg))
+  nom = names(df)
+  n1 = nrow(df)
+})[[3]]
+
+tiff("df_check.tiff", width = 500, height = 500, res = 100, units = "px")
+plot(st_geometry(df))
+dev.off()
+
+obj = rgdal::GDALinfo("for_fuels_30m.tif")
 t.spatial = GSIF::getSpatialTiles(obj, block.x = 150000, return.SpatialPolygons = TRUE)
 t.non = GSIF::getSpatialTiles(obj, block.x = 150000, return.SpatialPolygons = FALSE)
 tiles = SpatialPolygonsDataFrame(t.spatial, t.non)
@@ -1611,22 +1713,89 @@ tiles$id = c(1:nrow(tiles))
 t.sf = st_as_sf(tiles)
 t.sf = t.sf[nsw,]
 tiles = tiles[tiles$id %in% t.sf$id,]
-n = nrow(tiles)
+nt = nrow(tiles)
+
+tiff("tiles_check.tiff", width = 500, height = 500, res = 100, units = "px")
+plot(veg)
+plot(st_geometry(t.sf), add = TRUE)
+dev.off()
+
 rm(t.spatial, t.non, t.sf)
 
-df2 = data.table::fread("alltraits_site-specific.csv", select = c(1:2, 5:8, 10:11))
-names(df2)[c(7:8)] = c("x", "y")
-df2 = st_as_sf(df2, coords = c("x", "y"), crs = st_crs(veg))
-# df = df[c(1:1000),]
+# write metadata outputs to file
+capture.output(
+  paste0("time to read 3 columns of PCA_values1-14 and convert to sf = ", t1),
+  paste0("names of df = ", list(nom)),
+  paste0("nrow of df = ", n1),
+  paste0("number of tiles = ", nt),
+  file = "PC1_raster_metastats.txt",
+  append = TRUE
+)
+
+resv = res(veg)
 rastfun = function(x){
   tryCatch({
-    r = raster(tiles[x,], res = res(veg), crs = crs(veg))
-    df3 = rasterize(df, r, field = names(df)[1], fun = mean, update = TRUE)
-    writeRaster(df3, paste0("PC01_", x, ".tif"))
+    r = raster(tiles[x,], res = resv)
+    # df3 = rasterize(df, r, field = 1, fun = mean, update = TRUE)
+    # writeRaster(df3, paste0("PC01_", x, "_field-1.tif"))
+    df3 = rasterize(df, r, field = "PC1", fun = mean, update = TRUE)
+    writeRaster(df3, paste0("PC01_", x, ".tif"), overwrite = TRUE)
   }, error = function(e){cat("ERROR :", conditionMessage(e), "\n")})
 }
 
-lapply(c(1:n), rastfun)
+testfun = function(x){
+  tryCatch({
+    r = raster(paste0("PC01_", x, ".tif"))
+    tiff(paste0("PC01_", x, "_test.tiff"), width = 500, height = 500, res = 100, units = "px")
+    plot(st_geometry(nsw))
+    plot(r, add = TRUE)
+    dev.off()
+  }, error = function(e){cat("ERROR :", conditionMessage(e), "\n")})
+}
+
+sfInit(parallel = TRUE, cpus = 36)
+sfExport("tiles", "nsw", "resv", "df", "rastfun")
+sfLibrary(raster)
+sfLibrary(sf)
+
+sfLapply(c(1:nt), rastfun)
+
+
+sfStop()
+
+#---------------- tracking down PCA value issues -----------------
+library(data.table)
+
+setwd("/glade/scratch/kjfuller/data")
+
+setDTthreads(18)
+df = data.table::fread("allvalues_forPCA8.csv")
+
+summary = data.frame(cols = names(df),
+                     NaNs = NA)
+
+for(i in c(1:ncol(df))){
+  summary$NaNs[i] = sum(is.na(df[,i]))
+}
+
+data.table::fwrite(summary, "forPCA8_checkNaNs.csv")
+
+capture.output(
+  paste0("nrow(df) = ", nrow(df)),
+  paste0("min(x) = ", min(df$x)),
+  paste0("max(x) = ", max(df$x)),
+  paste0("min(y) = ", min(df$y)),
+  paste0("max(y) = ", max(df$y)),
+  file = "forPCA8_checkvalues.txt"
+)
+
+capture.output(
+  summary(df),
+  file = "forPCA8_summaryoutput.txt"
+)
+
+## values are missing for all y's under 4638061; full NSW range extends to 4027276
+
 
 #-------------------- PC values for RFs -------------------
 library(data.table)
@@ -1731,7 +1900,7 @@ dev.off()
 
 st_write(sites, "sitetraits_forRF.shp")
 
-#----------------- selecting absence plots for RF -------------
+#----------------- selecting absence plots for RF on laptop -------------
 library(sf)
 library(raster)
 library(tidyverse)
@@ -1775,6 +1944,12 @@ unique(sites$b1)
 ## subfibrous - tessellated, 
 ## subfibrous - peppermint, 
 ## subfibrous - box
+
+surveys = read.csv("survey_locations_forRF.csv")
+names(surveys) = c("x", "y")
+sites = left_join(surveys, sites)
+nrow(sites)
+## 15,695
 
 i = "smooth"
 a = sites[sites$b1 == i,]
