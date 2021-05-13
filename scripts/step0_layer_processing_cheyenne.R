@@ -1450,6 +1450,7 @@ index = list(1:14, 15:40, 41:65, 66:90, 91:115, 116:ncol(scaled))
 
 t2 = system.time({
 for(i in c(1:6)){
+  setDTthreads(36)
   data.table::fwrite(scaled[,index[[i]]], paste0("PCA_scaledinputs", i, ".csv"))
 }
 })[[3]]
@@ -1490,6 +1491,7 @@ t4 = system.time({
   sco = as.data.frame(scores(mod))
   sco = cbind(xyd, sco)
   for(i in c(1:6)){
+    setDTthreads(36)
     data.table::fwrite(sco[,index[[i]]], paste0("PCA_values", i, ".csv"))
   }
 })[[3]]
@@ -1525,16 +1527,19 @@ t5 = system.time({
   res.ind = get_pca_ind(mod)
   i1 = data.frame(res.ind$contrib)
   i2 = data.frame(res.ind$cos2)
-  nom = c("contrib", "cos2")
+  nom = c("contrib.", "cos2.")
   for(i in c(1:length(names(i1)))){
-    names(i1)[i + length(names(i1))] = paste(nom[1], i)
-    names(i2)[i + length(names(i2))] = paste(nom[2], i)
+    names(i1)[i] = paste(nom[1], i)
+    names(i2)[i] = paste(nom[2], i)
   }
   i1 = cbind(xyd, i1)
   i2 = cbind(xyd, i2)
+  
+  setDTthreads(36)
   for(i in c(1:6)){
     data.table::fwrite(i1[,index[[i]]], paste0("PCA_sitecontrib", i, ".csv"))
   }
+  setDTthreads(36)
   for(i in c(1:6)){
     data.table::fwrite(i2[,index[[i]]], paste0("PCA_sitecos2", i, ".csv"))
   }
@@ -1558,15 +1563,14 @@ t6 = system.time({
   v3 = data.frame(res.var$cos2)
   v4 = data.frame(res.var$contrib)
   vars = list(v1, v2, v3, v4)
-  nom = c("coords", "corr", "cos2", "contrib")
+  nom = c("coords.", "corr.", "cos2.", "contrib.")
   for(a in c(1:4)){
     for(i in c(1:length(names(v1)))){
       names(vars[[a]])[i] = paste0(nom[a], i)
     }
   }
   for(a in c(1:4)){
-    data.table::fwrite(vars[[i]][,index[[1]]], paste0("PCA_var", nom[a], "1-14.csv"))
-    data.table::fwrite(vars[[i]][,15:ncol(vars[[i]])], "PCA_var", nom[a],"15-132.csv")
+    data.table::fwrite(vars[[i]], paste0("PCA_var", nom[a], ".csv"))
   }
   rm(res.var)
   
