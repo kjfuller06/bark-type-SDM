@@ -154,6 +154,19 @@ ggtree(tree2, aes(color = group), layout = 'circular', branch.length = "none") +
 # full phylogeny by bark type ####
 tree = read.tree("data/firstphylo.txt")
 traits = read.csv("data/Nicolle classification_forphylotree_traits.csv")
+traits$Horseybark1_final = as.factor(traits$Horseybark1_final)
+levels(traits$Horseybark1_final) = c("halfbark",
+                                     "ironbark",
+                                     "not in NSW",
+                                     "smooth",
+                                     "smooth with stocking",
+                                     "stringybark",
+                                     "box-type",
+                                     "peppermint",
+                                     "fibrous-rough",
+                                     "fibrous-stringy",
+                                     "tessellated")
+
 traits = data.frame(bark = traits$Horseybark1_final, tip.labs = traits$SPECIES)
 tree_df = data.frame(tip.labs = tree$tip.label, count = c(1:length(tree$tip.label)))
 traits = left_join(tree_df, traits)
@@ -165,21 +178,38 @@ tree[[6]] = traits$bark
 names(tree)[6] = "group"
 groupInfo = split(tree$tip.label, tree$group)
 tree2 = groupOTU(tree, groupInfo)
+colours <- rainbow(length(unique(traits$bark)))
+tree2$group = factor(tree2$group, levels = c("not in NSW",
+                                             "smooth",
+                                             "smooth with stocking",
+                                             "halfbark",
+                                             "ironbark",
+                                             "box-type",
+                                             "tessellated",
+                                             "fibrous-rough",
+                                             "peppermint",
+                                             "fibrous-stringy",
+                                             "stringybark"))
 tiff(file = "outputs/Allspecies_phylotree_bybarktype.tiff", width =1200, height = 1200, units = "px", res = 120)
 ggtree(tree2, aes(color = group), layout = 'circular', branch.length = "none") +
-  scale_colour_manual(breaks = c("not sampled",
-                                 "smooth",
-                                 "smooth with stocking",
-                                 "halfbark",
-                                 "ironbark",
-                                 "subfibrous - box",
-                                 "subfibrous - tessellated",
-                                 "subfibrous - rough",
-                                 "subfibrous - peppermint",
-                                 "subfibrous - stringy",
-                                 "stringybark"),
-                      values = c("grey90",
-                                 hue_pal(direction = -1)(10)))+
+  scale_colour_manual(values = c("not in NSW" = "grey90",
+                                 "smooth" = colours[1],
+                                 "smooth with stocking" = colours[2],
+                                 "halfbark" = colours[3],
+                                 "ironbark" = colours[4],
+                                 "box-type" = colours[5],
+                                 "tessellated" = colours[6],
+                                 "fibrous-rough" = colours[7],
+                                 "peppermint" = colours[8],
+                                 "fibrous-stringy" = colours[9],
+                                 "stringybark" = colours[10]))+
+  labs(color = "Bark type") +
+  geom_tiplab(size = 1, aes(angle = angle))
+dev.off()
+
+tiff(file = "outputs/Allspecies_phylotree_bybarktype_legend.tiff", width =1200, height = 1200, units = "px", res = 120)
+ggtree(tree2, aes(color = group), layout = 'circular', branch.length = "none") +
+  scale_colour_manual(values = c("grey90", colours))+
   labs(color = "Bark type") +
   geom_tiplab(size = 1, aes(angle = angle))
 dev.off()
