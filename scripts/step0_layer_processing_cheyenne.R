@@ -1905,6 +1905,7 @@ sfLapply(c(1:9), df_fun)
 
 sfStop()
 
+a = write.csv(a, "raster_extract_sradtot4-12.csv", row.names = FALSE)
 
 #------------------ check outputs-extracted data ----------------
 library(data.table)
@@ -1922,8 +1923,8 @@ df_fun = function(x){
   capture.output(
     paste0("min(x) of ", lab, " = ", min(df$x)),
     paste0("max(x) of ", lab, " = ", max(df$x)),
-    paste0("min(x) of ", lab, " = ", min(df$y)),
-    paste0("max(x) of ", lab, " = ", max(df$y)),
+    paste0("min(y) of ", lab, " = ", min(df$y)),
+    paste0("max(y) of ", lab, " = ", max(df$y)),
     file = paste0("extract_", lab = ".txt"),
     append = TRUE
   )
@@ -2048,6 +2049,10 @@ srad = st_as_sf(srad, coords = c("x", "y"), crs = c2)
 plotfun("srad", srad)
 ## coastal difference; likely due to differing original source or loss of data due to calculations
 ## ^ not sure why just the coastline would be different between these two variables but it may be due to differences in the original data and not an issue I need to worry about
+### ^solved; rasters were projected using different methods:
+#   projectRaster = 1069905955
+#   gdal = 1069907438
+# >> reprojected rasters 4-12 with projectRaster() solved the problem
 
 # ndvi nans:
 # mask_proj_NDVI_30m = 1069975815
@@ -2090,6 +2095,7 @@ plotfun("soil3", soil)
 # 1069905955 -> 1069907438
 # mask_proj_dem_SRADTot_0115_30m -> mask_proj_dem_SRADTot_0415_30m
 ## ^problem***
+### ^solved by reprojecting SRAD4-12; values now equal
 
 # 1069907438 -> 1069975815
 # mask_proj_dem_SRADTot_0415_30m -> mask_proj_NDVI_30m
@@ -2132,6 +2138,7 @@ srad.soil = anti_join(srad, soil2)
 dars.soil = anti_join(dars, soil2)
 ## nrow() = 10
 ## ^need to re-upload processed srad layers 4-12
+### ^done; NaNs resolved
 
 #----------------- srad_redo --------------
 library(raster)
