@@ -762,7 +762,7 @@ for(i in c(2:length(forpca))){
 data.table::fwrite(pca1, "allvalues_forPCA.csv")
 
 
-#--------------------- re-reproject SRADTot rasters -----------------------
+#--------------------- re-reproject SRADTot rasters -> boo -----------------------
 i = 1
 library(raster)
 library(sf)
@@ -792,6 +792,7 @@ reproj = function(x){
 }
 
 reproj(i)
+## ^this caused considerable problems and had to be redone
 
 #----------------------- mask SRADTot layers ---------------------------
 i = 1
@@ -1844,6 +1845,261 @@ sfLibrary(raster)
 sfLibrary(sf)
 
 sfLapply(c(1:length(mask)), df_fun)
+
+sfStop()
+
+#------------------ check outputs-extracted data ----------------
+library(data.table)
+library(tidyverse)
+library(sf)
+library(raster)
+
+setwd("/glade/scratch/kjfuller/data")
+
+mask = list.files("./", pattern = "^_proj", recursive = FALSE, full.names = TRUE)
+
+df_fun = function(x){
+  df = data.table::fread(mask[x], select = c(1:2))
+  lab = substr(mask[x], 5, nchar(mask[x]) - 11)
+  capture.output(
+    paste0("min(x) of ", lab, " = ", min(df$x)),
+    paste0("max(x) of ", lab, " = ", max(df$x)),
+    paste0("min(x) of ", lab, " = ", min(df$y)),
+    paste0("max(x) of ", lab, " = ", max(df$y)),
+    file = paste0("extract_", lab = ".txt"),
+    append = TRUE
+  )
+}
+
+sfInit(parallel = TRUE, cpus = 36)
+sfExport("mask", "df_fun")
+sfLibrary(data.table)
+
+sfLapply(c(1:length(mask)), df_fun)
+
+sfStop()
+
+## additional script
+meta = list.files("./", pattern = "extract_proj", recursive = FALSE, full.names = TRUE)
+
+b = data.frame()
+for(i in c(1:length(meta))){
+  a = data.table::fread(meta[i], header = FALSE)
+  a = as.data.frame(a)
+  a$value = map_chr(str_split(a$V2, pattern = " = "), 2)
+  a$var = substr(map_chr(str_split(a$V2, pattern = " = "), 1), 11, 50)
+  a$stat = substr(a$V2, 1, 6)
+  a = a %>% 
+    dplyr::select(value, var, stat)
+  b = rbind(b, a)
+}
+write.csv(b, "extract_stats.csv", row.names = FALSE)
+
+dat = read.csv("extract_stats.csv")
+dat %>% 
+  filter(stat == "min(y)")
+## all data have the correct range of values
+
+#------------ collating output checks ---------------
+meta = list.files("./", pattern = "raster_extract__", recursive = FALSE, full.names = TRUE)
+
+b = data.frame()
+for(i in c(1:length(meta))){
+  a = data.table::fread(meta[i], header = FALSE)
+  x = map_chr(str_split(a$V2, pattern = " = "), 2)
+  a = data.frame(var = substr(map_chr(str_split(a$V2, pattern = " = "), 1), 10, 50)[1],
+                 stat = c("nrow", "raster.nans", "df.nans"),
+                 value = x)
+  dat = rbind(dat, a)
+}
+dat = dat[order(dat$var),]
+dat$value = as.numeric(dat$value)
+dat$var = as.factor(dat$var)
+dat$stat = as.factor(dat$stat)
+write.csv(dat, "extract_stats.csv", row.names = FALSE)
+
+xy = pivot_wider(dat %>% filter(stat == "min(y)" | stat == "min(x)" | stat == "max(y)" | stat == "max(x)"), names_from = stat, values_from = value)
+x1 = unique(xy[,c(1, 3)])
+x2 = unique(xy[,c(1, 4)])
+x3 = unique(xy[,c(2, 3)])
+x4 = unique(xy[,c(2, 4)])
+names(x1) = c("x", "y")
+names(x2) = c("x", "y")
+names(x3) = c("x", "y")
+names(x4) = c("x", "y")
+df = rbind(x1, x2, x3, x4)
+df = as.data.frame(df)
+df = st_as_sf(df, coords = c("x", "y"), crs = st_crs(veg))
+tiff("df_check.tiff", width = 500, height = 500, res = 100, units = "px")
+plot(st_geometry(nsw))
+plot(st_geometry(df))
+dev.off()
+st_write(df, "df_check.shp")
+
+bio = dat %>% filter(stat == "min(x)") %>% filter(value != min(value))
+summary(bio)
+
+write.csv(b, "extract_stats.csv", row.names = FALSE)
+
+#------------ 1. compare xy's of masked data ------------------
+## additional checks
+library(tidyverse)
+library(raster)
+library(sf)
+library(data.table)
+
+veg = raster("for_fuels_30m.tif")
+c1 = crs(veg)
+c2 = st_crs(veg)
+rm(veg)
+nsw = st_read("NSW_sans_islands.shp") %>% st_transform(crs = c2)
+
+# variables to rasterize again to check distributions
+# aridity is good
+# bioclim is good
+
+# dem nans:
+# mask_proj_dem_aspect_30m = 1069904003 
+# mask_proj_dem_plan_30m = 1069905955
+
+dem1 = data.table::fread("_proj_dem_aspect_30m_forPCA.csv", select = c(1:2))
+dem2 = data.table::fread("_proj_dem_plan_30m_forPCA.csv", select = c(1:2))
+dem = anti_join(dem1, dem2)
+dem = as.data.frame(dem)
+dem = st_as_sf(dem, coords = c("x", "y"), crs = c2)
+
+plotfun = function(name, df){
+  tiff(paste0(name, "_check.tiff"), width = 500, height = 500, res = 100, units = "px")
+  plot(st_geometry(nsw))
+  plot(st_geometry(df), add = TRUE)
+  dev.off()
+}
+plotfun("dem", dem)
+## coastal difference; likely due to differing original source or loss of edge data during calculations
+## ^difference is negligible, same NaNs as proj_dem_SRADTot_0115
+
+#---------------- 1a. srads ----------------------
+# srad nans:
+# mask_proj_dem_SRADTot_0115_30m = 1069905955
+# mask_proj_dem_SRADTot_0415_30m = 1069907438
+srad1 = data.table::fread("_proj_dem_SRADTot_0115_30m_forPCA.csv", select = c(1:2))
+srad2 = data.table::fread("_proj_dem_SRADTot_0415_30m_forPCA.csv", select = c(1:2))
+srad = anti_join(srad1, srad2)
+srad = as.data.frame(srad)
+srad = st_as_sf(srad, coords = c("x", "y"), crs = c2)
+plotfun("srad", srad)
+## coastal difference; likely due to differing original source or loss of data due to calculations
+## ^ not sure why just the coastline would be different between these two variables but it may be due to differences in the original data and not an issue I need to worry about
+
+# ndvi nans:
+# mask_proj_NDVI_30m = 1069975815
+ndvi = data.table::fread("_proj_NDVI_30m_forPCA.csv", select = c(1:2))
+ndvi = as.data.frame(ndvi)
+ndvi = st_as_sf(ndvi, coords = c("x", "y"), crs = c2)
+plotfun("ndvi", ndvi)
+## took too long
+
+# ------------------ 1b. soils -------------------
+# soil nans:
+# mask_proj_soilAWC_D1_30m = 1070070747
+# mask_proj_soildes_30m = 1070069423
+# mask_proj_soilPHC_D3_30m = 1070094838
+## update takes soilPHC_D3 to 107007047 like the others; must have been my fault
+soil1 = data.table::fread("_proj_soilAWC__D1_30m_forPCA.csv", select = c(1:2))
+soil2 = data.table::fread("_proj_soildes_30m_forPCA.csv", select = c(1:2))
+soil3 = data.table::fread("_proj_soilPHC_D3_30m_forPCA.csv", select = c(1:2))
+soil = anti_join(soil2, soil1)
+soil = as.data.frame(soil)
+soil = st_as_sf(soil, coords = c("x", "y"), crs = c2)
+plotfun("soil1", soil)
+## this one is missing some suspicious points but it's all of the soil data layers besides the other two selected here
+
+soil = anti_join(soil2, soil3)
+soil = as.data.frame(soil)
+soil = st_as_sf(soil, coords = c("x", "y"), crs = c2)
+plotfun("soil3", soil)
+## also coastal, lots of points but might be ok
+## ^this one was my fault
+
+# ------------- 1c. final check notes ----------------------
+# last check with new PHC_D3 layer- examine overlap of NaNs between categories
+# 1069904003 -> 1069905955
+# mask_proj_dem_aspect_30m -> mask_proj_dem_plan_30m
+# mask_proj_dem_aspect_30m -> mask_proj_dem_SRADTot_0115_30m
+# mask_proj_dem_plan_30m == mask_proj_dem_SRADTot_0115_30m
+## ^NaNs equal
+
+# 1069905955 -> 1069907438
+# mask_proj_dem_SRADTot_0115_30m -> mask_proj_dem_SRADTot_0415_30m
+## ^problem***
+
+# 1069907438 -> 1069975815
+# mask_proj_dem_SRADTot_0415_30m -> mask_proj_NDVI_30m
+
+# 1069975815 -> 1070069423
+# mask_proj_NDVI_30m -> mask_proj_soildes_30m
+
+# 1070069423 -> 1070070747
+# mask_proj_soildes_30m -> mask_proj_soilAWC_D1_30m
+
+#----------------- 1c. check dems ----------------------
+dem1 = data.table::fread("_proj_dem_aspect_30m_forPCA.csv", select = c(1:2))
+dem2 = data.table::fread("_proj_dem_plan_30m_forPCA.csv", select = c(1:2))
+dem = anti_join(dem1, dem2)
+srad1 = data.table::fread("_proj_dem_SRADTot_0115_30m_forPCA.csv", select = c(1:2))
+dem.srad = anti_join(dem1, srad1)
+diff = anti_join(dem, dem.srad)
+## nrow(diff) = 0
+diff = anti_join(dem.srad, dem)
+## nrow(diff) = 0
+diff = anti_join(dem2, srad1)
+## nrow(diff) = 0
+diff = anti_join(srad1, dem2)
+## nrow(diff) = 0
+
+#------------------- 1c. check srads + ndvi*** ---------------------
+srad2 = data.table::fread("_proj_dem_SRADTot_0415_30m_forPCA.csv", select = c(1:2))
+srad = anti_join(srad1, srad2)
+## nrow(srad) = 1,499
+dars = anti_join(srad2, srad1)
+## nrow(dars) = 16
+ndvi = data.table::fread("_proj_NDVI_30m_forPCA.csv", select = c(1:2))
+srad.ndvi = anti_join(srad, ndvi) ## check if ndvi includes any of the missing values from SRADTot_0415; yes, nrow() = 102
+dars.ndvi = anti_join(dars, ndvi) ## check if ndvi includes any of the missing values from SRADTot_0115; yes, nrow() = 1
+
+## this only matters if the final, most masked dataset contains the relevant values
+soil2 = data.table::fread("_proj_soilAWC_D1_30m_forPCA.csv", select = c(1:2))
+srad.soil = anti_join(srad, soil2)
+## nrow() = 721
+dars.soil = anti_join(dars, soil2)
+## nrow() = 10
+## ^need to re-upload processed srad layers 4-12
+
+#----------------- srad_redo --------------
+library(raster)
+library(snowfall)
+library(parallel)
+
+setwd("/glade/scratch/kjfuller/data")
+
+veg = raster("for_fuels_30m.tif")
+
+all = list.files("./vars", recursive = FALSE, full.names = TRUE)
+
+projfun = function(x){
+  lab = substr(all[x], 8, nchar(all[x]))
+  r = raster(all[x])
+  r = projectRaster(r, veg, method = 'bilinear')
+  writeRaster(r, paste0("proj_", lab), overwrite = TRUE)
+  r = raster::mask(r, veg)
+  writeRaster(r, paste0("mask_proj_", lab), overwrite = TRUE)
+}
+
+sfInit(parallel = TRUE, cpus = 9)
+sfExport("veg", "all", "projfun")
+sfLibrary(raster)
+
+sfLapply(c(1:9), projfun)
 
 sfStop()
 
