@@ -1407,6 +1407,33 @@ rm(list = ls())
 test = data.table::fread("PCA_values.csv", nrow = 100)
 data.table::fwrite(test, file = "predict_sample.csv")
 
+#----------------- last check before PCA -----------------
+library(data.table)
+library(tidyverse)
+
+setwd("/glade/scratch/kjfuller/data")
+
+vars = list.files("./forPCA", full.names = TRUE)
+
+input = data.frame()
+t1 = system.time({
+  for(i in c(1:130)){
+    a = data.table::fread(vars[i])
+    input = rbind(input, as.data.frame(a))
+  }
+})
+
+# input stats
+capture.output(
+  paste0("time to read and rbind datasets = ", t1),
+  paste0("nrow(input) before scaling = ", nrow(input)),
+  paste0("input min(x) = ", min(input$x)),
+  paste0("input max(x) = ", max(input$x)),
+  paste0("input min(y) = ", min(input$y)),
+  paste0("input max(y) = ", max(input$y)),
+  file = "PCAinput_stats.txt"
+)
+
 #--------------------- PCA final ------------------------
 start = Sys.time()
 t0 = system.time({
