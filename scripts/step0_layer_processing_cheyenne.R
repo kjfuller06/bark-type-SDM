@@ -1808,7 +1808,7 @@ library(sf)
 library(parallel)
 library(snowfall)
 
-captute.output(
+capture.output(
   paste0("libraries loaded"),
   file = "raster_extract_notes.txt"
 )
@@ -1847,6 +1847,64 @@ sfLibrary(sf)
 sfLapply(c(1:length(mask)), df_fun)
 
 sfStop()
+
+#------------------- rasterToPointsfinal ---------------------
+library(raster)
+library(sf)
+library(parallel)
+library(snowfall)
+
+capture.output(
+  paste0("libraries loaded"),
+  file = "raster_extract_notes.txt",
+  append = TRUE
+)
+
+setwd("/glade/scratch/kjfuller/data")
+
+mask = list.files("./vars", pattern = "^mask", recursive = FALSE, full.names = TRUE)
+mask = mask[!grepl(".tiff", mask)]
+
+notes = data.frame()
+df_fun = function(x){
+  r = raster(mask[x])
+  n1 = sum(is.na(values(r)))
+  df = as.data.frame(rasterToPoints(r), xy = TRUE)
+  n2 = sum(is.na(df))
+  lab = substr(mask[x], 12, nchar(mask[x])-4)
+  data.table::fwrite(df, paste0(lab, "_forPCA.csv"))
+  a = data.frame(var = lab,
+                 stat = c("min(x)", "max(x)", "min(y)", "max(y)", "nrow", "raster.nans", "df.nans"),
+                 value = c(min(df$x), max(df$x), min(df$y), max(df$y), nrow(df), n1, n2))
+  notes = rbind(notes, a)
+  capture.output(
+    paste0("NaNs in raster of ", lab, " = ", n1),
+    paste0("NaNs in df of ", lab, " = ", n2),
+    paste0("nrow of ", lab, " = ", nrow(df)),
+    paste0("min(x) of ", lab, " = ", min(df$x)),
+    paste0("max(x) of ", lab, " = ", max(df$x)),
+    paste0("min(x) of ", lab, " = ", min(df$y)),
+    paste0("max(x) of ", lab, " = ", max(df$y)),
+    file = paste0("raster_extract_", lab, ".txt")
+  )
+}
+
+capture.output(
+  paste0("mask list and function loaded"),
+  paste0("initiating snowfall"),
+  file = "raster_extract_notes.txt",
+  append = TRUE
+)
+
+sfInit(parallel = TRUE, cpus = 9)
+sfExport("mask", "df_fun", "notes")
+sfLibrary(raster)
+sfLibrary(sf)
+
+sfLapply(c(1:9), df_fun)
+
+sfStop()
+
 
 #------------------ check outputs-extracted data ----------------
 library(data.table)
