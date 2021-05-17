@@ -1415,18 +1415,22 @@ setwd("/glade/scratch/kjfuller/data")
 
 vars = list.files("./forPCA", full.names = TRUE)
 
-input = data.frame()
+a = data.table::fread(vars[1])
+input = as.data.frame(a)
 t1 = system.time({
-  for(i in c(1:130)){
+  for(i in c(2:130)){
     a = data.table::fread(vars[i])
-    input = rbind(input, as.data.frame(a))
+    input = full_join(input, as.data.frame(a))
   }
+  NaNs = sum(is.na(input))
+  input = na.omit(input)
 })
 
 # input stats
 capture.output(
   paste0("time to read and rbind datasets = ", t1),
   paste0("nrow(input) before scaling = ", nrow(input)),
+  paste0("rows removed by na.omit = ", NaNs),
   paste0("input min(x) = ", min(input$x)),
   paste0("input max(x) = ", max(input$x)),
   paste0("input min(y) = ", min(input$y)),
@@ -1881,58 +1885,41 @@ library(sf)
 library(parallel)
 library(snowfall)
 
-capture.output(
-  paste0("libraries loaded"),
-  file = "raster_extract_notes.txt",
-  append = TRUE
-)
-
 setwd("/glade/scratch/kjfuller/data")
 
-mask = list.files("./vars", pattern = "^mask", recursive = FALSE, full.names = TRUE)
-mask = mask[!grepl(".tiff", mask)]
+mask = list.files("./masked", pattern = "^mask", recursive = FALSE, full.names = TRUE)
+veg = raster("for_fuels_30m.tif")
+c1 = st_crs(veg)
+veg = as.data.frame(rasterToPoints(veg), xy = TRUE) %>% 
+  dplyr::select(x, y)
+veg = st_as_sf(veg, coords = c("x", "y"), crs = c1)
 
-notes = data.frame()
 df_fun = function(x){
   r = raster(mask[x])
   n1 = sum(is.na(values(r)))
-  df = as.data.frame(rasterToPoints(r), xy = TRUE)
-  n2 = sum(is.na(df))
-  lab = substr(mask[x], 12, nchar(mask[x])-4)
-  data.table::fwrite(df, paste0(lab, "_forPCA.csv"))
+  lab = substr(mask[x], 20, nchar(mask[x])-4)
+  veg = cbind(veg, 
+              raster::extract(r, st_coordinates(veg), methods = 'simple'))
+  veg$lon = st_coordinates(veg)[,1]
+  veg$lat = st_coordinates(veg)[,2]
+  st_geometry(veg) = NULL
+  names(veg)[3] = paste0(lab)
+  n2 = sum(is.na(veg[,3]))
+  data.table::fwrite(veg, paste0(lab, "_forPCA2.csv"))
   a = data.frame(var = lab,
                  stat = c("min(x)", "max(x)", "min(y)", "max(y)", "nrow", "raster.nans", "df.nans"),
                  value = c(min(df$x), max(df$x), min(df$y), max(df$y), nrow(df), n1, n2))
-  notes = rbind(notes, a)
-  capture.output(
-    paste0("NaNs in raster of ", lab, " = ", n1),
-    paste0("NaNs in df of ", lab, " = ", n2),
-    paste0("nrow of ", lab, " = ", nrow(df)),
-    paste0("min(x) of ", lab, " = ", min(df$x)),
-    paste0("max(x) of ", lab, " = ", max(df$x)),
-    paste0("min(x) of ", lab, " = ", min(df$y)),
-    paste0("max(x) of ", lab, " = ", max(df$y)),
-    file = paste0("raster_extract_", lab, ".txt")
-  )
+  data.table::fwrite(a, paste0("checks/", lab, "_forPCA2_check.csv"))
 }
 
-capture.output(
-  paste0("mask list and function loaded"),
-  paste0("initiating snowfall"),
-  file = "raster_extract_notes.txt",
-  append = TRUE
-)
-
-sfInit(parallel = TRUE, cpus = 9)
-sfExport("mask", "df_fun", "notes")
+sfInit(parallel = TRUE, cpus = 36)
+sfExport("mask", "veg", "df_fun")
 sfLibrary(raster)
 sfLibrary(sf)
 
-sfLapply(c(1:9), df_fun)
+sfLapply(c(1:130), df_fun)
 
 sfStop()
-
-a = write.csv(a, "raster_extract_sradtot4-12.csv", row.names = FALSE)
 
 #------------------ check outputs-extracted data ----------------
 library(data.table)
