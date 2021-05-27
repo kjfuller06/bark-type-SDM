@@ -1697,8 +1697,11 @@ lapply(c(1:n), tilefun)
 
 rastfun = function(x){
   tryCatch({
+    clip = st_as_sf(tile.pol[6,])
+    df3 = df[clip,]
+    rm(clip)
     r = raster(tile.pol[6,], res = res(precip))
-    df3 = rasterize(df, r, field = "testtif", fun = mean)
+    df3 = rasterize(df3, r, field = "testtif", fun = mean)
     df3 = as(df3, "SpatialPixelsDataFrame")
     writeGDAL(df3, paste0("PC", 6, ".tif"), drivername = "GTIFF", type = "Float32")
   }, error = function(e){cat("ERROR :", conditionMessage(e), "\n")})
@@ -1879,7 +1882,7 @@ sfLapply(c(1:length(mask)), df_fun)
 
 sfStop()
 
-#------------------- rasterToPointsfinal ---------------------
+#------------------- rasterToPointsfinal ha! ---------------------
 library(raster)
 library(sf)
 library(parallel)
@@ -2103,7 +2106,7 @@ plotfun("soil3", soil)
 # 1069904003 -> 1069905955
 # mask_proj_dem_aspect_30m -> mask_proj_dem_plan_30m
 # mask_proj_dem_aspect_30m -> mask_proj_dem_SRADTot_0115_30m
-# mask_proj_dem_plan_30m == mask_proj_dem_SRADTot_0115_30m
+## mask_proj_dem_plan_30m == mask_proj_dem_SRADTot_0115_30m
 ## ^NaNs equal
 
 # 1069905955 -> 1069907438
@@ -2120,6 +2123,9 @@ plotfun("soil3", soil)
 # 1070069423 -> 1070070747
 # mask_proj_soildes_30m -> mask_proj_soilAWC_D1_30m
 
+# After full-mask of all data
+# dem_aspect_30m NaNs = 1070130303; !is.na() = 327112007
+
 #----------------- 1c. check dems ----------------------
 dem1 = data.table::fread("_proj_dem_aspect_30m_forPCA.csv", select = c(1:2))
 dem2 = data.table::fread("_proj_dem_plan_30m_forPCA.csv", select = c(1:2))
@@ -2135,7 +2141,7 @@ diff = anti_join(dem2, srad1)
 diff = anti_join(srad1, dem2)
 ## nrow(diff) = 0
 
-#------------------- 1c. check srads + ndvi*** ---------------------
+#------------------- 1c. check srads + ndvi ---------------------
 srad2 = data.table::fread("_proj_dem_SRADTot_0415_30m_forPCA.csv", select = c(1:2))
 srad = anti_join(srad1, srad2)
 ## nrow(srad) = 1,499
