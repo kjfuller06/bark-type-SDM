@@ -25,6 +25,8 @@ library(tmap)
 # 1. & 2. ####
 flora <- read.csv("outputs/BioNet_allflorasurvey_cleaned.csv", header = TRUE) %>% 
   dplyr::select(ID,
+                SppID,
+                ScientificName,
                 Assgn_ScientificName, 
                 DateFirst,
                 DateLast,
@@ -61,6 +63,8 @@ flora$GrowthForm[flora$GrowthForm == "M" | flora$GrowthForm == "S" | flora$Growt
 backup = flora
 flora = backup %>% 
   dplyr::select(ID, 
+                SppID,
+                ScientificName,
                 Assgn_ScientificName, 
                 DateFirst,
                 DateLast,
@@ -71,4 +75,4 @@ flora = backup %>%
 
 # 9. ####
 # write to disk for use in other scripts
-write.csv(flora, "outputs/BioNet_allfloralsurvey_cleaned2.csv")
+write.csv(flora, "outputs/BioNet_allfloralsurvey_cleaned2.csv", row.names = FALSE)

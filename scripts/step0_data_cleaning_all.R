@@ -7,7 +7,9 @@
 #   6. Remove all instances except those in which percent cover is greater than 0%.
 #   7. Generate a unique code for every distinct combination of Year + Lat/Lon. BioNet data contain multiple instances in which replicates and/or subplots were surveyed in a given location, listing exactly the same coordinates on the same day.
 #       -> The user will need to decide how to address apparent duplicates in a given location.
-#   8. Cleaned remaining data using the CoordinateCleaner package for:
+#   8. Generate a unique species code for all unique combinations of original scientific name and assigned scientific name
+#       -> this was done because my eventual species assignments don't always agree with Bionet's species assignments
+#   9. Cleaned remaining data using the CoordinateCleaner package for:
 #       a. records occurring within 10,000m of the coordinates of a capital city
 #       b. records occurring within 1,000m of the centroid of a province or a county polygon,
 #       c. records in which the coordinates have equal numerical value, often an indication of user error in data entry
@@ -15,7 +17,7 @@
 #       e. records occurring within 100m of the coordinates of a known biological records institution,
 #       f. records occurring in the ocean, according to rnaturalearth data at the finest resolution,
 #       g. records with either lat/lon coordinate listed as "zero"
-#   9. write resulting dataframe to disk
+#   10. write resulting dataframe to disk
 
 # assign library path
 library(tidyverse)
@@ -24,7 +26,8 @@ library(rnaturalearth)
 
 # 1. & 2. ####
 flora <- read.delim("data/BioNet_allflorasurvey.txt", header = TRUE, sep = "\t", dec = ".") %>%
-  dplyr::select(Assgn_ScientificName,
+  dplyr::select(ScientificName,
+                Assgn_ScientificName,
                 Exotic,
                 NSWStatus,
                 CommStatus,
@@ -48,7 +51,7 @@ flora <- read.delim("data/BioNet_allflorasurvey.txt", header = TRUE, sep = "\t",
                 UpperHeight)
 
 # list columns that will be converted to factor variables
-columns=c("Assgn_ScientificName","Exotic","NSWStatus","CommStatus","SensitivityClass","EstimateTypeCode","SourceCode","ObservationType","Status","Stratum","GrowthForm","CoverScore","AbundanceScore")
+columns=c("ScientificName", "Assgn_ScientificName","Exotic","NSWStatus","CommStatus","SensitivityClass","EstimateTypeCode","SourceCode","ObservationType","Status","Stratum","GrowthForm","CoverScore","AbundanceScore")
 # convert columns to factors
 flora[columns] = lapply(flora[columns], factor)
 
@@ -78,13 +81,18 @@ unique$ID = seq_len(nrow(unique))
 flora = left_join(flora, unique)
 
 # 8. ####
+unique = unique(flora[c("ScientificName", "Assgn_ScientificName")])
+unique$SppID = seq_len(nrow(unique))
+flora = left_join(flora, unique)
+
+# 9. ####
 # May also want to clean using the outliers test. Not implemented here.
 backup = flora
 backup$ISO = "AUS"
-backup = clean_coordinates(backup, 
+backup = CoordinateCleaner::clean_coordinates(backup, 
                            lon = "Longitude_GDA94",
                            lat = "Latitude_GDA94",
-                           species = "Assgn_ScientificName",
+                           species = "SppID",
                            countries = "ISO",
                            country_ref = rnaturalearth:ne_countries(scale = 10),
                            seas_ref = rnaturalearth::ne_download(scale = 10, 
@@ -104,6 +112,8 @@ backup = clean_coordinates(backup,
 flora = backup %>% 
   filter(.cap == TRUE & .sea == TRUE & .summary == TRUE) %>% 
   dplyr::select(ID,
+                SppID,
+                ScientificName,
                 Assgn_ScientificName,
                 Exotic,
                 NSWStatus,
@@ -127,6 +137,6 @@ flora = backup %>%
                 LowerHeight,
                 UpperHeight)
 
-# 9. ####
-write.csv(flora, file = "outputs/BioNet_allflorasurvey_cleaned.csv")
+# 10. ####
+write.csv(flora, file = "outputs/BioNet_allflorasurvey_cleaned.csv", row.names = FALSE)
 

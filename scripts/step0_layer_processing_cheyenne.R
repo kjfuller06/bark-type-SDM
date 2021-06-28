@@ -2350,3 +2350,128 @@ a = a %>%
 sites = left_join(sites, a)
 sites[i][is.na(sites[i])] = 0
 
+
+#---------------- summary figures for veg types ------------
+library(data.table)
+library(sf)
+library(tidyverse)
+library(raster)
+library(parallel)
+library(snowfall)
+
+setwd("/glade/scratch/kjfuller/data")
+veg = raster("fuels_30m.tif")
+
+r = veg
+r = r %in% 1
+writeRaster(r, "veg1_30m.tif")
+r = raster("veg1_30m.tif")
+df = as.data.frame(rasterToPoints(r), xy = TRUE)
+df = df[df$veg1_30m == 1,]
+data.table::fwrite(df, "veg1_30m_df.csv")
+
+rastfun = function(x){
+  r = veg
+  r = r %in% x
+  writeRaster(r, paste0("veg", x, "_30m.tif"))
+  r = raster(paste0("veg", x, "_30m.tif"))
+  df = as.data.frame(rasterToPoints(r), xy = TRUE)
+  df = df[df[3] == 1,]
+  data.table::fwrite(df, paste0("veg", x, "_30m_df.csv"))
+}
+
+sfInit(parallel = TRUE, cpus = 10)
+sfExport("veg")
+sfLibrary(raster)
+sfLibrary(data.table)
+
+sfLapply(c(3:51), rastfun)
+
+sfStop()
+
+#---------------- summary figures for veg types (2) ------------
+library(data.table)
+library(sf)
+library(tidyverse)
+library(raster)
+
+setwd("/glade/scratch/kjfuller/data")
+veg = raster("fuels_30m.tif")
+nsw = st_read("NSW_sans_islands.shp") %>% 
+  st_transform(crs = st_crs(veg))
+
+df = data.frame()
+for(i in c(1:51)){
+  df2 = data.table::fwrite(paste0("veg", i, "_30m_df.csv"))
+  df2[3] = i
+  names(df2)[3] = "veg_type"
+  df = rbind(df, df2)
+}
+df = st_as_sf(df, coords = c("x", "y"), crs = st_crs(veg))
+
+bio1 = raster("masked/mask_proj_bioclim1_30m.tif")
+bio12 = raster("masked/mask_proj_bioclim12_30m.tif")
+
+df = cbind(df, 
+           temp = raster::extract(bio1, st_coordinates(df)),
+           precip = raster::extract(bio12, st_coordinates(df)))
+
+df = na.omit(df)
+df$temp = df$temp/10
+
+plotfun = function(min, max, label){
+  par(oma = c(0,0,0,0))
+  par(mfrow = c(1, 2))
+  plot(st_geometry(nsw))
+  plot(st_geometry(df), col = "grey80", add = TRUE)
+  plot(st_geometry(df[df$veg_type >= min & df$veg_type <= max,]), col = "red", add = TRUE)
+  with(df, plot(precip ~ temp,
+                col = "grey80",
+                xlab = "Temperature",
+                ylab = "Precipitation"))
+  with(df[df$veg_type >= min & df$veg_type <= max,], points(precip ~ temp,
+                                                            col = "red"))
+  mtext(label, side=3, outer=TRUE, line=-3)
+}
+setwd("D:/chapter1/bark-type-SDM/outputs")
+
+tiff("veg1_rainforests.tiff", width = 1600, height = 900, res = 200, units = "px")
+plotfun(1, 1, "Rainforest")
+dev.off()
+
+tiff("veg2_wetscler_shrub.tiff", width = 1600, height = 900, res = 200, units = "px")
+plotfun(2, 5, "Wet Sclerophyll Forest (shrubby)")
+dev.off()
+
+tiff("veg3_wetscler_grass.tiff", width = 1600, height = 900, res = 200, units = "px")
+plotfun(6, 10, "Wet Sclerophyll Forest (grassy)")
+dev.off()
+
+tiff("veg4_dryscler_shrub.grass.tiff", width = 1600, height = 900, res = 200, units = "px")
+plotfun(11, 20, "Dry Sclerophyll Forest (shrubby/grassy)")
+dev.off()
+
+tiff("veg5_dryscler_shrub.tiff", width = 1600, height = 900, res = 200, units = "px")
+plotfun(21, 34, "Dry Sclerophyll Forest (shrubby)")
+dev.off()
+
+tiff("veg6_grassy_woodlands.tiff", width = 1600, height = 900, res = 200, units = "px")
+plotfun(35, 41, "Grassy Woodlands")
+dev.off()
+
+tiff("veg7_heathlands.tiff", width = 1600, height = 900, res = 200, units = "px")
+plotfun(42, 44, "Heathlands")
+dev.off()
+
+tiff("veg8_alpine.tiff", width = 1600, height = 900, res = 200, units = "px")
+plotfun(45, 46, "Alpine")
+dev.off()
+
+tiff("veg9_semi-arid_grassy.tiff", width = 1600, height = 900, res = 200, units = "px")
+plotfun(47, 47, "Semi-Arid Woodlands (grassy)")
+dev.off()
+
+tiff("veg10_semi-arid_shrub.tiff", width = 1600, height = 900, res = 200, units = "px")
+plotfun(48, 51, "Semi-Arid Woodlands (shrubby)")
+dev.off()
+
