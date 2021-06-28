@@ -2475,3 +2475,43 @@ tiff("veg10_semi-arid_shrub.tiff", width = 1600, height = 900, res = 200, units 
 plotfun(48, 51, "Semi-Arid Woodlands (shrubby)")
 dev.off()
 
+
+#------------- PCA tile extract -------------------
+library(raster)
+library(sf)
+
+setwd("/glade/scratch/kjfuller/data")
+veg = raster("for_fuels_30m.tif")
+
+records = read.csv("site-specific_P-A_wide_barks.csv") %>% 
+  st_as_sf(coords = c("lon", "lat"), crs = st_crs(veg))
+
+setwd("/glade/scratch/kjfuller/data/PCAtiles")
+pc = list.files(pattern = ".tif")
+pc = pc[!grepl("test", pc)]
+for(a in c(1:14)){
+  pc1 = pc[grepl(paste0("PC", a, "_"), pc)]
+  for(i in c(1:length(pc1))){
+    r = raster(pc1[i])
+    records = cbind(records,
+                    as.numeric(raster::extract(r, st_coordinates(records), method = 'simple')))
+    names(records)[ncol(records)-1] = paste0("PC", a, "_", i)
+  }
+  
+  values = records
+  st_geometry(values) = NULL
+  values = values[,c((10+a):ncol(values))]
+  values$PC_mean = rowMeans(values, na.rm = TRUE)
+  
+  records = cbind(records[,c(1:(9+a))], values$PC_mean)
+  names(records)[10+1] = paste0("PC", a)
+}
+
+records$lon = st_coordinates(records)[,1]
+records$lat = st_coordinates(records)[,2]
+st_geometry(records) = NULL
+write.csv(records, "site-specific_P-A_wide_barks_PCAvalues.csv", row.names = FALSE)
+
+records = na.omit(records)
+setwd("/glade/scratch/kjfuller/data")
+write.csv(records, "PC_valuesforRF.csv", row.names = FALSE)
