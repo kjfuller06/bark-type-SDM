@@ -1,8 +1,4 @@
 # script for extracting presence/absence data from species selection records
-## need to incorporate site-specific bark traits in species_sampleV.1.shp
-#     -create distinct names for the same species with tree form and mallee form
-#     -generate datasets for each bark type- including the different growth forms of such species
-
 library(tidyverse)
 library(sf)
 library(reshape2)
