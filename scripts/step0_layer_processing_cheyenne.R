@@ -2515,3 +2515,13 @@ write.csv(records, "site-specific_P-A_wide_barks_PCAvalues.csv", row.names = FAL
 records = na.omit(records)
 setwd("/glade/scratch/kjfuller/data")
 write.csv(records, "PC_valuesforRF.csv", row.names = FALSE)
+
+records = read.csv("PC_valuesforRF.csv") %>% 
+  st_as_sf(coords = c("lon", "lat"), crs = st_crs(veg))
+
+fire = raster("mask_proj_fire_final_30m.tif")
+records = cbind(records,
+                fire = raster::extract(fire, st_coordinates(records), method = 'simple'))
+records = na.omit(records)
+
+write.csv(records, "all_valuesforRF.csv", row.names = FALSE)
