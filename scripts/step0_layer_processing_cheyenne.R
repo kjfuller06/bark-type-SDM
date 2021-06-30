@@ -2481,7 +2481,7 @@ library(raster)
 library(sf)
 
 setwd("/glade/scratch/kjfuller/data")
-veg = raster("for_fuels_30m.tif")
+veg = raster("fuels_30m.tif")
 
 records = read.csv("site-specific_P-A_wide_barks.csv") %>% 
   st_as_sf(coords = c("lon", "lat"), crs = st_crs(veg))
@@ -2521,7 +2521,8 @@ records = read.csv("PC_valuesforRF.csv") %>%
 
 fire = raster("mask_proj_fire_final_30m.tif")
 records = cbind(records,
-                fire = raster::extract(fire, st_coordinates(records), method = 'simple'))
+                fire = raster::extract(fire, st_coordinates(records), method = 'simple'),
+                fueltype = raster::extract(veg, st_coordinates(records), method = 'simple'))
 records = na.omit(records)
 
 records$lon = st_coordinates(records)[,1]
