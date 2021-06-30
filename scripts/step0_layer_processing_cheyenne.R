@@ -2524,4 +2524,7 @@ records = cbind(records,
                 fire = raster::extract(fire, st_coordinates(records), method = 'simple'))
 records = na.omit(records)
 
+records$lon = st_coordinates(records)[,1]
+records$lat = st_coordinates(records)[,2]
+st_geometry(records) = NULL
 write.csv(records, "all_valuesforRF.csv", row.names = FALSE)
