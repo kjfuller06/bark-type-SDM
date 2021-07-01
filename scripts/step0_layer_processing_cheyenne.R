@@ -2529,3 +2529,175 @@ records$lon = st_coordinates(records)[,1]
 records$lat = st_coordinates(records)[,2]
 st_geometry(records) = NULL
 write.csv(records, "all_valuesforRF.csv", row.names = FALSE)
+
+#-------------- checking tidymodel outputs- RF1_tuning3 --------------
+library(raster)
+library(tidymodels)
+library(tidyverse)
+library(sf)
+library(rnaturalearth)
+library(randomForest)
+library(alookr)
+library(themis)
+library(vip)
+
+# load and filter dataset for RF
+veg = raster("data/for_fuels_30m.tif")
+records = read.csv("data/site-specific_P-A_wide_barks.csv") %>% st_as_sf(coords = c("lon", "lat"), crs = st_crs(veg))
+records$id = 1:nrow(records)
+sam = sample(records$id, size = 100)
+records = records[sam,]
+records = records %>% 
+  dplyr::select(-id)
+records = cbind(records,
+                fueltype = raster::extract(veg, st_coordinates(records), method = 'simple'))
+records = na.omit(records)
+records$lon = st_coordinates(records)[,1]
+records$lat = st_coordinates(records)[,2]
+st_geometry(records) = NULL
+
+num = 1
+# select data for modeling #
+nom = names(records)[(num)]
+rec1 = records[,c(num, (ncol(records)-2):ncol(records))]
+names(rec1)[(1)] = "group_PA"
+rec1$group_PA = as.factor(rec1$group_PA)
+
+# select only the vegetation types where the species group is found to be present
+fuels = rec1 %>% 
+  filter(rec1$group_PA == 1) %>% 
+  dplyr::select(fueltype) %>% 
+  unique()
+rec1 = rec1[rec1$fueltype %in% fuels$fueltype,] %>% 
+  dplyr::select(-fueltype) %>% 
+  drop_na()
+set.seed(5)
+rec1$var = rnorm(n = nrow(rec1))
+set.seed(10)
+rec1$var2 = rnorm(n = nrow(rec1))
+
+# create training and test samples
+set.seed(123)
+sb = rec1 %>%
+  initial_split()
+train = training(sb)
+test = testing(sb)
+
+# tune parameters #
+mod_rec = recipe(group_PA ~ ., data = train) %>% 
+  update_role(lon, new_role = "ID") %>% 
+  update_role(lat, new_role = "ID")
+mod_prep = prep(mod_rec)
+
+# tune for the model specifications
+tune_spec = rand_forest(
+  mtry = tune(),
+  trees = 1000,
+  min_n = tune()
+) %>% 
+  set_mode("classification") %>% 
+  set_engine("ranger")
+
+# put specs into a workflow
+tune_wf = workflow() %>% 
+  add_recipe(mod_rec) %>% 
+  add_model(tune_spec)
+
+# create cross-validation resamples to use for tuning
+set.seed(234)
+trees_fold = vfold_cv(train)
+
+# tune the hyperparameters for how many predictors to sample at each split (mtry) and how many observations needed to keep splitting nodes (min_n)
+doParallel::registerDoParallel()
+
+set.seed(345)
+tune_res <<- tune_grid(
+  tune_wf,
+  resamples = trees_fold,
+  grid = 20)
+
+# plot results
+tune_res %>%
+  collect_metrics() %>%
+  filter(.metric == "roc_auc") %>%
+  select(mean, min_n, mtry) %>%
+  pivot_longer(min_n:mtry,
+               values_to = "value",
+               names_to = "parameter"
+  ) %>%
+  ggplot(aes(value, mean, color = parameter)) +
+  geom_point(show.legend = FALSE) +
+  facet_wrap(~parameter, scales = "free_x") +
+  labs(x = NULL, y = "AUC")
+
+# select the best values for hyperparameters for final model specs
+best_auc <- select_best(tune_res, "roc_auc")
+
+final_rf <- finalize_model(
+  tune_spec,
+  best_auc
+)
+
+# examine variable importance
+set.seed(234)
+p = final_rf %>%
+  set_engine("ranger", importance = "permutation") %>%
+  fit(group_PA ~ .,
+      data = juice(mod_prep) %>% dplyr::select(-lon) %>% dplyr::select(-lat)
+      ) %>%
+  vip(geom = "point")
+tiff(paste0("ModelVars_barktype", num, ".tiff"), width = 500, height = 500, res = 100, units = "px")
+print(p)
+dev.off()
+
+# grab parameters for labeling outputs
+label = paste("mtry",
+              as.character(final_rf$args$mtry)[2], 
+              "trees",
+              as.character(final_rf$args$trees)[2],
+              "min_n",
+              as.character(final_rf$args$min_n)[2],
+              sep = "_")
+
+# now lets run the model and test it on the test dataset
+final_wf <- workflow() %>%
+  add_recipe(mod_rec) %>%
+  add_model(final_rf)
+
+final_res <- final_wf %>%
+  last_fit(sb)
+
+saveRDS(final_res, file = paste0("Model_barktype", num, ".rds"))
+final_res = readRDS(paste0("Model_barktype", num, ".rds"))
+
+# calculate true positives and negatives and error rates
+metrics = final_res %>%
+  collect_metrics()
+sum_1 = final_res %>% 
+  collect_predictions()
+stats_b1 = data.frame(barktype = nom,
+                      sampling = "none",
+                      model = paste(label), 
+                      attribute = c("pred0.0",
+                                    "pred0.1",
+                                    "pred1.0",
+                                    "pred1.1",
+                                    "accuracy",
+                                    "roc_auc",
+                                    "resolution"),
+                      values = c(mean(sum_1$.pred_0[sum_1$group_PA == 0]),
+                                 mean(sum_1$.pred_1[sum_1$group_PA == 0]),
+                                 mean(sum_1$.pred_0[sum_1$group_PA == 1]),
+                                 mean(sum_1$.pred_1[sum_1$group_PA == 1]),
+                                 metrics$.estimate[1],
+                                 metrics$.estimate[2],
+                                 resolution = "30m"))
+write.csv(stats_b1, "ModelStats_barks.csv", row.names = FALSE)
+
+output = final_res %>% 
+  collect_predictions() %>% 
+  mutate(correct = case_when(
+    group_PA == .pred_class ~ "Correct",
+    TRUE ~ "Incorrect")) %>% 
+  bind_cols(test)
+write.csv(output, paste0("ModelTest_barktype", num, ".csv"), row.names = FALSE)
