@@ -2545,7 +2545,8 @@ library(vip)
 veg = raster("data/for_fuels_30m.tif")
 records = read.csv("data/site-specific_P-A_wide_barks.csv") %>% st_as_sf(coords = c("lon", "lat"), crs = st_crs(veg))
 records$id = 1:nrow(records)
-sam = sample(records$id, size = 100)
+set.seed(500)
+sam = sample(records$id, size = 200)
 records = records[sam,]
 records = records %>% 
   dplyr::select(-id)
@@ -2556,21 +2557,16 @@ records$lon = st_coordinates(records)[,1]
 records$lat = st_coordinates(records)[,2]
 st_geometry(records) = NULL
 
-num = 1
+num = 7
 # select data for modeling #
 nom = names(records)[(num)]
 rec1 = records[,c(num, (ncol(records)-2):ncol(records))]
 names(rec1)[(1)] = "group_PA"
 rec1$group_PA = as.factor(rec1$group_PA)
+rec1 = rec1 %>% 
+  dplyr::select(-fueltype)
 
-# select only the vegetation types where the species group is found to be present
-fuels = rec1 %>% 
-  filter(rec1$group_PA == 1) %>% 
-  dplyr::select(fueltype) %>% 
-  unique()
-rec1 = rec1[rec1$fueltype %in% fuels$fueltype,] %>% 
-  dplyr::select(-fueltype) %>% 
-  drop_na()
+# generate predictors
 set.seed(5)
 rec1$var = rnorm(n = nrow(rec1))
 set.seed(10)
@@ -2586,7 +2582,8 @@ test = testing(sb)
 # tune parameters #
 mod_rec = recipe(group_PA ~ ., data = train) %>% 
   update_role(lon, new_role = "ID") %>% 
-  update_role(lat, new_role = "ID")
+  update_role(lat, new_role = "ID") %>% 
+  step_smote(group_PA, seed = 123)
 mod_prep = prep(mod_rec)
 
 # tune for the model specifications
